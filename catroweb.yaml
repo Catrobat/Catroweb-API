@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: 1.0.0
+  version: 1.0.2
   termsOfService: 'http://example.com/terms/'
   contact:
     name: 'Catrobat'
@@ -382,6 +382,10 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/Token'
+        - name: flavor
+          in: query
+          schema:
+            $ref: '#/components/schemas/Flavor'
       responses:
         '200':
           description: Upload OK
@@ -504,6 +508,11 @@ paths:
           description: Project does not exist
 components:
   schemas:
+    Flavor:
+      type: string
+      description: Available flavors
+      enum: [pocketcode, pocketalice, pocketgalaxy, pocketphiro, phirocode, luna, create@school, embroidery, arduino]
+      example: pocketcode
     BodyUsername:
       type: object
       properties:
@@ -524,11 +533,6 @@ components:
           type: string
           format: binary
           description: '*.catrobat file'
-        flavor:
-          type: string
-          example: 'pocketcode'
-          default: 'pocketcode'
-          description: 'The flavor the uploaded program is associated with.'
     UploadError:
       type: object
       properties:
@@ -620,8 +624,7 @@ components:
           type: string
           example: 'luna_sinde_2'
         flavor:
-          type: string
-          example: 'luna'
+          $ref: '#/components/schemas/Flavor'
         package:
           type: string
           example: 'Looks'

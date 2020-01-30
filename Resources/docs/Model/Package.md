@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] 
 **name** | **string** |  | [optional] 
-**flavor** | **string** |  | [optional] 
+**flavor** | [**OpenAPI\Server\Model\Flavor**](Flavor.md) |  | [optional] 
 **package** | **string** |  | [optional] 
 **category** | **string** |  | [optional] 
 **author** | **string** |  | [optional] 

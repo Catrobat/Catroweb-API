@@ -1,6 +1,6 @@
 <?php
 /**
- * BodyUsername
+ * Flavor
  *
  * PHP version 5
  *
@@ -34,52 +34,21 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
 
 /**
- * Class representing the BodyUsername model.
+ * Class representing the Flavor model.
+ *
+ * Available flavors
  *
  * @package OpenAPI\Server\Model
  * @author  OpenAPI Generator team
  */
-class BodyUsername 
+class Flavor 
 {
         /**
-     * @var string|null
-     * @SerializedName("username")
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected $username;
-
-    /**
      * Constructor
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
     {
-        $this->username = isset($data['username']) ? $data['username'] : null;
-    }
-
-    /**
-     * Gets username.
-     *
-     * @return string|null
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Sets username.
-     *
-     * @param string|null $username
-     *
-     * @return $this
-     */
-    public function setUsername($username = null)
-    {
-        $this->username = $username;
-
-        return $this;
     }
 }
 

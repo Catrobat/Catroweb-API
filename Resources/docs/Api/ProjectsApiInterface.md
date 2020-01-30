@@ -461,7 +461,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsUploadPost**
-> projectsUploadPost($token, $checksum, $file, $flavor)
+> projectsUploadPost($token, $flavor, $checksum, $file)
 
 Upload a catrobat program
 
@@ -482,7 +482,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUploadPost
      */
-    public function projectsUploadPost($token, $checksum = null, UploadedFile $file = null, $flavor = '''pocketcode''')
+    public function projectsUploadPost($token, Flavor $flavor = null, $checksum = null, UploadedFile $file = null)
     {
         // Implement the operation ...
     }
@@ -496,9 +496,9 @@ class ProjectsApi implements ProjectsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**|  |
+ **flavor** | [**OpenAPI\Server\Model\Flavor**](../Model/.md)|  | [optional]
  **checksum** | **string**| Checksum of the *.catrobat file | [optional]
  **file** | **UploadedFile****UploadedFile**| *.catrobat file | [optional]
- **flavor** | **string**| The flavor the uploaded program is associated with. | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
 
 ### Return type
 
