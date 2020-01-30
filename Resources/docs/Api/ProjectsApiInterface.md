@@ -1,6 +1,6 @@
 # OpenAPI\Server\Api\ProjectsApiInterface
 
-All URIs are relative to *https://share.catrob.at/app/api/v2*
+All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -461,7 +461,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsUploadPost**
-> projectsUploadPost($token, $token, $checksum, $file, $flavor)
+> projectsUploadPost($token, $checksum, $file, $flavor)
 
 Upload a catrobat program
 
@@ -482,7 +482,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUploadPost
      */
-    public function projectsUploadPost($token, $token = null, $checksum = null, UploadedFile $file = null, $flavor = '''pocketcode''')
+    public function projectsUploadPost($token, $checksum = null, UploadedFile $file = null, $flavor = '''pocketcode''')
     {
         // Implement the operation ...
     }
@@ -496,7 +496,6 @@ class ProjectsApi implements ProjectsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**|  |
- **token** | **string**| Upload token of the user | [optional]
  **checksum** | **string**| Checksum of the *.catrobat file | [optional]
  **file** | **UploadedFile****UploadedFile**| *.catrobat file | [optional]
  **flavor** | **string**| The flavor the uploaded program is associated with. | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]

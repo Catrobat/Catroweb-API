@@ -1,6 +1,6 @@
 # OpenAPI\Server\Api\SecurityApiInterface
 
-All URIs are relative to *https://share.catrob.at/app/api/v2*
+All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -24,7 +24,7 @@ services:
 ```
 
 ## **checkTokenPost**
-> checkTokenPost($token, $inlineObject)
+> checkTokenPost($token, $bodyUsername)
 
 Checking token
 
@@ -47,7 +47,7 @@ class SecurityApi implements SecurityApiInterface
     /**
      * Implementation of SecurityApiInterface#checkTokenPost
      */
-    public function checkTokenPost($token, InlineObject $inlineObject)
+    public function checkTokenPost($token, BodyUsername $bodyUsername)
     {
         // Implement the operation ...
     }
@@ -61,7 +61,7 @@ class SecurityApi implements SecurityApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**|  |
- **inlineObject** | [**OpenAPI\Server\Model\InlineObject**](../Model/InlineObject.md)|  |
+ **bodyUsername** | [**OpenAPI\Server\Model\BodyUsername**](../Model/BodyUsername.md)|  |
 
 ### Return type
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Login
+ * BodyUsername
  *
  * PHP version 5
  *
@@ -34,16 +34,14 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
 
 /**
- * Class representing the Login model.
+ * Class representing the BodyUsername model.
  *
  * @package OpenAPI\Server\Model
  * @author  OpenAPI Generator team
  */
-class Login 
+class BodyUsername 
 {
         /**
-     * Username. Validation via /registerValidation
-     *
      * @var string|null
      * @SerializedName("username")
      * @Assert\Type("string")
@@ -52,23 +50,12 @@ class Login
     protected $username;
 
     /**
-     * A secure password. Validation via /registerValidation
-     *
-     * @var string|null
-     * @SerializedName("password")
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected $password;
-
-    /**
      * Constructor
      * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
     {
         $this->username = isset($data['username']) ? $data['username'] : null;
-        $this->password = isset($data['password']) ? $data['password'] : null;
     }
 
     /**
@@ -84,37 +71,13 @@ class Login
     /**
      * Sets username.
      *
-     * @param string|null $username  Username. Validation via /registerValidation
+     * @param string|null $username
      *
      * @return $this
      */
     public function setUsername($username = null)
     {
         $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Gets password.
-     *
-     * @return string|null
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Sets password.
-     *
-     * @param string|null $password  A secure password. Validation via /registerValidation
-     *
-     * @return $this
-     */
-    public function setPassword($password = null)
-    {
-        $this->password = $password;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 # OpenAPI\Server\Api\MediaLibraryApiInterface
 
-All URIs are relative to *https://share.catrob.at/app/api/v2*
+All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
