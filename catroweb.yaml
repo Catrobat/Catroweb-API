@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: 1.0.2
+  version: 1.0.3
   termsOfService: 'http://example.com/terms/'
   contact:
     name: 'Catrobat'
@@ -34,7 +34,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BodyUsername'
+              type: object
+              properties:
+                username:
+                  $ref: '#/components/schemas/Username'
       parameters:
         - name: token
           in: header
@@ -179,15 +182,19 @@ paths:
         - name: max_version
           in: query
           schema:
-            type: string
-            description: 'Only shows project with a smaller version number than max version'
-            example: '0.999'
+            $ref: '#/components/schemas/MaxVersion'
         - name: limit
           in: query
           schema:
-            type: integer
-            description: 'How many featured projects should be shown at maximum'
-            example: 3
+            $ref: '#/components/schemas/Limit'
+        - name: offset
+          in: query
+          schema:
+            $ref: '#/components/schemas/Offset'
+        - name: flavor
+          in: query
+          schema:
+            $ref: '#/components/schemas/Flavor'
       responses:
         '200':
           description: OK
@@ -204,23 +211,19 @@ paths:
         - name: max_version
           in: query
           schema:
-            type: string
-            description: 'Only shows project with a smaller version number than max version'
-            example: '0.999'
+            $ref: '#/components/schemas/MaxVersion'
         - name: limit
           in: query
           schema:
-            type: integer
-            description: 'How many featured projects should be shown at maximum'
-            default: 20
-            example: 10
+            $ref: '#/components/schemas/Limit'
         - name: offset
           in: query
           schema:
-            type: integer
-            description: 'How many featured projects should be shown at maximum'
-            default: 0
-            example: 10
+            $ref: '#/components/schemas/Offset'
+        - name: flavor
+          in: query
+          schema:
+            $ref: '#/components/schemas/Flavor'
       responses:
         '200':
           description: OK
@@ -237,23 +240,19 @@ paths:
         - name: max_version
           in: query
           schema:
-            type: string
-            description: 'Only shows project with a smaller version number than max version'
-            example: '0.999'
+            $ref: '#/components/schemas/MaxVersion'
         - name: limit
           in: query
           schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 20
-            example: 10
+            $ref: '#/components/schemas/Limit'
         - name: offset
           in: query
           schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 0
-            example: 10
+            $ref: '#/components/schemas/Offset'
+        - name: flavor
+          in: query
+          schema:
+            $ref: '#/components/schemas/Flavor'
       responses:
         '200':
           description: OK
@@ -270,23 +269,19 @@ paths:
         - name: max_version
           in: query
           schema:
-            type: string
-            description: 'Only shows project with a smaller version number than max version'
-            example: '0.999'
+            $ref: '#/components/schemas/MaxVersion'
         - name: limit
           in: query
           schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 20
-            example: 10
+            $ref: '#/components/schemas/Limit'
         - name: offset
           in: query
           schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 0
-            example: 10
+            $ref: '#/components/schemas/Offset'
+        - name: flavor
+          in: query
+          schema:
+            $ref: '#/components/schemas/Flavor'
       responses:
         '200':
           description: OK
@@ -303,23 +298,19 @@ paths:
         - name: max_version
           in: query
           schema:
-            type: string
-            description: 'Only shows project with a smaller version number than max version'
-            example: '0.999'
+            $ref: '#/components/schemas/MaxVersion'
         - name: limit
           in: query
           schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 20
-            example: 10
+            $ref: '#/components/schemas/Limit'
         - name: offset
           in: query
           schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 0
-            example: 10
+            $ref: '#/components/schemas/Offset'
+        - name: flavor
+          in: query
+          schema:
+            $ref: '#/components/schemas/Flavor'
       responses:
         '200':
           description: OK
@@ -333,31 +324,22 @@ paths:
         - Projects
       summary: Search for programs associated with a keywords
       parameters:
-        - name: query
-          in: query
-          schema:
-            type: string
-            description: String to be searched
         - name: max_version
           in: query
           schema:
-            type: string
-            description: 'Only shows project with a smaller version number than max version'
-            example: '0.999'
+            $ref: '#/components/schemas/MaxVersion'
         - name: limit
           in: query
           schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 20
-            example: 10
+            $ref: '#/components/schemas/Limit'
         - name: offset
           in: query
           schema:
-            type: integer
-            description: 'How many projects should be given in addition to limit'
-            default: 0
-            example: 10
+            $ref: '#/components/schemas/Offset'
+        - name: flavor
+          in: query
+          schema:
+            $ref: '#/components/schemas/Flavor'
       responses:
         '200':
           description: OK
@@ -382,10 +364,6 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/Token'
-        - name: flavor
-          in: query
-          schema:
-            $ref: '#/components/schemas/Flavor'
       responses:
         '200':
           description: Upload OK
@@ -508,17 +486,29 @@ paths:
           description: Project does not exist
 components:
   schemas:
+    MaxVersion:
+      type: string
+      description: 'Only shows project with a smaller version number than max version'
+      example: '0.999'
+      pattern: '[0-9]\.[0-9]{3}'
+    Limit:
+      type: integer
+      minimum: 0
+      description: 'How many projects should be shown at maximum'
+      default: 20
+      example: 3
+    Offset:
+      type: integer
+      minimum: 0
+      description: 'How many projects should be skipped'
+      default: 0
+      example: 2
     Flavor:
       type: string
       description: Available flavors
       enum: [pocketcode, pocketalice, pocketgalaxy, pocketphiro, phirocode, luna, create@school, embroidery, arduino]
       example: pocketcode
-    BodyUsername:
-      type: object
-      properties:
-        username:
-          type: string
-          example: hei-wicki-hei
+      default: pocketcode
     Token:
       type: string
       example: tkf4e26780c9e6b1d171f3dbeafa194cac
@@ -533,6 +523,10 @@ components:
           type: string
           format: binary
           description: '*.catrobat file'
+        flavor:
+          $ref: '#/components/schemas/Flavor'
+        tags:
+          $ref: '#/components/schemas/Tags'
     UploadError:
       type: object
       properties:
@@ -572,16 +566,13 @@ components:
       properties:
         email:
           type: string
+          format: email
           example: 'test@test.lan'
           description: EMail of the user. Validation via /registerValidation
         username:
-          type: string
-          example: 'Testuser'
-          description: Username. Validation via /registerValidation
+          $ref: '#/components/schemas/Username'
         password:
-          type: string
-          example: 'password'
-          description: A secure password. Validation via /registerValidation
+          $ref: '#/components/schemas/Password'
         locale:
           type: string
           example: 'de'
@@ -590,26 +581,19 @@ components:
       type: object
       properties:
         username:
-          type: string
-          example: 'Testuser'
-          description: Username. Validation via /registerValidation
+          $ref: '#/components/schemas/Username'
         password:
-          type: string
-          example: 'password'
-          description: A secure password. Validation via /registerValidation
+          $ref: '#/components/schemas/Password'
     LoginResponseOK:
       type: object
       properties:
         token:
-          type: string
-          example: 'tkf4e26780c9e6b1d171f3dbeafa194cac'
+          $ref: '#/components/schemas/Token'
     Logout:
       type: object
       properties:
         username:
-          type: string
-          example: 'Testuser'
-          description: Username. Validation via /registerValidation
+          $ref: '#/components/schemas/Username'
     Packages:
       type: array
       items:
@@ -690,6 +674,8 @@ components:
         private:
           type: boolean
           example: false
+        flavor:
+          $ref: '#/components/schemas/Flavor'
         uploaded:
           type: integer
           example: 1575562569
@@ -712,3 +698,33 @@ components:
           type: number
           example: 0.14381762458251943
           description: 'filesize in megabytes'
+    Tags:
+      type: array
+      minItems: 0
+      maxItems: 3
+      items:
+        $ref: '#/components/schemas/Tag'
+    Tag:
+      type: string
+      enum: 
+        - Game
+        - Animation
+        - Story
+        - Music
+        - Art
+        - Experimental
+        - Tutorial
+      example: Game
+    Username:
+      type: string
+      minLength: 3
+      maxLength: 180
+      example: 'Testuser'
+      description: Name of the user
+    Password:
+      type: string
+      format: password
+      minLength: 6
+      maxLength: 4096
+      example: 'password'
+      description: A secure password.
