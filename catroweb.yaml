@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: 1.0.3
+  version: 1.0.5
   termsOfService: 'http://example.com/terms/'
   contact:
     name: 'Catrobat'
@@ -34,10 +34,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                username:
-                  $ref: '#/components/schemas/Username'
+              $ref: '#/components/schemas/UsernameObject'
       parameters:
         - name: token
           in: header
@@ -702,18 +699,12 @@ components:
       type: array
       minItems: 0
       maxItems: 3
+      description: Available tags
       items:
         $ref: '#/components/schemas/Tag'
     Tag:
       type: string
-      enum: 
-        - Game
-        - Animation
-        - Story
-        - Music
-        - Art
-        - Experimental
-        - Tutorial
+      enum: [Game, Animation, Story, Music, Art, Experimental, Tutorial]
       example: Game
     Username:
       type: string
@@ -721,6 +712,11 @@ components:
       maxLength: 180
       example: 'Testuser'
       description: Name of the user
+    UsernameObject:
+      type: object
+      properties:
+        username:
+          $ref: '#/components/schemas/Username'
     Password:
       type: string
       format: password

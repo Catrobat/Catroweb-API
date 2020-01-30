@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **views** | **int** |  | [optional] 
 **download** | **int** |  | [optional] 
 **private** | **bool** |  | [optional] 
+**flavor** | [**OpenAPI\Server\Model\Flavor**](Flavor.md) |  | [optional] 
 **uploaded** | **int** |  | [optional] 
 **uploadedString** | **string** |  | [optional] 
 **screenshotLarge** | **string** |  | [optional] 

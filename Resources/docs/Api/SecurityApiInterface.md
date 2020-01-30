@@ -24,7 +24,7 @@ services:
 ```
 
 ## **checkTokenPost**
-> checkTokenPost($token, $bodyUsername)
+> checkTokenPost($token, $usernameObject)
 
 Checking token
 
@@ -47,7 +47,7 @@ class SecurityApi implements SecurityApiInterface
     /**
      * Implementation of SecurityApiInterface#checkTokenPost
      */
-    public function checkTokenPost($token, BodyUsername $bodyUsername)
+    public function checkTokenPost($token, UsernameObject $usernameObject)
     {
         // Implement the operation ...
     }
@@ -61,7 +61,7 @@ class SecurityApi implements SecurityApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token** | **string**|  |
- **bodyUsername** | [**OpenAPI\Server\Model\BodyUsername**](../Model/BodyUsername.md)|  |
+ **usernameObject** | [**OpenAPI\Server\Model\UsernameObject**](../Model/UsernameObject.md)|  |
 
 ### Return type
 
