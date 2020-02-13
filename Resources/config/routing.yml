@@ -39,7 +39,7 @@ open_api_server_projects_projectsmostviewedget:
         _controller: open_api_server.controller.projects:projectsMostViewedGetAction
 
 open_api_server_projects_projectspublicuseruseridget:
-    path:     /projects/public/user/{user_id}
+    path:     /projects/public/user/{userId}
     methods:  [GET]
     defaults:
         _controller: open_api_server.controller.projects:projectsPublicUserUserIdGetAction
@@ -71,7 +71,7 @@ open_api_server_projects_projectsuploadpost:
         _controller: open_api_server.controller.projects:projectsUploadPostAction
 
 open_api_server_projects_projectsuseruseridget:
-    path:     /projects/user/{user_id}
+    path:     /projects/user/{userId}
     methods:  [GET]
     defaults:
         _controller: open_api_server.controller.projects:projectsUserUserIdGetAction

@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] 
 **name** | **string** |  | [optional] 
-**flavor** | [**OpenAPI\Server\Model\Flavor**](Flavor.md) |  | [optional] 
+**flavor** | **string** | Available flavors | [optional] [default to 'pocketcode']
 **package** | **string** |  | [optional] 
 **category** | **string** |  | [optional] 
 **author** | **string** |  | [optional] 

@@ -8,12 +8,12 @@ Method | HTTP request | Description
 [**projectsFeaturedGet**](ProjectsApiInterface.md#projectsFeaturedGet) | **GET** /projects/featured | Get the currently featured projects
 [**projectsMostDownloadedGet**](ProjectsApiInterface.md#projectsMostDownloadedGet) | **GET** /projects/mostDownloaded | Get the most downloaded projects
 [**projectsMostViewedGet**](ProjectsApiInterface.md#projectsMostViewedGet) | **GET** /projects/mostViewed | Get the most viewed projects
-[**projectsPublicUserUserIdGet**](ProjectsApiInterface.md#projectsPublicUserUserIdGet) | **GET** /projects/public/user/{user_id} | Get the public projects of a user, if user is logged in, then there will also be private programs
+[**projectsPublicUserUserIdGet**](ProjectsApiInterface.md#projectsPublicUserUserIdGet) | **GET** /projects/public/user/{userId} | Get the public projects of a user, if user is logged in, then there will also be private programs
 [**projectsRandomProgramsGet**](ProjectsApiInterface.md#projectsRandomProgramsGet) | **GET** /projects/randomPrograms | Get random projects
 [**projectsRecentGet**](ProjectsApiInterface.md#projectsRecentGet) | **GET** /projects/recent | Get the most recent programs
 [**projectsSearchGet**](ProjectsApiInterface.md#projectsSearchGet) | **GET** /projects/search | Search for programs associated with a keywords
 [**projectsUploadPost**](ProjectsApiInterface.md#projectsUploadPost) | **POST** /projects/upload | Upload a catrobat program
-[**projectsUserUserIdGet**](ProjectsApiInterface.md#projectsUserUserIdGet) | **GET** /projects/user/{user_id} | Get the projects of a user, if user is logged in, then there will also be private programs
+[**projectsUserUserIdGet**](ProjectsApiInterface.md#projectsUserUserIdGet) | **GET** /projects/user/{userId} | Get the projects of a user, if user is logged in, then there will also be private programs
 
 
 ## Service Declaration
@@ -102,7 +102,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsFeaturedGet
      */
-    public function projectsFeaturedGet($platform = null, $maxVersion = null, $limit = '20', $offset = '0', Flavor $flavor = null)
+    public function projectsFeaturedGet($platform = null, $maxVersion = null, $limit = '20', $offset = '0', $flavor = '''pocketcode''')
     {
         // Implement the operation ...
     }
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
  **maxVersion** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **flavor** | [**OpenAPI\Server\Model\Flavor**](../Model/.md)|  | [optional]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
 
 ### Return type
 
@@ -158,7 +158,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsMostDownloadedGet
      */
-    public function projectsMostDownloadedGet($maxVersion = null, $limit = '20', $offset = '0', Flavor $flavor = null)
+    public function projectsMostDownloadedGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = '''pocketcode''')
     {
         // Implement the operation ...
     }
@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
  **maxVersion** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **flavor** | [**OpenAPI\Server\Model\Flavor**](../Model/.md)|  | [optional]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
 
 ### Return type
 
@@ -213,7 +213,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsMostViewedGet
      */
-    public function projectsMostViewedGet($maxVersion = null, $limit = '20', $offset = '0', Flavor $flavor = null)
+    public function projectsMostViewedGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = '''pocketcode''')
     {
         // Implement the operation ...
     }
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
  **maxVersion** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **flavor** | [**OpenAPI\Server\Model\Flavor**](../Model/.md)|  | [optional]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
 
 ### Return type
 
@@ -323,7 +323,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsRandomProgramsGet
      */
-    public function projectsRandomProgramsGet($maxVersion = null, $limit = '20', $offset = '0', Flavor $flavor = null)
+    public function projectsRandomProgramsGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = '''pocketcode''')
     {
         // Implement the operation ...
     }
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
  **maxVersion** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **flavor** | [**OpenAPI\Server\Model\Flavor**](../Model/.md)|  | [optional]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
 
 ### Return type
 
@@ -378,7 +378,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsRecentGet
      */
-    public function projectsRecentGet($maxVersion = null, $limit = '20', $offset = '0', Flavor $flavor = null)
+    public function projectsRecentGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = '''pocketcode''')
     {
         // Implement the operation ...
     }
@@ -394,7 +394,7 @@ Name | Type | Description  | Notes
  **maxVersion** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **flavor** | [**OpenAPI\Server\Model\Flavor**](../Model/.md)|  | [optional]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
 
 ### Return type
 
@@ -433,7 +433,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsSearchGet
      */
-    public function projectsSearchGet($maxVersion = null, $limit = '20', $offset = '0', Flavor $flavor = null)
+    public function projectsSearchGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = '''pocketcode''')
     {
         // Implement the operation ...
     }
@@ -449,7 +449,7 @@ Name | Type | Description  | Notes
  **maxVersion** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **flavor** | [**OpenAPI\Server\Model\Flavor**](../Model/.md)|  | [optional]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
 
 ### Return type
 
@@ -488,7 +488,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUploadPost
      */
-    public function projectsUploadPost($token, $checksum = null, UploadedFile $file = null, Flavor $flavor = null, array $tags = null)
+    public function projectsUploadPost($token, $checksum = null, UploadedFile $file = null, $flavor = '''pocketcode''', array $tags = null)
     {
         // Implement the operation ...
     }
@@ -504,7 +504,7 @@ Name | Type | Description  | Notes
  **token** | **string**|  |
  **checksum** | **string**| Checksum of the *.catrobat file | [optional]
  **file** | **UploadedFile****UploadedFile**| *.catrobat file | [optional]
- **flavor** | [**OpenAPI\Server\Model\Flavor**](../Model/Flavor.md)|  | [optional]
+ **flavor** | **string**| Available flavors | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
  **tags** | [**OpenAPI\Server\Model\Tag**](../Model/OpenAPI\Server\Model\Tag.md)| Available tags | [optional]
 
 ### Return type

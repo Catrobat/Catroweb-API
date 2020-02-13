@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: 1.0.5
+  version: 1.0.6
   termsOfService: 'http://example.com/terms/'
   contact:
     name: 'Catrobat'
@@ -176,7 +176,7 @@ paths:
             enum: [android, iOS]
             example:
               - android
-        - name: max_version
+        - name: maxVersion
           in: query
           schema:
             $ref: '#/components/schemas/MaxVersion'
@@ -191,7 +191,20 @@ paths:
         - name: flavor
           in: query
           schema:
-            $ref: '#/components/schemas/Flavor'
+            type: string
+            description: Available flavors
+            enum:
+              - pocketcode
+              - pocketalice
+              - pocketgalaxy
+              - pocketphiro
+              - phirocode
+              - luna
+              - create@school
+              - embroidery
+              - arduino
+            example: pocketcode
+            default: pocketcode
       responses:
         '200':
           description: OK
@@ -205,7 +218,7 @@ paths:
         - Projects
       summary: Get the most recent programs
       parameters:
-        - name: max_version
+        - name: maxVersion
           in: query
           schema:
             $ref: '#/components/schemas/MaxVersion'
@@ -220,7 +233,20 @@ paths:
         - name: flavor
           in: query
           schema:
-            $ref: '#/components/schemas/Flavor'
+            type: string
+            description: Available flavors
+            enum:
+              - pocketcode
+              - pocketalice
+              - pocketgalaxy
+              - pocketphiro
+              - phirocode
+              - luna
+              - create@school
+              - embroidery
+              - arduino
+            example: pocketcode
+            default: pocketcode
       responses:
         '200':
           description: OK
@@ -234,7 +260,7 @@ paths:
         - Projects
       summary: Get the most downloaded projects
       parameters:
-        - name: max_version
+        - name: maxVersion
           in: query
           schema:
             $ref: '#/components/schemas/MaxVersion'
@@ -249,7 +275,20 @@ paths:
         - name: flavor
           in: query
           schema:
-            $ref: '#/components/schemas/Flavor'
+            type: string
+            description: Available flavors
+            enum:
+              - pocketcode
+              - pocketalice
+              - pocketgalaxy
+              - pocketphiro
+              - phirocode
+              - luna
+              - create@school
+              - embroidery
+              - arduino
+            example: pocketcode
+            default: pocketcode
       responses:
         '200':
           description: OK
@@ -263,7 +302,7 @@ paths:
         - Projects
       summary: Get the most viewed projects
       parameters:
-        - name: max_version
+        - name: maxVersion
           in: query
           schema:
             $ref: '#/components/schemas/MaxVersion'
@@ -278,7 +317,20 @@ paths:
         - name: flavor
           in: query
           schema:
-            $ref: '#/components/schemas/Flavor'
+            type: string
+            description: Available flavors
+            enum:
+              - pocketcode
+              - pocketalice
+              - pocketgalaxy
+              - pocketphiro
+              - phirocode
+              - luna
+              - create@school
+              - embroidery
+              - arduino
+            example: pocketcode
+            default: pocketcode
       responses:
         '200':
           description: OK
@@ -292,7 +344,7 @@ paths:
         - Projects
       summary: Get random projects
       parameters:
-        - name: max_version
+        - name: maxVersion
           in: query
           schema:
             $ref: '#/components/schemas/MaxVersion'
@@ -307,7 +359,20 @@ paths:
         - name: flavor
           in: query
           schema:
-            $ref: '#/components/schemas/Flavor'
+            type: string
+            description: Available flavors
+            enum:
+              - pocketcode
+              - pocketalice
+              - pocketgalaxy
+              - pocketphiro
+              - phirocode
+              - luna
+              - create@school
+              - embroidery
+              - arduino
+            example: pocketcode
+            default: pocketcode
       responses:
         '200':
           description: OK
@@ -321,7 +386,7 @@ paths:
         - Projects
       summary: Search for programs associated with a keywords
       parameters:
-        - name: max_version
+        - name: maxVersion
           in: query
           schema:
             $ref: '#/components/schemas/MaxVersion'
@@ -336,7 +401,20 @@ paths:
         - name: flavor
           in: query
           schema:
-            $ref: '#/components/schemas/Flavor'
+            type: string
+            description: Available flavors
+            enum:
+              - pocketcode
+              - pocketalice
+              - pocketgalaxy
+              - pocketphiro
+              - phirocode
+              - luna
+              - create@school
+              - embroidery
+              - arduino
+            example: pocketcode
+            default: pocketcode
       responses:
         '200':
           description: OK
@@ -370,20 +448,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UploadError'
-  /projects/public/user/{user_id}:
+  /projects/public/user/{userId}:
     get:
       tags:
         - Projects
       summary: Get the public projects of a user, if user is logged in, then there will also be private programs
       parameters:
         - in: path
-          name: user_id
+          name: userId
           schema:
             type: string
             example: '1234abcd-12ab-12ab-12ab-123456abcdef'
           required: true
           description: UUID/ID of any given user
-        - name: max_version
+        - name: maxVersion
           in: query
           description: 'Only shows project with a smaller version number than max version'
           schema:
@@ -411,20 +489,20 @@ paths:
                 $ref: '#/components/schemas/Projects'
         '404':
           description: User does not exist
-  /projects/user/{user_id}:
+  /projects/user/{userId}:
     get:
       tags:
         - Projects
       summary: Get the projects of a user, if user is logged in, then there will also be private programs
       parameters:
         - in: path
-          name: user_id
+          name: userId
           schema:
             type: string
             example: '1234abcd-12ab-12ab-12ab-123456abcdef'
           required: true
           description: UUID/ID of any given user
-        - name: max_version
+        - name: maxVersion
           in: query
           description: 'Only shows project with a smaller version number than max version'
           schema:
@@ -482,6 +560,26 @@ paths:
         '404':
           description: Project does not exist
 components:
+  parameters:
+    Flavor:
+      name: flavor
+      required: false
+      in: query
+      schema:
+        type: string
+        description: Available flavors
+        enum:
+          - pocketcode
+          - pocketalice
+          - pocketgalaxy
+          - pocketphiro
+          - phirocode
+          - luna
+          - create@school
+          - embroidery
+          - arduino
+        example: pocketcode
+        default: pocketcode
   schemas:
     MaxVersion:
       type: string
@@ -500,12 +598,21 @@ components:
       description: 'How many projects should be skipped'
       default: 0
       example: 2
-    Flavor:
-      type: string
-      description: Available flavors
-      enum: [pocketcode, pocketalice, pocketgalaxy, pocketphiro, phirocode, luna, create@school, embroidery, arduino]
-      example: pocketcode
-      default: pocketcode
+#    Flavor:
+#      type: string
+#      description: Available flavors
+#      enum:
+#        - pocketcode
+#        - pocketalice
+#        - pocketgalaxy
+#        - pocketphiro
+#        - phirocode
+#        - luna
+#        - create@school
+#        - embroidery
+#        - arduino
+#      example: pocketcode
+#      default: pocketcode
     Token:
       type: string
       example: tkf4e26780c9e6b1d171f3dbeafa194cac
@@ -521,7 +628,20 @@ components:
           format: binary
           description: '*.catrobat file'
         flavor:
-          $ref: '#/components/schemas/Flavor'
+          type: string
+          description: Available flavors
+          enum:
+            - pocketcode
+            - pocketalice
+            - pocketgalaxy
+            - pocketphiro
+            - phirocode
+            - luna
+            - create@school
+            - embroidery
+            - arduino
+          example: pocketcode
+          default: pocketcode
         tags:
           $ref: '#/components/schemas/Tags'
     UploadError:
@@ -605,7 +725,20 @@ components:
           type: string
           example: 'luna_sinde_2'
         flavor:
-          $ref: '#/components/schemas/Flavor'
+          type: string
+          description: Available flavors
+          enum:
+            - pocketcode
+            - pocketalice
+            - pocketgalaxy
+            - pocketphiro
+            - phirocode
+            - luna
+            - create@school
+            - embroidery
+            - arduino
+          example: pocketcode
+          default: pocketcode
         package:
           type: string
           example: 'Looks'
@@ -672,7 +805,20 @@ components:
           type: boolean
           example: false
         flavor:
-          $ref: '#/components/schemas/Flavor'
+          type: string
+          description: Available flavors
+          enum:
+            - pocketcode
+            - pocketalice
+            - pocketgalaxy
+            - pocketphiro
+            - phirocode
+            - luna
+            - create@school
+            - embroidery
+            - arduino
+          example: pocketcode
+          default: pocketcode
         uploaded:
           type: integer
           example: 1575562569
