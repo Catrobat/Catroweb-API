@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **views** | **int** |  | [optional] 
 **download** | **int** |  | [optional] 
 **private** | **bool** |  | [optional] 
-**flavor** | **string** | Available flavors | [optional] [default to 'pocketcode']
+**flavor** | **string** | Available flavors | [optional] 
 **uploaded** | **int** |  | [optional] 
 **uploadedString** | **string** |  | [optional] 
 **screenshotLarge** | **string** |  | [optional] 

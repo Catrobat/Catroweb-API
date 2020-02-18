@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: 1.0.6
+  version: 1.0.7
   termsOfService: 'http://example.com/terms/'
   contact:
     name: 'Catrobat'
@@ -13,8 +13,12 @@ servers:
     description: Main production server
   - url: 'https://web-test.catrob.at/api'
     description: WEB test server (might be unstabe)
-  - url: 'android/test/server.at'
-    description: ANDROID test server
+  - url: 'https://catblocks.test.catrob.at'
+    description: Catblocks test server
+  - url: 'https://android.test.catrob.at'
+    description: Android test server
+  - url: 'http://localhost'
+    description: Local test server (postman help)
 tags:
   - name: 'Security'
     description: 'Everything related to security'
@@ -204,7 +208,6 @@ paths:
               - embroidery
               - arduino
             example: pocketcode
-            default: pocketcode
       responses:
         '200':
           description: OK
@@ -246,7 +249,6 @@ paths:
               - embroidery
               - arduino
             example: pocketcode
-            default: pocketcode
       responses:
         '200':
           description: OK
@@ -288,7 +290,6 @@ paths:
               - embroidery
               - arduino
             example: pocketcode
-            default: pocketcode
       responses:
         '200':
           description: OK
@@ -330,7 +331,6 @@ paths:
               - embroidery
               - arduino
             example: pocketcode
-            default: pocketcode
       responses:
         '200':
           description: OK
@@ -372,7 +372,6 @@ paths:
               - embroidery
               - arduino
             example: pocketcode
-            default: pocketcode
       responses:
         '200':
           description: OK
@@ -414,7 +413,6 @@ paths:
               - embroidery
               - arduino
             example: pocketcode
-            default: pocketcode
       responses:
         '200':
           description: OK
@@ -579,7 +577,6 @@ components:
           - embroidery
           - arduino
         example: pocketcode
-        default: pocketcode
   schemas:
     MaxVersion:
       type: string
@@ -612,7 +609,6 @@ components:
 #        - embroidery
 #        - arduino
 #      example: pocketcode
-#      default: pocketcode
     Token:
       type: string
       example: tkf4e26780c9e6b1d171f3dbeafa194cac
@@ -641,7 +637,6 @@ components:
             - embroidery
             - arduino
           example: pocketcode
-          default: pocketcode
         tags:
           $ref: '#/components/schemas/Tags'
     UploadError:
@@ -738,7 +733,6 @@ components:
             - embroidery
             - arduino
           example: pocketcode
-          default: pocketcode
         package:
           type: string
           example: 'Looks'
@@ -818,7 +812,6 @@ components:
             - embroidery
             - arduino
           example: pocketcode
-          default: pocketcode
         uploaded:
           type: integer
           example: 1575562569
@@ -847,11 +840,14 @@ components:
       maxItems: 3
       description: Available tags
       items:
-        $ref: '#/components/schemas/Tag'
-    Tag:
-      type: string
-      enum: [Game, Animation, Story, Music, Art, Experimental, Tutorial]
-      example: Game
+        type: string
+        enum: [Game, Animation, Story, Music, Art, Experimental, Tutorial]
+        example: Game
+
+#    Tag:
+#      type: string
+#      enum: [Game, Animation, Story, Music, Art, Experimental, Tutorial]
+#      example: Game
     Username:
       type: string
       minLength: 3

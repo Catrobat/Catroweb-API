@@ -25,9 +25,9 @@ class TypeMismatchException extends RuntimeException
     /**
      * A handy method for building exception instance.
      *
-     * @param string $expected_type
-     * @param mixed $actual_value
-     * @param DeserializationContext|null $context
+     * @param  string                      $expected_type
+     * @param  mixed                       $actual_value
+     * @param  DeserializationContext|null $context
      * @return TypeMismatchException
      */
     public static function fromValue(

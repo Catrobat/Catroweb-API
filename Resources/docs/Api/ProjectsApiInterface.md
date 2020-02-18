@@ -102,7 +102,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsFeaturedGet
      */
-    public function projectsFeaturedGet($platform = null, $maxVersion = null, $limit = '20', $offset = '0', $flavor = '''pocketcode''')
+    public function projectsFeaturedGet($platform = null, $maxVersion = null, $limit = '20', $offset = '0', $flavor = null)
     {
         // Implement the operation ...
     }
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
  **maxVersion** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **flavor** | **string**|  | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
+ **flavor** | **string**|  | [optional]
 
 ### Return type
 
@@ -158,7 +158,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsMostDownloadedGet
      */
-    public function projectsMostDownloadedGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = '''pocketcode''')
+    public function projectsMostDownloadedGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = null)
     {
         // Implement the operation ...
     }
@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
  **maxVersion** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **flavor** | **string**|  | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
+ **flavor** | **string**|  | [optional]
 
 ### Return type
 
@@ -213,7 +213,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsMostViewedGet
      */
-    public function projectsMostViewedGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = '''pocketcode''')
+    public function projectsMostViewedGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = null)
     {
         // Implement the operation ...
     }
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
  **maxVersion** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **flavor** | **string**|  | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
+ **flavor** | **string**|  | [optional]
 
 ### Return type
 
@@ -323,7 +323,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsRandomProgramsGet
      */
-    public function projectsRandomProgramsGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = '''pocketcode''')
+    public function projectsRandomProgramsGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = null)
     {
         // Implement the operation ...
     }
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
  **maxVersion** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **flavor** | **string**|  | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
+ **flavor** | **string**|  | [optional]
 
 ### Return type
 
@@ -378,7 +378,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsRecentGet
      */
-    public function projectsRecentGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = '''pocketcode''')
+    public function projectsRecentGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = null)
     {
         // Implement the operation ...
     }
@@ -394,7 +394,7 @@ Name | Type | Description  | Notes
  **maxVersion** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **flavor** | **string**|  | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
+ **flavor** | **string**|  | [optional]
 
 ### Return type
 
@@ -433,7 +433,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsSearchGet
      */
-    public function projectsSearchGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = '''pocketcode''')
+    public function projectsSearchGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = null)
     {
         // Implement the operation ...
     }
@@ -449,7 +449,7 @@ Name | Type | Description  | Notes
  **maxVersion** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **flavor** | **string**|  | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
+ **flavor** | **string**|  | [optional]
 
 ### Return type
 
@@ -488,7 +488,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUploadPost
      */
-    public function projectsUploadPost($token, $checksum = null, UploadedFile $file = null, $flavor = '''pocketcode''', array $tags = null)
+    public function projectsUploadPost($token, $checksum = null, UploadedFile $file = null, $flavor = null, array $tags = null)
     {
         // Implement the operation ...
     }
@@ -504,8 +504,8 @@ Name | Type | Description  | Notes
  **token** | **string**|  |
  **checksum** | **string**| Checksum of the *.catrobat file | [optional]
  **file** | **UploadedFile****UploadedFile**| *.catrobat file | [optional]
- **flavor** | **string**| Available flavors | [optional] [default to &#39;&#39;pocketcode&#39;&#39;]
- **tags** | [**OpenAPI\Server\Model\Tag**](../Model/OpenAPI\Server\Model\Tag.md)| Available tags | [optional]
+ **flavor** | **string**| Available flavors | [optional]
+ **tags** | [**string**](../Model/string.md)| Available tags | [optional]
 
 ### Return type
 

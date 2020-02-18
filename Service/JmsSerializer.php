@@ -38,10 +38,10 @@ class JmsSerializer implements SerializerInterface
     private function convertFormat($format)
     {
         switch ($format) {
-            case 'application/json':
-                return 'json';
-            case 'application/xml':
-                return 'xml';
+        case 'application/json':
+            return 'json';
+        case 'application/xml':
+            return 'xml';
         }
 
         return null;
@@ -55,30 +55,30 @@ class JmsSerializer implements SerializerInterface
         }
 
         switch ($type) {
-            case 'int':
-            case 'integer':
-                if (is_int($data)) {
-                    return $data;
-                }
+        case 'int':
+        case 'integer':
+            if (is_int($data)) {
+                return $data;
+            }
 
-                if (is_numeric($data)) {
-                    return $data + 0;
-                }
+            if (is_numeric($data)) {
+                return $data + 0;
+            }
 
-                break;
-            case 'string':
-                break;
-            case 'boolean':
-            case 'bool':
-                if (strtolower($data) === 'true') {
-                    return true;
-                }
+            break;
+        case 'string':
+            break;
+        case 'boolean':
+        case 'bool':
+            if (strtolower($data) === 'true') {
+                return true;
+            }
 
-                if (strtolower($data) === 'false') {
-                    return false;
-                }
+            if (strtolower($data) === 'false') {
+                return false;
+            }
 
-                break;
+            break;
         }
 
         // If we end up here, just return data
@@ -89,20 +89,20 @@ class JmsSerializer implements SerializerInterface
     {
         // Parse the string using the correct separator
         switch ($format) {
-            case 'csv':
-                $data = explode(',', $data);
-                break;
-            case 'ssv':
-                $data = explode(' ', $data);
-                break;
-            case 'tsv':
-                $data = explode("\t", $data);
-                break;
-            case 'pipes':
-                $data = explode('|', $data);
-                break;
-            default;
-                $data = [];
+        case 'csv':
+            $data = explode(',', $data);
+            break;
+        case 'ssv':
+            $data = explode(' ', $data);
+            break;
+        case 'tsv':
+            $data = explode("\t", $data);
+            break;
+        case 'pipes':
+            $data = explode('|', $data);
+            break;
+        default;
+            $data = [];
         }
 
         // Deserialize each of the array elements

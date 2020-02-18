@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] 
 **name** | **string** |  | [optional] 
-**flavor** | **string** | Available flavors | [optional] [default to 'pocketcode']
+**flavor** | **string** | Available flavors | [optional] 
 **package** | **string** |  | [optional] 
 **category** | **string** |  | [optional] 
 **author** | **string** |  | [optional] 

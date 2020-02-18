@@ -8,7 +8,7 @@ interface SerializerInterface
      * Serializes the given data to the specified output format.
      *
      * @param object|array|scalar $data
-     * @param string $format
+     * @param string              $format
      *
      * @return string
      */
