@@ -1,17 +1,18 @@
 <?php
 /**
- * LogoutTest
+ * LogoutTest.
  *
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Server\Tests\Model
+ *
  * @author   openapi-generator contributors
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -29,59 +30,60 @@
 namespace OpenAPI\Server\Model;
 
 /**
- * LogoutTest Class Doc Comment
+ * LogoutTest Class Doc Comment.
  *
- * @category Class 
-*/
+ * @category    Class */
 // * @description Logout
 /**
- * @package     OpenAPI\Server\Tests\Model
  * @author      openapi-generator contributors
- * @link        https://github.com/openapitools/openapi-generator
+ *
+ * @see        https://github.com/openapitools/openapi-generator
+ *
+ * @internal
+ * @coversNothing
  */
 class LogoutTest extends \PHPUnit_Framework_TestCase
 {
+  /**
+   * Setup before running any test case.
+   */
+  public static function setUpBeforeClass()
+  {
+  }
 
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
+  /**
+   * Clean up after running all test cases.
+   */
+  public static function tearDownAfterClass()
+  {
+  }
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp()
-    {
-    }
+  /**
+   * Setup before running each test case.
+   */
+  public function setUp()
+  {
+  }
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
+  /**
+   * Clean up after running each test case.
+   */
+  public function tearDown()
+  {
+  }
 
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
+  /**
+   * Test "Logout".
+   */
+  public function testLogout()
+  {
+    $testLogout = new Logout();
+  }
 
-    /**
-     * Test "Logout"
-     */
-    public function testLogout()
-    {
-        $testLogout = new Logout();
-    }
-
-    /**
-     * Test attribute "username"
-     */
-    public function testPropertyUsername()
-    {
-    }
+  /**
+   * Test attribute "username".
+   */
+  public function testPropertyUsername()
+  {
+  }
 }

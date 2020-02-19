@@ -2,16 +2,17 @@
 
 /**
  * SecurityController
- * PHP version 5
+ * PHP version 5.
  *
  * @category Class
- * @package  OpenAPI\Server\Controller
+ *
  * @author   OpenAPI Generator team
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -28,481 +29,512 @@
 
 namespace OpenAPI\Server\Controller;
 
-use \Exception;
+use Exception;
 use JMS\Serializer\Exception\RuntimeException as SerializerRuntimeException;
+use OpenAPI\Server\Api\SecurityApiInterface;
+use OpenAPI\Server\Model\Login;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\Constraints as Assert;
-use OpenAPI\Server\Api\SecurityApiInterface;
-use OpenAPI\Server\Model\APIValidationResponse;
-use OpenAPI\Server\Model\Login;
-use OpenAPI\Server\Model\LoginResponseOK;
-use OpenAPI\Server\Model\Logout;
-use OpenAPI\Server\Model\Register;
-use OpenAPI\Server\Model\UsernameObject;
 
 /**
- * SecurityController Class Doc Comment
+ * SecurityController Class Doc Comment.
  *
  * @category Class
- * @package  OpenAPI\Server\Controller
+ *
  * @author   OpenAPI Generator team
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 class SecurityController extends Controller
 {
-
-    /**
-     * Operation checkTokenPost
-     *
-     * Checking token
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function checkTokenPostAction(Request $request)
+  /**
+   * Operation checkTokenPost.
+   *
+   * Checking token
+   *
+   * @param Request $request the Symfony request to handle
+   *
+   * @return Response the Symfony response
+   */
+  public function checkTokenPostAction(Request $request): Response
+  {
+    // Make sure that the client is providing something that we can consume
+    $consumes = ['application/json'];
+    $inputFormat = $request->headers->has('Content-Type') ? $request->headers->get('Content-Type') : $consumes[0];
+    if (!in_array($inputFormat, $consumes, true))
     {
-        // Make sure that the client is providing something that we can consume
-        $consumes = ['application/json'];
-        $inputFormat = $request->headers->has('Content-Type')?$request->headers->get('Content-Type'):$consumes[0];
-        if (!in_array($inputFormat, $consumes)) {
-            // We can't consume the content that the client is sending us
-            return new Response('', 415);
-        }
+      // We can't consume the content that the client is sending us
+      return new Response('', 415);
+    }
 
-        // Handle authentication
+    // Handle authentication
 
-        // Read out all input parameter values into variables
-        $token = $request->headers->get('token');
-        $usernameObject = $request->getContent();
+    // Read out all input parameter values into variables
+    $token = $request->headers->get('token');
+    $usernameObject = $request->getContent();
 
-        // Use the default value if no value was provided
+    // Use the default value if no value was provided
 
-        // Deserialize the input values that needs it
-        try {
-            $token = $this->deserialize($token, 'string', 'string');
-            $usernameObject = $this->deserialize($usernameObject, 'OpenAPI\Server\Model\UsernameObject', $inputFormat);
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+    // Deserialize the input values that needs it
+    try
+    {
+      $token = $this->deserialize($token, 'string', 'string');
+      $usernameObject = $this->deserialize($usernameObject, 'OpenAPI\Server\Model\UsernameObject', $inputFormat);
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($token, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\UsernameObject");
-        $asserts[] = new Assert\Valid();
-        $response = $this->validate($usernameObject, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($token, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('OpenAPI\\Server\\Model\\UsernameObject');
+    $asserts[] = new Assert\Valid();
+    $response = $this->validate($usernameObject, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        try {
-            $handler = $this->getApiHandler();
+      // Make the call to the business logic
+      $responseCode = 204;
+      $responseHeaders = [];
+      $result = $handler->checkTokenPost($token, $usernameObject, $responseCode, $responseHeaders);
 
-            
-            // Make the call to the business logic
-            $responseCode = 204;
-            $responseHeaders = [];
-            $result = $handler->checkTokenPost($token, $usernameObject, $responseCode, $responseHeaders);
+      // Find default response message
+      $message = 'OK - Sent token is valid for the given username';
 
-            // Find default response message
-            $message = 'OK - Sent token is valid for the given username';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'OK - Sent token is valid for the given username';
-                break;
-            case 401:
-                $message = 'NOT OK - Authentification required (missing token/username)';
-                break;
-            case 403:
-                $message = 'NOT OK - Invalid credentials';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'OK - Sent token is valid for the given username';
+                    break;
+                case 401:
+                    $message = 'NOT OK - Authentification required (missing token/username)';
+                    break;
+                case 403:
+                    $message = 'NOT OK - Invalid credentials';
+                    break;
             }
 
-            return new Response(
+      return new Response(
                 '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'X-OpenAPI-Message' => $message
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
+   * Operation loginPost.
+   *
+   * Login a user
+   *
+   * @param Request $request the Symfony request to handle
+   *
+   * @return Response the Symfony response
+   */
+  public function loginPostAction(Request $request): Response
+  {
+    // Make sure that the client is providing something that we can consume
+    $consumes = ['application/json'];
+    $inputFormat = $request->headers->has('Content-Type') ? $request->headers->get('Content-Type') : $consumes[0];
+    if (!in_array($inputFormat, $consumes, true))
+    {
+      // We can't consume the content that the client is sending us
+      return new Response('', 415);
     }
 
-    /**
-     * Operation loginPost
-     *
-     * Login a user
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function loginPostAction(Request $request)
+    // Figure out what data format to return to the client
+    $produces = ['application/json'];
+    // Figure out what the client accepts
+    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
+    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
+    if (null === $responseFormat)
     {
-        // Make sure that the client is providing something that we can consume
-        $consumes = ['application/json'];
-        $inputFormat = $request->headers->has('Content-Type')?$request->headers->get('Content-Type'):$consumes[0];
-        if (!in_array($inputFormat, $consumes)) {
-            // We can't consume the content that the client is sending us
-            return new Response('', 415);
-        }
+      return new Response('', 406);
+    }
 
-        // Figure out what data format to return to the client
-        $produces = ['application/json'];
-        // Figure out what the client accepts
-        $clientAccepts = $request->headers->has('Accept')?$request->headers->get('Accept'):'*/*';
-        $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
-        if ($responseFormat === null) {
-            return new Response('', 406);
-        }
+    // Handle authentication
 
-        // Handle authentication
+    // Read out all input parameter values into variables
+    $login = $request->getContent();
 
-        // Read out all input parameter values into variables
-        $login = $request->getContent();
+    // Use the default value if no value was provided
 
-        // Use the default value if no value was provided
+    // Deserialize the input values that needs it
+    try
+    {
+      $login = $this->deserialize($login, 'OpenAPI\Server\Model\Login', $inputFormat);
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Deserialize the input values that needs it
-        try {
-            $login = $this->deserialize($login, 'OpenAPI\Server\Model\Login', $inputFormat);
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('OpenAPI\\Server\\Model\\Login');
+    $asserts[] = new Assert\Valid();
+    $response = $this->validate($login, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\Login");
-        $asserts[] = new Assert\Valid();
-        $response = $this->validate($login, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
+    try
+    {
+      $handler = $this->getApiHandler();
 
+      // Make the call to the business logic
+      $responseCode = 200;
+      $responseHeaders = [];
+      $result = $handler->loginPost($login, $responseCode, $responseHeaders);
 
-        try {
-            $handler = $this->getApiHandler();
+      // Find default response message
+      $message = 'OK';
 
-            
-            // Make the call to the business logic
-            $responseCode = 200;
-            $responseHeaders = [];
-            $result = $handler->loginPost($login, $responseCode, $responseHeaders);
-
-            // Find default response message
-            $message = 'OK';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'OK';
-                break;
-            case 400:
-                $message = 'NOT OK - Bad request';
-                break;
-            case 401:
-                $message = 'NOT OK - Authorization required';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'OK';
+                    break;
+                case 400:
+                    $message = 'NOT OK - Bad request';
+                    break;
+                case 401:
+                    $message = 'NOT OK - Authorization required';
+                    break;
             }
 
-            return new Response(
-                $result !== null ?$this->serialize($result, $responseFormat):'',
+      return new Response(
+                null !== $result ? $this->serialize($result, $responseFormat) : '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'Content-Type' => $responseFormat,
-                        'X-OpenAPI-Message' => $message
+                      'Content-Type' => $responseFormat,
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
+   * Operation logoutPost.
+   *
+   * Log out a user
+   *
+   * @param Request $request the Symfony request to handle
+   *
+   * @return Response the Symfony response
+   */
+  public function logoutPostAction(Request $request): Response
+  {
+    // Make sure that the client is providing something that we can consume
+    $consumes = ['application/json'];
+    $inputFormat = $request->headers->has('Content-Type') ? $request->headers->get('Content-Type') : $consumes[0];
+    if (!in_array($inputFormat, $consumes, true))
+    {
+      // We can't consume the content that the client is sending us
+      return new Response('', 415);
     }
 
-    /**
-     * Operation logoutPost
-     *
-     * Log out a user
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function logoutPostAction(Request $request)
+    // Handle authentication
+
+    // Read out all input parameter values into variables
+    $token = $request->headers->get('token');
+    $logout = $request->getContent();
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
     {
-        // Make sure that the client is providing something that we can consume
-        $consumes = ['application/json'];
-        $inputFormat = $request->headers->has('Content-Type')?$request->headers->get('Content-Type'):$consumes[0];
-        if (!in_array($inputFormat, $consumes)) {
-            // We can't consume the content that the client is sending us
-            return new Response('', 415);
-        }
+      $token = $this->deserialize($token, 'string', 'string');
+      $logout = $this->deserialize($logout, 'OpenAPI\Server\Model\Logout', $inputFormat);
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Handle authentication
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($token, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('OpenAPI\\Server\\Model\\Logout');
+    $asserts[] = new Assert\Valid();
+    $response = $this->validate($logout, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
-        // Read out all input parameter values into variables
-        $token = $request->headers->get('token');
-        $logout = $request->getContent();
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        // Use the default value if no value was provided
+      // Make the call to the business logic
+      $responseCode = 204;
+      $responseHeaders = [];
+      $result = $handler->logoutPost($token, $logout, $responseCode, $responseHeaders);
 
-        // Deserialize the input values that needs it
-        try {
-            $token = $this->deserialize($token, 'string', 'string');
-            $logout = $this->deserialize($logout, 'OpenAPI\Server\Model\Logout', $inputFormat);
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+      // Find default response message
+      $message = 'OK';
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($token, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\Logout");
-        $asserts[] = new Assert\Valid();
-        $response = $this->validate($logout, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-
-
-        try {
-            $handler = $this->getApiHandler();
-
-            
-            // Make the call to the business logic
-            $responseCode = 204;
-            $responseHeaders = [];
-            $result = $handler->logoutPost($token, $logout, $responseCode, $responseHeaders);
-
-            // Find default response message
-            $message = 'OK';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'OK';
-                break;
-            case 400:
-                $message = 'NOT OK - Bad Request';
-                break;
-            case 401:
-                $message = 'NOT OK - Invalid credentials';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'OK';
+                    break;
+                case 400:
+                    $message = 'NOT OK - Bad Request';
+                    break;
+                case 401:
+                    $message = 'NOT OK - Invalid credentials';
+                    break;
             }
 
-            return new Response(
+      return new Response(
                 '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'X-OpenAPI-Message' => $message
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
+   * Operation registerUserPost.
+   *
+   * Registering a user
+   *
+   * @param Request $request the Symfony request to handle
+   *
+   * @return Response the Symfony response
+   */
+  public function registerUserPostAction(Request $request): Response
+  {
+    // Make sure that the client is providing something that we can consume
+    $consumes = ['application/json'];
+    $inputFormat = $request->headers->has('Content-Type') ? $request->headers->get('Content-Type') : $consumes[0];
+    if (!in_array($inputFormat, $consumes, true))
+    {
+      // We can't consume the content that the client is sending us
+      return new Response('', 415);
     }
 
-    /**
-     * Operation registerUserPost
-     *
-     * Registering a user
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function registerUserPostAction(Request $request)
+    // Handle authentication
+
+    // Read out all input parameter values into variables
+    $register = $request->getContent();
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
     {
-        // Make sure that the client is providing something that we can consume
-        $consumes = ['application/json'];
-        $inputFormat = $request->headers->has('Content-Type')?$request->headers->get('Content-Type'):$consumes[0];
-        if (!in_array($inputFormat, $consumes)) {
-            // We can't consume the content that the client is sending us
-            return new Response('', 415);
-        }
+      $register = $this->deserialize($register, 'OpenAPI\Server\Model\Register', $inputFormat);
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Handle authentication
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('OpenAPI\\Server\\Model\\Register');
+    $asserts[] = new Assert\Valid();
+    $response = $this->validate($register, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
-        // Read out all input parameter values into variables
-        $register = $request->getContent();
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        // Use the default value if no value was provided
+      // Make the call to the business logic
+      $responseCode = 204;
+      $responseHeaders = [];
+      $result = $handler->registerUserPost($register, $responseCode, $responseHeaders);
 
-        // Deserialize the input values that needs it
-        try {
-            $register = $this->deserialize($register, 'OpenAPI\Server\Model\Register', $inputFormat);
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+      // Find default response message
+      $message = 'OK - User registerd';
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\Register");
-        $asserts[] = new Assert\Valid();
-        $response = $this->validate($register, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-
-
-        try {
-            $handler = $this->getApiHandler();
-
-            
-            // Make the call to the business logic
-            $responseCode = 204;
-            $responseHeaders = [];
-            $result = $handler->registerUserPost($register, $responseCode, $responseHeaders);
-
-            // Find default response message
-            $message = 'OK - User registerd';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'OK - User registerd';
-                break;
-            case 400:
-                $message = 'NOT OK - Malformed request body';
-                break;
-            case 422:
-                $message = 'NOT OK - Unable to process entity';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'OK - User registerd';
+                    break;
+                case 400:
+                    $message = 'NOT OK - Malformed request body';
+                    break;
+                case 422:
+                    $message = 'NOT OK - Unable to process entity';
+                    break;
             }
 
-            return new Response(
+      return new Response(
                 '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'X-OpenAPI-Message' => $message
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
+   * Operation registerValidationPost.
+   *
+   * Validation of user input in the registration process
+   *
+   * @param Request $request the Symfony request to handle
+   *
+   * @return Response the Symfony response
+   */
+  public function registerValidationPostAction(Request $request): Response
+  {
+    // Make sure that the client is providing something that we can consume
+    $consumes = ['application/json'];
+    $inputFormat = $request->headers->has('Content-Type') ? $request->headers->get('Content-Type') : $consumes[0];
+    if (!in_array($inputFormat, $consumes, true))
+    {
+      // We can't consume the content that the client is sending us
+      return new Response('', 415);
     }
 
-    /**
-     * Operation registerValidationPost
-     *
-     * Validation of user input in the registration process
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function registerValidationPostAction(Request $request)
+    // Handle authentication
+
+    // Read out all input parameter values into variables
+    $register = $request->getContent();
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
     {
-        // Make sure that the client is providing something that we can consume
-        $consumes = ['application/json'];
-        $inputFormat = $request->headers->has('Content-Type')?$request->headers->get('Content-Type'):$consumes[0];
-        if (!in_array($inputFormat, $consumes)) {
-            // We can't consume the content that the client is sending us
-            return new Response('', 415);
-        }
+      $register = $this->deserialize($register, 'OpenAPI\Server\Model\Register', $inputFormat);
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Handle authentication
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('OpenAPI\\Server\\Model\\Register');
+    $asserts[] = new Assert\Valid();
+    $response = $this->validate($register, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
-        // Read out all input parameter values into variables
-        $register = $request->getContent();
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        // Use the default value if no value was provided
+      // Make the call to the business logic
+      $responseCode = 204;
+      $responseHeaders = [];
+      $result = $handler->registerValidationPost($register, $responseCode, $responseHeaders);
 
-        // Deserialize the input values that needs it
-        try {
-            $register = $this->deserialize($register, 'OpenAPI\Server\Model\Register', $inputFormat);
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+      // Find default response message
+      $message = 'OK - User validated';
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\Register");
-        $asserts[] = new Assert\Valid();
-        $response = $this->validate($register, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-
-
-        try {
-            $handler = $this->getApiHandler();
-
-            
-            // Make the call to the business logic
-            $responseCode = 204;
-            $responseHeaders = [];
-            $result = $handler->registerValidationPost($register, $responseCode, $responseHeaders);
-
-            // Find default response message
-            $message = 'OK - User validated';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'OK - User validated';
-                break;
-            case 400:
-                $message = 'NOT OK - Malformed request body';
-                break;
-            case 422:
-                $message = 'NOT OK - Unable to process entity';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'OK - User validated';
+                    break;
+                case 400:
+                    $message = 'NOT OK - Malformed request body';
+                    break;
+                case 422:
+                    $message = 'NOT OK - Unable to process entity';
+                    break;
             }
 
-            return new Response(
+      return new Response(
                 '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'X-OpenAPI-Message' => $message
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
     }
-
-    /**
-     * Returns the handler for this API controller.
-     *
-     * @return SecurityApiInterface
-     */
-    public function getApiHandler()
+    catch (Exception $fallthrough)
     {
-        return $this->apiServer->getApiHandler('security');
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
     }
+  }
+
+  /**
+   * Returns the handler for this API controller.
+   */
+  public function getApiHandler(): SecurityApiInterface
+  {
+    return $this->apiServer->getApiHandler('security');
+  }
 }

@@ -1,17 +1,18 @@
 <?php
 /**
- * UsernameObjectTest
+ * UsernameObjectTest.
  *
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Server\Tests\Model
+ *
  * @author   openapi-generator contributors
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -29,59 +30,60 @@
 namespace OpenAPI\Server\Model;
 
 /**
- * UsernameObjectTest Class Doc Comment
+ * UsernameObjectTest Class Doc Comment.
  *
- * @category Class 
-*/
+ * @category    Class */
 // * @description UsernameObject
 /**
- * @package     OpenAPI\Server\Tests\Model
  * @author      openapi-generator contributors
- * @link        https://github.com/openapitools/openapi-generator
+ *
+ * @see        https://github.com/openapitools/openapi-generator
+ *
+ * @internal
+ * @coversNothing
  */
 class UsernameObjectTest extends \PHPUnit_Framework_TestCase
 {
+  /**
+   * Setup before running any test case.
+   */
+  public static function setUpBeforeClass()
+  {
+  }
 
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
+  /**
+   * Clean up after running all test cases.
+   */
+  public static function tearDownAfterClass()
+  {
+  }
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp()
-    {
-    }
+  /**
+   * Setup before running each test case.
+   */
+  public function setUp()
+  {
+  }
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
+  /**
+   * Clean up after running each test case.
+   */
+  public function tearDown()
+  {
+  }
 
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
+  /**
+   * Test "UsernameObject".
+   */
+  public function testUsernameObject()
+  {
+    $testUsernameObject = new UsernameObject();
+  }
 
-    /**
-     * Test "UsernameObject"
-     */
-    public function testUsernameObject()
-    {
-        $testUsernameObject = new UsernameObject();
-    }
-
-    /**
-     * Test attribute "username"
-     */
-    public function testPropertyUsername()
-    {
-    }
+  /**
+   * Test attribute "username".
+   */
+  public function testPropertyUsername()
+  {
+  }
 }

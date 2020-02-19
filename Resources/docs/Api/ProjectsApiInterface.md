@@ -50,7 +50,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectProjectIdGet
      */
-    public function projectProjectIdGet($projectId)
+    public function projectProjectIdGet(string $projectId)
     {
         // Implement the operation ...
     }
@@ -102,7 +102,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsFeaturedGet
      */
-    public function projectsFeaturedGet($platform = null, $maxVersion = null, $limit = '20', $offset = '0', $flavor = null)
+    public function projectsFeaturedGet(string $platform = null, string $maxVersion = null, int $limit = '20', int $offset = '0', string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -158,7 +158,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsMostDownloadedGet
      */
-    public function projectsMostDownloadedGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = null)
+    public function projectsMostDownloadedGet(string $maxVersion = null, int $limit = '20', int $offset = '0', string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -213,7 +213,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsMostViewedGet
      */
-    public function projectsMostViewedGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = null)
+    public function projectsMostViewedGet(string $maxVersion = null, int $limit = '20', int $offset = '0', string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -268,7 +268,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsPublicUserUserIdGet
      */
-    public function projectsPublicUserUserIdGet($userId, $maxVersion = null, $limit = '20', $offset = null)
+    public function projectsPublicUserUserIdGet(string $userId, string $maxVersion = null, int $limit = '20', int $offset = null)
     {
         // Implement the operation ...
     }
@@ -323,7 +323,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsRandomProgramsGet
      */
-    public function projectsRandomProgramsGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = null)
+    public function projectsRandomProgramsGet(string $maxVersion = null, int $limit = '20', int $offset = '0', string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -378,7 +378,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsRecentGet
      */
-    public function projectsRecentGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = null)
+    public function projectsRecentGet(string $maxVersion = null, int $limit = '20', int $offset = '0', string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -433,7 +433,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsSearchGet
      */
-    public function projectsSearchGet($maxVersion = null, $limit = '20', $offset = '0', $flavor = null)
+    public function projectsSearchGet(string $maxVersion = null, int $limit = '20', int $offset = '0', string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -488,7 +488,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUploadPost
      */
-    public function projectsUploadPost($token, $checksum = null, UploadedFile $file = null, $flavor = null, array $tags = null)
+    public function projectsUploadPost(string $token, string $checksum = null, UploadedFile $file = null, string $flavor = null, array $tags = null)
     {
         // Implement the operation ...
     }
@@ -523,7 +523,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsUserUserIdGet**
-> OpenAPI\Server\Model\Project projectsUserUserIdGet($userId, $maxVersion, $limit, $offset, $token)
+> OpenAPI\Server\Model\Project projectsUserUserIdGet($userId, $token, $maxVersion, $limit, $offset)
 
 Get the projects of a user, if user is logged in, then there will also be private programs
 
@@ -544,7 +544,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUserUserIdGet
      */
-    public function projectsUserUserIdGet($userId, $maxVersion = null, $limit = '20', $offset = null, $token)
+    public function projectsUserUserIdGet(string $userId, string $token, string $maxVersion = null, int $limit = '20', int $offset = null)
     {
         // Implement the operation ...
     }
@@ -558,10 +558,10 @@ class ProjectsApi implements ProjectsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **string**| UUID/ID of any given user |
+ **token** | **string**|  |
  **maxVersion** | **string**| Only shows project with a smaller version number than max version | [optional]
  **limit** | **int**| How many projects should be shown at maximum | [optional] [default to 20]
  **offset** | **int**| How many projects should be shown at maximum | [optional]
- **token** | **string**|  |
 
 ### Return type
 

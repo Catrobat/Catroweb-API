@@ -1,17 +1,18 @@
 <?php
 /**
- * APIValidationResponse
+ * APIValidationResponse.
  *
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Server\Model
+ *
  * @author   OpenAPI Generator team
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -28,160 +29,143 @@
 
 namespace OpenAPI\Server\Model;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class representing the APIValidationResponse model.
  *
- * @package OpenAPI\Server\Model
  * @author  OpenAPI Generator team
  */
 class APIValidationResponse
 {
-        /**
-     * Statuscode if validation was successfull or yielded errors (200 or 400)
-     *
-     * @var                      int|null
-     * @SerializedName("status")
-     * @Assert\Type("int")
-     * @Type("int")
-     */
-    protected $status;
+  /**
+   * Statuscode if validation was successfull or yielded errors (200 or 400).
+   *
+   * @var int|null
+   * @SerializedName("status")
+   * @Assert\Type("int")
+   * @Type("int")
+   */
+  protected $status;
 
-    /**
-     * @var string|null
-     * @SerializedName("email")
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected $email;
+  /**
+   * @var string|null
+   * @SerializedName("email")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $email;
 
-    /**
-     * @var string|null
-     * @SerializedName("username")
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected $username;
+  /**
+   * @var string|null
+   * @SerializedName("username")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $username;
 
-    /**
-     * @var string|null
-     * @SerializedName("password")
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected $password;
+  /**
+   * @var string|null
+   * @SerializedName("password")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $password;
 
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->status = isset($data['status']) ? $data['status'] : null;
-        $this->email = isset($data['email']) ? $data['email'] : null;
-        $this->username = isset($data['username']) ? $data['username'] : null;
-        $this->password = isset($data['password']) ? $data['password'] : null;
-    }
+  /**
+   * Constructor.
+   *
+   * @param mixed[] $data Associated array of property values initializing the model
+   */
+  public function __construct(array $data = null)
+  {
+    $this->status = isset($data['status']) ? $data['status'] : null;
+    $this->email = isset($data['email']) ? $data['email'] : null;
+    $this->username = isset($data['username']) ? $data['username'] : null;
+    $this->password = isset($data['password']) ? $data['password'] : null;
+  }
 
-    /**
-     * Gets status.
-     *
-     * @return int|null
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
+  /**
+   * Gets status.
+   */
+  public function getStatus(): ?int
+  {
+    return $this->status;
+  }
 
-    /**
-     * Sets status.
-     *
-     * @param int|null $status Statuscode if validation was successfull or yielded errors (200 or 400)
-     *
-     * @return $this
-     */
-    public function setStatus($status = null)
-    {
-        $this->status = $status;
+  /**
+   * Sets status.
+   *
+   * @param int|null $status Statuscode if validation was successfull or yielded errors (200 or 400)
+   *
+   * @return $this
+   */
+  public function setStatus(int $status = null)
+  {
+    $this->status = $status;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Gets email.
-     *
-     * @return string|null
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
+  /**
+   * Gets email.
+   */
+  public function getEmail(): ?string
+  {
+    return $this->email;
+  }
 
-    /**
-     * Sets email.
-     *
-     * @param string|null $email
-     *
-     * @return $this
-     */
-    public function setEmail($email = null)
-    {
-        $this->email = $email;
+  /**
+   * Sets email.
+   *
+   * @return $this
+   */
+  public function setEmail(string $email = null)
+  {
+    $this->email = $email;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Gets username.
-     *
-     * @return string|null
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
+  /**
+   * Gets username.
+   */
+  public function getUsername(): ?string
+  {
+    return $this->username;
+  }
 
-    /**
-     * Sets username.
-     *
-     * @param string|null $username
-     *
-     * @return $this
-     */
-    public function setUsername($username = null)
-    {
-        $this->username = $username;
+  /**
+   * Sets username.
+   *
+   * @return $this
+   */
+  public function setUsername(string $username = null)
+  {
+    $this->username = $username;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Gets password.
-     *
-     * @return string|null
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
+  /**
+   * Gets password.
+   */
+  public function getPassword(): ?string
+  {
+    return $this->password;
+  }
 
-    /**
-     * Sets password.
-     *
-     * @param string|null $password
-     *
-     * @return $this
-     */
-    public function setPassword($password = null)
-    {
-        $this->password = $password;
+  /**
+   * Sets password.
+   *
+   * @return $this
+   */
+  public function setPassword(string $password = null)
+  {
+    $this->password = $password;
 
-        return $this;
-    }
+    return $this;
+  }
 }
-
-

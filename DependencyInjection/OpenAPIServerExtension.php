@@ -1,17 +1,18 @@
 <?php
 /**
- * OpenAPIServerExtension
+ * OpenAPIServerExtension.
  *
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Server\DependencyInjection
+ *
  * @author   OpenAPI Generator team
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -34,23 +35,24 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
- * OpenAPIServerExtension Class Doc Comment
+ * OpenAPIServerExtension Class Doc Comment.
  *
  * @category Class
- * @package  OpenAPI\Server\DependencyInjection
+ *
  * @author   OpenAPI Generator team
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 class OpenAPIServerExtension extends Extension
 {
-    public function load(array $configs, ContainerBuilder $container)
-    {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
-    }
+  public function load(array $configs, ContainerBuilder $container)
+  {
+    $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+    $loader->load('services.yml');
+  }
 
-    public function getAlias()
-    {
-        return 'open_api_server';
-    }
+  public function getAlias()
+  {
+    return 'open_api_server';
+  }
 }

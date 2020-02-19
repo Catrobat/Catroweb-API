@@ -1,16 +1,17 @@
 <?php
 /**
  * ProjectsApiInterfaceTest
- * PHP version 5
+ * PHP version 5.
  *
  * @category Class
- * @package  OpenAPI\Server\Tests\Api
+ *
  * @author   openapi-generator contributors
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -27,207 +28,206 @@
 
 namespace OpenAPI\Server\Tests\Api;
 
-use OpenAPI\Server\Configuration;
-use OpenAPI\Server\ApiClient;
-use OpenAPI\Server\ApiException;
-use OpenAPI\Server\ObjectSerializer;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * ProjectsApiInterfaceTest Class Doc Comment
+ * ProjectsApiInterfaceTest Class Doc Comment.
  *
  * @category Class
- * @package  OpenAPI\Server\Tests\Api
+ *
  * @author   openapi-generator contributors
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
+ *
+ * @internal
+ * @coversNothing
  */
 class ProjectsApiInterfaceTest extends WebTestCase
 {
+  /**
+   * Setup before running any test cases.
+   */
+  public static function setUpBeforeClass()
+  {
+  }
 
-    /**
-     * Setup before running any test cases
-     */
-    public static function setUpBeforeClass()
-    {
-    }
+  /**
+   * Clean up after running all test cases.
+   */
+  public static function tearDownAfterClass()
+  {
+  }
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp()
-    {
-    }
+  /**
+   * Setup before running each test case.
+   */
+  public function setUp()
+  {
+  }
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
+  /**
+   * Clean up after running each test case.
+   */
+  public function tearDown()
+  {
+  }
 
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
+  /**
+   * Test case for projectProjectIdGet.
+   *
+   * Get the information of a project.
+   */
+  public function testProjectProjectIdGet()
+  {
+    $client = static::createClient();
 
-    /**
-     * Test case for projectProjectIdGet
-     *
-     * Get the information of a project.
-     */
-    public function testProjectProjectIdGet()
-    {
-        $client = static::createClient();
+    $path = '/project/{project_id}';
+    $pattern = '{projectId}';
+    $data = $this->genTestData('[a-z0-9]+');
+    $path = str_replace($pattern, $data, $path);
 
-        $path = '/project/{project_id}';
-        $pattern = '{projectId}';
-        $data = $this->genTestData('[a-z0-9]+');
-        $path = str_replace($pattern, $data, $path);
+    $crawler = $client->request('GET', $path);
+  }
 
-        $crawler = $client->request('GET', $path);
-    }
+  /**
+   * Test case for projectsFeaturedGet.
+   *
+   * Get the currently featured projects.
+   */
+  public function testProjectsFeaturedGet()
+  {
+    $client = static::createClient();
 
-    /**
-     * Test case for projectsFeaturedGet
-     *
-     * Get the currently featured projects.
-     */
-    public function testProjectsFeaturedGet()
-    {
-        $client = static::createClient();
+    $path = '/projects/featured';
 
-        $path = '/projects/featured';
+    $crawler = $client->request('GET', $path);
+  }
 
-        $crawler = $client->request('GET', $path);
-    }
+  /**
+   * Test case for projectsMostDownloadedGet.
+   *
+   * Get the most downloaded projects.
+   */
+  public function testProjectsMostDownloadedGet()
+  {
+    $client = static::createClient();
 
-    /**
-     * Test case for projectsMostDownloadedGet
-     *
-     * Get the most downloaded projects.
-     */
-    public function testProjectsMostDownloadedGet()
-    {
-        $client = static::createClient();
+    $path = '/projects/mostDownloaded';
 
-        $path = '/projects/mostDownloaded';
+    $crawler = $client->request('GET', $path);
+  }
 
-        $crawler = $client->request('GET', $path);
-    }
+  /**
+   * Test case for projectsMostViewedGet.
+   *
+   * Get the most viewed projects.
+   */
+  public function testProjectsMostViewedGet()
+  {
+    $client = static::createClient();
 
-    /**
-     * Test case for projectsMostViewedGet
-     *
-     * Get the most viewed projects.
-     */
-    public function testProjectsMostViewedGet()
-    {
-        $client = static::createClient();
+    $path = '/projects/mostViewed';
 
-        $path = '/projects/mostViewed';
+    $crawler = $client->request('GET', $path);
+  }
 
-        $crawler = $client->request('GET', $path);
-    }
+  /**
+   * Test case for projectsPublicUserUserIdGet.
+   *
+   * Get the public projects of a user, if user is logged in, then there will also be private programs.
+   */
+  public function testProjectsPublicUserUserIdGet()
+  {
+    $client = static::createClient();
 
-    /**
-     * Test case for projectsPublicUserUserIdGet
-     *
-     * Get the public projects of a user, if user is logged in, then there will also be private programs.
-     */
-    public function testProjectsPublicUserUserIdGet()
-    {
-        $client = static::createClient();
+    $path = '/projects/public/user/{userId}';
+    $pattern = '{userId}';
+    $data = $this->genTestData('[a-z0-9]+');
+    $path = str_replace($pattern, $data, $path);
 
-        $path = '/projects/public/user/{userId}';
-        $pattern = '{userId}';
-        $data = $this->genTestData('[a-z0-9]+');
-        $path = str_replace($pattern, $data, $path);
+    $crawler = $client->request('GET', $path);
+  }
 
-        $crawler = $client->request('GET', $path);
-    }
+  /**
+   * Test case for projectsRandomProgramsGet.
+   *
+   * Get random projects.
+   */
+  public function testProjectsRandomProgramsGet()
+  {
+    $client = static::createClient();
 
-    /**
-     * Test case for projectsRandomProgramsGet
-     *
-     * Get random projects.
-     */
-    public function testProjectsRandomProgramsGet()
-    {
-        $client = static::createClient();
+    $path = '/projects/randomPrograms';
 
-        $path = '/projects/randomPrograms';
+    $crawler = $client->request('GET', $path);
+  }
 
-        $crawler = $client->request('GET', $path);
-    }
+  /**
+   * Test case for projectsRecentGet.
+   *
+   * Get the most recent programs.
+   */
+  public function testProjectsRecentGet()
+  {
+    $client = static::createClient();
 
-    /**
-     * Test case for projectsRecentGet
-     *
-     * Get the most recent programs.
-     */
-    public function testProjectsRecentGet()
-    {
-        $client = static::createClient();
+    $path = '/projects/recent';
 
-        $path = '/projects/recent';
+    $crawler = $client->request('GET', $path);
+  }
 
-        $crawler = $client->request('GET', $path);
-    }
+  /**
+   * Test case for projectsSearchGet.
+   *
+   * Search for programs associated with a keywords.
+   */
+  public function testProjectsSearchGet()
+  {
+    $client = static::createClient();
 
-    /**
-     * Test case for projectsSearchGet
-     *
-     * Search for programs associated with a keywords.
-     */
-    public function testProjectsSearchGet()
-    {
-        $client = static::createClient();
+    $path = '/projects/search';
 
-        $path = '/projects/search';
+    $crawler = $client->request('GET', $path);
+  }
 
-        $crawler = $client->request('GET', $path);
-    }
+  /**
+   * Test case for projectsUploadPost.
+   *
+   * Upload a catrobat program.
+   */
+  public function testProjectsUploadPost()
+  {
+    $client = static::createClient();
 
-    /**
-     * Test case for projectsUploadPost
-     *
-     * Upload a catrobat program.
-     */
-    public function testProjectsUploadPost()
-    {
-        $client = static::createClient();
+    $path = '/projects/upload';
 
-        $path = '/projects/upload';
+    $crawler = $client->request('POST', $path);
+  }
 
-        $crawler = $client->request('POST', $path);
-    }
+  /**
+   * Test case for projectsUserUserIdGet.
+   *
+   * Get the projects of a user, if user is logged in, then there will also be private programs.
+   */
+  public function testProjectsUserUserIdGet()
+  {
+    $client = static::createClient();
 
-    /**
-     * Test case for projectsUserUserIdGet
-     *
-     * Get the projects of a user, if user is logged in, then there will also be private programs.
-     */
-    public function testProjectsUserUserIdGet()
-    {
-        $client = static::createClient();
+    $path = '/projects/user/{userId}';
+    $pattern = '{userId}';
+    $data = $this->genTestData('[a-z0-9]+');
+    $path = str_replace($pattern, $data, $path);
 
-        $path = '/projects/user/{userId}';
-        $pattern = '{userId}';
-        $data = $this->genTestData('[a-z0-9]+');
-        $path = str_replace($pattern, $data, $path);
+    $crawler = $client->request('GET', $path);
+  }
 
-        $crawler = $client->request('GET', $path);
-    }
+  protected function genTestData($regexp)
+  {
+    $grammar = new \Hoa\File\Read('hoa://Library/Regex/Grammar.pp');
+    $compiler = \Hoa\Compiler\Llk\Llk::load($grammar);
+    $ast = $compiler->parse($regexp);
+    $generator = new \Hoa\Regex\Visitor\Isotropic(new \Hoa\Math\Sampler\Random());
 
-    protected function genTestData($regexp)
-    {
-        $grammar  = new \Hoa\File\Read('hoa://Library/Regex/Grammar.pp');
-        $compiler = \Hoa\Compiler\Llk\Llk::load($grammar);
-        $ast      = $compiler->parse($regexp);
-        $generator = new \Hoa\Regex\Visitor\Isotropic(new \Hoa\Math\Sampler\Random());
-
-        return $generator->visit($ast); 
-    }
+    return $generator->visit($ast);
+  }
 }

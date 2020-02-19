@@ -1,16 +1,17 @@
 <?php
 /**
  * MediaLibraryApiInterfaceTest
- * PHP version 5
+ * PHP version 5.
  *
  * @category Class
- * @package  OpenAPI\Server\Tests\Api
+ *
  * @author   openapi-generator contributors
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -27,75 +28,74 @@
 
 namespace OpenAPI\Server\Tests\Api;
 
-use OpenAPI\Server\Configuration;
-use OpenAPI\Server\ApiClient;
-use OpenAPI\Server\ApiException;
-use OpenAPI\Server\ObjectSerializer;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * MediaLibraryApiInterfaceTest Class Doc Comment
+ * MediaLibraryApiInterfaceTest Class Doc Comment.
  *
  * @category Class
- * @package  OpenAPI\Server\Tests\Api
+ *
  * @author   openapi-generator contributors
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
+ *
+ * @internal
+ * @coversNothing
  */
 class MediaLibraryApiInterfaceTest extends WebTestCase
 {
+  /**
+   * Setup before running any test cases.
+   */
+  public static function setUpBeforeClass()
+  {
+  }
 
-    /**
-     * Setup before running any test cases
-     */
-    public static function setUpBeforeClass()
-    {
-    }
+  /**
+   * Clean up after running all test cases.
+   */
+  public static function tearDownAfterClass()
+  {
+  }
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp()
-    {
-    }
+  /**
+   * Setup before running each test case.
+   */
+  public function setUp()
+  {
+  }
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
+  /**
+   * Clean up after running each test case.
+   */
+  public function tearDown()
+  {
+  }
 
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
+  /**
+   * Test case for mediaPackagePackageNameGet.
+   *
+   * Get media-library asstes of a named package.
+   */
+  public function testMediaPackagePackageNameGet()
+  {
+    $client = static::createClient();
 
-    /**
-     * Test case for mediaPackagePackageNameGet
-     *
-     * Get media-library asstes of a named package.
-     */
-    public function testMediaPackagePackageNameGet()
-    {
-        $client = static::createClient();
+    $path = '/media/package/{packageName}';
+    $pattern = '{packageName}';
+    $data = $this->genTestData('[a-z0-9]+');
+    $path = str_replace($pattern, $data, $path);
 
-        $path = '/media/package/{packageName}';
-        $pattern = '{packageName}';
-        $data = $this->genTestData('[a-z0-9]+');
-        $path = str_replace($pattern, $data, $path);
+    $crawler = $client->request('GET', $path);
+  }
 
-        $crawler = $client->request('GET', $path);
-    }
+  protected function genTestData($regexp)
+  {
+    $grammar = new \Hoa\File\Read('hoa://Library/Regex/Grammar.pp');
+    $compiler = \Hoa\Compiler\Llk\Llk::load($grammar);
+    $ast = $compiler->parse($regexp);
+    $generator = new \Hoa\Regex\Visitor\Isotropic(new \Hoa\Math\Sampler\Random());
 
-    protected function genTestData($regexp)
-    {
-        $grammar  = new \Hoa\File\Read('hoa://Library/Regex/Grammar.pp');
-        $compiler = \Hoa\Compiler\Llk\Llk::load($grammar);
-        $ast      = $compiler->parse($regexp);
-        $generator = new \Hoa\Regex\Visitor\Isotropic(new \Hoa\Math\Sampler\Random());
-
-        return $generator->visit($ast); 
-    }
+    return $generator->visit($ast);
+  }
 }

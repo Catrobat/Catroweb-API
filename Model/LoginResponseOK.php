@@ -1,17 +1,18 @@
 <?php
 /**
- * LoginResponseOK
+ * LoginResponseOK.
  *
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Server\Model
+ *
  * @author   OpenAPI Generator team
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -28,59 +29,52 @@
 
 namespace OpenAPI\Server\Model;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class representing the LoginResponseOK model.
  *
- * @package OpenAPI\Server\Model
  * @author  OpenAPI Generator team
  */
 class LoginResponseOK
 {
-        /**
-     * @var string|null
-     * @SerializedName("token")
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected $token;
+  /**
+   * @var string|null
+   * @SerializedName("token")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $token;
 
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->token = isset($data['token']) ? $data['token'] : null;
-    }
+  /**
+   * Constructor.
+   *
+   * @param mixed[] $data Associated array of property values initializing the model
+   */
+  public function __construct(array $data = null)
+  {
+    $this->token = isset($data['token']) ? $data['token'] : null;
+  }
 
-    /**
-     * Gets token.
-     *
-     * @return string|null
-     */
-    public function getToken()
-    {
-        return $this->token;
-    }
+  /**
+   * Gets token.
+   */
+  public function getToken(): ?string
+  {
+    return $this->token;
+  }
 
-    /**
-     * Sets token.
-     *
-     * @param string|null $token
-     *
-     * @return $this
-     */
-    public function setToken($token = null)
-    {
-        $this->token = $token;
+  /**
+   * Sets token.
+   *
+   * @return $this
+   */
+  public function setToken(string $token = null)
+  {
+    $this->token = $token;
 
-        return $this;
-    }
+    return $this;
+  }
 }
-
-

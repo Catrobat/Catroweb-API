@@ -1,17 +1,18 @@
 <?php
 /**
- * FeaturedProjectTest
+ * FeaturedProjectTest.
  *
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Server\Tests\Model
+ *
  * @author   openapi-generator contributors
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -29,80 +30,81 @@
 namespace OpenAPI\Server\Model;
 
 /**
- * FeaturedProjectTest Class Doc Comment
+ * FeaturedProjectTest Class Doc Comment.
  *
- * @category Class 
-*/
+ * @category    Class */
 // * @description FeaturedProject
 /**
- * @package     OpenAPI\Server\Tests\Model
  * @author      openapi-generator contributors
- * @link        https://github.com/openapitools/openapi-generator
+ *
+ * @see        https://github.com/openapitools/openapi-generator
+ *
+ * @internal
+ * @coversNothing
  */
 class FeaturedProjectTest extends \PHPUnit_Framework_TestCase
 {
+  /**
+   * Setup before running any test case.
+   */
+  public static function setUpBeforeClass()
+  {
+  }
 
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
+  /**
+   * Clean up after running all test cases.
+   */
+  public static function tearDownAfterClass()
+  {
+  }
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp()
-    {
-    }
+  /**
+   * Setup before running each test case.
+   */
+  public function setUp()
+  {
+  }
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
+  /**
+   * Clean up after running each test case.
+   */
+  public function tearDown()
+  {
+  }
 
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
+  /**
+   * Test "FeaturedProject".
+   */
+  public function testFeaturedProject()
+  {
+    $testFeaturedProject = new FeaturedProject();
+  }
 
-    /**
-     * Test "FeaturedProject"
-     */
-    public function testFeaturedProject()
-    {
-        $testFeaturedProject = new FeaturedProject();
-    }
+  /**
+   * Test attribute "id".
+   */
+  public function testPropertyId()
+  {
+  }
 
-    /**
-     * Test attribute "id"
-     */
-    public function testPropertyId()
-    {
-    }
+  /**
+   * Test attribute "name".
+   */
+  public function testPropertyName()
+  {
+  }
 
-    /**
-     * Test attribute "name"
-     */
-    public function testPropertyName()
-    {
-    }
+  /**
+   * Test attribute "author".
+   */
+  public function testPropertyAuthor()
+  {
+  }
 
-    /**
-     * Test attribute "author"
-     */
-    public function testPropertyAuthor()
-    {
-    }
-
-    /**
-     * Test attribute "featuredImage"
-     */
-    public function testPropertyFeaturedImage()
-    {
-    }
+  /**
+   * Test attribute "featuredImage".
+   */
+  public function testPropertyFeaturedImage()
+  {
+  }
 }

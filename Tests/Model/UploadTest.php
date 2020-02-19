@@ -1,17 +1,18 @@
 <?php
 /**
- * UploadTest
+ * UploadTest.
  *
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Server\Tests\Model
+ *
  * @author   openapi-generator contributors
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -29,80 +30,81 @@
 namespace OpenAPI\Server\Model;
 
 /**
- * UploadTest Class Doc Comment
+ * UploadTest Class Doc Comment.
  *
- * @category Class 
-*/
+ * @category    Class */
 // * @description Upload
 /**
- * @package     OpenAPI\Server\Tests\Model
  * @author      openapi-generator contributors
- * @link        https://github.com/openapitools/openapi-generator
+ *
+ * @see        https://github.com/openapitools/openapi-generator
+ *
+ * @internal
+ * @coversNothing
  */
 class UploadTest extends \PHPUnit_Framework_TestCase
 {
+  /**
+   * Setup before running any test case.
+   */
+  public static function setUpBeforeClass()
+  {
+  }
 
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
+  /**
+   * Clean up after running all test cases.
+   */
+  public static function tearDownAfterClass()
+  {
+  }
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp()
-    {
-    }
+  /**
+   * Setup before running each test case.
+   */
+  public function setUp()
+  {
+  }
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
+  /**
+   * Clean up after running each test case.
+   */
+  public function tearDown()
+  {
+  }
 
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
+  /**
+   * Test "Upload".
+   */
+  public function testUpload()
+  {
+    $testUpload = new Upload();
+  }
 
-    /**
-     * Test "Upload"
-     */
-    public function testUpload()
-    {
-        $testUpload = new Upload();
-    }
+  /**
+   * Test attribute "checksum".
+   */
+  public function testPropertyChecksum()
+  {
+  }
 
-    /**
-     * Test attribute "checksum"
-     */
-    public function testPropertyChecksum()
-    {
-    }
+  /**
+   * Test attribute "file".
+   */
+  public function testPropertyFile()
+  {
+  }
 
-    /**
-     * Test attribute "file"
-     */
-    public function testPropertyFile()
-    {
-    }
+  /**
+   * Test attribute "flavor".
+   */
+  public function testPropertyFlavor()
+  {
+  }
 
-    /**
-     * Test attribute "flavor"
-     */
-    public function testPropertyFlavor()
-    {
-    }
-
-    /**
-     * Test attribute "tags"
-     */
-    public function testPropertyTags()
-    {
-    }
+  /**
+   * Test attribute "tags".
+   */
+  public function testPropertyTags()
+  {
+  }
 }

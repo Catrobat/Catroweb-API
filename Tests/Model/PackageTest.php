@@ -1,17 +1,18 @@
 <?php
 /**
- * PackageTest
+ * PackageTest.
  *
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Server\Tests\Model
+ *
  * @author   openapi-generator contributors
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -29,108 +30,109 @@
 namespace OpenAPI\Server\Model;
 
 /**
- * PackageTest Class Doc Comment
+ * PackageTest Class Doc Comment.
  *
- * @category Class 
-*/
+ * @category    Class */
 // * @description Package
 /**
- * @package     OpenAPI\Server\Tests\Model
  * @author      openapi-generator contributors
- * @link        https://github.com/openapitools/openapi-generator
+ *
+ * @see        https://github.com/openapitools/openapi-generator
+ *
+ * @internal
+ * @coversNothing
  */
 class PackageTest extends \PHPUnit_Framework_TestCase
 {
+  /**
+   * Setup before running any test case.
+   */
+  public static function setUpBeforeClass()
+  {
+  }
 
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
+  /**
+   * Clean up after running all test cases.
+   */
+  public static function tearDownAfterClass()
+  {
+  }
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp()
-    {
-    }
+  /**
+   * Setup before running each test case.
+   */
+  public function setUp()
+  {
+  }
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
+  /**
+   * Clean up after running each test case.
+   */
+  public function tearDown()
+  {
+  }
 
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
+  /**
+   * Test "Package".
+   */
+  public function testPackage()
+  {
+    $testPackage = new Package();
+  }
 
-    /**
-     * Test "Package"
-     */
-    public function testPackage()
-    {
-        $testPackage = new Package();
-    }
+  /**
+   * Test attribute "id".
+   */
+  public function testPropertyId()
+  {
+  }
 
-    /**
-     * Test attribute "id"
-     */
-    public function testPropertyId()
-    {
-    }
+  /**
+   * Test attribute "name".
+   */
+  public function testPropertyName()
+  {
+  }
 
-    /**
-     * Test attribute "name"
-     */
-    public function testPropertyName()
-    {
-    }
+  /**
+   * Test attribute "flavor".
+   */
+  public function testPropertyFlavor()
+  {
+  }
 
-    /**
-     * Test attribute "flavor"
-     */
-    public function testPropertyFlavor()
-    {
-    }
+  /**
+   * Test attribute "package".
+   */
+  public function testPropertyPackage()
+  {
+  }
 
-    /**
-     * Test attribute "package"
-     */
-    public function testPropertyPackage()
-    {
-    }
+  /**
+   * Test attribute "category".
+   */
+  public function testPropertyCategory()
+  {
+  }
 
-    /**
-     * Test attribute "category"
-     */
-    public function testPropertyCategory()
-    {
-    }
+  /**
+   * Test attribute "author".
+   */
+  public function testPropertyAuthor()
+  {
+  }
 
-    /**
-     * Test attribute "author"
-     */
-    public function testPropertyAuthor()
-    {
-    }
+  /**
+   * Test attribute "extension".
+   */
+  public function testPropertyExtension()
+  {
+  }
 
-    /**
-     * Test attribute "extension"
-     */
-    public function testPropertyExtension()
-    {
-    }
-
-    /**
-     * Test attribute "downloadUrl"
-     */
-    public function testPropertyDownloadUrl()
-    {
-    }
+  /**
+   * Test attribute "downloadUrl".
+   */
+  public function testPropertyDownloadUrl()
+  {
+  }
 }

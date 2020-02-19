@@ -1,17 +1,18 @@
 <?php
 /**
- * FeaturedProject
+ * FeaturedProject.
  *
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Server\Model
+ *
  * @author   OpenAPI Generator team
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -28,158 +29,139 @@
 
 namespace OpenAPI\Server\Model;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class representing the FeaturedProject model.
  *
- * @package OpenAPI\Server\Model
  * @author  OpenAPI Generator team
  */
 class FeaturedProject
 {
-        /**
-     * @var string|null
-     * @SerializedName("id")
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected $id;
+  /**
+   * @var string|null
+   * @SerializedName("id")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $id;
 
-    /**
-     * @var string|null
-     * @SerializedName("name")
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected $name;
+  /**
+   * @var string|null
+   * @SerializedName("name")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $name;
 
-    /**
-     * @var string|null
-     * @SerializedName("author")
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected $author;
+  /**
+   * @var string|null
+   * @SerializedName("author")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $author;
 
-    /**
-     * @var string|null
-     * @SerializedName("featured_image")
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected $featuredImage;
+  /**
+   * @var string|null
+   * @SerializedName("featured_image")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $featuredImage;
 
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->id = isset($data['id']) ? $data['id'] : null;
-        $this->name = isset($data['name']) ? $data['name'] : null;
-        $this->author = isset($data['author']) ? $data['author'] : null;
-        $this->featuredImage = isset($data['featuredImage']) ? $data['featuredImage'] : null;
-    }
+  /**
+   * Constructor.
+   *
+   * @param mixed[] $data Associated array of property values initializing the model
+   */
+  public function __construct(array $data = null)
+  {
+    $this->id = isset($data['id']) ? $data['id'] : null;
+    $this->name = isset($data['name']) ? $data['name'] : null;
+    $this->author = isset($data['author']) ? $data['author'] : null;
+    $this->featuredImage = isset($data['featuredImage']) ? $data['featuredImage'] : null;
+  }
 
-    /**
-     * Gets id.
-     *
-     * @return string|null
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+  /**
+   * Gets id.
+   */
+  public function getId(): ?string
+  {
+    return $this->id;
+  }
 
-    /**
-     * Sets id.
-     *
-     * @param string|null $id
-     *
-     * @return $this
-     */
-    public function setId($id = null)
-    {
-        $this->id = $id;
+  /**
+   * Sets id.
+   *
+   * @return $this
+   */
+  public function setId(string $id = null)
+  {
+    $this->id = $id;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Gets name.
-     *
-     * @return string|null
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
+  /**
+   * Gets name.
+   */
+  public function getName(): ?string
+  {
+    return $this->name;
+  }
 
-    /**
-     * Sets name.
-     *
-     * @param string|null $name
-     *
-     * @return $this
-     */
-    public function setName($name = null)
-    {
-        $this->name = $name;
+  /**
+   * Sets name.
+   *
+   * @return $this
+   */
+  public function setName(string $name = null)
+  {
+    $this->name = $name;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Gets author.
-     *
-     * @return string|null
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
+  /**
+   * Gets author.
+   */
+  public function getAuthor(): ?string
+  {
+    return $this->author;
+  }
 
-    /**
-     * Sets author.
-     *
-     * @param string|null $author
-     *
-     * @return $this
-     */
-    public function setAuthor($author = null)
-    {
-        $this->author = $author;
+  /**
+   * Sets author.
+   *
+   * @return $this
+   */
+  public function setAuthor(string $author = null)
+  {
+    $this->author = $author;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Gets featuredImage.
-     *
-     * @return string|null
-     */
-    public function getFeaturedImage()
-    {
-        return $this->featuredImage;
-    }
+  /**
+   * Gets featuredImage.
+   */
+  public function getFeaturedImage(): ?string
+  {
+    return $this->featuredImage;
+  }
 
-    /**
-     * Sets featuredImage.
-     *
-     * @param string|null $featuredImage
-     *
-     * @return $this
-     */
-    public function setFeaturedImage($featuredImage = null)
-    {
-        $this->featuredImage = $featuredImage;
+  /**
+   * Sets featuredImage.
+   *
+   * @return $this
+   */
+  public function setFeaturedImage(string $featuredImage = null)
+  {
+    $this->featuredImage = $featuredImage;
 
-        return $this;
-    }
+    return $this;
+  }
 }
-
-

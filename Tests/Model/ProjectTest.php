@@ -1,17 +1,18 @@
 <?php
 /**
- * ProjectTest
+ * ProjectTest.
  *
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Server\Tests\Model
+ *
  * @author   openapi-generator contributors
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -29,164 +30,165 @@
 namespace OpenAPI\Server\Model;
 
 /**
- * ProjectTest Class Doc Comment
+ * ProjectTest Class Doc Comment.
  *
- * @category Class 
-*/
+ * @category    Class */
 // * @description Project
 /**
- * @package     OpenAPI\Server\Tests\Model
  * @author      openapi-generator contributors
- * @link        https://github.com/openapitools/openapi-generator
+ *
+ * @see        https://github.com/openapitools/openapi-generator
+ *
+ * @internal
+ * @coversNothing
  */
 class ProjectTest extends \PHPUnit_Framework_TestCase
 {
+  /**
+   * Setup before running any test case.
+   */
+  public static function setUpBeforeClass()
+  {
+  }
 
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
+  /**
+   * Clean up after running all test cases.
+   */
+  public static function tearDownAfterClass()
+  {
+  }
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp()
-    {
-    }
+  /**
+   * Setup before running each test case.
+   */
+  public function setUp()
+  {
+  }
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
+  /**
+   * Clean up after running each test case.
+   */
+  public function tearDown()
+  {
+  }
 
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
+  /**
+   * Test "Project".
+   */
+  public function testProject()
+  {
+    $testProject = new Project();
+  }
 
-    /**
-     * Test "Project"
-     */
-    public function testProject()
-    {
-        $testProject = new Project();
-    }
+  /**
+   * Test attribute "id".
+   */
+  public function testPropertyId()
+  {
+  }
 
-    /**
-     * Test attribute "id"
-     */
-    public function testPropertyId()
-    {
-    }
+  /**
+   * Test attribute "name".
+   */
+  public function testPropertyName()
+  {
+  }
 
-    /**
-     * Test attribute "name"
-     */
-    public function testPropertyName()
-    {
-    }
+  /**
+   * Test attribute "author".
+   */
+  public function testPropertyAuthor()
+  {
+  }
 
-    /**
-     * Test attribute "author"
-     */
-    public function testPropertyAuthor()
-    {
-    }
+  /**
+   * Test attribute "description".
+   */
+  public function testPropertyDescription()
+  {
+  }
 
-    /**
-     * Test attribute "description"
-     */
-    public function testPropertyDescription()
-    {
-    }
+  /**
+   * Test attribute "version".
+   */
+  public function testPropertyVersion()
+  {
+  }
 
-    /**
-     * Test attribute "version"
-     */
-    public function testPropertyVersion()
-    {
-    }
+  /**
+   * Test attribute "views".
+   */
+  public function testPropertyViews()
+  {
+  }
 
-    /**
-     * Test attribute "views"
-     */
-    public function testPropertyViews()
-    {
-    }
+  /**
+   * Test attribute "download".
+   */
+  public function testPropertyDownload()
+  {
+  }
 
-    /**
-     * Test attribute "download"
-     */
-    public function testPropertyDownload()
-    {
-    }
+  /**
+   * Test attribute "private".
+   */
+  public function testPropertyPrivate()
+  {
+  }
 
-    /**
-     * Test attribute "private"
-     */
-    public function testPropertyPrivate()
-    {
-    }
+  /**
+   * Test attribute "flavor".
+   */
+  public function testPropertyFlavor()
+  {
+  }
 
-    /**
-     * Test attribute "flavor"
-     */
-    public function testPropertyFlavor()
-    {
-    }
+  /**
+   * Test attribute "uploaded".
+   */
+  public function testPropertyUploaded()
+  {
+  }
 
-    /**
-     * Test attribute "uploaded"
-     */
-    public function testPropertyUploaded()
-    {
-    }
+  /**
+   * Test attribute "uploadedString".
+   */
+  public function testPropertyUploadedString()
+  {
+  }
 
-    /**
-     * Test attribute "uploadedString"
-     */
-    public function testPropertyUploadedString()
-    {
-    }
+  /**
+   * Test attribute "screenshotLarge".
+   */
+  public function testPropertyScreenshotLarge()
+  {
+  }
 
-    /**
-     * Test attribute "screenshotLarge"
-     */
-    public function testPropertyScreenshotLarge()
-    {
-    }
+  /**
+   * Test attribute "screenshotSmall".
+   */
+  public function testPropertyScreenshotSmall()
+  {
+  }
 
-    /**
-     * Test attribute "screenshotSmall"
-     */
-    public function testPropertyScreenshotSmall()
-    {
-    }
+  /**
+   * Test attribute "projectUrl".
+   */
+  public function testPropertyProjectUrl()
+  {
+  }
 
-    /**
-     * Test attribute "projectUrl"
-     */
-    public function testPropertyProjectUrl()
-    {
-    }
+  /**
+   * Test attribute "downloadUrl".
+   */
+  public function testPropertyDownloadUrl()
+  {
+  }
 
-    /**
-     * Test attribute "downloadUrl"
-     */
-    public function testPropertyDownloadUrl()
-    {
-    }
-
-    /**
-     * Test attribute "filesize"
-     */
-    public function testPropertyFilesize()
-    {
-    }
+  /**
+   * Test attribute "filesize".
+   */
+  public function testPropertyFilesize()
+  {
+  }
 }
