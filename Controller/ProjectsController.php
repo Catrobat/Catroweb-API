@@ -2,16 +2,17 @@
 
 /**
  * ProjectsController
- * PHP version 5
+ * PHP version 5.
  *
  * @category Class
- * @package  OpenAPI\Server\Controller
+ *
  * @author   OpenAPI Generator team
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -28,1086 +29,1180 @@
 
 namespace OpenAPI\Server\Controller;
 
-use \Exception;
+use Exception;
 use JMS\Serializer\Exception\RuntimeException as SerializerRuntimeException;
+use OpenAPI\Server\Api\ProjectsApiInterface;
+use OpenAPI\Server\Model\Project;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\Constraints as Assert;
-use OpenAPI\Server\Api\ProjectsApiInterface;
-use OpenAPI\Server\Model\FeaturedProject;
-use OpenAPI\Server\Model\Project;
-use OpenAPI\Server\Model\UploadError;
 
 /**
- * ProjectsController Class Doc Comment
+ * ProjectsController Class Doc Comment.
  *
  * @category Class
- * @package  OpenAPI\Server\Controller
+ *
  * @author   OpenAPI Generator team
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 class ProjectsController extends Controller
 {
-
-    /**
-     * Operation projectProjectIdGet
-     *
-     * Get the information of a project
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function projectProjectIdGetAction(Request $request, $projectId)
+  /**
+   * Operation projectProjectIdGet.
+   *
+   * Get the information of a project
+   *
+   * @param Request $request   the Symfony request to handle
+   * @param mixed   $projectId
+   *
+   * @return Response the Symfony response
+   */
+  public function projectProjectIdGetAction(Request $request, $projectId): Response
+  {
+    // Figure out what data format to return to the client
+    $produces = ['application/json'];
+    // Figure out what the client accepts
+    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
+    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
+    if (null === $responseFormat)
     {
-        // Figure out what data format to return to the client
-        $produces = ['application/json'];
-        // Figure out what the client accepts
-        $clientAccepts = $request->headers->has('Accept')?$request->headers->get('Accept'):'*/*';
-        $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
-        if ($responseFormat === null) {
-            return new Response('', 406);
-        }
+      return new Response('', 406);
+    }
 
-        // Handle authentication
+    // Handle authentication
 
-        // Read out all input parameter values into variables
+    // Read out all input parameter values into variables
 
-        // Use the default value if no value was provided
+    // Use the default value if no value was provided
 
-        // Deserialize the input values that needs it
-        try {
-            $projectId = $this->deserialize($projectId, 'string', 'string');
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+    // Deserialize the input values that needs it
+    try
+    {
+      $projectId = $this->deserialize($projectId, 'string', 'string');
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($projectId, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($projectId, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        try {
-            $handler = $this->getApiHandler();
+      // Make the call to the business logic
+      $responseCode = 200;
+      $responseHeaders = [];
+      $result = $handler->projectProjectIdGet($projectId, $responseCode, $responseHeaders);
 
-            
-            // Make the call to the business logic
-            $responseCode = 200;
-            $responseHeaders = [];
-            $result = $handler->projectProjectIdGet($projectId, $responseCode, $responseHeaders);
+      // Find default response message
+      $message = 'Valid request';
 
-            // Find default response message
-            $message = 'Valid request';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'Valid request';
-                break;
-            case 404:
-                $message = 'Project does not exist';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'Valid request';
+                    break;
+                case 404:
+                    $message = 'Project does not exist';
+                    break;
             }
 
-            return new Response(
-                $result !== null ?$this->serialize($result, $responseFormat):'',
+      return new Response(
+                null !== $result ? $this->serialize($result, $responseFormat) : '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'Content-Type' => $responseFormat,
-                        'X-OpenAPI-Message' => $message
+                      'Content-Type' => $responseFormat,
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
+   * Operation projectsFeaturedGet.
+   *
+   * Get the currently featured projects
+   *
+   * @param Request $request the Symfony request to handle
+   *
+   * @return Response the Symfony response
+   */
+  public function projectsFeaturedGetAction(Request $request): Response
+  {
+    // Figure out what data format to return to the client
+    $produces = ['application/json'];
+    // Figure out what the client accepts
+    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
+    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
+    if (null === $responseFormat)
+    {
+      return new Response('', 406);
     }
 
-    /**
-     * Operation projectsFeaturedGet
-     *
-     * Get the currently featured projects
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function projectsFeaturedGetAction(Request $request)
+    // Handle authentication
+
+    // Read out all input parameter values into variables
+    $platform = $request->query->get('platform');
+    $maxVersion = $request->query->get('maxVersion');
+    $limit = $request->query->get('limit');
+    $offset = $request->query->get('offset');
+    $flavor = $request->query->get('flavor');
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
     {
-        // Figure out what data format to return to the client
-        $produces = ['application/json'];
-        // Figure out what the client accepts
-        $clientAccepts = $request->headers->has('Accept')?$request->headers->get('Accept'):'*/*';
-        $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
-        if ($responseFormat === null) {
-            return new Response('', 406);
-        }
+      $platform = $this->deserialize($platform, 'string', 'string');
+      $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
+      $limit = $this->deserialize($limit, 'int', 'string');
+      $offset = $this->deserialize($offset, 'int', 'string');
+      $flavor = $this->deserialize($flavor, 'string', 'string');
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Handle authentication
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\Choice(['android', 'iOS']);
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($platform, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('string');
+    $asserts[] = new Assert\Regex('/[0-9]\\.[0-9]{3}/');
+    $response = $this->validate($maxVersion, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($limit, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($offset, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Choice(['pocketcode', 'pocketalice', 'pocketgalaxy', 'pocketphiro', 'phirocode', 'luna', 'create@school', 'embroidery', 'arduino']);
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($flavor, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
-        // Read out all input parameter values into variables
-        $platform = $request->query->get('platform');
-        $maxVersion = $request->query->get('maxVersion');
-        $limit = $request->query->get('limit');
-        $offset = $request->query->get('offset');
-        $flavor = $request->query->get('flavor');
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        // Use the default value if no value was provided
+      // Make the call to the business logic
+      $responseCode = 200;
+      $responseHeaders = [];
+      $result = $handler->projectsFeaturedGet($platform, $maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
 
-        // Deserialize the input values that needs it
-        try {
-            $platform = $this->deserialize($platform, 'string', 'string');
-            $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
-            $limit = $this->deserialize($limit, 'int', 'string');
-            $offset = $this->deserialize($offset, 'int', 'string');
-            $flavor = $this->deserialize($flavor, 'string', 'string');
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+      // Find default response message
+      $message = 'OK';
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\Choice([ "android", "iOS" ]);
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($platform, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("string");
-        $asserts[] = new Assert\Regex("/[0-9]\\.[0-9]{3}/");
-        $response = $this->validate($maxVersion, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $asserts[] = new Assert\GreaterThanOrEqual(0);
-        $response = $this->validate($limit, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $asserts[] = new Assert\GreaterThanOrEqual(0);
-        $response = $this->validate($offset, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Choice([ "pocketcode", "pocketalice", "pocketgalaxy", "pocketphiro", "phirocode", "luna", "create@school", "embroidery", "arduino" ]);
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($flavor, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-
-
-        try {
-            $handler = $this->getApiHandler();
-
-            
-            // Make the call to the business logic
-            $responseCode = 200;
-            $responseHeaders = [];
-            $result = $handler->projectsFeaturedGet($platform, $maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
-
-            // Find default response message
-            $message = 'OK';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'OK';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'OK';
+                    break;
             }
 
-            return new Response(
-                $result !== null ?$this->serialize($result, $responseFormat):'',
+      return new Response(
+                null !== $result ? $this->serialize($result, $responseFormat) : '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'Content-Type' => $responseFormat,
-                        'X-OpenAPI-Message' => $message
+                      'Content-Type' => $responseFormat,
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
+   * Operation projectsMostDownloadedGet.
+   *
+   * Get the most downloaded projects
+   *
+   * @param Request $request the Symfony request to handle
+   *
+   * @return Response the Symfony response
+   */
+  public function projectsMostDownloadedGetAction(Request $request): Response
+  {
+    // Figure out what data format to return to the client
+    $produces = ['application/json'];
+    // Figure out what the client accepts
+    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
+    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
+    if (null === $responseFormat)
+    {
+      return new Response('', 406);
     }
 
-    /**
-     * Operation projectsMostDownloadedGet
-     *
-     * Get the most downloaded projects
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function projectsMostDownloadedGetAction(Request $request)
+    // Handle authentication
+
+    // Read out all input parameter values into variables
+    $maxVersion = $request->query->get('maxVersion');
+    $limit = $request->query->get('limit');
+    $offset = $request->query->get('offset');
+    $flavor = $request->query->get('flavor');
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
     {
-        // Figure out what data format to return to the client
-        $produces = ['application/json'];
-        // Figure out what the client accepts
-        $clientAccepts = $request->headers->has('Accept')?$request->headers->get('Accept'):'*/*';
-        $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
-        if ($responseFormat === null) {
-            return new Response('', 406);
-        }
+      $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
+      $limit = $this->deserialize($limit, 'int', 'string');
+      $offset = $this->deserialize($offset, 'int', 'string');
+      $flavor = $this->deserialize($flavor, 'string', 'string');
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Handle authentication
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\Type('string');
+    $asserts[] = new Assert\Regex('/[0-9]\\.[0-9]{3}/');
+    $response = $this->validate($maxVersion, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($limit, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($offset, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Choice(['pocketcode', 'pocketalice', 'pocketgalaxy', 'pocketphiro', 'phirocode', 'luna', 'create@school', 'embroidery', 'arduino']);
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($flavor, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
-        // Read out all input parameter values into variables
-        $maxVersion = $request->query->get('maxVersion');
-        $limit = $request->query->get('limit');
-        $offset = $request->query->get('offset');
-        $flavor = $request->query->get('flavor');
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        // Use the default value if no value was provided
+      // Make the call to the business logic
+      $responseCode = 200;
+      $responseHeaders = [];
+      $result = $handler->projectsMostDownloadedGet($maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
 
-        // Deserialize the input values that needs it
-        try {
-            $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
-            $limit = $this->deserialize($limit, 'int', 'string');
-            $offset = $this->deserialize($offset, 'int', 'string');
-            $flavor = $this->deserialize($flavor, 'string', 'string');
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+      // Find default response message
+      $message = 'OK';
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\Type("string");
-        $asserts[] = new Assert\Regex("/[0-9]\\.[0-9]{3}/");
-        $response = $this->validate($maxVersion, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $asserts[] = new Assert\GreaterThanOrEqual(0);
-        $response = $this->validate($limit, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $asserts[] = new Assert\GreaterThanOrEqual(0);
-        $response = $this->validate($offset, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Choice([ "pocketcode", "pocketalice", "pocketgalaxy", "pocketphiro", "phirocode", "luna", "create@school", "embroidery", "arduino" ]);
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($flavor, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-
-
-        try {
-            $handler = $this->getApiHandler();
-
-            
-            // Make the call to the business logic
-            $responseCode = 200;
-            $responseHeaders = [];
-            $result = $handler->projectsMostDownloadedGet($maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
-
-            // Find default response message
-            $message = 'OK';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'OK';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'OK';
+                    break;
             }
 
-            return new Response(
-                $result !== null ?$this->serialize($result, $responseFormat):'',
+      return new Response(
+                null !== $result ? $this->serialize($result, $responseFormat) : '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'Content-Type' => $responseFormat,
-                        'X-OpenAPI-Message' => $message
+                      'Content-Type' => $responseFormat,
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
+   * Operation projectsMostViewedGet.
+   *
+   * Get the most viewed projects
+   *
+   * @param Request $request the Symfony request to handle
+   *
+   * @return Response the Symfony response
+   */
+  public function projectsMostViewedGetAction(Request $request): Response
+  {
+    // Figure out what data format to return to the client
+    $produces = ['application/json'];
+    // Figure out what the client accepts
+    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
+    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
+    if (null === $responseFormat)
+    {
+      return new Response('', 406);
     }
 
-    /**
-     * Operation projectsMostViewedGet
-     *
-     * Get the most viewed projects
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function projectsMostViewedGetAction(Request $request)
+    // Handle authentication
+
+    // Read out all input parameter values into variables
+    $maxVersion = $request->query->get('maxVersion');
+    $limit = $request->query->get('limit');
+    $offset = $request->query->get('offset');
+    $flavor = $request->query->get('flavor');
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
     {
-        // Figure out what data format to return to the client
-        $produces = ['application/json'];
-        // Figure out what the client accepts
-        $clientAccepts = $request->headers->has('Accept')?$request->headers->get('Accept'):'*/*';
-        $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
-        if ($responseFormat === null) {
-            return new Response('', 406);
-        }
+      $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
+      $limit = $this->deserialize($limit, 'int', 'string');
+      $offset = $this->deserialize($offset, 'int', 'string');
+      $flavor = $this->deserialize($flavor, 'string', 'string');
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Handle authentication
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\Type('string');
+    $asserts[] = new Assert\Regex('/[0-9]\\.[0-9]{3}/');
+    $response = $this->validate($maxVersion, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($limit, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($offset, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Choice(['pocketcode', 'pocketalice', 'pocketgalaxy', 'pocketphiro', 'phirocode', 'luna', 'create@school', 'embroidery', 'arduino']);
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($flavor, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
-        // Read out all input parameter values into variables
-        $maxVersion = $request->query->get('maxVersion');
-        $limit = $request->query->get('limit');
-        $offset = $request->query->get('offset');
-        $flavor = $request->query->get('flavor');
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        // Use the default value if no value was provided
+      // Make the call to the business logic
+      $responseCode = 200;
+      $responseHeaders = [];
+      $result = $handler->projectsMostViewedGet($maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
 
-        // Deserialize the input values that needs it
-        try {
-            $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
-            $limit = $this->deserialize($limit, 'int', 'string');
-            $offset = $this->deserialize($offset, 'int', 'string');
-            $flavor = $this->deserialize($flavor, 'string', 'string');
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+      // Find default response message
+      $message = 'OK';
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\Type("string");
-        $asserts[] = new Assert\Regex("/[0-9]\\.[0-9]{3}/");
-        $response = $this->validate($maxVersion, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $asserts[] = new Assert\GreaterThanOrEqual(0);
-        $response = $this->validate($limit, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $asserts[] = new Assert\GreaterThanOrEqual(0);
-        $response = $this->validate($offset, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Choice([ "pocketcode", "pocketalice", "pocketgalaxy", "pocketphiro", "phirocode", "luna", "create@school", "embroidery", "arduino" ]);
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($flavor, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-
-
-        try {
-            $handler = $this->getApiHandler();
-
-            
-            // Make the call to the business logic
-            $responseCode = 200;
-            $responseHeaders = [];
-            $result = $handler->projectsMostViewedGet($maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
-
-            // Find default response message
-            $message = 'OK';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'OK';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'OK';
+                    break;
             }
 
-            return new Response(
-                $result !== null ?$this->serialize($result, $responseFormat):'',
+      return new Response(
+                null !== $result ? $this->serialize($result, $responseFormat) : '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'Content-Type' => $responseFormat,
-                        'X-OpenAPI-Message' => $message
+                      'Content-Type' => $responseFormat,
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
+   * Operation projectsPublicUserUserIdGet.
+   *
+   * Get the public projects of a user, if user is logged in, then there will also be private programs
+   *
+   * @param Request $request the Symfony request to handle
+   * @param mixed   $userId
+   *
+   * @return Response the Symfony response
+   */
+  public function projectsPublicUserUserIdGetAction(Request $request, $userId): Response
+  {
+    // Figure out what data format to return to the client
+    $produces = ['application/json'];
+    // Figure out what the client accepts
+    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
+    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
+    if (null === $responseFormat)
+    {
+      return new Response('', 406);
     }
 
-    /**
-     * Operation projectsPublicUserUserIdGet
-     *
-     * Get the public projects of a user, if user is logged in, then there will also be private programs
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function projectsPublicUserUserIdGetAction(Request $request, $userId)
+    // Handle authentication
+
+    // Read out all input parameter values into variables
+    $maxVersion = $request->query->get('maxVersion');
+    $limit = $request->query->get('limit');
+    $offset = $request->query->get('offset');
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
     {
-        // Figure out what data format to return to the client
-        $produces = ['application/json'];
-        // Figure out what the client accepts
-        $clientAccepts = $request->headers->has('Accept')?$request->headers->get('Accept'):'*/*';
-        $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
-        if ($responseFormat === null) {
-            return new Response('', 406);
-        }
+      $userId = $this->deserialize($userId, 'string', 'string');
+      $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
+      $limit = $this->deserialize($limit, 'int', 'string');
+      $offset = $this->deserialize($offset, 'int', 'string');
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Handle authentication
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($userId, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($maxVersion, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $response = $this->validate($limit, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $response = $this->validate($offset, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
-        // Read out all input parameter values into variables
-        $maxVersion = $request->query->get('maxVersion');
-        $limit = $request->query->get('limit');
-        $offset = $request->query->get('offset');
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        // Use the default value if no value was provided
+      // Make the call to the business logic
+      $responseCode = 200;
+      $responseHeaders = [];
+      $result = $handler->projectsPublicUserUserIdGet($userId, $maxVersion, $limit, $offset, $responseCode, $responseHeaders);
 
-        // Deserialize the input values that needs it
-        try {
-            $userId = $this->deserialize($userId, 'string', 'string');
-            $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
-            $limit = $this->deserialize($limit, 'int', 'string');
-            $offset = $this->deserialize($offset, 'int', 'string');
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+      // Find default response message
+      $message = 'Valid request';
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($userId, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($maxVersion, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $response = $this->validate($limit, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $response = $this->validate($offset, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-
-
-        try {
-            $handler = $this->getApiHandler();
-
-            
-            // Make the call to the business logic
-            $responseCode = 200;
-            $responseHeaders = [];
-            $result = $handler->projectsPublicUserUserIdGet($userId, $maxVersion, $limit, $offset, $responseCode, $responseHeaders);
-
-            // Find default response message
-            $message = 'Valid request';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'Valid request';
-                break;
-            case 404:
-                $message = 'User does not exist';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'Valid request';
+                    break;
+                case 404:
+                    $message = 'User does not exist';
+                    break;
             }
 
-            return new Response(
-                $result !== null ?$this->serialize($result, $responseFormat):'',
+      return new Response(
+                null !== $result ? $this->serialize($result, $responseFormat) : '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'Content-Type' => $responseFormat,
-                        'X-OpenAPI-Message' => $message
+                      'Content-Type' => $responseFormat,
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
+   * Operation projectsRandomProgramsGet.
+   *
+   * Get random projects
+   *
+   * @param Request $request the Symfony request to handle
+   *
+   * @return Response the Symfony response
+   */
+  public function projectsRandomProgramsGetAction(Request $request): Response
+  {
+    // Figure out what data format to return to the client
+    $produces = ['application/json'];
+    // Figure out what the client accepts
+    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
+    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
+    if (null === $responseFormat)
+    {
+      return new Response('', 406);
     }
 
-    /**
-     * Operation projectsRandomProgramsGet
-     *
-     * Get random projects
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function projectsRandomProgramsGetAction(Request $request)
+    // Handle authentication
+
+    // Read out all input parameter values into variables
+    $maxVersion = $request->query->get('maxVersion');
+    $limit = $request->query->get('limit');
+    $offset = $request->query->get('offset');
+    $flavor = $request->query->get('flavor');
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
     {
-        // Figure out what data format to return to the client
-        $produces = ['application/json'];
-        // Figure out what the client accepts
-        $clientAccepts = $request->headers->has('Accept')?$request->headers->get('Accept'):'*/*';
-        $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
-        if ($responseFormat === null) {
-            return new Response('', 406);
-        }
+      $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
+      $limit = $this->deserialize($limit, 'int', 'string');
+      $offset = $this->deserialize($offset, 'int', 'string');
+      $flavor = $this->deserialize($flavor, 'string', 'string');
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Handle authentication
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\Type('string');
+    $asserts[] = new Assert\Regex('/[0-9]\\.[0-9]{3}/');
+    $response = $this->validate($maxVersion, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($limit, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($offset, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Choice(['pocketcode', 'pocketalice', 'pocketgalaxy', 'pocketphiro', 'phirocode', 'luna', 'create@school', 'embroidery', 'arduino']);
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($flavor, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
-        // Read out all input parameter values into variables
-        $maxVersion = $request->query->get('maxVersion');
-        $limit = $request->query->get('limit');
-        $offset = $request->query->get('offset');
-        $flavor = $request->query->get('flavor');
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        // Use the default value if no value was provided
+      // Make the call to the business logic
+      $responseCode = 200;
+      $responseHeaders = [];
+      $result = $handler->projectsRandomProgramsGet($maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
 
-        // Deserialize the input values that needs it
-        try {
-            $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
-            $limit = $this->deserialize($limit, 'int', 'string');
-            $offset = $this->deserialize($offset, 'int', 'string');
-            $flavor = $this->deserialize($flavor, 'string', 'string');
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+      // Find default response message
+      $message = 'OK';
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\Type("string");
-        $asserts[] = new Assert\Regex("/[0-9]\\.[0-9]{3}/");
-        $response = $this->validate($maxVersion, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $asserts[] = new Assert\GreaterThanOrEqual(0);
-        $response = $this->validate($limit, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $asserts[] = new Assert\GreaterThanOrEqual(0);
-        $response = $this->validate($offset, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Choice([ "pocketcode", "pocketalice", "pocketgalaxy", "pocketphiro", "phirocode", "luna", "create@school", "embroidery", "arduino" ]);
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($flavor, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-
-
-        try {
-            $handler = $this->getApiHandler();
-
-            
-            // Make the call to the business logic
-            $responseCode = 200;
-            $responseHeaders = [];
-            $result = $handler->projectsRandomProgramsGet($maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
-
-            // Find default response message
-            $message = 'OK';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'OK';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'OK';
+                    break;
             }
 
-            return new Response(
-                $result !== null ?$this->serialize($result, $responseFormat):'',
+      return new Response(
+                null !== $result ? $this->serialize($result, $responseFormat) : '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'Content-Type' => $responseFormat,
-                        'X-OpenAPI-Message' => $message
+                      'Content-Type' => $responseFormat,
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
+   * Operation projectsRecentGet.
+   *
+   * Get the most recent programs
+   *
+   * @param Request $request the Symfony request to handle
+   *
+   * @return Response the Symfony response
+   */
+  public function projectsRecentGetAction(Request $request): Response
+  {
+    // Figure out what data format to return to the client
+    $produces = ['application/json'];
+    // Figure out what the client accepts
+    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
+    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
+    if (null === $responseFormat)
+    {
+      return new Response('', 406);
     }
 
-    /**
-     * Operation projectsRecentGet
-     *
-     * Get the most recent programs
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function projectsRecentGetAction(Request $request)
+    // Handle authentication
+
+    // Read out all input parameter values into variables
+    $maxVersion = $request->query->get('maxVersion');
+    $limit = $request->query->get('limit');
+    $offset = $request->query->get('offset');
+    $flavor = $request->query->get('flavor');
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
     {
-        // Figure out what data format to return to the client
-        $produces = ['application/json'];
-        // Figure out what the client accepts
-        $clientAccepts = $request->headers->has('Accept')?$request->headers->get('Accept'):'*/*';
-        $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
-        if ($responseFormat === null) {
-            return new Response('', 406);
-        }
+      $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
+      $limit = $this->deserialize($limit, 'int', 'string');
+      $offset = $this->deserialize($offset, 'int', 'string');
+      $flavor = $this->deserialize($flavor, 'string', 'string');
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Handle authentication
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\Type('string');
+    $asserts[] = new Assert\Regex('/[0-9]\\.[0-9]{3}/');
+    $response = $this->validate($maxVersion, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($limit, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($offset, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Choice(['pocketcode', 'pocketalice', 'pocketgalaxy', 'pocketphiro', 'phirocode', 'luna', 'create@school', 'embroidery', 'arduino']);
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($flavor, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
-        // Read out all input parameter values into variables
-        $maxVersion = $request->query->get('maxVersion');
-        $limit = $request->query->get('limit');
-        $offset = $request->query->get('offset');
-        $flavor = $request->query->get('flavor');
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        // Use the default value if no value was provided
+      // Make the call to the business logic
+      $responseCode = 200;
+      $responseHeaders = [];
+      $result = $handler->projectsRecentGet($maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
 
-        // Deserialize the input values that needs it
-        try {
-            $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
-            $limit = $this->deserialize($limit, 'int', 'string');
-            $offset = $this->deserialize($offset, 'int', 'string');
-            $flavor = $this->deserialize($flavor, 'string', 'string');
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+      // Find default response message
+      $message = 'OK';
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\Type("string");
-        $asserts[] = new Assert\Regex("/[0-9]\\.[0-9]{3}/");
-        $response = $this->validate($maxVersion, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $asserts[] = new Assert\GreaterThanOrEqual(0);
-        $response = $this->validate($limit, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $asserts[] = new Assert\GreaterThanOrEqual(0);
-        $response = $this->validate($offset, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Choice([ "pocketcode", "pocketalice", "pocketgalaxy", "pocketphiro", "phirocode", "luna", "create@school", "embroidery", "arduino" ]);
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($flavor, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-
-
-        try {
-            $handler = $this->getApiHandler();
-
-            
-            // Make the call to the business logic
-            $responseCode = 200;
-            $responseHeaders = [];
-            $result = $handler->projectsRecentGet($maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
-
-            // Find default response message
-            $message = 'OK';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'OK';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'OK';
+                    break;
             }
 
-            return new Response(
-                $result !== null ?$this->serialize($result, $responseFormat):'',
+      return new Response(
+                null !== $result ? $this->serialize($result, $responseFormat) : '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'Content-Type' => $responseFormat,
-                        'X-OpenAPI-Message' => $message
+                      'Content-Type' => $responseFormat,
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
+   * Operation projectsSearchGet.
+   *
+   * Search for programs associated with a keywords
+   *
+   * @param Request $request the Symfony request to handle
+   *
+   * @return Response the Symfony response
+   */
+  public function projectsSearchGetAction(Request $request): Response
+  {
+    // Figure out what data format to return to the client
+    $produces = ['application/json'];
+    // Figure out what the client accepts
+    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
+    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
+    if (null === $responseFormat)
+    {
+      return new Response('', 406);
     }
 
-    /**
-     * Operation projectsSearchGet
-     *
-     * Search for programs associated with a keywords
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function projectsSearchGetAction(Request $request)
+    // Handle authentication
+
+    // Read out all input parameter values into variables
+    $maxVersion = $request->query->get('maxVersion');
+    $limit = $request->query->get('limit');
+    $offset = $request->query->get('offset');
+    $flavor = $request->query->get('flavor');
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
     {
-        // Figure out what data format to return to the client
-        $produces = ['application/json'];
-        // Figure out what the client accepts
-        $clientAccepts = $request->headers->has('Accept')?$request->headers->get('Accept'):'*/*';
-        $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
-        if ($responseFormat === null) {
-            return new Response('', 406);
-        }
+      $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
+      $limit = $this->deserialize($limit, 'int', 'string');
+      $offset = $this->deserialize($offset, 'int', 'string');
+      $flavor = $this->deserialize($flavor, 'string', 'string');
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Handle authentication
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\Type('string');
+    $asserts[] = new Assert\Regex('/[0-9]\\.[0-9]{3}/');
+    $response = $this->validate($maxVersion, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($limit, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($offset, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Choice(['pocketcode', 'pocketalice', 'pocketgalaxy', 'pocketphiro', 'phirocode', 'luna', 'create@school', 'embroidery', 'arduino']);
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($flavor, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
-        // Read out all input parameter values into variables
-        $maxVersion = $request->query->get('maxVersion');
-        $limit = $request->query->get('limit');
-        $offset = $request->query->get('offset');
-        $flavor = $request->query->get('flavor');
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        // Use the default value if no value was provided
+      // Make the call to the business logic
+      $responseCode = 200;
+      $responseHeaders = [];
+      $result = $handler->projectsSearchGet($maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
 
-        // Deserialize the input values that needs it
-        try {
-            $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
-            $limit = $this->deserialize($limit, 'int', 'string');
-            $offset = $this->deserialize($offset, 'int', 'string');
-            $flavor = $this->deserialize($flavor, 'string', 'string');
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+      // Find default response message
+      $message = 'OK';
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\Type("string");
-        $asserts[] = new Assert\Regex("/[0-9]\\.[0-9]{3}/");
-        $response = $this->validate($maxVersion, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $asserts[] = new Assert\GreaterThanOrEqual(0);
-        $response = $this->validate($limit, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $asserts[] = new Assert\GreaterThanOrEqual(0);
-        $response = $this->validate($offset, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Choice([ "pocketcode", "pocketalice", "pocketgalaxy", "pocketphiro", "phirocode", "luna", "create@school", "embroidery", "arduino" ]);
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($flavor, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-
-
-        try {
-            $handler = $this->getApiHandler();
-
-            
-            // Make the call to the business logic
-            $responseCode = 200;
-            $responseHeaders = [];
-            $result = $handler->projectsSearchGet($maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
-
-            // Find default response message
-            $message = 'OK';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'OK';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'OK';
+                    break;
             }
 
-            return new Response(
-                $result !== null ?$this->serialize($result, $responseFormat):'',
+      return new Response(
+                null !== $result ? $this->serialize($result, $responseFormat) : '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'Content-Type' => $responseFormat,
-                        'X-OpenAPI-Message' => $message
+                      'Content-Type' => $responseFormat,
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
+   * Operation projectsUploadPost.
+   *
+   * Upload a catrobat program
+   *
+   * @param Request $request the Symfony request to handle
+   *
+   * @return Response the Symfony response
+   */
+  public function projectsUploadPostAction(Request $request): Response
+  {
+    // Handle authentication
+
+    // Read out all input parameter values into variables
+    $token = $request->headers->get('token');
+    $checksum = $request->request->get('checksum');
+    $file = $request->files->get('file');
+    $flavor = $request->request->get('flavor');
+    $tags = $request->request->get('tags');
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
+    {
+      $token = $this->deserialize($token, 'string', 'string');
+      $checksum = $this->deserialize($checksum, 'string', 'string');
+      $flavor = $this->deserialize($flavor, 'string', 'string');
+      $tags = $this->deserialize($tags, 'array<csv,string>', 'string');
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
     }
 
-    /**
-     * Operation projectsUploadPost
-     *
-     * Upload a catrobat program
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function projectsUploadPostAction(Request $request)
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($token, $asserts);
+    if ($response instanceof Response)
     {
-        // Handle authentication
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($checksum, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\File();
+    $response = $this->validate($file, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Choice(['pocketcode', 'pocketalice', 'pocketgalaxy', 'pocketphiro', 'phirocode', 'luna', 'create@school', 'embroidery', 'arduino']);
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($flavor, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\All([
+      new Assert\Choice([]),
+    ]);
+    $asserts[] = new Assert\All([
+      new Assert\Type('string'),
+    ]);
+    $response = $this->validate($tags, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
-        // Read out all input parameter values into variables
-        $token = $request->headers->get('token');
-        $checksum = $request->request->get('checksum');
-        $file = $request->files->get('file');
-        $flavor = $request->request->get('flavor');
-        $tags = $request->request->get('tags');
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        // Use the default value if no value was provided
+      // Make the call to the business logic
+      $responseCode = 204;
+      $responseHeaders = [];
+      $result = $handler->projectsUploadPost($token, $checksum, $file, $flavor, $tags, $responseCode, $responseHeaders);
 
-        // Deserialize the input values that needs it
-        try {
-            $token = $this->deserialize($token, 'string', 'string');
-            $checksum = $this->deserialize($checksum, 'string', 'string');
-            $flavor = $this->deserialize($flavor, 'string', 'string');
-            $tags = $this->deserialize($tags, 'array<csv,string>', 'string');
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+      // Find default response message
+      $message = 'Upload OK';
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($token, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($checksum, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\File();
-        $response = $this->validate($file, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Choice([ "pocketcode", "pocketalice", "pocketgalaxy", "pocketphiro", "phirocode", "luna", "create@school", "embroidery", "arduino" ]);
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($flavor, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\All(
-            [
-            new Assert\Choice([  ])
-            ]
-        );
-        $asserts[] = new Assert\All(
-            [
-            new Assert\Type("string"),
-            ]
-        );
-        $response = $this->validate($tags, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-
-
-        try {
-            $handler = $this->getApiHandler();
-
-            
-            // Make the call to the business logic
-            $responseCode = 204;
-            $responseHeaders = [];
-            $result = $handler->projectsUploadPost($token, $checksum, $file, $flavor, $tags, $responseCode, $responseHeaders);
-
-            // Find default response message
-            $message = 'Upload OK';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'Upload OK';
-                break;
-            case 400:
-                $message = 'Error';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'Upload OK';
+                    break;
+                case 400:
+                    $message = 'Error';
+                    break;
             }
 
-            return new Response(
+      return new Response(
                 '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'X-OpenAPI-Message' => $message
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
+   * Operation projectsUserUserIdGet.
+   *
+   * Get the projects of a user, if user is logged in, then there will also be private programs
+   *
+   * @param Request $request the Symfony request to handle
+   * @param mixed   $userId
+   *
+   * @return Response the Symfony response
+   */
+  public function projectsUserUserIdGetAction(Request $request, $userId): Response
+  {
+    // Figure out what data format to return to the client
+    $produces = ['application/json'];
+    // Figure out what the client accepts
+    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
+    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
+    if (null === $responseFormat)
+    {
+      return new Response('', 406);
     }
 
-    /**
-     * Operation projectsUserUserIdGet
-     *
-     * Get the projects of a user, if user is logged in, then there will also be private programs
-     *
-     * @param  Request $request The Symfony request to handle.
-     * @return Response The Symfony response.
-     */
-    public function projectsUserUserIdGetAction(Request $request, $userId)
+    // Handle authentication
+
+    // Read out all input parameter values into variables
+    $maxVersion = $request->query->get('maxVersion');
+    $limit = $request->query->get('limit');
+    $offset = $request->query->get('offset');
+    $token = $request->headers->get('token');
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
     {
-        // Figure out what data format to return to the client
-        $produces = ['application/json'];
-        // Figure out what the client accepts
-        $clientAccepts = $request->headers->has('Accept')?$request->headers->get('Accept'):'*/*';
-        $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
-        if ($responseFormat === null) {
-            return new Response('', 406);
-        }
+      $userId = $this->deserialize($userId, 'string', 'string');
+      $token = $this->deserialize($token, 'string', 'string');
+      $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
+      $limit = $this->deserialize($limit, 'int', 'string');
+      $offset = $this->deserialize($offset, 'int', 'string');
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
 
-        // Handle authentication
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($userId, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($token, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($maxVersion, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $response = $this->validate($limit, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $response = $this->validate($offset, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
 
-        // Read out all input parameter values into variables
-        $maxVersion = $request->query->get('maxVersion');
-        $limit = $request->query->get('limit');
-        $offset = $request->query->get('offset');
-        $token = $request->headers->get('token');
+    try
+    {
+      $handler = $this->getApiHandler();
 
-        // Use the default value if no value was provided
+      // Make the call to the business logic
+      $responseCode = 200;
+      $responseHeaders = [];
+      $result = $handler->projectsUserUserIdGet($userId, $token, $maxVersion, $limit, $offset, $responseCode, $responseHeaders);
 
-        // Deserialize the input values that needs it
-        try {
-            $userId = $this->deserialize($userId, 'string', 'string');
-            $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
-            $limit = $this->deserialize($limit, 'int', 'string');
-            $offset = $this->deserialize($offset, 'int', 'string');
-            $token = $this->deserialize($token, 'string', 'string');
-        } catch (SerializerRuntimeException $exception) {
-            return $this->createBadRequestResponse($exception->getMessage());
-        }
+      // Find default response message
+      $message = 'Valid request';
 
-        // Validate the input values
-        $asserts = [];
-        $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($userId, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($maxVersion, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $response = $this->validate($limit, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\Type("int");
-        $response = $this->validate($offset, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-        $asserts = [];
-        $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("string");
-        $response = $this->validate($token, $asserts);
-        if ($response instanceof Response) {
-            return $response;
-        }
-
-
-        try {
-            $handler = $this->getApiHandler();
-
-            
-            // Make the call to the business logic
-            $responseCode = 200;
-            $responseHeaders = [];
-            $result = $handler->projectsUserUserIdGet($userId, $maxVersion, $limit, $offset, $token, $responseCode, $responseHeaders);
-
-            // Find default response message
-            $message = 'Valid request';
-
-            // Find a more specific message, if available
-            switch ($responseCode) {
-            case 200:
-                $message = 'Valid request';
-                break;
-            case 401:
-                $message = 'NOT OK - Authentification required';
-                break;
-            case 403:
-                $message = 'NOT OK - Invalid credentials';
-                break;
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'Valid request';
+                    break;
+                case 401:
+                    $message = 'NOT OK - Authentification required';
+                    break;
+                case 403:
+                    $message = 'NOT OK - Invalid credentials';
+                    break;
             }
 
-            return new Response(
-                $result !== null ?$this->serialize($result, $responseFormat):'',
+      return new Response(
+                null !== $result ? $this->serialize($result, $responseFormat) : '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                        'Content-Type' => $responseFormat,
-                        'X-OpenAPI-Message' => $message
+                      'Content-Type' => $responseFormat,
+                      'X-OpenAPI-Message' => $message,
                     ]
                 )
             );
-        } catch (Exception $fallthrough) {
-            return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-        }
     }
-
-    /**
-     * Returns the handler for this API controller.
-     *
-     * @return ProjectsApiInterface
-     */
-    public function getApiHandler()
+    catch (Exception $fallthrough)
     {
-        return $this->apiServer->getApiHandler('projects');
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
     }
+  }
+
+  /**
+   * Returns the handler for this API controller.
+   */
+  public function getApiHandler(): ProjectsApiInterface
+  {
+    return $this->apiServer->getApiHandler('projects');
+  }
 }

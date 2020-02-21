@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": ">=5.4",
+        "php": ">=7.2",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
@@ -28,7 +28,7 @@
         "phpunit/phpunit": "~4.8",
         "satooshi/php-coveralls": "~1.0",
         "squizlabs/php_codesniffer": "~2.6",
-        "friendsofphp/php-cs-fixer": "~1.12",
+        "friendsofphp/php-cs-fixer": "^2.0",
         "symfony/browser-kit": "*",
         "hoa/regex": "~1.0"
     },

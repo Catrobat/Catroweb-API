@@ -1,17 +1,18 @@
 <?php
 /**
- * Register
+ * Register.
  *
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Server\Model
+ *
  * @author   OpenAPI Generator team
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -28,178 +29,167 @@
 
 namespace OpenAPI\Server\Model;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class representing the Register model.
  *
- * @package OpenAPI\Server\Model
  * @author  OpenAPI Generator team
  */
 class Register
 {
-        /**
-     * EMail of the user. Validation via /registerValidation
-     *
-     * @var                     string|null
-     * @SerializedName("email")
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected $email;
+  /**
+   * EMail of the user. Validation via /registerValidation.
+   *
+   * @var string|null
+   * @SerializedName("email")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $email;
 
-    /**
-     * Name of the user
-     *
-     * @var                        string|null
-     * @SerializedName("username")
-     * @Assert\Type("string")
-     * @Type("string")
-     * @Assert\Length(
-     *   max = 180
-     * )
-     * @Assert\Length(
-     *   min = 3
-     * )
-     */
-    protected $username;
+  /**
+   * Name of the user.
+   *
+   * @var string|null
+   * @SerializedName("username")
+   * @Assert\Type("string")
+   * @Type("string")
+   * @Assert\Length(
+   *     max=180
+   * )
+   * @Assert\Length(
+   *     min=3
+   * )
+   */
+  protected $username;
 
-    /**
-     * A secure password.
-     *
-     * @var                        string|null
-     * @SerializedName("password")
-     * @Assert\Type("string")
-     * @Type("string")
-     * @Assert\Length(
-     *   max = 4096
-     * )
-     * @Assert\Length(
-     *   min = 6
-     * )
-     */
-    protected $password;
+  /**
+   * A secure password.
+   *
+   * @var string|null
+   * @SerializedName("password")
+   * @Assert\Type("string")
+   * @Type("string")
+   * @Assert\Length(
+   *     max=4096
+   * )
+   * @Assert\Length(
+   *     min=6
+   * )
+   */
+  protected $password;
 
-    /**
-     * The locale, in which the answer message shoudl be translated. If not given default will be &#39;en&#39;.
-     *
-     * @var                      string|null
-     * @SerializedName("locale")
-     * @Assert\Type("string")
-     * @Type("string")
-     */
-    protected $locale;
+  /**
+   * The locale, in which the answer message shoudl be translated. If not given default will be &#39;en&#39;.
+   *
+   * @var string|null
+   * @SerializedName("locale")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $locale;
 
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->email = isset($data['email']) ? $data['email'] : null;
-        $this->username = isset($data['username']) ? $data['username'] : null;
-        $this->password = isset($data['password']) ? $data['password'] : null;
-        $this->locale = isset($data['locale']) ? $data['locale'] : null;
-    }
+  /**
+   * Constructor.
+   *
+   * @param mixed[] $data Associated array of property values initializing the model
+   */
+  public function __construct(array $data = null)
+  {
+    $this->email = isset($data['email']) ? $data['email'] : null;
+    $this->username = isset($data['username']) ? $data['username'] : null;
+    $this->password = isset($data['password']) ? $data['password'] : null;
+    $this->locale = isset($data['locale']) ? $data['locale'] : null;
+  }
 
-    /**
-     * Gets email.
-     *
-     * @return string|null
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
+  /**
+   * Gets email.
+   */
+  public function getEmail(): ?string
+  {
+    return $this->email;
+  }
 
-    /**
-     * Sets email.
-     *
-     * @param string|null $email EMail of the user. Validation via /registerValidation
-     *
-     * @return $this
-     */
-    public function setEmail($email = null)
-    {
-        $this->email = $email;
+  /**
+   * Sets email.
+   *
+   * @param string|null $email EMail of the user. Validation via /registerValidation
+   *
+   * @return $this
+   */
+  public function setEmail(string $email = null)
+  {
+    $this->email = $email;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Gets username.
-     *
-     * @return string|null
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
+  /**
+   * Gets username.
+   */
+  public function getUsername(): ?string
+  {
+    return $this->username;
+  }
 
-    /**
-     * Sets username.
-     *
-     * @param string|null $username Name of the user
-     *
-     * @return $this
-     */
-    public function setUsername($username = null)
-    {
-        $this->username = $username;
+  /**
+   * Sets username.
+   *
+   * @param string|null $username Name of the user
+   *
+   * @return $this
+   */
+  public function setUsername(string $username = null)
+  {
+    $this->username = $username;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Gets password.
-     *
-     * @return string|null
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
+  /**
+   * Gets password.
+   */
+  public function getPassword(): ?string
+  {
+    return $this->password;
+  }
 
-    /**
-     * Sets password.
-     *
-     * @param string|null $password A secure password.
-     *
-     * @return $this
-     */
-    public function setPassword($password = null)
-    {
-        $this->password = $password;
+  /**
+   * Sets password.
+   *
+   * @param string|null $password a secure password
+   *
+   * @return $this
+   */
+  public function setPassword(string $password = null)
+  {
+    $this->password = $password;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Gets locale.
-     *
-     * @return string|null
-     */
-    public function getLocale()
-    {
-        return $this->locale;
-    }
+  /**
+   * Gets locale.
+   */
+  public function getLocale(): ?string
+  {
+    return $this->locale;
+  }
 
-    /**
-     * Sets locale.
-     *
-     * @param string|null $locale The locale, in which the answer message shoudl be translated. If not given default will be 'en'.
-     *
-     * @return $this
-     */
-    public function setLocale($locale = null)
-    {
-        $this->locale = $locale;
+  /**
+   * Sets locale.
+   *
+   * @param string|null $locale The locale, in which the answer message shoudl be translated. If not given default will be 'en'.
+   *
+   * @return $this
+   */
+  public function setLocale(string $locale = null)
+  {
+    $this->locale = $locale;
 
-        return $this;
-    }
+    return $this;
+  }
 }
-
-

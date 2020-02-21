@@ -47,7 +47,7 @@ class SecurityApi implements SecurityApiInterface
     /**
      * Implementation of SecurityApiInterface#checkTokenPost
      */
-    public function checkTokenPost($token, UsernameObject $usernameObject)
+    public function checkTokenPost(string $token, UsernameObject $usernameObject)
     {
         // Implement the operation ...
     }
@@ -152,7 +152,7 @@ class SecurityApi implements SecurityApiInterface
     /**
      * Implementation of SecurityApiInterface#logoutPost
      */
-    public function logoutPost($token, Logout $logout)
+    public function logoutPost(string $token, Logout $logout)
     {
         // Implement the operation ...
     }

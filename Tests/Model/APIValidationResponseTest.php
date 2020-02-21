@@ -1,17 +1,18 @@
 <?php
 /**
- * APIValidationResponseTest
+ * APIValidationResponseTest.
  *
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Server\Tests\Model
+ *
  * @author   openapi-generator contributors
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -29,80 +30,81 @@
 namespace OpenAPI\Server\Model;
 
 /**
- * APIValidationResponseTest Class Doc Comment
+ * APIValidationResponseTest Class Doc Comment.
  *
- * @category Class 
-*/
+ * @category    Class */
 // * @description APIValidationResponse
 /**
- * @package     OpenAPI\Server\Tests\Model
  * @author      openapi-generator contributors
- * @link        https://github.com/openapitools/openapi-generator
+ *
+ * @see        https://github.com/openapitools/openapi-generator
+ *
+ * @internal
+ * @coversNothing
  */
 class APIValidationResponseTest extends \PHPUnit_Framework_TestCase
 {
+  /**
+   * Setup before running any test case.
+   */
+  public static function setUpBeforeClass()
+  {
+  }
 
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
+  /**
+   * Clean up after running all test cases.
+   */
+  public static function tearDownAfterClass()
+  {
+  }
 
-    /**
-     * Setup before running each test case
-     */
-    public function setUp()
-    {
-    }
+  /**
+   * Setup before running each test case.
+   */
+  public function setUp()
+  {
+  }
 
-    /**
-     * Clean up after running each test case
-     */
-    public function tearDown()
-    {
-    }
+  /**
+   * Clean up after running each test case.
+   */
+  public function tearDown()
+  {
+  }
 
-    /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
+  /**
+   * Test "APIValidationResponse".
+   */
+  public function testAPIValidationResponse()
+  {
+    $testAPIValidationResponse = new APIValidationResponse();
+  }
 
-    /**
-     * Test "APIValidationResponse"
-     */
-    public function testAPIValidationResponse()
-    {
-        $testAPIValidationResponse = new APIValidationResponse();
-    }
+  /**
+   * Test attribute "status".
+   */
+  public function testPropertyStatus()
+  {
+  }
 
-    /**
-     * Test attribute "status"
-     */
-    public function testPropertyStatus()
-    {
-    }
+  /**
+   * Test attribute "email".
+   */
+  public function testPropertyEmail()
+  {
+  }
 
-    /**
-     * Test attribute "email"
-     */
-    public function testPropertyEmail()
-    {
-    }
+  /**
+   * Test attribute "username".
+   */
+  public function testPropertyUsername()
+  {
+  }
 
-    /**
-     * Test attribute "username"
-     */
-    public function testPropertyUsername()
-    {
-    }
-
-    /**
-     * Test attribute "password"
-     */
-    public function testPropertyPassword()
-    {
-    }
+  /**
+   * Test attribute "password".
+   */
+  public function testPropertyPassword()
+  {
+  }
 }

@@ -41,7 +41,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaPackagePackageNameGet
      */
-    public function mediaPackagePackageNameGet($packageName)
+    public function mediaPackagePackageNameGet(string $packageName)
     {
         // Implement the operation ...
     }

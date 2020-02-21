@@ -1,17 +1,18 @@
 <?php
 /**
- * OpenAPIServerBundle
+ * OpenAPIServerBundle.
  *
  * PHP version 5
  *
  * @category Class
- * @package  OpenAPI\Server
+ *
  * @author   OpenAPI Generator team
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 
 /**
- * Catroweb API
+ * Catroweb API.
  *
  * API for the Catrobat Share Platform
  *
@@ -28,22 +29,23 @@
 
 namespace OpenAPI\Server;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use OpenAPI\Server\DependencyInjection\Compiler\OpenAPIServerApiPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * OpenAPIServerBundle Class Doc Comment
+ * OpenAPIServerBundle Class Doc Comment.
  *
  * @category Class
- * @package  OpenAPI\Server
+ *
  * @author   OpenAPI Generator team
- * @link     https://github.com/openapitools/openapi-generator
+ *
+ * @see     https://github.com/openapitools/openapi-generator
  */
 class OpenAPIServerBundle extends Bundle
 {
-    public function build(ContainerBuilder $container)
-    {
-        $container->addCompilerPass(new OpenAPIServerApiPass());
-    }
+  public function build(ContainerBuilder $container)
+  {
+    $container->addCompilerPass(new OpenAPIServerApiPass());
+  }
 }
