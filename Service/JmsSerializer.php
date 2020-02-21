@@ -18,7 +18,7 @@ class JmsSerializer implements SerializerInterface
       ->setDeserializationVisitor('json', new StrictJsonDeserializationVisitor($naming_strategy))
       ->setDeserializationVisitor('xml', new XmlDeserializationVisitor($naming_strategy))
       ->build()
-    ;
+        ;
   }
 
   public function serialize($data, $format)
