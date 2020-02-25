@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.13"
+  version: "v1.0.14"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
