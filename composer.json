@@ -21,7 +21,7 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "symfony/validator": "*",
-        "jms/serializer-bundle": "^3.1",
+        "jms/serializer-bundle": "^2.0",
         "symfony/framework-bundle": "^4.1"
     },
     "require-dev": {
