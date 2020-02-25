@@ -1,7 +1,7 @@
 <?php
 
 /**
- * MediaLibraryController
+ * UserController
  * PHP version 5.
  *
  * @category Class
@@ -31,15 +31,15 @@ namespace OpenAPI\Server\Controller;
 
 use Exception;
 use JMS\Serializer\Exception\RuntimeException as SerializerRuntimeException;
-use OpenAPI\Server\Api\MediaLibraryApiInterface;
-use OpenAPI\Server\Model\Package;
+use OpenAPI\Server\Api\UserApiInterface;
+use OpenAPI\Server\Model\Register;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * MediaLibraryController Class Doc Comment.
+ * UserController Class Doc Comment.
  *
  * @category Class
  *
@@ -47,40 +47,44 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @see     https://github.com/openapitools/openapi-generator
  */
-class MediaLibraryController extends Controller
+class UserController extends Controller
 {
   /**
-   * Operation mediaPackagePackageNameGet.
+   * Operation userPost.
    *
-   * Get media-library asstes of a named package
+   * Register a user
    *
-   * @param Request $request     the Symfony request to handle
-   * @param mixed   $packageName
+   * @param Request $request the Symfony request to handle
    *
    * @return Response the Symfony response
    */
-  public function mediaPackagePackageNameGetAction(Request $request, $packageName): Response
+  public function userPostAction(Request $request): Response
   {
-    // Figure out what data format to return to the client
-    $produces = ['application/json'];
-    // Figure out what the client accepts
-    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
-    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
-    if (null === $responseFormat)
+    // Make sure that the client is providing something that we can consume
+    $consumes = ['application/json'];
+    $inputFormat = $request->headers->has('Content-Type') ? $request->headers->get('Content-Type') : $consumes[0];
+    if (!in_array($inputFormat, $consumes, true))
     {
-      return new Response('', 406);
+      // We can't consume the content that the client is sending us
+      return new Response('', 415);
     }
 
     // Handle authentication
+    // Authentication 'pandaAuth' required
+    // HTTP basic authentication required
+    $securitypandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
+    $acceptLanguage = $request->headers->get('Accept-Language');
+    $register = $request->getContent();
 
     // Use the default value if no value was provided
 
     // Deserialize the input values that needs it
     try
     {
-      $packageName = $this->deserialize($packageName, 'string', 'string');
+      $register = $this->deserialize($register, 'OpenAPI\Server\Model\Register', $inputFormat);
+      $acceptLanguage = $this->deserialize($acceptLanguage, 'string', 'string');
     }
     catch (SerializerRuntimeException $exception)
     {
@@ -90,8 +94,16 @@ class MediaLibraryController extends Controller
     // Validate the input values
     $asserts = [];
     $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('OpenAPI\\Server\\Model\\Register');
+    $asserts[] = new Assert\Valid();
+    $response = $this->validate($register, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
     $asserts[] = new Assert\Type('string');
-    $response = $this->validate($packageName, $asserts);
+    $response = $this->validate($acceptLanguage, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -101,34 +113,36 @@ class MediaLibraryController extends Controller
     {
       $handler = $this->getApiHandler();
 
+      // Set authentication method 'pandaAuth'
+      $handler->setpandaAuth($securitypandaAuth);
+
       // Make the call to the business logic
-      $responseCode = 200;
+      $responseCode = 204;
       $responseHeaders = [];
-      $result = $handler->mediaPackagePackageNameGet($packageName, $responseCode, $responseHeaders);
+      $result = $handler->userPost($register, $acceptLanguage, $responseCode, $responseHeaders);
 
       // Find default response message
-      $message = 'Valid request';
+      $message = 'OK - User registerd';
 
       // Find a more specific message, if available
       switch ($responseCode) {
                 case 200:
-                    $message = 'Valid request';
+                    $message = 'OK - User registerd';
                     break;
                 case 400:
                     $message = 'NOT OK - BAD Request';
                     break;
-                case 404:
-                    $message = 'Package name not found';
+                case 422:
+                    $message = 'NOT OK - Unable to process entity';
                     break;
             }
 
       return new Response(
-                null !== $result ? $this->serialize($result, $responseFormat) : '',
+                '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
-                      'Content-Type' => $responseFormat,
                       'X-OpenAPI-Message' => $message,
                     ]
                 )
@@ -143,8 +157,8 @@ class MediaLibraryController extends Controller
   /**
    * Returns the handler for this API controller.
    */
-  public function getApiHandler(): MediaLibraryApiInterface
+  public function getApiHandler(): UserApiInterface
   {
-    return $this->apiServer->getApiHandler('mediaLibrary');
+    return $this->apiServer->getApiHandler('user');
   }
 }

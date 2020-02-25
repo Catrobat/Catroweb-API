@@ -2,6 +2,25 @@
 # https://github.com/openapitools/openapi-generator
 # Do not edit the class manually.
 
+# authentication
+open_api_server_authentication_authenticatedelete:
+    path:     /authenticate
+    methods:  [DELETE]
+    defaults:
+        _controller: open_api_server.controller.authentication:authenticateDeleteAction
+
+open_api_server_authentication_authenticateget:
+    path:     /authenticate
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.authentication:authenticateGetAction
+
+open_api_server_authentication_authenticatepost:
+    path:     /authenticate
+    methods:  [POST]
+    defaults:
+        _controller: open_api_server.controller.authentication:authenticatePostAction
+
 # mediaLibrary
 open_api_server_mediaLibrary_mediapackagepackagenameget:
     path:     /media/package/{packageName}
@@ -26,37 +45,17 @@ open_api_server_projects_projectsfeaturedget:
     defaults:
         _controller: open_api_server.controller.projects:projectsFeaturedGetAction
 
-open_api_server_projects_projectsmostdownloadedget:
-    path:     /projects/mostDownloaded
+open_api_server_projects_projectsget:
+    path:     /projects
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.projects:projectsMostDownloadedGetAction
+        _controller: open_api_server.controller.projects:projectsGetAction
 
-open_api_server_projects_projectsmostviewedget:
-    path:     /projects/mostViewed
-    methods:  [GET]
+open_api_server_projects_projectspost:
+    path:     /projects
+    methods:  [POST]
     defaults:
-        _controller: open_api_server.controller.projects:projectsMostViewedGetAction
-
-open_api_server_projects_projectspublicuseruseridget:
-    path:     /projects/public/user/{userId}
-    methods:  [GET]
-    defaults:
-        _controller: open_api_server.controller.projects:projectsPublicUserUserIdGetAction
-    requirements:
-        userId: '[a-z0-9]+'
-
-open_api_server_projects_projectsrandomprogramsget:
-    path:     /projects/randomPrograms
-    methods:  [GET]
-    defaults:
-        _controller: open_api_server.controller.projects:projectsRandomProgramsGetAction
-
-open_api_server_projects_projectsrecentget:
-    path:     /projects/recent
-    methods:  [GET]
-    defaults:
-        _controller: open_api_server.controller.projects:projectsRecentGetAction
+        _controller: open_api_server.controller.projects:projectsPostAction
 
 open_api_server_projects_projectssearchget:
     path:     /projects/search
@@ -64,11 +63,11 @@ open_api_server_projects_projectssearchget:
     defaults:
         _controller: open_api_server.controller.projects:projectsSearchGetAction
 
-open_api_server_projects_projectsuploadpost:
-    path:     /projects/upload
-    methods:  [POST]
+open_api_server_projects_projectsuserget:
+    path:     /projects/user/
+    methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.projects:projectsUploadPostAction
+        _controller: open_api_server.controller.projects:projectsUserGetAction
 
 open_api_server_projects_projectsuseruseridget:
     path:     /projects/user/{userId}
@@ -78,34 +77,10 @@ open_api_server_projects_projectsuseruseridget:
     requirements:
         userId: '[a-z0-9]+'
 
-# security
-open_api_server_security_checktokenpost:
-    path:     /checkToken
+# user
+open_api_server_user_userpost:
+    path:     /user
     methods:  [POST]
     defaults:
-        _controller: open_api_server.controller.security:checkTokenPostAction
-
-open_api_server_security_loginpost:
-    path:     /login
-    methods:  [POST]
-    defaults:
-        _controller: open_api_server.controller.security:loginPostAction
-
-open_api_server_security_logoutpost:
-    path:     /logout
-    methods:  [POST]
-    defaults:
-        _controller: open_api_server.controller.security:logoutPostAction
-
-open_api_server_security_registeruserpost:
-    path:     /registerUser
-    methods:  [POST]
-    defaults:
-        _controller: open_api_server.controller.security:registerUserPostAction
-
-open_api_server_security_registervalidationpost:
-    path:     /registerValidation
-    methods:  [POST]
-    defaults:
-        _controller: open_api_server.controller.security:registerValidationPostAction
+        _controller: open_api_server.controller.user:userPostAction
 

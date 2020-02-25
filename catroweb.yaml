@@ -2,12 +2,12 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: 1.0.7
+  version: "v1.0.8"
   termsOfService: 'http://example.com/terms/'
   contact:
-    name: 'Catrobat'
+    name: Catrobat
     url: 'https://share.catrob.at'
-    email: 'webmaster@catrobat.org'
+    email: webmaster@catrobat.org
 servers:
   - url: 'https://share.catrob.at/api'
     description: Main production server
@@ -20,88 +20,52 @@ servers:
   - url: 'http://localhost'
     description: Local test server (postman help)
 tags:
-  - name: 'Security'
-    description: 'Everything related to security'
-  - name: 'Projects'
-    description: 'Everything related to projects'
-  - name: 'Media Library'
-    description: 'Everything related to the media library'
+  - name: Authentication
+    description: Everything related to authenticating to our project
+  - name: User
+    description: Everything related to users
+  - name: Projects
+    description: Everything related to projects
+  - name: Media Library
+    description: Everything related to the media library
 paths:
-  /checkToken:
-    post:
+  /authenticate:
+    get:
+      security:
+        - pandaAuth: []
       tags:
-        - Security
+        - Authentication
       summary: Checking token
       description: Endpoint giving information if a given token is valid or not
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UsernameObject'
-      parameters:
-        - name: token
-          in: header
-          required: true
-          schema:
-            $ref: '#/components/schemas/Token'
       responses:
-        '200':
+        200:
           description: OK - Sent token is valid for the given username
-        '401':
-          description: NOT OK - Authentification required (missing token/username)
-        '403':
-          description: NOT OK - Invalid credentials
-  /registerUser:
-    post:
-      tags:
-        - Security
-      summary: Registering a user
-      description: Registering a user. For validation purposes look at the /registerValidation API
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Register'
-      responses:
-        '200':
-          description: OK - User registerd
-        '400':
-          description: NOT OK - Malformed request body
-        '422':
-          description: NOT OK - Unable to process entity
-          content:
-            application/json:
+          headers:
+            X-CAPI-RENEW:
+              description: If set, given token will be the new Bearer token for the user
+              allowEmptyValue: true
               schema:
-                $ref: '#/components/schemas/APIValidationResponse'
-  /registerValidation:
-    post:
+                type: string
+                example: xxxxx.yyyyy.zzzzz
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+    delete:
+      security:
+        - pandaAuth: []
       tags:
-        - Security
-      summary: Validation of user input in the registration process
-      description: Registering a user. 0 - 4 possible values can be given.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Register'
+        - Authentication
+      summary: Logout user
+      description: Endpoint allowing to log out user
       responses:
-        '200':
-          description: OK - User validated
-        '400':
-          description: NOT OK - Malformed request body
-        '422':
-          description: NOT OK - Unable to process entity
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIValidationResponse'
-  /login:
+        204:
+          description: Logout successful
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
     post:
+      security:
+        - pandaAuth: []
       tags:
-        - Security
+        - Authentication
       summary: Login a user
       requestBody:
         required: true
@@ -110,40 +74,46 @@ paths:
             schema:
               $ref: '#/components/schemas/Login'
       responses:
-        '200':
-          description: OK
+        201:
+          description: User has bin logged in successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoginResponseOK'
-        '400':
-          description: NOT OK - Bad request
-        '401':
-          description: NOT OK - Authorization required
-  /logout:
+                $ref: '#/components/schemas/JWTTokenResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        422: 
+          description: NOT OK - Unable to process entity
+  /user:
+    parameters:
+      - $ref: '#/components/parameters/Locale'
     post:
+      security:
+        - pandaAuth: []
       tags:
-        - Security
-      summary: Log out a user
+        - User
+      summary: Register a user
+      description: >-
+        Register a user
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Logout'
-      parameters:
-        - name: token
-          in: header
-          required: true
-          schema:
-            $ref: '#/components/schemas/Token'
+              $ref: '#/components/schemas/Register'
       responses:
-        '200':
-          description: OK
-        '400':
-          description: NOT OK - Bad Request
-        '401':
-          description: NOT OK - Invalid credentials
+        200:
+          description: OK - User registerd
+        400:
+          $ref: '#/components/responses/BadRequest'
+        422:
+          description: NOT OK - Unable to process entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIValidationResponse'
   /media/package/{packageName}:
     get:
       tags:
@@ -158,14 +128,71 @@ paths:
           required: true
           description: Name of the package
       responses:
-        '200':
+        200:
           description: Valid request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Packages'
-        '404':
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
           description: Package name not found
+
+  /projects:
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+    get:
+      tags:
+        - Projects
+      summary: Get projects
+      parameters:
+        - $ref: '#/components/parameters/ProjectType'
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+        400:
+          $ref: '#/components/responses/BadRequest'
+    post:
+      security:
+        - pandaAuth: []
+      tags:
+        - Projects
+      summary: Upload a catrobat program
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Upload'
+      responses:
+        201:
+          description: Project created
+          headers:
+            X-CAPI-RENEW:
+              description: If set, given token will be the new Bearer token for the user
+              allowEmptyValue: true
+              schema:
+                type: string
+                example: xxxxx.yyyyy.zzzzz
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        422:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadError'
   /projects/featured:
     get:
       tags:
@@ -176,365 +203,107 @@ paths:
           in: query
           schema:
             type: string
-            description: Indication what platform should be used (iOs, android)
-            enum: [android, iOS]
-            example:
-              - android
-        - name: maxVersion
-          in: query
-          schema:
-            $ref: '#/components/schemas/MaxVersion'
-        - name: limit
-          in: query
-          schema:
-            $ref: '#/components/schemas/Limit'
-        - name: offset
-          in: query
-          schema:
-            $ref: '#/components/schemas/Offset'
-        - name: flavor
-          in: query
-          schema:
-            type: string
-            description: Available flavors
+            description: 'Indication what platform should be used (iOs, android)'
             enum:
-              - pocketcode
-              - pocketalice
-              - pocketgalaxy
-              - pocketphiro
-              - phirocode
-              - luna
-              - create@school
-              - embroidery
-              - arduino
-            example: pocketcode
+              - android
+              - iOS
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
       responses:
-        '200':
+        200:
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FeaturedProjects'
-  /projects/recent:
-    get:
-      tags:
-        - Projects
-      summary: Get the most recent programs
-      parameters:
-        - name: maxVersion
-          in: query
-          schema:
-            $ref: '#/components/schemas/MaxVersion'
-        - name: limit
-          in: query
-          schema:
-            $ref: '#/components/schemas/Limit'
-        - name: offset
-          in: query
-          schema:
-            $ref: '#/components/schemas/Offset'
-        - name: flavor
-          in: query
-          schema:
-            type: string
-            description: Available flavors
-            enum:
-              - pocketcode
-              - pocketalice
-              - pocketgalaxy
-              - pocketphiro
-              - phirocode
-              - luna
-              - create@school
-              - embroidery
-              - arduino
-            example: pocketcode
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Projects'
-  /projects/mostDownloaded:
-    get:
-      tags:
-        - Projects
-      summary: Get the most downloaded projects
-      parameters:
-        - name: maxVersion
-          in: query
-          schema:
-            $ref: '#/components/schemas/MaxVersion'
-        - name: limit
-          in: query
-          schema:
-            $ref: '#/components/schemas/Limit'
-        - name: offset
-          in: query
-          schema:
-            $ref: '#/components/schemas/Offset'
-        - name: flavor
-          in: query
-          schema:
-            type: string
-            description: Available flavors
-            enum:
-              - pocketcode
-              - pocketalice
-              - pocketgalaxy
-              - pocketphiro
-              - phirocode
-              - luna
-              - create@school
-              - embroidery
-              - arduino
-            example: pocketcode
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Projects'
-  /projects/mostViewed:
-    get:
-      tags:
-        - Projects
-      summary: Get the most viewed projects
-      parameters:
-        - name: maxVersion
-          in: query
-          schema:
-            $ref: '#/components/schemas/MaxVersion'
-        - name: limit
-          in: query
-          schema:
-            $ref: '#/components/schemas/Limit'
-        - name: offset
-          in: query
-          schema:
-            $ref: '#/components/schemas/Offset'
-        - name: flavor
-          in: query
-          schema:
-            type: string
-            description: Available flavors
-            enum:
-              - pocketcode
-              - pocketalice
-              - pocketgalaxy
-              - pocketphiro
-              - phirocode
-              - luna
-              - create@school
-              - embroidery
-              - arduino
-            example: pocketcode
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Projects'
-  /projects/randomPrograms:
-    get:
-      tags:
-        - Projects
-      summary: Get random projects
-      parameters:
-        - name: maxVersion
-          in: query
-          schema:
-            $ref: '#/components/schemas/MaxVersion'
-        - name: limit
-          in: query
-          schema:
-            $ref: '#/components/schemas/Limit'
-        - name: offset
-          in: query
-          schema:
-            $ref: '#/components/schemas/Offset'
-        - name: flavor
-          in: query
-          schema:
-            type: string
-            description: Available flavors
-            enum:
-              - pocketcode
-              - pocketalice
-              - pocketgalaxy
-              - pocketphiro
-              - phirocode
-              - luna
-              - create@school
-              - embroidery
-              - arduino
-            example: pocketcode
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Projects'
+        400:
+          $ref: '#/components/responses/BadRequest'
   /projects/search:
     get:
       tags:
         - Projects
       summary: Search for programs associated with a keywords
       parameters:
-        - name: maxVersion
+        - name: queryString
           in: query
-          schema:
-            $ref: '#/components/schemas/MaxVersion'
-        - name: limit
-          in: query
-          schema:
-            $ref: '#/components/schemas/Limit'
-        - name: offset
-          in: query
-          schema:
-            $ref: '#/components/schemas/Offset'
-        - name: flavor
-          in: query
+          required: true
           schema:
             type: string
-            description: Available flavors
-            enum:
-              - pocketcode
-              - pocketalice
-              - pocketgalaxy
-              - pocketphiro
-              - phirocode
-              - luna
-              - create@school
-              - embroidery
-              - arduino
-            example: pocketcode
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
       responses:
-        '200':
+        200:
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Projects'
-  /projects/upload:
-    post:
-      tags:
-        - Projects
-      summary: Upload a catrobat program
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Upload'
-      parameters:
-        - name: token
-          in: header
-          required: true
-          schema:
-            $ref: '#/components/schemas/Token'
-      responses:
-        '200':
-          description: Upload OK
-        '400':
-          description: Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UploadError'
-  /projects/public/user/{userId}:
+        400:
+          $ref: '#/components/responses/BadRequest'
+  /projects/user/:
     get:
+      security:
+        - pandaAuth: []
       tags:
         - Projects
-      summary: Get the public projects of a user, if user is logged in, then there will also be private programs
+      summary: >-
+        Get the projects of the logged in user
       parameters:
-        - in: path
-          name: userId
-          schema:
-            type: string
-            example: '1234abcd-12ab-12ab-12ab-123456abcdef'
-          required: true
-          description: UUID/ID of any given user
-        - name: maxVersion
-          in: query
-          description: 'Only shows project with a smaller version number than max version'
-          schema:
-            type: string
-            example: '0.999'
-        - name: limit
-          in: query
-          description: 'How many projects should be shown at maximum'
-          schema:
-            type: integer
-            default: 20
-            example: 10
-        - name: offset
-          in: query
-          description: 'How many projects should be shown at maximum'
-          schema:
-            type: integer
-            example: 10
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
       responses:
-        '200':
+        200:
           description: Valid request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Projects'
-        '404':
+          headers:
+            X-CAPI-RENEW:
+              description: If set, given token will be the new Bearer token for the user
+              allowEmptyValue: true
+              schema:
+                type: string
+                example: xxxxx.yyyyy.zzzzz
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+  '/projects/user/{userId}':
+    get:
+      tags:
+        - Projects
+      summary: >-
+        Get the public projects of a given user
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+            example: 1234abcd-12ab-12ab-12ab-123456abcdef
+          required: true
+          description: UUID/ID of any given user
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        200:
+          description: Valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
           description: User does not exist
-  /projects/user/{userId}:
-    get:
-      tags:
-        - Projects
-      summary: Get the projects of a user, if user is logged in, then there will also be private programs
-      parameters:
-        - in: path
-          name: userId
-          schema:
-            type: string
-            example: '1234abcd-12ab-12ab-12ab-123456abcdef'
-          required: true
-          description: UUID/ID of any given user
-        - name: maxVersion
-          in: query
-          description: 'Only shows project with a smaller version number than max version'
-          schema:
-            type: string
-            example: '0.999'
-        - name: limit
-          in: query
-          description: 'How many projects should be shown at maximum'
-          schema:
-            type: integer
-            default: 20
-            example: 10
-        - name: offset
-          in: query
-          description: 'How many projects should be shown at maximum'
-          schema:
-            type: integer
-            example: 10
-        - name: token
-          in: header
-          required: true
-          schema:
-            $ref: '#/components/schemas/Token'
-      responses:
-        '200':
-          description: Valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Projects'
-        '401':
-          description: NOT OK - Authentification required
-        '403':
-          description: NOT OK - Invalid credentials
   /project/{project_id}:
     get:
       tags:
@@ -545,23 +314,60 @@ paths:
           name: project_id
           schema:
             type: string
-            example: '1234abcd-12ab-12ab-12ab-123456abcdef'
+            example: 1234abcd-12ab-12ab-12ab-123456abcdef
           required: true
           description: UUID/ID of any given project
       responses:
-        '200':
+        200:
           description: Valid request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project'
-        '404':
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
           description: Project does not exist
 components:
+  responses:
+    UnauthorizedError:
+      description: Authentication information is missing or invalid
+      headers:
+        WWW_Authenticate:
+          description: Authentication method to be used for authentification
+          schema:
+            type: string
+            example: Bearer
+    BadRequest:
+      description: NOT OK - BAD Request
+  securitySchemes:
+    pandaAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   parameters:
+    Locale:
+      in: header
+      name: Accept-Language
+      required: false
+      schema:
+        type: string
+        description: ISO_639-1 or ISO_3166-1 locale of the user. Defaults internally to en
+    ProjectType:
+      in: query
+      name: projectType
+      required: true
+      schema:
+        type: string
+        enum:
+          - recent
+          - random
+          - mostViewed
+          - mostDownloaded
+          - example
+          - scratch
     Flavor:
       name: flavor
-      required: false
       in: query
       schema:
         type: string
@@ -576,49 +382,49 @@ components:
           - create@school
           - embroidery
           - arduino
-        example: pocketcode
+    MaxVersion:
+      name: maxVersion
+      in: query
+      schema:
+        $ref: '#/components/schemas/MaxVersion'
+    Limit:
+      name: limit
+      in: query
+      schema:
+        $ref: '#/components/schemas/Limit'
+    Offset:
+      name: offset
+      in: query
+      schema:
+        $ref: '#/components/schemas/Offset'
   schemas:
     MaxVersion:
       type: string
-      description: 'Only shows project with a smaller version number than max version'
+      description: Only shows project with a smaller version number than max version
       example: '0.999'
       pattern: '[0-9]\.[0-9]{3}'
     Limit:
       type: integer
       minimum: 0
-      description: 'How many projects should be shown at maximum'
+      description: How many projects should be shown at maximum
       default: 20
       example: 3
     Offset:
       type: integer
       minimum: 0
-      description: 'How many projects should be skipped'
+      description: How many projects should be skipped
       default: 0
       example: 2
-#    Flavor:
-#      type: string
-#      description: Available flavors
-#      enum:
-#        - pocketcode
-#        - pocketalice
-#        - pocketgalaxy
-#        - pocketphiro
-#        - phirocode
-#        - luna
-#        - create@school
-#        - embroidery
-#        - arduino
-#      example: pocketcode
-    Token:
+    JWTToken:
       type: string
-      example: tkf4e26780c9e6b1d171f3dbeafa194cac
+      example: xxxxx.yyyyy.zzzzz
     Upload:
       type: object
       properties:
         checksum:
           type: string
-          example: 'asd'
-          description: 'Checksum of the *.catrobat file'
+          example: asd
+          description: Checksum of the *.catrobat file
         file:
           type: string
           format: binary
@@ -642,22 +448,16 @@ components:
     UploadError:
       type: object
       properties:
-        status:
-          type: integer
-          example: 418
         error:
           type: string
-          enum: [Token invalid, Checksum invalid, ZIP invalid, XML invalid, Flavor invalid]
-          example:
+          enum:
             - Checksum invalid
+            - ZIP invalid
             - XML invalid
+            - Flavor invalid
     APIValidationResponse:
       type: object
       properties:
-        status:
-          type: integer
-          example: 418
-          description: Statuscode if validation was successfull or yielded errors (200 or 400)
         email:
           type: string
           example:
@@ -676,19 +476,20 @@ components:
     Register:
       type: object
       properties:
+        dry-run:
+          type: boolean
+          default: false
+          description: >-
+            Indicates wether sent user should be verified or registerd.
         email:
           type: string
           format: email
-          example: 'test@test.lan'
-          description: EMail of the user. Validation via /registerValidation
+          example: test@test.lan
+          description: EMail of the user.
         username:
           $ref: '#/components/schemas/Username'
         password:
           $ref: '#/components/schemas/Password'
-        locale:
-          type: string
-          example: 'de'
-          description: The locale, in which the answer message shoudl be translated. If not given default will be 'en'.
     Login:
       type: object
       properties:
@@ -696,16 +497,11 @@ components:
           $ref: '#/components/schemas/Username'
         password:
           $ref: '#/components/schemas/Password'
-    LoginResponseOK:
+    JWTTokenResponse:
       type: object
       properties:
         token:
-          $ref: '#/components/schemas/Token'
-    Logout:
-      type: object
-      properties:
-        username:
-          $ref: '#/components/schemas/Username'
+          $ref: '#/components/schemas/JWTToken'
     Packages:
       type: array
       items:
@@ -718,7 +514,7 @@ components:
           example: 1
         name:
           type: string
-          example: 'luna_sinde_2'
+          example: luna_sinde_2
         flavor:
           type: string
           description: Available flavors
@@ -735,16 +531,16 @@ components:
           example: pocketcode
         package:
           type: string
-          example: 'Looks'
+          example: Looks
         category:
           type: string
-          example: 'Luna&Cat'
+          example: Luna&Cat
         author:
           type: string
-          example: 'CatrowebAdmin'
+          example: CatrowebAdmin
         extension:
           type: string
-          example: 'png'
+          example: png
         download_url:
           type: string
           example: 'https://share.catrob.at/pocketcode/download-media/983.png'
@@ -757,13 +553,13 @@ components:
       properties:
         id:
           type: string
-          example: '1234abcd-12ab-12ab-12ab-123456abcdef'
+          example: 1234abcd-12ab-12ab-12ab-123456abcdef
         name:
           type: string
-          example: 'My example of a Program'
+          example: My example of a Program
         author:
           type: string
-          example: 'Admin'
+          example: Admin
         featured_image:
           type: string
           example: 'https://share.catrob.at/resources/featured/featured_999.png'
@@ -776,19 +572,19 @@ components:
       properties:
         id:
           type: string
-          example: '1234abcd-12ab-12ab-12ab-123456abcdef'
+          example: 1234abcd-12ab-12ab-12ab-123456abcdef
         name:
           type: string
-          example: 'My example of a Program'
+          example: My example of a Program
         author:
           type: string
-          example: 'Admin'
+          example: Admin
         description:
           type: string
-          example: 'My very cool program!'
+          example: My very cool program!
         version:
           type: string
-          example: '0.9.66'
+          example: 0.9.66
         views:
           type: integer
           example: 2
@@ -817,23 +613,27 @@ components:
           example: 1575562569
         uploaded_string:
           type: string
-          example: '11 minutes ago'
+          example: 11 minutes ago
         screenshot_large:
           type: string
-          example: 'https://share.catrob.at/resources/screenshots/screen_1234abcd-12ab-12ab-12ab-123456abcdef.png'
+          example: >-
+            https://share.catrob.at/resources/screenshots/screen_1234abcd-12ab-12ab-12ab-123456abcdef.png
         screenshot_small:
           type: string
-          example: 'https://share.catrob.at/resources/thumbnails/screen_1234abcd-12ab-12ab-12ab-123456abcdef.png'
+          example: >-
+            https://share.catrob.at/resources/thumbnails/screen_1234abcd-12ab-12ab-12ab-123456abcdef.png
         projectUrl:
           type: string
-          example: 'https://share.catrob.at/pocketcode/project/1234abcd-12ab-12ab-12ab-123456abcdef'
+          example: >-
+            https://share.catrob.at/pocketcode/project/1234abcd-12ab-12ab-12ab-123456abcdef
         downloadUrl:
           type: string
-          example: 'https://share.catrob.at/pocketcode/download/1234abcd-12ab-12ab-12ab-123456abcdef.catrobat'
+          example: >-
+            https://share.catrob.at/pocketcode/download/1234abcd-12ab-12ab-12ab-123456abcdef.catrobat
         filesize:
           type: number
           example: 0.14381762458251943
-          description: 'filesize in megabytes'
+          description: filesize in megabytes
     Tags:
       type: array
       minItems: 0
@@ -841,28 +641,25 @@ components:
       description: Available tags
       items:
         type: string
-        enum: [Game, Animation, Story, Music, Art, Experimental, Tutorial]
+        enum:
+          - Game
+          - Animation
+          - Story
+          - Music
+          - Art
+          - Experimental
+          - Tutorial
         example: Game
-
-#    Tag:
-#      type: string
-#      enum: [Game, Animation, Story, Music, Art, Experimental, Tutorial]
-#      example: Game
     Username:
       type: string
       minLength: 3
       maxLength: 180
-      example: 'Testuser'
+      example: Testuser
       description: Name of the user
-    UsernameObject:
-      type: object
-      properties:
-        username:
-          $ref: '#/components/schemas/Username'
     Password:
       type: string
       format: password
       minLength: 6
       maxLength: 4096
-      example: 'password'
+      example: password
       description: A secure password.

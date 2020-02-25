@@ -1,6 +1,6 @@
 <?php
 /**
- * MediaLibraryApiInterfaceTest
+ * UserApiInterfaceTest
  * PHP version 5.
  *
  * @category Class
@@ -31,7 +31,7 @@ namespace OpenAPI\Server\Tests\Api;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * MediaLibraryApiInterfaceTest Class Doc Comment.
+ * UserApiInterfaceTest Class Doc Comment.
  *
  * @category Class
  *
@@ -42,7 +42,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * @internal
  * @coversNothing
  */
-class MediaLibraryApiInterfaceTest extends WebTestCase
+class UserApiInterfaceTest extends WebTestCase
 {
   /**
    * Setup before running any test cases.
@@ -73,20 +73,17 @@ class MediaLibraryApiInterfaceTest extends WebTestCase
   }
 
   /**
-   * Test case for mediaPackagePackageNameGet.
+   * Test case for userPost.
    *
-   * Get media-library asstes of a named package.
+   * Register a user.
    */
-  public function testMediaPackagePackageNameGet()
+  public function testUserPost()
   {
     $client = static::createClient();
 
-    $path = '/media/package/{packageName}';
-    $pattern = '{packageName}';
-    $data = $this->genTestData('[a-z0-9]+');
-    $path = str_replace($pattern, $data, $path);
+    $path = '/user';
 
-    $crawler = $client->request('GET', $path);
+    $crawler = $client->request('POST', $path);
   }
 
   protected function genTestData($regexp)
