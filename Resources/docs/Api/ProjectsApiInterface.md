@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**projectProjectIdGet**](ProjectsApiInterface.md#projectProjectIdGet) | **GET** /project/{project_id} | Get the information of a project
 [**projectsFeaturedGet**](ProjectsApiInterface.md#projectsFeaturedGet) | **GET** /projects/featured | Get the currently featured projects
 [**projectsGet**](ProjectsApiInterface.md#projectsGet) | **GET** /projects | Get projects
-[**projectsPost**](ProjectsApiInterface.md#projectsPost) | **POST** /projects | Upload a catrobat program
-[**projectsSearchGet**](ProjectsApiInterface.md#projectsSearchGet) | **GET** /projects/search | Search for programs associated with a keywords
+[**projectsPost**](ProjectsApiInterface.md#projectsPost) | **POST** /projects | Upload a catrobat project
+[**projectsSearchGet**](ProjectsApiInterface.md#projectsSearchGet) | **GET** /projects/search | Search for projects associated with a keywords
 [**projectsUserGet**](ProjectsApiInterface.md#projectsUserGet) | **GET** /projects/user/ | Get the projects of the logged in user
 [**projectsUserUserIdGet**](ProjectsApiInterface.md#projectsUserUserIdGet) | **GET** /projects/user/{userId} | Get the public projects of a given user
 
@@ -193,7 +193,7 @@ No authorization required
 ## **projectsPost**
 > projectsPost($acceptLanguage, $checksum, $file, $flavor, $tags)
 
-Upload a catrobat program
+Upload a catrobat project
 
 ### Example Implementation
 ```php
@@ -237,7 +237,7 @@ void (empty response body)
 
 ### Authorization
 
-[pandaAuth](../../README.md#pandaAuth)
+[PandaAuth](../../README.md#PandaAuth)
 
 ### HTTP request headers
 
@@ -249,7 +249,7 @@ void (empty response body)
 ## **projectsSearchGet**
 > OpenAPI\Server\Model\Project projectsSearchGet($queryString, $maxVersion, $limit, $offset, $flavor)
 
-Search for programs associated with a keywords
+Search for projects associated with a keywords
 
 ### Example Implementation
 ```php
@@ -348,7 +348,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[pandaAuth](../../README.md#pandaAuth)
+[PandaAuth](../../README.md#PandaAuth)
 
 ### HTTP request headers
 

@@ -3,12 +3,6 @@
 # Do not edit the class manually.
 
 # authentication
-open_api_server_authentication_authenticatedelete:
-    path:     /authenticate
-    methods:  [DELETE]
-    defaults:
-        _controller: open_api_server.controller.authentication:authenticateDeleteAction
-
 open_api_server_authentication_authenticateget:
     path:     /authenticate
     methods:  [GET]

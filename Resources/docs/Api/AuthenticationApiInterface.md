@@ -4,7 +4,6 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**authenticateDelete**](AuthenticationApiInterface.md#authenticateDelete) | **DELETE** /authenticate | Logout
 [**authenticateGet**](AuthenticationApiInterface.md#authenticateGet) | **GET** /authenticate | Check Token
 [**authenticatePost**](AuthenticationApiInterface.md#authenticatePost) | **POST** /authenticate | Login
 
@@ -20,57 +19,6 @@ services:
             - { name: "open_api_server.api", api: "authentication" }
     # ...
 ```
-
-## **authenticateDelete**
-> authenticateDelete()
-
-Logout
-
-Invalides an users JWT token.
-
-### Example Implementation
-```php
-<?php
-// src/Acme/MyBundle/Api/AuthenticationApiInterface.php
-
-namespace Acme\MyBundle\Api;
-
-use OpenAPI\Server\Api\AuthenticationApiInterface;
-
-class AuthenticationApi implements AuthenticationApiInterface
-{
-
-    // ...
-
-    /**
-     * Implementation of AuthenticationApiInterface#authenticateDelete
-     */
-    public function authenticateDelete()
-    {
-        // Implement the operation ...
-    }
-
-    // ...
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[pandaAuth](../../README.md#pandaAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **authenticateGet**
 > authenticateGet()
@@ -114,7 +62,7 @@ void (empty response body)
 
 ### Authorization
 
-[pandaAuth](../../README.md#pandaAuth)
+[PandaAuth](../../README.md#PandaAuth)
 
 ### HTTP request headers
 
@@ -168,7 +116,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[pandaAuth](../../README.md#pandaAuth)
+[PandaAuth](../../README.md#PandaAuth)
 
 ### HTTP request headers
 

@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.20"
+  version: "v1.0.21"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
@@ -34,7 +34,7 @@ paths:
   /authenticate:
     get:
       security:
-        - pandaAuth: []
+        - PandaAuth: []
       tags:
         - Authentication
       summary: Check Token
@@ -45,22 +45,9 @@ paths:
         401:
           $ref: '#/components/responses/UnauthorizedError'
 
-    delete:
-      security:
-        - pandaAuth: []
-      tags:
-        - Authentication
-      summary: Logout
-      description: Invalides an users JWT token.
-      responses:
-        204:
-          $ref: '#/components/responses/OK'
-        401:
-          $ref: '#/components/responses/UnauthorizedError'
-
     post:
       security:
-        - pandaAuth: []
+        - PandaAuth: []
       tags:
         - Authentication
       summary: Login
@@ -73,7 +60,7 @@ paths:
               $ref: '#/components/schemas/Login'
       responses:
         200:
-          description: OK - Use this JWT token i future requests
+          description: OK
           content:
             application/json:
               schema:
@@ -81,7 +68,7 @@ paths:
         400:
           $ref: '#/components/responses/BadRequest'
         401:
-          $ref: '#/components/responses/UnauthorizedError'
+          $ref: '#/components/responses/InvalidCredentials'
         406:
           $ref: '#/components/responses/NotAcceptable'
         415:
@@ -92,13 +79,10 @@ paths:
     parameters:
       - $ref: '#/components/parameters/Locale'
     post:
-      security:
-        - pandaAuth: []
       tags:
         - User
-      summary: Register a user
-      description: >-
-        Register a user
+      summary: Register
+      description: Register a user
       requestBody:
         required: true
         content:
@@ -107,15 +91,13 @@ paths:
               $ref: '#/components/schemas/Register'
       responses:
         200:
-          description: OK - User registerd
+          $ref: '#/components/responses/OK'
         400:
           $ref: '#/components/responses/BadRequest'
-        422:
-          description: NOT OK - Unable to process entity
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIValidationResponse'
+        415:
+          $ref: '#/components/responses/UnsupportedMediaType'
+
+
   /media/package/{packageName}:
     get:
       tags:
@@ -131,7 +113,7 @@ paths:
           description: Name of the package
       responses:
         200:
-          description: Valid request
+          description: OK
           content:
             application/json:
               schema:
@@ -139,7 +121,8 @@ paths:
         400:
           $ref: '#/components/responses/BadRequest'
         404:
-          description: Package name not found
+          $ref: '#/components/responses/NotFound'
+
 
   /projects:
     parameters:
@@ -163,12 +146,15 @@ paths:
                 $ref: '#/components/schemas/Projects'
         400:
           $ref: '#/components/responses/BadRequest'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+
     post:
       security:
-        - pandaAuth: []
+        - PandaAuth: []
       tags:
         - Projects
-      summary: Upload a catrobat program
+      summary: Upload a catrobat project
       requestBody:
         required: true
         content:
@@ -177,7 +163,7 @@ paths:
               $ref: '#/components/schemas/Upload'
       responses:
         201:
-          description: Project created
+          description: Project successfully uploaded.
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -188,6 +174,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UploadError'
+
+
   /projects/featured:
     get:
       tags:
@@ -215,11 +203,15 @@ paths:
                 $ref: '#/components/schemas/FeaturedProjects'
         400:
           $ref: '#/components/responses/BadRequest'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+
+
   /projects/search:
     get:
       tags:
         - Projects
-      summary: Search for programs associated with a keywords
+      summary: Search for projects associated with a keywords
       parameters:
         - name: queryString
           in: query
@@ -239,14 +231,17 @@ paths:
                 $ref: '#/components/schemas/Projects'
         400:
           $ref: '#/components/responses/BadRequest'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+
+
   /projects/user/:
     get:
       security:
-        - pandaAuth: []
+        - PandaAuth: []
       tags:
         - Projects
-      summary: >-
-        Get the projects of the logged in user
+      summary: Get the projects of the logged in user
       parameters:
         - $ref: '#/components/parameters/MaxVersion'
         - $ref: '#/components/parameters/Limit'
@@ -263,6 +258,10 @@ paths:
           $ref: '#/components/responses/BadRequest'
         401:
           $ref: '#/components/responses/UnauthorizedError'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+
+
   '/projects/user/{userId}':
     get:
       tags:
@@ -291,7 +290,11 @@ paths:
         400:
           $ref: '#/components/responses/BadRequest'
         404:
-          description: User does not exist
+          $ref: '#/components/responses/NotFound'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+
+
   /project/{project_id}:
     get:
       tags:
@@ -315,7 +318,11 @@ paths:
         400:
           $ref: '#/components/responses/BadRequest'
         404:
-          description: Project does not exist
+          $ref: '#/components/responses/NotFound'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+
+
 components:
   responses:
     OK:
@@ -323,15 +330,17 @@ components:
     UnauthorizedError:
       description: Invalid JWT token | JWT token not found | JWT token expired
     BadRequest:
-      description: BAD Request
+      description: BAD Request - invalid or missing required parameters
     InvalidCredentials:
       description: Invalid Credentials
     NotAcceptable:
-      description: Not Acceptable
+      description: Not Acceptable - client must accept application/json as content type
     UnsupportedMediaType:
-      description: Unsupported Media Type
+      description: Unsupported Media Type - request must use application/json as content type
+    NotFound:
+      description: Not Found
   securitySchemes:
-    pandaAuth:
+    PandaAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
@@ -546,7 +555,7 @@ components:
           example: 1234abcd-12ab-12ab-12ab-123456abcdef
         name:
           type: string
-          example: My example of a Program
+          example: My example of a Project
         author:
           type: string
           example: Admin
@@ -565,13 +574,13 @@ components:
           example: 1234abcd-12ab-12ab-12ab-123456abcdef
         name:
           type: string
-          example: My example of a Program
+          example: My example of a Project
         author:
           type: string
           example: Admin
         description:
           type: string
-          example: My very cool program!
+          example: My very cool project!
         version:
           type: string
           example: 0.9.66

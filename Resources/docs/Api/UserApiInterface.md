@@ -4,7 +4,7 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**userPost**](UserApiInterface.md#userPost) | **POST** /user | Register a user
+[**userPost**](UserApiInterface.md#userPost) | **POST** /user | Register
 
 
 ## Service Declaration
@@ -22,7 +22,7 @@ services:
 ## **userPost**
 > userPost($register, $acceptLanguage)
 
-Register a user
+Register
 
 Register a user
 
@@ -65,12 +65,12 @@ void (empty response body)
 
 ### Authorization
 
-[pandaAuth](../../README.md#pandaAuth)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
