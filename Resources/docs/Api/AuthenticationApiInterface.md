@@ -4,8 +4,8 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**authenticateDelete**](AuthenticationApiInterface.md#authenticateDelete) | **DELETE** /authenticate | Logout a user
-[**authenticateGet**](AuthenticationApiInterface.md#authenticateGet) | **GET** /authenticate | Check token
+[**authenticateDelete**](AuthenticationApiInterface.md#authenticateDelete) | **DELETE** /authenticate | Logout user
+[**authenticateGet**](AuthenticationApiInterface.md#authenticateGet) | **GET** /authenticate | Checking token
 [**authenticatePost**](AuthenticationApiInterface.md#authenticatePost) | **POST** /authenticate | Login a user
 
 
@@ -24,7 +24,9 @@ services:
 ## **authenticateDelete**
 > authenticateDelete()
 
-Logout a user
+Logout user
+
+Endpoint allowing to log out user
 
 ### Example Implementation
 ```php
@@ -73,9 +75,9 @@ No authorization required
 ## **authenticateGet**
 > authenticateGet()
 
-Check token
+Checking token
 
-Checks if a token is still valid or already expired
+Endpoint giving information if a given token is valid or not
 
 ### Example Implementation
 ```php

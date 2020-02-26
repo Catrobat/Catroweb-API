@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.17"
+  version: "v1.0.18"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
@@ -31,25 +31,39 @@ tags:
 paths:
   /authenticate:
     get:
+      security:
+        - pandaAuth: []
       tags:
         - Authentication
-      summary: Check token
-      description: Checks if a token is still valid or already expired
+      summary: Checking token
+      description: Endpoint giving information if a given token is valid or not
       responses:
         200:
-          description: OK - Sent token is valid
+          description: OK - Sent token is valid for the given username
+          headers:
+            X-CAPI-RENEW:
+              description: If set, given token will be the new Bearer token for the user
+              allowEmptyValue: true
+              schema:
+                type: string
+                example: xxxxx.yyyyy.zzzzz
         401:
           $ref: '#/components/responses/UnauthorizedError'
     delete:
+      security:
+        - pandaAuth: []
       tags:
         - Authentication
-      summary: Logout a user
+      summary: Logout user
+      description: Endpoint allowing to log out user
       responses:
         204:
           description: Logout successful
         401:
           $ref: '#/components/responses/UnauthorizedError'
     post:
+      security:
+        - pandaAuth: []
       tags:
         - Authentication
       summary: Login a user
@@ -60,8 +74,8 @@ paths:
             schema:
               $ref: '#/components/schemas/Login'
       responses:
-        200:
-          description: Login successful
+        201:
+          description: User has bin logged in successfully
           content:
             application/json:
               schema:
@@ -69,16 +83,15 @@ paths:
         400:
           $ref: '#/components/responses/BadRequest'
         401:
-          $ref: '#/components/responses/InvalidCredentials'
-        406:
-          $ref: '#/components/responses/NotAcceptable'
-        415:
-          $ref: '#/components/responses/UnsupportedMediaType'
-
+          $ref: '#/components/responses/UnauthorizedError'
+        422: 
+          description: NOT OK - Unable to process entity
   /user:
     parameters:
       - $ref: '#/components/parameters/Locale'
     post:
+      security:
+        - pandaAuth: []
       tags:
         - User
       summary: Register a user
@@ -149,6 +162,8 @@ paths:
         400:
           $ref: '#/components/responses/BadRequest'
     post:
+      security:
+        - pandaAuth: []
       tags:
         - Projects
       summary: Upload a catrobat program
@@ -161,6 +176,13 @@ paths:
       responses:
         201:
           description: Project created
+          headers:
+            X-CAPI-RENEW:
+              description: If set, given token will be the new Bearer token for the user
+              allowEmptyValue: true
+              schema:
+                type: string
+                example: xxxxx.yyyyy.zzzzz
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -224,6 +246,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
   /projects/user/:
     get:
+      security:
+        - pandaAuth: []
       tags:
         - Projects
       summary: >-
@@ -240,6 +264,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Projects'
+          headers:
+            X-CAPI-RENEW:
+              description: If set, given token will be the new Bearer token for the user
+              allowEmptyValue: true
+              schema:
+                type: string
+                example: xxxxx.yyyyy.zzzzz
         400:
           $ref: '#/components/responses/BadRequest'
         401:
