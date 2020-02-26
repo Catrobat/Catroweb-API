@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.15"
+  version: "v1.0.16"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
@@ -33,25 +33,17 @@ paths:
     get:
       tags:
         - Authentication
-      summary: Checking token
-      description: Endpoint giving information if a given token is valid or not
+      summary: Check token
+      description: Checks if a token is still valid or already expired
       responses:
         200:
-          description: OK - Sent token is valid for the given username
-          headers:
-            X-CAPI-RENEW:
-              description: If set, given token will be the new Bearer token for the user
-              allowEmptyValue: true
-              schema:
-                type: string
-                example: xxxxx.yyyyy.zzzzz
+          description: OK - Sent token is valid
         401:
           $ref: '#/components/responses/UnauthorizedError'
     delete:
       tags:
         - Authentication
-      summary: Logout user
-      description: Endpoint allowing to log out user
+      summary: Logout a user
       responses:
         204:
           description: Logout successful
@@ -68,16 +60,21 @@ paths:
             schema:
               $ref: '#/components/schemas/Login'
       responses:
-        201:
-          description: User has bin logged in successfully
+        200:
+          description: Login successful
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JWTTokenResponse'
         400:
           $ref: '#/components/responses/BadRequest'
-        422:
-          description: NOT OK - Unable to process entity
+        401:
+          $ref: '#/components/responses/InvalidCredentials'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+        415:
+          $ref: '#/components/responses/UnsupportedMediaType'
+
   /user:
     parameters:
       - $ref: '#/components/parameters/Locale'
@@ -322,16 +319,17 @@ paths:
           description: Project does not exist
 components:
   responses:
-    UnauthorizedError:
-      description: Authentication information is missing or invalid
-      headers:
-        WWW_Authenticate:
-          description: Authentication method to be used for authentification
-          schema:
-            type: string
-            example: Bearer
     BadRequest:
-      description: NOT OK - BAD Request
+      description: BAD Request
+    UnauthorizedError:
+      description: JWT Token not found
+    InvalidCredentials:
+      description: Invalid Credentials
+    NotAcceptable:
+      description: Not Acceptable
+    UnsupportedMediaType:
+      description: Unsupported Media Type
+
   securitySchemes:
     pandaAuth:
       type: http
