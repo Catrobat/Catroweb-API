@@ -65,7 +65,7 @@ void (empty response body)
 
 ### Authorization
 
-[pandaAuth](../../README.md#pandaAuth)
+No authorization required
 
 ### HTTP request headers
 
