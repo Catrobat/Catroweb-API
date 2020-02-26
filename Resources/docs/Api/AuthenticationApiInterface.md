@@ -4,9 +4,9 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**authenticateDelete**](AuthenticationApiInterface.md#authenticateDelete) | **DELETE** /authenticate | Logout user
-[**authenticateGet**](AuthenticationApiInterface.md#authenticateGet) | **GET** /authenticate | Checking token
-[**authenticatePost**](AuthenticationApiInterface.md#authenticatePost) | **POST** /authenticate | Login a user
+[**authenticateDelete**](AuthenticationApiInterface.md#authenticateDelete) | **DELETE** /authenticate | Logout
+[**authenticateGet**](AuthenticationApiInterface.md#authenticateGet) | **GET** /authenticate | Check Token
+[**authenticatePost**](AuthenticationApiInterface.md#authenticatePost) | **POST** /authenticate | Login
 
 
 ## Service Declaration
@@ -24,9 +24,9 @@ services:
 ## **authenticateDelete**
 > authenticateDelete()
 
-Logout user
+Logout
 
-Endpoint allowing to log out user
+Invalides an users JWT token.
 
 ### Example Implementation
 ```php
@@ -75,9 +75,9 @@ void (empty response body)
 ## **authenticateGet**
 > authenticateGet()
 
-Checking token
+Check Token
 
-Endpoint giving information if a given token is valid or not
+Checks if a token is valid or expired.
 
 ### Example Implementation
 ```php
@@ -126,7 +126,9 @@ void (empty response body)
 ## **authenticatePost**
 > OpenAPI\Server\Model\JWTTokenResponse authenticatePost($login)
 
-Login a user
+Login
+
+Returns an JWT token which provides authorization.
 
 ### Example Implementation
 ```php

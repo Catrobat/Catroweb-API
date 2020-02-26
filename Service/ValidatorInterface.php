@@ -21,5 +21,5 @@ interface ValidatorInterface
    *                                          If the list is empty, validation
    *                                          succeeded
    */
-  public function validate($value, $constraints = null, ?array $groups = null): ConstraintViolationListInterface;
+  public function validate($value, $constraints = null, $groups = null);
 }

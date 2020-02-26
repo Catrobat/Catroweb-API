@@ -1,2 +1,4 @@
 .idea
 vendor
+openapi-generator-cli.jar
+composer.phar

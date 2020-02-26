@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.8"
+  version: "v1.0.20"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
@@ -28,45 +28,43 @@ tags:
     description: Everything related to projects
   - name: Media Library
     description: Everything related to the media library
+
 paths:
+
   /authenticate:
     get:
       security:
         - pandaAuth: []
       tags:
         - Authentication
-      summary: Checking token
-      description: Endpoint giving information if a given token is valid or not
+      summary: Check Token
+      description: Checks if a token is valid or expired.
       responses:
         200:
-          description: OK - Sent token is valid for the given username
-          headers:
-            X-CAPI-RENEW:
-              description: If set, given token will be the new Bearer token for the user
-              allowEmptyValue: true
-              schema:
-                type: string
-                example: xxxxx.yyyyy.zzzzz
+          $ref: '#/components/responses/OK'
         401:
           $ref: '#/components/responses/UnauthorizedError'
+
     delete:
       security:
         - pandaAuth: []
       tags:
         - Authentication
-      summary: Logout user
-      description: Endpoint allowing to log out user
+      summary: Logout
+      description: Invalides an users JWT token.
       responses:
         204:
-          description: Logout successful
+          $ref: '#/components/responses/OK'
         401:
           $ref: '#/components/responses/UnauthorizedError'
+
     post:
       security:
         - pandaAuth: []
       tags:
         - Authentication
-      summary: Login a user
+      summary: Login
+      description: Returns an JWT token which provides authorization.
       requestBody:
         required: true
         content:
@@ -74,8 +72,8 @@ paths:
             schema:
               $ref: '#/components/schemas/Login'
       responses:
-        201:
-          description: User has bin logged in successfully
+        200:
+          description: OK - Use this JWT token i future requests
           content:
             application/json:
               schema:
@@ -84,8 +82,12 @@ paths:
           $ref: '#/components/responses/BadRequest'
         401:
           $ref: '#/components/responses/UnauthorizedError'
-        422: 
-          description: NOT OK - Unable to process entity
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+        415:
+          $ref: '#/components/responses/UnsupportedMediaType'
+
+
   /user:
     parameters:
       - $ref: '#/components/parameters/Locale'
@@ -176,13 +178,6 @@ paths:
       responses:
         201:
           description: Project created
-          headers:
-            X-CAPI-RENEW:
-              description: If set, given token will be the new Bearer token for the user
-              allowEmptyValue: true
-              schema:
-                type: string
-                example: xxxxx.yyyyy.zzzzz
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -264,13 +259,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Projects'
-          headers:
-            X-CAPI-RENEW:
-              description: If set, given token will be the new Bearer token for the user
-              allowEmptyValue: true
-              schema:
-                type: string
-                example: xxxxx.yyyyy.zzzzz
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -330,16 +318,18 @@ paths:
           description: Project does not exist
 components:
   responses:
+    OK:
+      description: OK
     UnauthorizedError:
-      description: Authentication information is missing or invalid
-      headers:
-        WWW_Authenticate:
-          description: Authentication method to be used for authentification
-          schema:
-            type: string
-            example: Bearer
+      description: Invalid JWT token | JWT token not found | JWT token expired
     BadRequest:
-      description: NOT OK - BAD Request
+      description: BAD Request
+    InvalidCredentials:
+      description: Invalid Credentials
+    NotAcceptable:
+      description: Not Acceptable
+    UnsupportedMediaType:
+      description: Unsupported Media Type
   securitySchemes:
     pandaAuth:
       type: http
