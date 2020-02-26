@@ -12,9 +12,7 @@ return PhpCsFixer\Config::create()
     '@DoctrineAnnotation'   => true,
     'strict_param'          => true,
     'braces'                => ['position_after_control_structures'   => 'next',
-                                'position_after_anonymous_constructs' => 'next'],
-    'phpdoc_to_return_type' => true,
-    'phpdoc_to_param_type'  => true,
+                                'position_after_anonymous_constructs' => 'next']
   ])
   ->setFinder($finder)
   ->setUsingCache(false)

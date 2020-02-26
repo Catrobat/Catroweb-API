@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.13"
+  version: "v1.0.15"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
@@ -31,8 +31,6 @@ tags:
 paths:
   /authenticate:
     get:
-      security:
-        - pandaAuth: []
       tags:
         - Authentication
       summary: Checking token
@@ -50,8 +48,6 @@ paths:
         401:
           $ref: '#/components/responses/UnauthorizedError'
     delete:
-      security:
-        - pandaAuth: []
       tags:
         - Authentication
       summary: Logout user
@@ -62,8 +58,6 @@ paths:
         401:
           $ref: '#/components/responses/UnauthorizedError'
     post:
-      security:
-        - pandaAuth: []
       tags:
         - Authentication
       summary: Login a user
@@ -82,9 +76,7 @@ paths:
                 $ref: '#/components/schemas/JWTTokenResponse'
         400:
           $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/UnauthorizedError'
-        422: 
+        422:
           description: NOT OK - Unable to process entity
   /user:
     parameters:
