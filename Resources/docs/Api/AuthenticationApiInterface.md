@@ -4,8 +4,8 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**authenticateGet**](AuthenticationApiInterface.md#authenticateGet) | **GET** /authenticate | Check Token
-[**authenticatePost**](AuthenticationApiInterface.md#authenticatePost) | **POST** /authenticate | Login
+[**authenticationGet**](AuthenticationApiInterface.md#authenticationGet) | **GET** /authentication | Check Token
+[**authenticationPost**](AuthenticationApiInterface.md#authenticationPost) | **POST** /authentication | Login
 
 
 ## Service Declaration
@@ -20,8 +20,8 @@ services:
     # ...
 ```
 
-## **authenticateGet**
-> authenticateGet()
+## **authenticationGet**
+> authenticationGet()
 
 Check Token
 
@@ -42,9 +42,9 @@ class AuthenticationApi implements AuthenticationApiInterface
     // ...
 
     /**
-     * Implementation of AuthenticationApiInterface#authenticateGet
+     * Implementation of AuthenticationApiInterface#authenticationGet
      */
-    public function authenticateGet()
+    public function authenticationGet()
     {
         // Implement the operation ...
     }
@@ -71,8 +71,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-## **authenticatePost**
-> OpenAPI\Server\Model\JWTTokenResponse authenticatePost($login)
+## **authenticationPost**
+> OpenAPI\Server\Model\JWTTokenResponse authenticationPost($login)
 
 Login
 
@@ -93,9 +93,9 @@ class AuthenticationApi implements AuthenticationApiInterface
     // ...
 
     /**
-     * Implementation of AuthenticationApiInterface#authenticatePost
+     * Implementation of AuthenticationApiInterface#authenticationPost
      */
-    public function authenticatePost(Login $login)
+    public function authenticationPost(Login $login)
     {
         // Implement the operation ...
     }

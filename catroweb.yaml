@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.21"
+  version: "v1.0.22"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
@@ -31,7 +31,7 @@ tags:
 
 paths:
 
-  /authenticate:
+  /authentication:
     get:
       security:
         - PandaAuth: []
@@ -40,7 +40,7 @@ paths:
       summary: Check Token
       description: Checks if a token is valid or expired.
       responses:
-        200:
+        204:
           $ref: '#/components/responses/OK'
         401:
           $ref: '#/components/responses/UnauthorizedError'
@@ -90,8 +90,16 @@ paths:
             schema:
               $ref: '#/components/schemas/Register'
       responses:
-        200:
-          $ref: '#/components/responses/OK'
+        201:
+          description: User successfully registered.
+          headers:
+            Location:
+              schema:
+                type: string
+                example: 'https://share.catrob.at/app/user/3ef85528-5f08-11ea-a2ae-000c292a0f49'
+              description: 'Resource location on server'
+        204:
+          description: Dry-run successfull
         400:
           $ref: '#/components/responses/BadRequest'
         415:
@@ -164,6 +172,12 @@ paths:
       responses:
         201:
           description: Project successfully uploaded.
+          headers:
+            Location:
+              schema:
+                type: string
+                example: 'https://share.catrob.at/app/project/63768cf1-5f07-11ea-a2ae-000c292a0f49'
+              description: 'Resource location on server'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
