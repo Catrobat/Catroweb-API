@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.22"
+  version: "v1.0.23"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
@@ -40,7 +40,7 @@ paths:
       summary: Check Token
       description: Checks if a token is valid or expired.
       responses:
-        204:
+        200:
           $ref: '#/components/responses/OK'
         401:
           $ref: '#/components/responses/UnauthorizedError'
