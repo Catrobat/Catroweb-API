@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.23"
+  version: "v1.0.24"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
@@ -28,9 +28,7 @@ tags:
     description: Everything related to projects
   - name: Media Library
     description: Everything related to the media library
-
 paths:
-
   /authentication:
     get:
       security:
@@ -44,7 +42,6 @@ paths:
           $ref: '#/components/responses/OK'
         401:
           $ref: '#/components/responses/UnauthorizedError'
-
     post:
       security:
         - PandaAuth: []
@@ -73,8 +70,6 @@ paths:
           $ref: '#/components/responses/NotAcceptable'
         415:
           $ref: '#/components/responses/UnsupportedMediaType'
-
-
   /user:
     parameters:
       - $ref: '#/components/parameters/Locale'
@@ -96,17 +91,18 @@ paths:
             Location:
               schema:
                 type: string
-                example: 'https://share.catrob.at/app/user/3ef85528-5f08-11ea-a2ae-000c292a0f49'
-              description: 'Resource location on server'
+                example: >-
+                  https://share.catrob.at/app/user/3ef85528-5f08-11ea-a2ae-000c292a0f49
+              description: Resource location on server
         204:
-          description: Dry-run successfull
+          description: 'Dry-run successful (No Validation Error)'
         400:
           $ref: '#/components/responses/BadRequest'
         415:
           $ref: '#/components/responses/UnsupportedMediaType'
-
-
-  /media/package/{packageName}:
+        450:
+          $ref: '#/components/responses/FailedValidationResponse'
+  '/media/package/{packageName}':
     get:
       tags:
         - Media Library
@@ -130,8 +126,6 @@ paths:
           $ref: '#/components/responses/BadRequest'
         404:
           $ref: '#/components/responses/NotFound'
-
-
   /projects:
     parameters:
       - $ref: '#/components/parameters/Locale'
@@ -156,7 +150,6 @@ paths:
           $ref: '#/components/responses/BadRequest'
         406:
           $ref: '#/components/responses/NotAcceptable'
-
     post:
       security:
         - PandaAuth: []
@@ -170,14 +163,15 @@ paths:
             schema:
               $ref: '#/components/schemas/Upload'
       responses:
-        201:
+        '201':
           description: Project successfully uploaded.
           headers:
             Location:
               schema:
                 type: string
-                example: 'https://share.catrob.at/app/project/63768cf1-5f07-11ea-a2ae-000c292a0f49'
-              description: 'Resource location on server'
+                example: >-
+                  https://share.catrob.at/app/project/63768cf1-5f07-11ea-a2ae-000c292a0f49
+              description: Resource location on server
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -188,8 +182,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UploadError'
-
-
   /projects/featured:
     get:
       tags:
@@ -219,8 +211,6 @@ paths:
           $ref: '#/components/responses/BadRequest'
         406:
           $ref: '#/components/responses/NotAcceptable'
-
-
   /projects/search:
     get:
       tags:
@@ -247,8 +237,6 @@ paths:
           $ref: '#/components/responses/BadRequest'
         406:
           $ref: '#/components/responses/NotAcceptable'
-
-
   /projects/user/:
     get:
       security:
@@ -274,14 +262,11 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         406:
           $ref: '#/components/responses/NotAcceptable'
-
-
   '/projects/user/{userId}':
     get:
       tags:
         - Projects
-      summary: >-
-        Get the public projects of a given user
+      summary: Get the public projects of a given user
       parameters:
         - in: path
           name: userId
@@ -307,9 +292,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         406:
           $ref: '#/components/responses/NotAcceptable'
-
-
-  /project/{project_id}:
+  '/project/{project_id}':
     get:
       tags:
         - Projects
@@ -335,8 +318,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         406:
           $ref: '#/components/responses/NotAcceptable'
-
-
 components:
   responses:
     OK:
@@ -350,9 +331,17 @@ components:
     NotAcceptable:
       description: Not Acceptable - client must accept application/json as content type
     UnsupportedMediaType:
-      description: Unsupported Media Type - request must use application/json as content type
+      description: >-
+        Unsupported Media Type - request must use application/json as content
+        type
     NotFound:
       description: Not Found
+    FailedValidationResponse:
+      description: Dry-run not successful (Validation yielded errors)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationSchema'
   securitySchemes:
     PandaAuth:
       type: http
@@ -411,6 +400,26 @@ components:
       schema:
         $ref: '#/components/schemas/Offset'
   schemas:
+    ValidationSchema:
+      type: object
+      properties:
+        email:
+          type: string
+          enum:
+            - EMail already in use
+            - Not an EMail
+        username:
+          type: string
+          enum:
+            - Username too short
+            - Username too long
+            - Username already in use
+        password:
+          type: string
+          enum:
+            - Password too short
+            - Password too long
+            - Password contains invalid chars
     MaxVersion:
       type: string
       description: Only shows project with a smaller version number than max version
@@ -468,32 +477,13 @@ components:
             - ZIP invalid
             - XML invalid
             - Flavor invalid
-    APIValidationResponse:
-      type: object
-      properties:
-        email:
-          type: string
-          example:
-            - EMail not valid
-            - EMail already in use!
-        username:
-          type: string
-          example:
-            - Username too short!
-            - Username already in use!
-        password:
-          type: string
-          example:
-            - Password too short
-            - Password contains invalid chars
     Register:
       type: object
       properties:
         dry-run:
           type: boolean
           default: false
-          description: >-
-            Indicates wether sent user should be verified or registerd.
+          description: Indicates wether sent user should be verified or registerd.
         email:
           type: string
           format: email

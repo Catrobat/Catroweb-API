@@ -1,4 +1,4 @@
-# APIValidationResponse
+# ValidationSchema
 
 ## Properties
 Name | Type | Description | Notes
