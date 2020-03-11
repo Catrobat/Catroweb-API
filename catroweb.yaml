@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.24"
+  version: "v1.0.26"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
@@ -38,9 +38,9 @@ paths:
       summary: Check Token
       description: Checks if a token is valid or expired.
       responses:
-        200:
+        '200':
           $ref: '#/components/responses/OK'
-        401:
+        '401':
           $ref: '#/components/responses/UnauthorizedError'
     post:
       security:
@@ -56,19 +56,19 @@ paths:
             schema:
               $ref: '#/components/schemas/Login'
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JWTTokenResponse'
-        400:
+        '400':
           $ref: '#/components/responses/BadRequest'
-        401:
+        '401':
           $ref: '#/components/responses/InvalidCredentials'
-        406:
+        '406':
           $ref: '#/components/responses/NotAcceptable'
-        415:
+        '415':
           $ref: '#/components/responses/UnsupportedMediaType'
   /user:
     parameters:
@@ -94,14 +94,43 @@ paths:
                 example: >-
                   https://share.catrob.at/app/user/3ef85528-5f08-11ea-a2ae-000c292a0f49
               description: Resource location on server
+          content:
+            application/json:
+              schema:
+                type: object
         204:
           description: 'Dry-run successful (No Validation Error)'
         400:
           $ref: '#/components/responses/BadRequest'
         415:
           $ref: '#/components/responses/UnsupportedMediaType'
-        450:
-          $ref: '#/components/responses/FailedValidationResponse'
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    enum:
+                      - EMail already in use
+                      - Not a valid EMail
+                      - EMail missing
+                  username:
+                    type: string
+                    enum:
+                      - Username too short
+                      - Username too long
+                      - Username already in use
+                      - Username missing
+                  password:
+                    type: string
+                    enum:
+                      - Password too short
+                      - Password too long
+                      - Password contains invalid chars
+                      - Password missing
   '/media/package/{packageName}':
     get:
       tags:
@@ -116,15 +145,15 @@ paths:
           required: true
           description: Name of the package
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Packages'
-        400:
+        '400':
           $ref: '#/components/responses/BadRequest'
-        404:
+        '404':
           $ref: '#/components/responses/NotFound'
   /projects:
     parameters:
@@ -140,15 +169,15 @@ paths:
         - $ref: '#/components/parameters/Offset'
         - $ref: '#/components/parameters/Flavor'
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Projects'
-        400:
+        '400':
           $ref: '#/components/responses/BadRequest'
-        406:
+        '406':
           $ref: '#/components/responses/NotAcceptable'
     post:
       security:
@@ -172,12 +201,16 @@ paths:
                 example: >-
                   https://share.catrob.at/app/project/63768cf1-5f07-11ea-a2ae-000c292a0f49
               description: Resource location on server
-        400:
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
           $ref: '#/components/responses/BadRequest'
-        401:
+        '401':
           $ref: '#/components/responses/UnauthorizedError'
-        422:
-          description: Error
+        '422':
+          description: Upload Error
           content:
             application/json:
               schema:
@@ -201,15 +234,15 @@ paths:
         - $ref: '#/components/parameters/Offset'
         - $ref: '#/components/parameters/Flavor'
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FeaturedProjects'
-        400:
+        '400':
           $ref: '#/components/responses/BadRequest'
-        406:
+        '406':
           $ref: '#/components/responses/NotAcceptable'
   /projects/search:
     get:
@@ -227,15 +260,15 @@ paths:
         - $ref: '#/components/parameters/Offset'
         - $ref: '#/components/parameters/Flavor'
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Projects'
-        400:
+        '400':
           $ref: '#/components/responses/BadRequest'
-        406:
+        '406':
           $ref: '#/components/responses/NotAcceptable'
   /projects/user/:
     get:
@@ -250,17 +283,17 @@ paths:
         - $ref: '#/components/parameters/Offset'
         - $ref: '#/components/parameters/Flavor'
       responses:
-        200:
+        '200':
           description: Valid request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Projects'
-        400:
+        '400':
           $ref: '#/components/responses/BadRequest'
-        401:
+        '401':
           $ref: '#/components/responses/UnauthorizedError'
-        406:
+        '406':
           $ref: '#/components/responses/NotAcceptable'
   '/projects/user/{userId}':
     get:
@@ -280,17 +313,17 @@ paths:
         - $ref: '#/components/parameters/Offset'
         - $ref: '#/components/parameters/Flavor'
       responses:
-        200:
+        '200':
           description: Valid request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Projects'
-        400:
+        '400':
           $ref: '#/components/responses/BadRequest'
-        404:
+        '404':
           $ref: '#/components/responses/NotFound'
-        406:
+        '406':
           $ref: '#/components/responses/NotAcceptable'
   '/project/{project_id}':
     get:
@@ -306,17 +339,17 @@ paths:
           required: true
           description: UUID/ID of any given project
       responses:
-        200:
+        '200':
           description: Valid request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project'
-        400:
+        '400':
           $ref: '#/components/responses/BadRequest'
-        404:
+        '404':
           $ref: '#/components/responses/NotFound'
-        406:
+        '406':
           $ref: '#/components/responses/NotAcceptable'
 components:
   responses:
@@ -336,12 +369,6 @@ components:
         type
     NotFound:
       description: Not Found
-    FailedValidationResponse:
-      description: Dry-run not successful (Validation yielded errors)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ValidationSchema'
   securitySchemes:
     PandaAuth:
       type: http
@@ -400,26 +427,6 @@ components:
       schema:
         $ref: '#/components/schemas/Offset'
   schemas:
-    ValidationSchema:
-      type: object
-      properties:
-        email:
-          type: string
-          enum:
-            - EMail already in use
-            - Not an EMail
-        username:
-          type: string
-          enum:
-            - Username too short
-            - Username too long
-            - Username already in use
-        password:
-          type: string
-          enum:
-            - Password too short
-            - Password too long
-            - Password contains invalid chars
     MaxVersion:
       type: string
       description: Only shows project with a smaller version number than max version
@@ -472,11 +479,7 @@ components:
       properties:
         error:
           type: string
-          enum:
-            - Checksum invalid
-            - ZIP invalid
-            - XML invalid
-            - Flavor invalid
+          example: There is a problem
     Register:
       type: object
       properties:
@@ -490,9 +493,14 @@ components:
           example: test@test.lan
           description: EMail of the user.
         username:
-          $ref: '#/components/schemas/Username'
+          type: string
+          example: Testuser
+          description: 'Name of the user | minLength: 3 |maxLength: 180'
         password:
-          $ref: '#/components/schemas/Password'
+          type: string
+          format: password
+          example: password
+          description: 'A secure password | minLength: 6 | maxLength: 4096'
     Login:
       type: object
       properties:

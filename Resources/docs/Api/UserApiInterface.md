@@ -20,7 +20,7 @@ services:
 ```
 
 ## **userPost**
-> userPost($register, $acceptLanguage)
+> array userPost($register, $acceptLanguage)
 
 Register
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**array**
 
 ### Authorization
 
