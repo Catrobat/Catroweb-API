@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.27"
+  version: "v1.0.28"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
@@ -131,14 +131,14 @@ paths:
                       - Password too long
                       - Password contains invalid chars
                       - Password missing
-  '/media/package/{packageName}':
+  '/media/package/{package_name}':
     get:
       tags:
         - Media Library
       summary: Get media-library asstes of a named package
       parameters:
         - in: path
-          name: packageName
+          name: package_name
           schema:
             type: string
             example: looks
@@ -295,14 +295,14 @@ paths:
           $ref: '#/components/responses/UnauthorizedError'
         '406':
           $ref: '#/components/responses/NotAcceptable'
-  '/projects/user/{userId}':
+  '/projects/user/{user_id}':
     get:
       tags:
         - Projects
       summary: Get the public projects of a given user
       parameters:
         - in: path
-          name: userId
+          name: user_id
           schema:
             type: string
             example: 1234abcd-12ab-12ab-12ab-123456abcdef

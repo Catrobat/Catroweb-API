@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**projectsPost**](ProjectsApiInterface.md#projectsPost) | **POST** /projects | Upload a catrobat project
 [**projectsSearchGet**](ProjectsApiInterface.md#projectsSearchGet) | **GET** /projects/search | Search for projects associated with a keywords
 [**projectsUserGet**](ProjectsApiInterface.md#projectsUserGet) | **GET** /projects/user/ | Get the projects of the logged in user
-[**projectsUserUserIdGet**](ProjectsApiInterface.md#projectsUserUserIdGet) | **GET** /projects/user/{userId} | Get the public projects of a given user
+[**projectsUserUserIdGet**](ProjectsApiInterface.md#projectsUserUserIdGet) | **GET** /projects/user/{user_id} | Get the public projects of a given user
 
 
 ## Service Declaration

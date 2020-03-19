@@ -17,7 +17,7 @@ open_api_server_authentication_authenticationpost:
 
 # mediaLibrary
 open_api_server_mediaLibrary_mediapackagepackagenameget:
-    path:     /media/package/{packageName}
+    path:     /media/package/{package_name}
     methods:  [GET]
     defaults:
         _controller: open_api_server.controller.mediaLibrary:mediaPackagePackageNameGetAction
@@ -64,7 +64,7 @@ open_api_server_projects_projectsuserget:
         _controller: open_api_server.controller.projects:projectsUserGetAction
 
 open_api_server_projects_projectsuseruseridget:
-    path:     /projects/user/{userId}
+    path:     /projects/user/{user_id}
     methods:  [GET]
     defaults:
         _controller: open_api_server.controller.projects:projectsUserUserIdGetAction
