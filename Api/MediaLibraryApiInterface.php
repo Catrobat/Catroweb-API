@@ -46,11 +46,11 @@ interface MediaLibraryApiInterface
    *
    * Get media-library asstes of a named package
    *
-   * @param string $packageName     Name of the package (required)
+   * @param string $package_name    Name of the package (required)
    * @param int    $responseCode    The HTTP response code to return
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    *
    * @return OpenAPI\Server\Model\Package[]
    */
-  public function mediaPackagePackageNameGet(string $packageName, &$responseCode, array &$responseHeaders);
+  public function mediaPackagePackageNameGet(string $package_name, &$responseCode, array &$responseHeaders);
 }

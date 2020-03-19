@@ -70,7 +70,7 @@ class FeaturedProject
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $featuredImage;
+  protected $featured_image;
 
   /**
    * Constructor.
@@ -82,7 +82,7 @@ class FeaturedProject
     $this->id = isset($data['id']) ? $data['id'] : null;
     $this->name = isset($data['name']) ? $data['name'] : null;
     $this->author = isset($data['author']) ? $data['author'] : null;
-    $this->featuredImage = isset($data['featuredImage']) ? $data['featuredImage'] : null;
+    $this->featured_image = isset($data['featured_image']) ? $data['featured_image'] : null;
   }
 
   /**
@@ -152,23 +152,23 @@ class FeaturedProject
   }
 
   /**
-   * Gets featuredImage.
+   * Gets featured_image.
    *
    * @return string|null
    */
   public function getFeaturedImage()
   {
-    return $this->featuredImage;
+    return $this->featured_image;
   }
 
   /**
-   * Sets featuredImage.
+   * Sets featured_image.
    *
    * @return $this
    */
-  public function setFeaturedImage(string $featuredImage = null)
+  public function setFeaturedImage(string $featured_image = null)
   {
-    $this->featuredImage = $featuredImage;
+    $this->featured_image = $featured_image;
 
     return $this;
   }

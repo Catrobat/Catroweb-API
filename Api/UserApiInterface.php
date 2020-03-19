@@ -47,11 +47,11 @@ interface UserApiInterface
    * Register
    *
    * @param OpenAPI\Server\Model\Register $register        (required)
-   * @param string                        $acceptLanguage  (optional)
+   * @param string                        $accept_language (optional)
    * @param int                           $responseCode    The HTTP response code to return
    * @param array                         $responseHeaders Additional HTTP headers to return with the response ()
    *
    * @return array
    */
-  public function userPost(Register $register, string $acceptLanguage = null, &$responseCode, array &$responseHeaders);
+  public function userPost(Register $register, string $accept_language = null, &$responseCode, array &$responseHeaders);
 }

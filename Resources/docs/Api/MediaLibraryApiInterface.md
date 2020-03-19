@@ -20,7 +20,7 @@ services:
 ```
 
 ## **mediaPackagePackageNameGet**
-> OpenAPI\Server\Model\Package mediaPackagePackageNameGet($packageName)
+> OpenAPI\Server\Model\Package mediaPackagePackageNameGet($package_name)
 
 Get media-library asstes of a named package
 
@@ -41,7 +41,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaPackagePackageNameGet
      */
-    public function mediaPackagePackageNameGet(string $packageName)
+    public function mediaPackagePackageNameGet(string $package_name)
     {
         // Implement the operation ...
     }
@@ -54,7 +54,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **packageName** | **string**| Name of the package |
+ **package_name** | **string**| Name of the package |
 
 ### Return type
 

@@ -13,11 +13,11 @@ Name | Type | Description | Notes
 **private** | **bool** |  | [optional] 
 **flavor** | **string** | Available flavors | [optional] 
 **uploaded** | **int** |  | [optional] 
-**uploadedString** | **string** |  | [optional] 
-**screenshotLarge** | **string** |  | [optional] 
-**screenshotSmall** | **string** |  | [optional] 
-**projectUrl** | **string** |  | [optional] 
-**downloadUrl** | **string** |  | [optional] 
+**uploaded_string** | **string** |  | [optional] 
+**screenshot_large** | **string** |  | [optional] 
+**screenshot_small** | **string** |  | [optional] 
+**project_url** | **string** |  | [optional] 
+**download_url** | **string** |  | [optional] 
 **filesize** | **float** | filesize in megabytes | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

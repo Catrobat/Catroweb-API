@@ -129,7 +129,7 @@ class Project
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $uploadedString;
+  protected $uploaded_string;
 
   /**
    * @var string|null
@@ -137,7 +137,7 @@ class Project
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $screenshotLarge;
+  protected $screenshot_large;
 
   /**
    * @var string|null
@@ -145,7 +145,7 @@ class Project
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $screenshotSmall;
+  protected $screenshot_small;
 
   /**
    * @var string|null
@@ -153,7 +153,7 @@ class Project
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $projectUrl;
+  protected $project_url;
 
   /**
    * @var string|null
@@ -161,7 +161,7 @@ class Project
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $downloadUrl;
+  protected $download_url;
 
   /**
    * filesize in megabytes.
@@ -190,11 +190,11 @@ class Project
     $this->private = isset($data['private']) ? $data['private'] : null;
     $this->flavor = isset($data['flavor']) ? $data['flavor'] : null;
     $this->uploaded = isset($data['uploaded']) ? $data['uploaded'] : null;
-    $this->uploadedString = isset($data['uploadedString']) ? $data['uploadedString'] : null;
-    $this->screenshotLarge = isset($data['screenshotLarge']) ? $data['screenshotLarge'] : null;
-    $this->screenshotSmall = isset($data['screenshotSmall']) ? $data['screenshotSmall'] : null;
-    $this->projectUrl = isset($data['projectUrl']) ? $data['projectUrl'] : null;
-    $this->downloadUrl = isset($data['downloadUrl']) ? $data['downloadUrl'] : null;
+    $this->uploaded_string = isset($data['uploaded_string']) ? $data['uploaded_string'] : null;
+    $this->screenshot_large = isset($data['screenshot_large']) ? $data['screenshot_large'] : null;
+    $this->screenshot_small = isset($data['screenshot_small']) ? $data['screenshot_small'] : null;
+    $this->project_url = isset($data['project_url']) ? $data['project_url'] : null;
+    $this->download_url = isset($data['download_url']) ? $data['download_url'] : null;
     $this->filesize = isset($data['filesize']) ? $data['filesize'] : null;
   }
 
@@ -421,111 +421,111 @@ class Project
   }
 
   /**
-   * Gets uploadedString.
+   * Gets uploaded_string.
    *
    * @return string|null
    */
   public function getUploadedString()
   {
-    return $this->uploadedString;
+    return $this->uploaded_string;
   }
 
   /**
-   * Sets uploadedString.
+   * Sets uploaded_string.
    *
    * @return $this
    */
-  public function setUploadedString(string $uploadedString = null)
+  public function setUploadedString(string $uploaded_string = null)
   {
-    $this->uploadedString = $uploadedString;
+    $this->uploaded_string = $uploaded_string;
 
     return $this;
   }
 
   /**
-   * Gets screenshotLarge.
+   * Gets screenshot_large.
    *
    * @return string|null
    */
   public function getScreenshotLarge()
   {
-    return $this->screenshotLarge;
+    return $this->screenshot_large;
   }
 
   /**
-   * Sets screenshotLarge.
+   * Sets screenshot_large.
    *
    * @return $this
    */
-  public function setScreenshotLarge(string $screenshotLarge = null)
+  public function setScreenshotLarge(string $screenshot_large = null)
   {
-    $this->screenshotLarge = $screenshotLarge;
+    $this->screenshot_large = $screenshot_large;
 
     return $this;
   }
 
   /**
-   * Gets screenshotSmall.
+   * Gets screenshot_small.
    *
    * @return string|null
    */
   public function getScreenshotSmall()
   {
-    return $this->screenshotSmall;
+    return $this->screenshot_small;
   }
 
   /**
-   * Sets screenshotSmall.
+   * Sets screenshot_small.
    *
    * @return $this
    */
-  public function setScreenshotSmall(string $screenshotSmall = null)
+  public function setScreenshotSmall(string $screenshot_small = null)
   {
-    $this->screenshotSmall = $screenshotSmall;
+    $this->screenshot_small = $screenshot_small;
 
     return $this;
   }
 
   /**
-   * Gets projectUrl.
+   * Gets project_url.
    *
    * @return string|null
    */
   public function getProjectUrl()
   {
-    return $this->projectUrl;
+    return $this->project_url;
   }
 
   /**
-   * Sets projectUrl.
+   * Sets project_url.
    *
    * @return $this
    */
-  public function setProjectUrl(string $projectUrl = null)
+  public function setProjectUrl(string $project_url = null)
   {
-    $this->projectUrl = $projectUrl;
+    $this->project_url = $project_url;
 
     return $this;
   }
 
   /**
-   * Gets downloadUrl.
+   * Gets download_url.
    *
    * @return string|null
    */
   public function getDownloadUrl()
   {
-    return $this->downloadUrl;
+    return $this->download_url;
   }
 
   /**
-   * Sets downloadUrl.
+   * Sets download_url.
    *
    * @return $this
    */
-  public function setDownloadUrl(string $downloadUrl = null)
+  public function setDownloadUrl(string $download_url = null)
   {
-    $this->downloadUrl = $downloadUrl;
+    $this->download_url = $download_url;
 
     return $this;
   }

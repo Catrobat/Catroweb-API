@@ -82,7 +82,7 @@ class UserController extends Controller
     // Handle authentication
 
     // Read out all input parameter values into variables
-    $acceptLanguage = $request->headers->get('Accept-Language');
+    $accept_language = $request->headers->get('Accept-Language');
     $register = $request->getContent();
 
     // Use the default value if no value was provided
@@ -91,7 +91,7 @@ class UserController extends Controller
     try
     {
       $register = $this->deserialize($register, 'OpenAPI\Server\Model\Register', $inputFormat);
-      $acceptLanguage = $this->deserialize($acceptLanguage, 'string', 'string');
+      $accept_language = $this->deserialize($accept_language, 'string', 'string');
     }
     catch (SerializerRuntimeException $exception)
     {
@@ -110,7 +110,7 @@ class UserController extends Controller
     }
     $asserts = [];
     $asserts[] = new Assert\Type('string');
-    $response = $this->validate($acceptLanguage, $asserts);
+    $response = $this->validate($accept_language, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -123,7 +123,7 @@ class UserController extends Controller
       // Make the call to the business logic
       $responseCode = 200;
       $responseHeaders = [];
-      $result = $handler->userPost($register, $acceptLanguage, $responseCode, $responseHeaders);
+      $result = $handler->userPost($register, $accept_language, $responseCode, $responseHeaders);
 
       // Find default response message
       $message = 'User successfully registered.';

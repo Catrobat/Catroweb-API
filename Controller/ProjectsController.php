@@ -54,12 +54,12 @@ class ProjectsController extends Controller
    *
    * Get the information of a project
    *
-   * @param Request $request   the Symfony request to handle
-   * @param mixed   $projectId
+   * @param Request $request    the Symfony request to handle
+   * @param mixed   $project_id
    *
    * @return Response the Symfony response
    */
-  public function projectProjectIdGetAction(Request $request, $projectId)
+  public function projectProjectIdGetAction(Request $request, $project_id)
   {
     // Figure out what data format to return to the client
     $produces = ['application/json'];
@@ -80,7 +80,7 @@ class ProjectsController extends Controller
     // Deserialize the input values that needs it
     try
     {
-      $projectId = $this->deserialize($projectId, 'string', 'string');
+      $project_id = $this->deserialize($project_id, 'string', 'string');
     }
     catch (SerializerRuntimeException $exception)
     {
@@ -91,7 +91,7 @@ class ProjectsController extends Controller
     $asserts = [];
     $asserts[] = new Assert\NotNull();
     $asserts[] = new Assert\Type('string');
-    $response = $this->validate($projectId, $asserts);
+    $response = $this->validate($project_id, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -104,7 +104,7 @@ class ProjectsController extends Controller
       // Make the call to the business logic
       $responseCode = 200;
       $responseHeaders = [];
-      $result = $handler->projectProjectIdGet($projectId, $responseCode, $responseHeaders);
+      $result = $handler->projectProjectIdGet($project_id, $responseCode, $responseHeaders);
 
       // Find default response message
       $message = 'Valid request';
@@ -168,7 +168,7 @@ class ProjectsController extends Controller
 
     // Read out all input parameter values into variables
     $platform = $request->query->get('platform');
-    $maxVersion = $request->query->get('maxVersion');
+    $max_version = $request->query->get('max_version');
     $limit = $request->query->get('limit');
     $offset = $request->query->get('offset');
     $flavor = $request->query->get('flavor');
@@ -179,7 +179,7 @@ class ProjectsController extends Controller
     try
     {
       $platform = $this->deserialize($platform, 'string', 'string');
-      $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
+      $max_version = $this->deserialize($max_version, 'string', 'string');
       $limit = $this->deserialize($limit, 'int', 'string');
       $offset = $this->deserialize($offset, 'int', 'string');
       $flavor = $this->deserialize($flavor, 'string', 'string');
@@ -201,7 +201,7 @@ class ProjectsController extends Controller
     $asserts = [];
     $asserts[] = new Assert\Type('string');
     $asserts[] = new Assert\Regex('/[0-9]\\.[0-9]{3}/');
-    $response = $this->validate($maxVersion, $asserts);
+    $response = $this->validate($max_version, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -238,7 +238,7 @@ class ProjectsController extends Controller
       // Make the call to the business logic
       $responseCode = 200;
       $responseHeaders = [];
-      $result = $handler->projectsFeaturedGet($platform, $maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
+      $result = $handler->projectsFeaturedGet($platform, $max_version, $limit, $offset, $flavor, $responseCode, $responseHeaders);
 
       // Find default response message
       $message = 'OK';
@@ -298,21 +298,21 @@ class ProjectsController extends Controller
     // Handle authentication
 
     // Read out all input parameter values into variables
-    $projectType = $request->query->get('projectType');
-    $maxVersion = $request->query->get('maxVersion');
+    $project_type = $request->query->get('project_type');
+    $max_version = $request->query->get('max_version');
     $limit = $request->query->get('limit');
     $offset = $request->query->get('offset');
     $flavor = $request->query->get('flavor');
-    $acceptLanguage = $request->headers->get('Accept-Language');
+    $accept_language = $request->headers->get('Accept-Language');
 
     // Use the default value if no value was provided
 
     // Deserialize the input values that needs it
     try
     {
-      $projectType = $this->deserialize($projectType, 'string', 'string');
-      $acceptLanguage = $this->deserialize($acceptLanguage, 'string', 'string');
-      $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
+      $project_type = $this->deserialize($project_type, 'string', 'string');
+      $accept_language = $this->deserialize($accept_language, 'string', 'string');
+      $max_version = $this->deserialize($max_version, 'string', 'string');
       $limit = $this->deserialize($limit, 'int', 'string');
       $offset = $this->deserialize($offset, 'int', 'string');
       $flavor = $this->deserialize($flavor, 'string', 'string');
@@ -327,14 +327,14 @@ class ProjectsController extends Controller
     $asserts[] = new Assert\NotNull();
     $asserts[] = new Assert\Choice(['recent', 'random', 'mostViewed', 'mostDownloaded', 'example', 'scratch']);
     $asserts[] = new Assert\Type('string');
-    $response = $this->validate($projectType, $asserts);
+    $response = $this->validate($project_type, $asserts);
     if ($response instanceof Response)
     {
       return $response;
     }
     $asserts = [];
     $asserts[] = new Assert\Type('string');
-    $response = $this->validate($acceptLanguage, $asserts);
+    $response = $this->validate($accept_language, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -342,7 +342,7 @@ class ProjectsController extends Controller
     $asserts = [];
     $asserts[] = new Assert\Type('string');
     $asserts[] = new Assert\Regex('/[0-9]\\.[0-9]{3}/');
-    $response = $this->validate($maxVersion, $asserts);
+    $response = $this->validate($max_version, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -379,7 +379,7 @@ class ProjectsController extends Controller
       // Make the call to the business logic
       $responseCode = 200;
       $responseHeaders = [];
-      $result = $handler->projectsGet($projectType, $acceptLanguage, $maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
+      $result = $handler->projectsGet($project_type, $accept_language, $max_version, $limit, $offset, $flavor, $responseCode, $responseHeaders);
 
       // Find default response message
       $message = 'OK';
@@ -442,7 +442,7 @@ class ProjectsController extends Controller
     $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
-    $acceptLanguage = $request->headers->get('Accept-Language');
+    $accept_language = $request->headers->get('Accept-Language');
     $checksum = $request->request->get('checksum');
     $file = $request->files->get('file');
     $flavor = $request->request->get('flavor');
@@ -454,7 +454,7 @@ class ProjectsController extends Controller
     // Deserialize the input values that needs it
     try
     {
-      $acceptLanguage = $this->deserialize($acceptLanguage, 'string', 'string');
+      $accept_language = $this->deserialize($accept_language, 'string', 'string');
       $checksum = $this->deserialize($checksum, 'string', 'string');
       $flavor = $this->deserialize($flavor, 'string', 'string');
       $tags = $this->deserialize($tags, 'array<csv,string>', 'string');
@@ -468,7 +468,7 @@ class ProjectsController extends Controller
     // Validate the input values
     $asserts = [];
     $asserts[] = new Assert\Type('string');
-    $response = $this->validate($acceptLanguage, $asserts);
+    $response = $this->validate($accept_language, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -525,7 +525,7 @@ class ProjectsController extends Controller
       // Make the call to the business logic
       $responseCode = 200;
       $responseHeaders = [];
-      $result = $handler->projectsPost($acceptLanguage, $checksum, $file, $flavor, $tags, $private, $responseCode, $responseHeaders);
+      $result = $handler->projectsPost($accept_language, $checksum, $file, $flavor, $tags, $private, $responseCode, $responseHeaders);
 
       // Find default response message
       $message = 'Project successfully uploaded.';
@@ -588,8 +588,8 @@ class ProjectsController extends Controller
     // Handle authentication
 
     // Read out all input parameter values into variables
-    $queryString = $request->query->get('queryString');
-    $maxVersion = $request->query->get('maxVersion');
+    $query_string = $request->query->get('query_string');
+    $max_version = $request->query->get('max_version');
     $limit = $request->query->get('limit');
     $offset = $request->query->get('offset');
     $flavor = $request->query->get('flavor');
@@ -599,8 +599,8 @@ class ProjectsController extends Controller
     // Deserialize the input values that needs it
     try
     {
-      $queryString = $this->deserialize($queryString, 'string', 'string');
-      $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
+      $query_string = $this->deserialize($query_string, 'string', 'string');
+      $max_version = $this->deserialize($max_version, 'string', 'string');
       $limit = $this->deserialize($limit, 'int', 'string');
       $offset = $this->deserialize($offset, 'int', 'string');
       $flavor = $this->deserialize($flavor, 'string', 'string');
@@ -614,7 +614,7 @@ class ProjectsController extends Controller
     $asserts = [];
     $asserts[] = new Assert\NotNull();
     $asserts[] = new Assert\Type('string');
-    $response = $this->validate($queryString, $asserts);
+    $response = $this->validate($query_string, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -622,7 +622,7 @@ class ProjectsController extends Controller
     $asserts = [];
     $asserts[] = new Assert\Type('string');
     $asserts[] = new Assert\Regex('/[0-9]\\.[0-9]{3}/');
-    $response = $this->validate($maxVersion, $asserts);
+    $response = $this->validate($max_version, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -659,7 +659,7 @@ class ProjectsController extends Controller
       // Make the call to the business logic
       $responseCode = 200;
       $responseHeaders = [];
-      $result = $handler->projectsSearchGet($queryString, $maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
+      $result = $handler->projectsSearchGet($query_string, $max_version, $limit, $offset, $flavor, $responseCode, $responseHeaders);
 
       // Find default response message
       $message = 'OK';
@@ -722,7 +722,7 @@ class ProjectsController extends Controller
     $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
-    $maxVersion = $request->query->get('maxVersion');
+    $max_version = $request->query->get('max_version');
     $limit = $request->query->get('limit');
     $offset = $request->query->get('offset');
     $flavor = $request->query->get('flavor');
@@ -732,7 +732,7 @@ class ProjectsController extends Controller
     // Deserialize the input values that needs it
     try
     {
-      $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
+      $max_version = $this->deserialize($max_version, 'string', 'string');
       $limit = $this->deserialize($limit, 'int', 'string');
       $offset = $this->deserialize($offset, 'int', 'string');
       $flavor = $this->deserialize($flavor, 'string', 'string');
@@ -746,7 +746,7 @@ class ProjectsController extends Controller
     $asserts = [];
     $asserts[] = new Assert\Type('string');
     $asserts[] = new Assert\Regex('/[0-9]\\.[0-9]{3}/');
-    $response = $this->validate($maxVersion, $asserts);
+    $response = $this->validate($max_version, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -786,7 +786,7 @@ class ProjectsController extends Controller
       // Make the call to the business logic
       $responseCode = 200;
       $responseHeaders = [];
-      $result = $handler->projectsUserGet($maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
+      $result = $handler->projectsUserGet($max_version, $limit, $offset, $flavor, $responseCode, $responseHeaders);
 
       // Find default response message
       $message = 'Valid request';
@@ -831,11 +831,11 @@ class ProjectsController extends Controller
    * Get the public projects of a given user
    *
    * @param Request $request the Symfony request to handle
-   * @param mixed   $userId
+   * @param mixed   $user_id
    *
    * @return Response the Symfony response
    */
-  public function projectsUserUserIdGetAction(Request $request, $userId)
+  public function projectsUserUserIdGetAction(Request $request, $user_id)
   {
     // Figure out what data format to return to the client
     $produces = ['application/json'];
@@ -850,7 +850,7 @@ class ProjectsController extends Controller
     // Handle authentication
 
     // Read out all input parameter values into variables
-    $maxVersion = $request->query->get('maxVersion');
+    $max_version = $request->query->get('max_version');
     $limit = $request->query->get('limit');
     $offset = $request->query->get('offset');
     $flavor = $request->query->get('flavor');
@@ -860,8 +860,8 @@ class ProjectsController extends Controller
     // Deserialize the input values that needs it
     try
     {
-      $userId = $this->deserialize($userId, 'string', 'string');
-      $maxVersion = $this->deserialize($maxVersion, 'string', 'string');
+      $user_id = $this->deserialize($user_id, 'string', 'string');
+      $max_version = $this->deserialize($max_version, 'string', 'string');
       $limit = $this->deserialize($limit, 'int', 'string');
       $offset = $this->deserialize($offset, 'int', 'string');
       $flavor = $this->deserialize($flavor, 'string', 'string');
@@ -875,7 +875,7 @@ class ProjectsController extends Controller
     $asserts = [];
     $asserts[] = new Assert\NotNull();
     $asserts[] = new Assert\Type('string');
-    $response = $this->validate($userId, $asserts);
+    $response = $this->validate($user_id, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -883,7 +883,7 @@ class ProjectsController extends Controller
     $asserts = [];
     $asserts[] = new Assert\Type('string');
     $asserts[] = new Assert\Regex('/[0-9]\\.[0-9]{3}/');
-    $response = $this->validate($maxVersion, $asserts);
+    $response = $this->validate($max_version, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -920,7 +920,7 @@ class ProjectsController extends Controller
       // Make the call to the business logic
       $responseCode = 200;
       $responseHeaders = [];
-      $result = $handler->projectsUserUserIdGet($userId, $maxVersion, $limit, $offset, $flavor, $responseCode, $responseHeaders);
+      $result = $handler->projectsUserUserIdGet($user_id, $max_version, $limit, $offset, $flavor, $responseCode, $responseHeaders);
 
       // Find default response message
       $message = 'Valid request';

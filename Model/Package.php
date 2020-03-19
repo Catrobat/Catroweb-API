@@ -105,7 +105,7 @@ class Package
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $downloadUrl;
+  protected $download_url;
 
   /**
    * Constructor.
@@ -121,7 +121,7 @@ class Package
     $this->category = isset($data['category']) ? $data['category'] : null;
     $this->author = isset($data['author']) ? $data['author'] : null;
     $this->extension = isset($data['extension']) ? $data['extension'] : null;
-    $this->downloadUrl = isset($data['downloadUrl']) ? $data['downloadUrl'] : null;
+    $this->download_url = isset($data['download_url']) ? $data['download_url'] : null;
   }
 
   /**
@@ -281,23 +281,23 @@ class Package
   }
 
   /**
-   * Gets downloadUrl.
+   * Gets download_url.
    *
    * @return string|null
    */
   public function getDownloadUrl()
   {
-    return $this->downloadUrl;
+    return $this->download_url;
   }
 
   /**
-   * Sets downloadUrl.
+   * Sets download_url.
    *
    * @return $this
    */
-  public function setDownloadUrl(string $downloadUrl = null)
+  public function setDownloadUrl(string $download_url = null)
   {
-    $this->downloadUrl = $downloadUrl;
+    $this->download_url = $download_url;
 
     return $this;
   }

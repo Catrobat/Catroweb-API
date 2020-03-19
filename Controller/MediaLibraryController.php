@@ -54,12 +54,12 @@ class MediaLibraryController extends Controller
    *
    * Get media-library asstes of a named package
    *
-   * @param Request $request     the Symfony request to handle
-   * @param mixed   $packageName
+   * @param Request $request      the Symfony request to handle
+   * @param mixed   $package_name
    *
    * @return Response the Symfony response
    */
-  public function mediaPackagePackageNameGetAction(Request $request, $packageName)
+  public function mediaPackagePackageNameGetAction(Request $request, $package_name)
   {
     // Figure out what data format to return to the client
     $produces = ['application/json'];
@@ -80,7 +80,7 @@ class MediaLibraryController extends Controller
     // Deserialize the input values that needs it
     try
     {
-      $packageName = $this->deserialize($packageName, 'string', 'string');
+      $package_name = $this->deserialize($package_name, 'string', 'string');
     }
     catch (SerializerRuntimeException $exception)
     {
@@ -91,7 +91,7 @@ class MediaLibraryController extends Controller
     $asserts = [];
     $asserts[] = new Assert\NotNull();
     $asserts[] = new Assert\Type('string');
-    $response = $this->validate($packageName, $asserts);
+    $response = $this->validate($package_name, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -104,7 +104,7 @@ class MediaLibraryController extends Controller
       // Make the call to the business logic
       $responseCode = 200;
       $responseHeaders = [];
-      $result = $handler->mediaPackagePackageNameGet($packageName, $responseCode, $responseHeaders);
+      $result = $handler->mediaPackagePackageNameGet($package_name, $responseCode, $responseHeaders);
 
       // Find default response message
       $message = 'OK';

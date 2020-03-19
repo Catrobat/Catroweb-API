@@ -54,13 +54,13 @@ interface ProjectsApiInterface
    *
    * Get the information of a project
    *
-   * @param string $projectId       UUID/ID of any given project (required)
+   * @param string $project_id      UUID/ID of any given project (required)
    * @param int    $responseCode    The HTTP response code to return
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    *
    * @return OpenAPI\Server\Model\Project
    */
-  public function projectProjectIdGet(string $projectId, &$responseCode, array &$responseHeaders);
+  public function projectProjectIdGet(string $project_id, &$responseCode, array &$responseHeaders);
 
   /**
    * Operation projectsFeaturedGet.
@@ -68,7 +68,7 @@ interface ProjectsApiInterface
    * Get the currently featured projects
    *
    * @param string $platform        (optional)
-   * @param string $maxVersion      (optional)
+   * @param string $max_version     (optional)
    * @param int    $limit           (optional, default to 20)
    * @param int    $offset          (optional, default to 0)
    * @param string $flavor          (optional)
@@ -77,16 +77,16 @@ interface ProjectsApiInterface
    *
    * @return OpenAPI\Server\Model\FeaturedProject[]
    */
-  public function projectsFeaturedGet(string $platform = null, string $maxVersion = null, int $limit = 20, int $offset = 0, string $flavor = null, &$responseCode, array &$responseHeaders);
+  public function projectsFeaturedGet(string $platform = null, string $max_version = null, int $limit = 20, int $offset = 0, string $flavor = null, &$responseCode, array &$responseHeaders);
 
   /**
    * Operation projectsGet.
    *
    * Get projects
    *
-   * @param string $projectType     (required)
-   * @param string $acceptLanguage  (optional)
-   * @param string $maxVersion      (optional)
+   * @param string $project_type    (required)
+   * @param string $accept_language (optional)
+   * @param string $max_version     (optional)
    * @param int    $limit           (optional, default to 20)
    * @param int    $offset          (optional, default to 0)
    * @param string $flavor          (optional)
@@ -95,14 +95,14 @@ interface ProjectsApiInterface
    *
    * @return OpenAPI\Server\Model\Project[]
    */
-  public function projectsGet(string $projectType, string $acceptLanguage = null, string $maxVersion = null, int $limit = 20, int $offset = 0, string $flavor = null, &$responseCode, array &$responseHeaders);
+  public function projectsGet(string $project_type, string $accept_language = null, string $max_version = null, int $limit = 20, int $offset = 0, string $flavor = null, &$responseCode, array &$responseHeaders);
 
   /**
    * Operation projectsPost.
    *
    * Upload a catrobat project
    *
-   * @param string       $acceptLanguage  (optional)
+   * @param string       $accept_language (optional)
    * @param string       $checksum        Checksum of the *.catrobat file (optional)
    * @param UploadedFile $file            *.catrobat file (optional)
    * @param string       $flavor          Available flavors (optional)
@@ -113,15 +113,15 @@ interface ProjectsApiInterface
    *
    * @return array
    */
-  public function projectsPost(string $acceptLanguage = null, string $checksum = null, UploadedFile $file = null, string $flavor = null, array $tags = null, bool $private = false, &$responseCode, array &$responseHeaders);
+  public function projectsPost(string $accept_language = null, string $checksum = null, UploadedFile $file = null, string $flavor = null, array $tags = null, bool $private = false, &$responseCode, array &$responseHeaders);
 
   /**
    * Operation projectsSearchGet.
    *
    * Search for projects associated with a keywords
    *
-   * @param string $queryString     (required)
-   * @param string $maxVersion      (optional)
+   * @param string $query_string    (required)
+   * @param string $max_version     (optional)
    * @param int    $limit           (optional, default to 20)
    * @param int    $offset          (optional, default to 0)
    * @param string $flavor          (optional)
@@ -130,14 +130,14 @@ interface ProjectsApiInterface
    *
    * @return OpenAPI\Server\Model\Project[]
    */
-  public function projectsSearchGet(string $queryString, string $maxVersion = null, int $limit = 20, int $offset = 0, string $flavor = null, &$responseCode, array &$responseHeaders);
+  public function projectsSearchGet(string $query_string, string $max_version = null, int $limit = 20, int $offset = 0, string $flavor = null, &$responseCode, array &$responseHeaders);
 
   /**
    * Operation projectsUserGet.
    *
    * Get the projects of the logged in user
    *
-   * @param string $maxVersion      (optional)
+   * @param string $max_version     (optional)
    * @param int    $limit           (optional, default to 20)
    * @param int    $offset          (optional, default to 0)
    * @param string $flavor          (optional)
@@ -146,15 +146,15 @@ interface ProjectsApiInterface
    *
    * @return OpenAPI\Server\Model\Project[]
    */
-  public function projectsUserGet(string $maxVersion = null, int $limit = 20, int $offset = 0, string $flavor = null, &$responseCode, array &$responseHeaders);
+  public function projectsUserGet(string $max_version = null, int $limit = 20, int $offset = 0, string $flavor = null, &$responseCode, array &$responseHeaders);
 
   /**
    * Operation projectsUserUserIdGet.
    *
    * Get the public projects of a given user
    *
-   * @param string $userId          UUID/ID of any given user (required)
-   * @param string $maxVersion      (optional)
+   * @param string $user_id         UUID/ID of any given user (required)
+   * @param string $max_version     (optional)
    * @param int    $limit           (optional, default to 20)
    * @param int    $offset          (optional, default to 0)
    * @param string $flavor          (optional)
@@ -163,5 +163,5 @@ interface ProjectsApiInterface
    *
    * @return OpenAPI\Server\Model\Project[]
    */
-  public function projectsUserUserIdGet(string $userId, string $maxVersion = null, int $limit = 20, int $offset = 0, string $flavor = null, &$responseCode, array &$responseHeaders);
+  public function projectsUserUserIdGet(string $user_id, string $max_version = null, int $limit = 20, int $offset = 0, string $flavor = null, &$responseCode, array &$responseHeaders);
 }

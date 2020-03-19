@@ -26,7 +26,7 @@ services:
 ```
 
 ## **projectProjectIdGet**
-> OpenAPI\Server\Model\Project projectProjectIdGet($projectId)
+> OpenAPI\Server\Model\Project projectProjectIdGet($project_id)
 
 Get the information of a project
 
@@ -47,7 +47,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectProjectIdGet
      */
-    public function projectProjectIdGet(string $projectId)
+    public function projectProjectIdGet(string $project_id)
     {
         // Implement the operation ...
     }
@@ -60,7 +60,7 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string**| UUID/ID of any given project |
+ **project_id** | **string**| UUID/ID of any given project |
 
 ### Return type
 
@@ -78,7 +78,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsFeaturedGet**
-> OpenAPI\Server\Model\FeaturedProject projectsFeaturedGet($platform, $maxVersion, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\FeaturedProject projectsFeaturedGet($platform, $max_version, $limit, $offset, $flavor)
 
 Get the currently featured projects
 
@@ -99,7 +99,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsFeaturedGet
      */
-    public function projectsFeaturedGet(string $platform = null, string $maxVersion = null, int $limit = '20', int $offset = '0', string $flavor = null)
+    public function projectsFeaturedGet(string $platform = null, string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -113,7 +113,7 @@ class ProjectsApi implements ProjectsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **platform** | **string**|  | [optional]
- **maxVersion** | **string**|  | [optional]
+ **max_version** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
  **flavor** | **string**|  | [optional]
@@ -134,7 +134,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsGet**
-> OpenAPI\Server\Model\Project projectsGet($projectType, $acceptLanguage, $maxVersion, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\Project projectsGet($project_type, $accept_language, $max_version, $limit, $offset, $flavor)
 
 Get projects
 
@@ -155,7 +155,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsGet
      */
-    public function projectsGet(string $projectType, string $acceptLanguage = null, string $maxVersion = null, int $limit = '20', int $offset = '0', string $flavor = null)
+    public function projectsGet(string $project_type, string $accept_language = null, string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -168,9 +168,9 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectType** | **string**|  |
- **acceptLanguage** | **string**|  | [optional]
- **maxVersion** | **string**|  | [optional]
+ **project_type** | **string**|  |
+ **accept_language** | **string**|  | [optional]
+ **max_version** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
  **flavor** | **string**|  | [optional]
@@ -191,7 +191,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsPost**
-> array projectsPost($acceptLanguage, $checksum, $file, $flavor, $tags, $private)
+> array projectsPost($accept_language, $checksum, $file, $flavor, $tags, $private)
 
 Upload a catrobat project
 
@@ -212,7 +212,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsPost
      */
-    public function projectsPost(string $acceptLanguage = null, string $checksum = null, UploadedFile $file = null, string $flavor = null, array $tags = null, bool $private = 'false')
+    public function projectsPost(string $accept_language = null, string $checksum = null, UploadedFile $file = null, string $flavor = null, array $tags = null, bool $private = 'false')
     {
         // Implement the operation ...
     }
@@ -225,7 +225,7 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **acceptLanguage** | **string**|  | [optional]
+ **accept_language** | **string**|  | [optional]
  **checksum** | **string**| Checksum of the *.catrobat file | [optional]
  **file** | **UploadedFile****UploadedFile**| *.catrobat file | [optional]
  **flavor** | **string**| Available flavors | [optional]
@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsSearchGet**
-> OpenAPI\Server\Model\Project projectsSearchGet($queryString, $maxVersion, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\Project projectsSearchGet($query_string, $max_version, $limit, $offset, $flavor)
 
 Search for projects associated with a keywords
 
@@ -269,7 +269,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsSearchGet
      */
-    public function projectsSearchGet(string $queryString, string $maxVersion = null, int $limit = '20', int $offset = '0', string $flavor = null)
+    public function projectsSearchGet(string $query_string, string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -282,8 +282,8 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **queryString** | **string**|  |
- **maxVersion** | **string**|  | [optional]
+ **query_string** | **string**|  |
+ **max_version** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
  **flavor** | **string**|  | [optional]
@@ -304,7 +304,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsUserGet**
-> OpenAPI\Server\Model\Project projectsUserGet($maxVersion, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\Project projectsUserGet($max_version, $limit, $offset, $flavor)
 
 Get the projects of the logged in user
 
@@ -325,7 +325,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUserGet
      */
-    public function projectsUserGet(string $maxVersion = null, int $limit = '20', int $offset = '0', string $flavor = null)
+    public function projectsUserGet(string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -338,7 +338,7 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **maxVersion** | **string**|  | [optional]
+ **max_version** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
  **flavor** | **string**|  | [optional]
@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsUserUserIdGet**
-> OpenAPI\Server\Model\Project projectsUserUserIdGet($userId, $maxVersion, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\Project projectsUserUserIdGet($user_id, $max_version, $limit, $offset, $flavor)
 
 Get the public projects of a given user
 
@@ -380,7 +380,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUserUserIdGet
      */
-    public function projectsUserUserIdGet(string $userId, string $maxVersion = null, int $limit = '20', int $offset = '0', string $flavor = null)
+    public function projectsUserUserIdGet(string $user_id, string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -393,8 +393,8 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **string**| UUID/ID of any given user |
- **maxVersion** | **string**|  | [optional]
+ **user_id** | **string**| UUID/ID of any given user |
+ **max_version** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
  **flavor** | **string**|  | [optional]

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**dryRun** | **bool** | Indicates wether sent user should be verified or registerd. | [optional] [default to false]
+**dry_run** | **bool** | Indicates wether sent user should be verified or registerd. | [optional] [default to false]
 **email** | **string** | EMail of the user. | [optional] 
 **username** | **string** | Name of the user | minLength: 3 |maxLength: 180 | [optional] 
 **password** | **string** | A secure password | minLength: 6 | maxLength: 4096 | [optional] 

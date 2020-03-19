@@ -20,7 +20,7 @@ services:
 ```
 
 ## **userPost**
-> array userPost($register, $acceptLanguage)
+> array userPost($register, $accept_language)
 
 Register
 
@@ -43,7 +43,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userPost
      */
-    public function userPost(Register $register, string $acceptLanguage = null)
+    public function userPost(Register $register, string $accept_language = null)
     {
         // Implement the operation ...
     }
@@ -57,7 +57,7 @@ class UserApi implements UserApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **register** | [**OpenAPI\Server\Model\Register**](../Model/Register.md)|  |
- **acceptLanguage** | **string**|  | [optional]
+ **accept_language** | **string**|  | [optional]
 
 ### Return type
 

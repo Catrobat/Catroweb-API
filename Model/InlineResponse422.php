@@ -1,6 +1,6 @@
 <?php
 /**
- * Register.
+ * InlineResponse422.
  *
  * PHP version 5
  *
@@ -34,47 +34,34 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the Register model.
+ * Class representing the InlineResponse422 model.
  *
  * @author  OpenAPI Generator team
  */
-class Register
+class InlineResponse422
 {
   /**
-   * Indicates wether sent user should be verified or registerd.
-   *
-   * @var bool|null
-   * @SerializedName("dry-run")
-   * @Assert\Type("bool")
-   * @Type("bool")
-   */
-  protected $dry_run;
-
-  /**
-   * EMail of the user.
-   *
    * @var string|null
    * @SerializedName("email")
+   * @Assert\Choice({ "EMail already in use", "Not a valid EMail", "EMail missing" })
    * @Assert\Type("string")
    * @Type("string")
    */
   protected $email;
 
   /**
-   * Name of the user | minLength: 3 |maxLength: 180.
-   *
    * @var string|null
    * @SerializedName("username")
+   * @Assert\Choice({ "Username too short", "Username too long", "Username already in use", "Username missing" })
    * @Assert\Type("string")
    * @Type("string")
    */
   protected $username;
 
   /**
-   * A secure password | minLength: 6 | maxLength: 4096.
-   *
    * @var string|null
    * @SerializedName("password")
+   * @Assert\Choice({ "Password too short", "Password too long", "Password contains invalid chars", "Password missing" })
    * @Assert\Type("string")
    * @Type("string")
    */
@@ -87,34 +74,9 @@ class Register
    */
   public function __construct(array $data = null)
   {
-    $this->dry_run = isset($data['dry_run']) ? $data['dry_run'] : false;
     $this->email = isset($data['email']) ? $data['email'] : null;
     $this->username = isset($data['username']) ? $data['username'] : null;
     $this->password = isset($data['password']) ? $data['password'] : null;
-  }
-
-  /**
-   * Gets dry_run.
-   *
-   * @return bool|null
-   */
-  public function isDryRun()
-  {
-    return $this->dry_run;
-  }
-
-  /**
-   * Sets dry_run.
-   *
-   * @param bool|null $dry_run indicates wether sent user should be verified or registerd
-   *
-   * @return $this
-   */
-  public function setDryRun(bool $dry_run = null)
-  {
-    $this->dry_run = $dry_run;
-
-    return $this;
   }
 
   /**
@@ -129,8 +91,6 @@ class Register
 
   /**
    * Sets email.
-   *
-   * @param string|null $email EMail of the user
    *
    * @return $this
    */
@@ -154,8 +114,6 @@ class Register
   /**
    * Sets username.
    *
-   * @param string|null $username Name of the user | minLength: 3 |maxLength: 180
-   *
    * @return $this
    */
   public function setUsername(string $username = null)
@@ -177,8 +135,6 @@ class Register
 
   /**
    * Sets password.
-   *
-   * @param string|null $password A secure password | minLength: 6 | maxLength: 4096
    *
    * @return $this
    */
