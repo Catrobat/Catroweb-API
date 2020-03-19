@@ -1,6 +1,6 @@
 <?php
 /**
- * Login.
+ * InlineResponse422.
  *
  * PHP version 5
  *
@@ -34,41 +34,36 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the Login model.
+ * Class representing the InlineResponse422 model.
  *
  * @author  OpenAPI Generator team
  */
-class Login
+class InlineResponse422
 {
   /**
-   * Name of the user.
-   *
    * @var string|null
-   * @SerializedName("username")
+   * @SerializedName("email")
+   * @Assert\Choice({ "EMail already in use", "Not a valid EMail", "EMail missing" })
    * @Assert\Type("string")
    * @Type("string")
-   * @Assert\Length(
-   *     max=180
-   * )
-   * @Assert\Length(
-   *     min=3
-   * )
+   */
+  protected $email;
+
+  /**
+   * @var string|null
+   * @SerializedName("username")
+   * @Assert\Choice({ "Username too short", "Username too long", "Username already in use", "Username missing" })
+   * @Assert\Type("string")
+   * @Type("string")
    */
   protected $username;
 
   /**
-   * A secure password.
-   *
    * @var string|null
    * @SerializedName("password")
+   * @Assert\Choice({ "Password too short", "Password too long", "Password contains invalid chars", "Password missing" })
    * @Assert\Type("string")
    * @Type("string")
-   * @Assert\Length(
-   *     max=4096
-   * )
-   * @Assert\Length(
-   *     min=6
-   * )
    */
   protected $password;
 
@@ -79,8 +74,31 @@ class Login
    */
   public function __construct(array $data = null)
   {
+    $this->email = isset($data['email']) ? $data['email'] : null;
     $this->username = isset($data['username']) ? $data['username'] : null;
     $this->password = isset($data['password']) ? $data['password'] : null;
+  }
+
+  /**
+   * Gets email.
+   *
+   * @return string|null
+   */
+  public function getEmail()
+  {
+    return $this->email;
+  }
+
+  /**
+   * Sets email.
+   *
+   * @return $this
+   */
+  public function setEmail(string $email = null)
+  {
+    $this->email = $email;
+
+    return $this;
   }
 
   /**
@@ -95,8 +113,6 @@ class Login
 
   /**
    * Sets username.
-   *
-   * @param string|null $username Name of the user
    *
    * @return $this
    */
@@ -119,8 +135,6 @@ class Login
 
   /**
    * Sets password.
-   *
-   * @param string|null $password a secure password
    *
    * @return $this
    */

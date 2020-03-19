@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.26"
+  version: "v1.0.27"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
@@ -474,6 +474,10 @@ components:
           example: pocketcode
         tags:
           $ref: '#/components/schemas/Tags'
+        private:
+          type: boolean
+          description: Indicates whether a program should be private from the start.
+          default: false
     UploadError:
       type: object
       properties:

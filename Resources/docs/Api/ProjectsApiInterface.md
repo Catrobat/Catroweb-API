@@ -191,7 +191,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsPost**
-> array projectsPost($acceptLanguage, $checksum, $file, $flavor, $tags)
+> array projectsPost($acceptLanguage, $checksum, $file, $flavor, $tags, $private)
 
 Upload a catrobat project
 
@@ -212,7 +212,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsPost
      */
-    public function projectsPost(string $acceptLanguage = null, string $checksum = null, UploadedFile $file = null, string $flavor = null, array $tags = null)
+    public function projectsPost(string $acceptLanguage = null, string $checksum = null, UploadedFile $file = null, string $flavor = null, array $tags = null, bool $private = 'false')
     {
         // Implement the operation ...
     }
@@ -230,6 +230,7 @@ Name | Type | Description  | Notes
  **file** | **UploadedFile****UploadedFile**| *.catrobat file | [optional]
  **flavor** | **string**| Available flavors | [optional]
  **tags** | [**string**](../Model/string.md)| Available tags | [optional]
+ **private** | **bool**| Indicates whether a program should be private from the start. | [optional] [default to false]
 
 ### Return type
 
