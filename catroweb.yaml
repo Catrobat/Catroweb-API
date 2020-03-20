@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.28"
+  version: "v1.0.29"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
@@ -141,6 +141,7 @@ paths:
           name: package_name
           schema:
             type: string
+            pattern: '^[a-zA-Z0-9-_]+$'
             example: looks
           required: true
           description: Name of the package
@@ -305,6 +306,7 @@ paths:
           name: user_id
           schema:
             type: string
+            pattern: '^[a-zA-Z0-9-]+$'
             example: 1234abcd-12ab-12ab-12ab-123456abcdef
           required: true
           description: UUID/ID of any given user
@@ -335,6 +337,7 @@ paths:
           name: project_id
           schema:
             type: string
+            pattern: '^[a-zA-Z0-9-]+$'
             example: 1234abcd-12ab-12ab-12ab-123456abcdef
           required: true
           description: UUID/ID of any given project
