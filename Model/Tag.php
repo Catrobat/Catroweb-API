@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenAPIServerBundle.
+ * Tag.
  *
  * PHP version 5
  *
@@ -27,25 +27,23 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Server;
-
-use OpenAPI\Server\DependencyInjection\Compiler\OpenAPIServerApiPass;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+namespace OpenAPI\Server\Model;
 
 /**
- * OpenAPIServerBundle Class Doc Comment.
+ * Class representing the Tag model.
  *
- * @category Class
+ * Available tags
  *
- * @author   OpenAPI Generator team
- *
- * @see     https://github.com/openapitools/openapi-generator
+ * @author  OpenAPI Generator team
  */
-class OpenAPIServerBundle extends Bundle
+class Tag
 {
-  public function build(ContainerBuilder $container)
+  /**
+   * Constructor.
+   *
+   * @param mixed[] $data Associated array of property values initializing the model
+   */
+  public function __construct(array $data = null)
   {
-    $container->addCompilerPass(new OpenAPIServerApiPass());
   }
 }
