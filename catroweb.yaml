@@ -2,8 +2,8 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.31"
-  termsOfService: 'http://example.com/terms/'
+  version: "v1.0.32"
+  termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
     url: 'https://share.catrob.at'
@@ -124,6 +124,7 @@ paths:
                       - Username too long
                       - Username already in use
                       - Username missing
+                      - Username must not be email
                   password:
                     type: string
                     enum:
