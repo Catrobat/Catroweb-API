@@ -1,10 +1,10 @@
-# Upload
+# InlineObject
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**checksum** | **string** | Checksum of the *.catrobat file | [optional] 
-**file** | [**UploadedFile**](UploadedFile.md) | *.catrobat file | [optional] 
+**checksum** | **string** | Checksum of the *.catrobat file | 
+**file** | [**UploadedFile**](UploadedFile.md) | *.catrobat file | 
 **flavor** | **string** | Available flavors | [optional] 
 **tag1** | **string** | Available tags | [optional] 
 **tag2** | **string** | Available tags | [optional] 

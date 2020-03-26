@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.30"
+  version: "v1.0.31"
   termsOfService: 'http://example.com/terms/'
   contact:
     name: Catrobat
@@ -13,11 +13,11 @@ servers:
     description: Main production server
   - url: 'https://web-test.catrob.at/api'
     description: WEB test server (might be unstabe)
-  - url: 'https://catblocks.test.catrob.at'
+  - url: 'https://catblocks.test.catrob.at/api'
     description: Catblocks test server
-  - url: 'https://android.test.catrob.at'
+  - url: 'https://android.test.catrob.at/api'
     description: Android test server
-  - url: 'http://localhost'
+  - url: 'http://localhost/api'
     description: Local test server (postman help)
 tags:
   - name: Authentication
@@ -187,11 +187,72 @@ paths:
         - Projects
       summary: Upload a catrobat project
       requestBody:
-        required: true
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Upload'
+              type: object
+              properties:
+                checksum:
+                  type: string
+                  example: asd
+                  description: Checksum of the *.catrobat file
+                file:
+                  type: string
+                  format: binary
+                  description: '*.catrobat file'
+                flavor:
+                  type: string
+                  description: Available flavors
+                  enum:
+                    - pocketcode
+                    - pocketalice
+                    - pocketgalaxy
+                    - pocketphiro
+                    - phirocode
+                    - luna
+                    - create@school
+                    - embroidery
+                    - arduino
+                  example: pocketcode
+                tag1:
+                  type: string
+                  description: Available tags
+                  enum:
+                    - Game
+                    - Animation
+                    - Story
+                    - Music
+                    - Art
+                    - Experimental
+                    - Tutorial
+                tag2:
+                  type: string
+                  description: Available tags
+                  enum:
+                    - Game
+                    - Animation
+                    - Story
+                    - Music
+                    - Art
+                    - Experimental
+                    - Tutorial
+                tag3:
+                  type: string
+                  description: Available tags
+                  enum:
+                    - Game
+                    - Animation
+                    - Story
+                    - Music
+                    - Art
+                    - Experimental
+                    - Tutorial
+                private:
+                  type: boolean
+                  description: Indicates whether a program should be private from the start.
+              required:
+                - checksum
+                - file
       responses:
         '201':
           description: Project successfully uploaded.
@@ -226,10 +287,10 @@ paths:
           in: query
           schema:
             type: string
-            description: 'Indication what platform should be used (iOs, android)'
+            description: 'Indication what platform should be used (ios, android)'
             enum:
               - android
-              - iOS
+              - ios
         - $ref: '#/components/parameters/MaxVersion'
         - $ref: '#/components/parameters/Limit'
         - $ref: '#/components/parameters/Offset'
@@ -251,7 +312,7 @@ paths:
         - Projects
       summary: Search for projects associated with a keywords
       parameters:
-        - name: queryString
+        - name: query_string
           in: query
           required: true
           schema:
@@ -387,15 +448,15 @@ components:
         description: ISO_639-1 or ISO_3166-1 locale of the user. Defaults internally to en
     ProjectType:
       in: query
-      name: projectType
+      name: project_type
       required: true
       schema:
         type: string
         enum:
           - recent
           - random
-          - mostViewed
-          - mostDownloaded
+          - most_viewed
+          - most_downloaded
           - example
           - scratch
     Flavor:
@@ -415,7 +476,7 @@ components:
           - embroidery
           - arduino
     MaxVersion:
-      name: maxVersion
+      name: max_version
       in: query
       schema:
         $ref: '#/components/schemas/MaxVersion'
@@ -511,7 +572,6 @@ components:
         private:
           type: boolean
           description: Indicates whether a program should be private from the start.
-          default: false
     UploadError:
       type: object
       properties:
@@ -671,11 +731,11 @@ components:
           type: string
           example: >-
             https://share.catrob.at/resources/thumbnails/screen_1234abcd-12ab-12ab-12ab-123456abcdef.png
-        projectUrl:
+        project_url:
           type: string
           example: >-
             https://share.catrob.at/pocketcode/project/1234abcd-12ab-12ab-12ab-123456abcdef
-        downloadUrl:
+        download_url:
           type: string
           example: >-
             https://share.catrob.at/pocketcode/download/1234abcd-12ab-12ab-12ab-123456abcdef.catrobat

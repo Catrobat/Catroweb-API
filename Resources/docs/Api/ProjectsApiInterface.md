@@ -191,7 +191,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsPost**
-> array projectsPost($accept_language, $checksum, $file, $flavor, $tag1, $tag2, $tag3, $private)
+> array projectsPost($checksum, $file, $accept_language, $flavor, $tag1, $tag2, $tag3, $private)
 
 Upload a catrobat project
 
@@ -212,7 +212,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsPost
      */
-    public function projectsPost(string $accept_language = null, string $checksum = null, UploadedFile $file = null, string $flavor = null, string $tag1 = null, string $tag2 = null, string $tag3 = null, bool $private = 'false')
+    public function projectsPost(string $checksum, UploadedFile $file, string $accept_language = null, string $flavor = null, string $tag1 = null, string $tag2 = null, string $tag3 = null, bool $private = null)
     {
         // Implement the operation ...
     }
@@ -225,14 +225,14 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **checksum** | **string**| Checksum of the *.catrobat file |
+ **file** | **UploadedFile****UploadedFile**| *.catrobat file |
  **accept_language** | **string**|  | [optional]
- **checksum** | **string**| Checksum of the *.catrobat file | [optional]
- **file** | **UploadedFile****UploadedFile**| *.catrobat file | [optional]
  **flavor** | **string**| Available flavors | [optional]
  **tag1** | **string**| Available tags | [optional]
  **tag2** | **string**| Available tags | [optional]
  **tag3** | **string**| Available tags | [optional]
- **private** | **bool**| Indicates whether a program should be private from the start. | [optional] [default to false]
+ **private** | **bool**| Indicates whether a program should be private from the start. | [optional]
 
 ### Return type
 

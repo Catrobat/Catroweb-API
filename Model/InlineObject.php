@@ -1,6 +1,6 @@
 <?php
 /**
- * Upload.
+ * InlineObject.
  *
  * PHP version 5
  *
@@ -34,17 +34,18 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the Upload model.
+ * Class representing the InlineObject model.
  *
  * @author  OpenAPI Generator team
  */
-class Upload
+class InlineObject
 {
   /**
    * Checksum of the *.catrobat file.
    *
-   * @var string|null
+   * @var string
    * @SerializedName("checksum")
+   * @Assert\NotNull
    * @Assert\Type("string")
    * @Type("string")
    */
@@ -53,8 +54,9 @@ class Upload
   /**
    * *.catrobat file.
    *
-   * @var UploadedFile|null
+   * @var UploadedFile
    * @SerializedName("file")
+   * @Assert\NotNull
    * @Assert\Type("UploadedFile")
    * @Type("UploadedFile")
    */
@@ -133,7 +135,7 @@ class Upload
   /**
    * Gets checksum.
    *
-   * @return string|null
+   * @return string
    */
   public function getChecksum()
   {
@@ -143,11 +145,11 @@ class Upload
   /**
    * Sets checksum.
    *
-   * @param string|null $checksum Checksum of the *.catrobat file
+   * @param string $checksum Checksum of the *.catrobat file
    *
    * @return $this
    */
-  public function setChecksum(string $checksum = null)
+  public function setChecksum(string $checksum)
   {
     $this->checksum = $checksum;
 
@@ -157,7 +159,7 @@ class Upload
   /**
    * Gets file.
    *
-   * @return UploadedFile|null
+   * @return UploadedFile
    */
   public function getFile()
   {
@@ -167,11 +169,11 @@ class Upload
   /**
    * Sets file.
    *
-   * @param UploadedFile|null $file *.catrobat file
+   * @param UploadedFile $file *.catrobat file
    *
    * @return $this
    */
-  public function setFile(UploadedFile $file = null)
+  public function setFile(UploadedFile $file)
   {
     $this->file = $file;
 
