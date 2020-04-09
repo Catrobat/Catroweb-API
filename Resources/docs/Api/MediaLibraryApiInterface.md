@@ -4,6 +4,7 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**mediaFileSearchGet**](MediaLibraryApiInterface.md#mediaFileSearchGet) | **GET** /media/file/search | Search for mediafiles associated with keywords
 [**mediaPackagePackageNameGet**](MediaLibraryApiInterface.md#mediaPackagePackageNameGet) | **GET** /media/package/{package_name} | Get media-library asstes of a named package
 
 
@@ -19,8 +20,60 @@ services:
     # ...
 ```
 
+## **mediaFileSearchGet**
+> OpenAPI\Server\Model\MediaFile mediaFileSearchGet($query_string)
+
+Search for mediafiles associated with keywords
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/MediaLibraryApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\MediaLibraryApiInterface;
+
+class MediaLibraryApi implements MediaLibraryApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of MediaLibraryApiInterface#mediaFileSearchGet
+     */
+    public function mediaFileSearchGet(string $query_string)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **query_string** | **string**|  |
+
+### Return type
+
+[**OpenAPI\Server\Model\MediaFile**](../Model/MediaFile.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 ## **mediaPackagePackageNameGet**
-> OpenAPI\Server\Model\Package mediaPackagePackageNameGet($package_name)
+> OpenAPI\Server\Model\MediaFile mediaPackagePackageNameGet($package_name)
 
 Get media-library asstes of a named package
 
@@ -58,7 +111,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\Package**](../Model/Package.md)
+[**OpenAPI\Server\Model\MediaFile**](../Model/MediaFile.md)
 
 ### Authorization
 

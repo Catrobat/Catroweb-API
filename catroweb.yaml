@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.33"
+  version: "v1.0.34"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -152,7 +152,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Packages'
+                $ref: '#/components/schemas/MediaFiles'
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -383,6 +383,28 @@ paths:
           $ref: '#/components/responses/NotFound'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+  '/media/file/search':
+    get:
+      tags:
+        - Media Library
+      summary: Search for mediafiles associated with keywords
+      parameters:
+        - name: query_string
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFiles'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
 components:
   responses:
     OK:
@@ -479,67 +501,6 @@ components:
     JWTToken:
       type: string
       example: xxxxx.yyyyy.zzzzz
-    Upload:
-      type: object
-      properties:
-        checksum:
-          type: string
-          example: asd
-          description: Checksum of the *.catrobat file
-        file:
-          type: string
-          format: binary
-          description: '*.catrobat file'
-        flavor:
-          type: string
-          description: Available flavors
-          enum:
-            - pocketcode
-            - pocketalice
-            - pocketgalaxy
-            - pocketphiro
-            - phirocode
-            - luna
-            - create@school
-            - embroidery
-            - arduino
-          example: pocketcode
-        tag1:
-          type: string
-          description: Available tags
-          enum:
-            - Game
-            - Animation
-            - Story
-            - Music
-            - Art
-            - Experimental
-            - Tutorial
-        tag2:
-          type: string
-          description: Available tags
-          enum:
-            - Game
-            - Animation
-            - Story
-            - Music
-            - Art
-            - Experimental
-            - Tutorial
-        tag3:
-          type: string
-          description: Available tags
-          enum:
-            - Game
-            - Animation
-            - Story
-            - Music
-            - Art
-            - Experimental
-            - Tutorial
-        private:
-          type: boolean
-          description: Indicates whether a program should be private from the start.
     UploadError:
       type: object
       properties:
@@ -579,11 +540,11 @@ components:
       properties:
         token:
           $ref: '#/components/schemas/JWTToken'
-    Packages:
+    MediaFiles:
       type: array
       items:
-        $ref: '#/components/schemas/Package'
-    Package:
+        $ref: '#/components/schemas/MediaFile'
+    MediaFile:
       type: object
       properties:
         id:
