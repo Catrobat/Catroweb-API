@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.32"
+  version: "v1.0.33"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -215,39 +215,6 @@ paths:
                     - embroidery
                     - arduino
                   example: pocketcode
-                tag1:
-                  type: string
-                  description: Available tags
-                  enum:
-                    - Game
-                    - Animation
-                    - Story
-                    - Music
-                    - Art
-                    - Experimental
-                    - Tutorial
-                tag2:
-                  type: string
-                  description: Available tags
-                  enum:
-                    - Game
-                    - Animation
-                    - Story
-                    - Music
-                    - Art
-                    - Experimental
-                    - Tutorial
-                tag3:
-                  type: string
-                  description: Available tags
-                  enum:
-                    - Game
-                    - Animation
-                    - Story
-                    - Music
-                    - Art
-                    - Experimental
-                    - Tutorial
                 private:
                   type: boolean
                   description: Indicates whether a program should be private from the start.
