@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.34"
+  version: "v1.0.35"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -394,6 +394,7 @@ paths:
           required: true
           schema:
             type: string
+        - $ref: '#/components/parameters/Flavor'
       responses:
         '200':
           description: OK

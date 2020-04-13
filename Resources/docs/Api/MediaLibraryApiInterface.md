@@ -21,7 +21,7 @@ services:
 ```
 
 ## **mediaFileSearchGet**
-> OpenAPI\Server\Model\MediaFile mediaFileSearchGet($query_string)
+> OpenAPI\Server\Model\MediaFile mediaFileSearchGet($query_string, $flavor)
 
 Search for mediafiles associated with keywords
 
@@ -42,7 +42,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaFileSearchGet
      */
-    public function mediaFileSearchGet(string $query_string)
+    public function mediaFileSearchGet(string $query_string, string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -56,6 +56,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query_string** | **string**|  |
+ **flavor** | **string**|  | [optional]
 
 ### Return type
 
