@@ -21,7 +21,7 @@ services:
 ```
 
 ## **mediaFileSearchGet**
-> OpenAPI\Server\Model\MediaFile mediaFileSearchGet($query_string, $flavor)
+> OpenAPI\Server\Model\MediaFiles mediaFileSearchGet($query_string, $flavor, $limit, $offset)
 
 Search for mediafiles associated with keywords
 
@@ -42,7 +42,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaFileSearchGet
      */
-    public function mediaFileSearchGet(string $query_string, string $flavor = null)
+    public function mediaFileSearchGet(string $query_string, string $flavor = null, int $limit = '20', int $offset = '0')
     {
         // Implement the operation ...
     }
@@ -57,10 +57,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query_string** | **string**|  |
  **flavor** | **string**|  | [optional]
+ **limit** | **int**|  | [optional] [default to 20]
+ **offset** | **int**|  | [optional] [default to 0]
 
 ### Return type
 
-[**OpenAPI\Server\Model\MediaFile**](../Model/MediaFile.md)
+[**OpenAPI\Server\Model\MediaFiles**](../Model/MediaFiles.md)
 
 ### Authorization
 
@@ -74,7 +76,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **mediaPackagePackageNameGet**
-> OpenAPI\Server\Model\MediaFile mediaPackagePackageNameGet($package_name)
+> OpenAPI\Server\Model\MediaFiles mediaPackagePackageNameGet($package_name, $limit, $offset)
 
 Get media-library asstes of a named package
 
@@ -95,7 +97,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaPackagePackageNameGet
      */
-    public function mediaPackagePackageNameGet(string $package_name)
+    public function mediaPackagePackageNameGet(string $package_name, int $limit = '20', int $offset = '0')
     {
         // Implement the operation ...
     }
@@ -109,10 +111,12 @@ class MediaLibraryApi implements MediaLibraryApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **package_name** | **string**| Name of the package |
+ **limit** | **int**|  | [optional] [default to 20]
+ **offset** | **int**|  | [optional] [default to 0]
 
 ### Return type
 
-[**OpenAPI\Server\Model\MediaFile**](../Model/MediaFile.md)
+[**OpenAPI\Server\Model\MediaFiles**](../Model/MediaFiles.md)
 
 ### Authorization
 

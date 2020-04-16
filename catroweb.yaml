@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.35"
+  version: "v1.0.36"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -146,6 +146,8 @@ paths:
             example: looks
           required: true
           description: Name of the package
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
       responses:
         '200':
           description: OK
@@ -395,6 +397,8 @@ paths:
           schema:
             type: string
         - $ref: '#/components/parameters/Flavor'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
       responses:
         '200':
           description: OK
@@ -542,9 +546,15 @@ components:
         token:
           $ref: '#/components/schemas/JWTToken'
     MediaFiles:
-      type: array
-      items:
-        $ref: '#/components/schemas/MediaFile'
+      type: object
+      properties:
+        media_files:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaFile'
+        total_results:
+          type: integer
+          description: Amount of overall files of this query not limited by limit or offset
     MediaFile:
       type: object
       properties:
@@ -584,9 +594,15 @@ components:
           type: string
           example: 'https://share.catrob.at/pocketcode/download-media/983.png'
     FeaturedProjects:
-      type: array
-      items:
-        $ref: '#/components/schemas/FeaturedProject'
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturedProject'
+        total_results:
+          type: integer
+          description: Amount of overall projects of this query not limited by limit or offset
     FeaturedProject:
       type: object
       properties:
@@ -603,9 +619,15 @@ components:
           type: string
           example: 'https://share.catrob.at/resources/featured/featured_999.png'
     Projects:
-      type: array
-      items:
-        $ref: '#/components/schemas/Project'
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        total_results:
+          type: integer
+          description: Amount of overall projects of this query not limited by limit or offset
     Project:
       type: object
       properties:
