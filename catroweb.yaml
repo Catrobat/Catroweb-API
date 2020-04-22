@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.36"
+  version: "v1.0.37"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -399,6 +399,12 @@ paths:
         - $ref: '#/components/parameters/Flavor'
         - $ref: '#/components/parameters/Limit'
         - $ref: '#/components/parameters/Offset'
+        - name: package_name
+          description: In which package you want to search (for more fine tuned results)
+          example: looks
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: OK
