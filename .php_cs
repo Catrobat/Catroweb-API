@@ -1,18 +1,19 @@
 <?php
 
-return Symfony\CS\Config::create()
-    ->level(Symfony\CS\FixerInterface::PSR2_LEVEL)
-    ->setUsingCache(true)
-    ->fixers(
-        [
-            'ordered_use',
-            'phpdoc_order',
-            'short_array_syntax',
-            'strict',
-            'strict_param'
-        ]
-    )
-    ->finder(
-        Symfony\CS\Finder\DefaultFinder::create()
-            ->in(__DIR__)
-    );
+$finder = PhpCsFixer\Finder::create()
+  ->exclude('vendor')
+  ->in(__DIR__);
+
+return PhpCsFixer\Config::create()
+  ->setRules([
+    '@PSR2'                 => true,
+    '@PhpCsFixer'           => true,
+    '@Symfony'              => true,
+    '@DoctrineAnnotation'   => true,
+    'strict_param'          => true,
+    'braces'                => ['position_after_control_structures'   => 'next',
+                                'position_after_anonymous_constructs' => 'next']
+  ])
+  ->setFinder($finder)
+  ->setUsingCache(false)
+  ->setIndent('  ');

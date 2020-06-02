@@ -4,7 +4,10 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**mediaPackagePackageNameGet**](MediaLibraryApiInterface.md#mediaPackagePackageNameGet) | **GET** /media/package/{packageName} | Get media-library asstes of a named package
+[**mediaFileIdGet**](MediaLibraryApiInterface.md#mediaFileIdGet) | **GET** /media/file/{id} | Get the information of a specific media file
+[**mediaFilesGet**](MediaLibraryApiInterface.md#mediaFilesGet) | **GET** /media/files | Get *all* content of the media library.
+[**mediaFilesSearchGet**](MediaLibraryApiInterface.md#mediaFilesSearchGet) | **GET** /media/files/search | Search for mediafiles associated with keywords
+[**mediaPackagePackageNameGet**](MediaLibraryApiInterface.md#mediaPackagePackageNameGet) | **GET** /media/package/{package_name} | Get media-library asstes of a named package
 
 
 ## Service Declaration
@@ -19,8 +22,170 @@ services:
     # ...
 ```
 
+## **mediaFileIdGet**
+> OpenAPI\Server\Model\MediaFile mediaFileIdGet($id)
+
+Get the information of a specific media file
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/MediaLibraryApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\MediaLibraryApiInterface;
+
+class MediaLibraryApi implements MediaLibraryApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of MediaLibraryApiInterface#mediaFileIdGet
+     */
+    public function mediaFileIdGet(int $id)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| ID of any given media file |
+
+### Return type
+
+[**OpenAPI\Server\Model\MediaFile**](../Model/MediaFile.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+## **mediaFilesGet**
+> OpenAPI\Server\Model\MediaFiles mediaFilesGet($limit, $offset, $flavor)
+
+Get *all* content of the media library.
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/MediaLibraryApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\MediaLibraryApiInterface;
+
+class MediaLibraryApi implements MediaLibraryApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of MediaLibraryApiInterface#mediaFilesGet
+     */
+    public function mediaFilesGet(int $limit = '20', int $offset = '0', string $flavor = null)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **int**|  | [optional] [default to 20]
+ **offset** | **int**|  | [optional] [default to 0]
+ **flavor** | **string**|  | [optional]
+
+### Return type
+
+[**OpenAPI\Server\Model\MediaFiles**](../Model/MediaFiles.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+## **mediaFilesSearchGet**
+> OpenAPI\Server\Model\MediaFiles mediaFilesSearchGet($query_string, $flavor, $limit, $offset, $package_name)
+
+Search for mediafiles associated with keywords
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/MediaLibraryApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\MediaLibraryApiInterface;
+
+class MediaLibraryApi implements MediaLibraryApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of MediaLibraryApiInterface#mediaFilesSearchGet
+     */
+    public function mediaFilesSearchGet(string $query_string, string $flavor = null, int $limit = '20', int $offset = '0', string $package_name = null)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **query_string** | **string**|  |
+ **flavor** | **string**|  | [optional]
+ **limit** | **int**|  | [optional] [default to 20]
+ **offset** | **int**|  | [optional] [default to 0]
+ **package_name** | **string**| In which package you want to search (for more fine tuned results) | [optional]
+
+### Return type
+
+[**OpenAPI\Server\Model\MediaFiles**](../Model/MediaFiles.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 ## **mediaPackagePackageNameGet**
-> OpenAPI\Server\Model\Package mediaPackagePackageNameGet($packageName)
+> OpenAPI\Server\Model\MediaFiles mediaPackagePackageNameGet($package_name, $limit, $offset)
 
 Get media-library asstes of a named package
 
@@ -41,7 +206,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaPackagePackageNameGet
      */
-    public function mediaPackagePackageNameGet($packageName)
+    public function mediaPackagePackageNameGet(string $package_name, int $limit = '20', int $offset = '0')
     {
         // Implement the operation ...
     }
@@ -54,11 +219,13 @@ class MediaLibraryApi implements MediaLibraryApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **packageName** | **string**| Name of the package |
+ **package_name** | **string**| Name of the package |
+ **limit** | **int**|  | [optional] [default to 20]
+ **offset** | **int**|  | [optional] [default to 0]
 
 ### Return type
 
-[**OpenAPI\Server\Model\Package**](../Model/Package.md)
+[**OpenAPI\Server\Model\MediaFiles**](../Model/MediaFiles.md)
 
 ### Authorization
 

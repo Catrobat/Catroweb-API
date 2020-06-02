@@ -2,103 +2,53 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: 1.0.0
-  termsOfService: 'http://example.com/terms/'
+  version: "v1.0.39"
+  termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
-    name: 'Catrobat'
+    name: Catrobat
     url: 'https://share.catrob.at'
-    email: 'webmaster@catrobat.org'
+    email: webmaster@catrobat.org
 servers:
   - url: 'https://share.catrob.at/api'
     description: Main production server
   - url: 'https://web-test.catrob.at/api'
     description: WEB test server (might be unstabe)
-  - url: 'android/test/server.at'
-    description: ANDROID test server
+  - url: 'https://catblocks.test.catrob.at/api'
+    description: Catblocks test server
+  - url: 'https://android.test.catrob.at/api'
+    description: Android test server
+  - url: 'http://localhost/api'
+    description: Local test server (postman help)
 tags:
-  - name: 'Security'
-    description: 'Everything related to security'
-  - name: 'Projects'
-    description: 'Everything related to projects'
-  - name: 'Media Library'
-    description: 'Everything related to the media library'
+  - name: Authentication
+    description: Everything related to authenticating to our project
+  - name: User
+    description: Everything related to users
+  - name: Projects
+    description: Everything related to projects
+  - name: Media Library
+    description: Everything related to the media library
 paths:
-  /checkToken:
-    post:
+  /authentication:
+    get:
+      security:
+        - PandaAuth: []
       tags:
-        - Security
-      summary: Checking token
-      description: Endpoint giving information if a given token is valid or not
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BodyUsername'
-      parameters:
-        - name: token
-          in: header
-          required: true
-          schema:
-            $ref: '#/components/schemas/Token'
+        - Authentication
+      summary: Check Token
+      description: Checks if a token is valid or expired.
       responses:
         '200':
-          description: OK - Sent token is valid for the given username
+          $ref: '#/components/responses/OK'
         '401':
-          description: NOT OK - Authentification required (missing token/username)
-        '403':
-          description: NOT OK - Invalid credentials
-  /registerUser:
+          $ref: '#/components/responses/UnauthorizedError'
     post:
+      security:
+        - PandaAuth: []
       tags:
-        - Security
-      summary: Registering a user
-      description: Registering a user. For validation purposes look at the /registerValidation API
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Register'
-      responses:
-        '200':
-          description: OK - User registerd
-        '400':
-          description: NOT OK - Malformed request body
-        '422':
-          description: NOT OK - Unable to process entity
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIValidationResponse'
-  /registerValidation:
-    post:
-      tags:
-        - Security
-      summary: Validation of user input in the registration process
-      description: Registering a user. 0 - 4 possible values can be given.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Register'
-      responses:
-        '200':
-          description: OK - User validated
-        '400':
-          description: NOT OK - Malformed request body
-        '422':
-          description: NOT OK - Unable to process entity
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIValidationResponse'
-  /login:
-    post:
-      tags:
-        - Security
-      summary: Login a user
+        - Authentication
+      summary: Login
+      description: Returns an JWT token which provides authorization.
       requestBody:
         required: true
         content:
@@ -111,57 +61,165 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoginResponseOK'
+                $ref: '#/components/schemas/JWTTokenResponse'
         '400':
-          description: NOT OK - Bad request
+          $ref: '#/components/responses/BadRequest'
         '401':
-          description: NOT OK - Authorization required
-  /logout:
+          $ref: '#/components/responses/InvalidCredentials'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+  /user:
+    parameters:
+      - $ref: '#/components/parameters/Locale'
     post:
       tags:
-        - Security
-      summary: Log out a user
+        - User
+      summary: Register
+      description: Register a user
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Logout'
-      parameters:
-        - name: token
-          in: header
-          required: true
-          schema:
-            $ref: '#/components/schemas/Token'
+              $ref: '#/components/schemas/Register'
       responses:
-        '200':
-          description: OK
-        '400':
-          description: NOT OK - Bad Request
-        '401':
-          description: NOT OK - Invalid credentials
-  /media/package/{packageName}:
-    get:
-      tags:
-        - Media Library
-      summary: Get media-library asstes of a named package
-      parameters:
-        - in: path
-          name: packageName
-          schema:
-            type: string
-            example: looks
-          required: true
-          description: Name of the package
-      responses:
-        '200':
-          description: Valid request
+        201:
+          description: User successfully registered.
+          headers:
+            Location:
+              schema:
+                type: string
+                example: >-
+                  https://share.catrob.at/app/user/3ef85528-5f08-11ea-a2ae-000c292a0f49
+              description: Resource location on server
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Packages'
-        '404':
-          description: Package name not found
+                type: object
+        204:
+          description: 'Dry-run successful (No Validation Error)'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        415:
+          $ref: '#/components/responses/UnsupportedMediaType'
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    enum:
+                      - EMail already in use
+                      - Not a valid EMail
+                      - EMail missing
+                  username:
+                    type: string
+                    enum:
+                      - Username too short
+                      - Username too long
+                      - Username already in use
+                      - Username missing
+                      - Username must not be email
+                  password:
+                    type: string
+                    enum:
+                      - Password too short
+                      - Password too long
+                      - Password contains invalid chars
+                      - Password missing
+  /projects:
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+    get:
+      tags:
+        - Projects
+      summary: Get projects
+      parameters:
+        - $ref: '#/components/parameters/ProjectType'
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+    post:
+      security:
+        - PandaAuth: []
+      tags:
+        - Projects
+      summary: Upload a catrobat project
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                checksum:
+                  type: string
+                  example: asd
+                  description: Checksum of the *.catrobat file
+                file:
+                  type: string
+                  format: binary
+                  description: '*.catrobat file'
+                flavor:
+                  type: string
+                  description: Available flavors
+                  enum:
+                    - pocketcode
+                    - pocketalice
+                    - pocketgalaxy
+                    - pocketphiro
+                    - phirocode
+                    - luna
+                    - create@school
+                    - embroidery
+                    - arduino
+                  example: pocketcode
+                private:
+                  type: boolean
+                  description: Indicates whether a program should be private from the start.
+              required:
+                - checksum
+                - file
+      responses:
+        '201':
+          description: Project successfully uploaded.
+          headers:
+            Location:
+              schema:
+                type: string
+                example: >-
+                  https://share.catrob.at/app/project/63768cf1-5f07-11ea-a2ae-000c292a0f49
+              description: Resource location on server
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '422':
+          description: Upload Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadError'
   /projects/featured:
     get:
       tags:
@@ -172,22 +230,14 @@ paths:
           in: query
           schema:
             type: string
-            description: Indication what platform should be used (iOs, android)
-            enum: [android, iOS]
-            example:
+            description: 'Indication what platform should be used (ios, android)'
+            enum:
               - android
-        - name: max_version
-          in: query
-          schema:
-            type: string
-            description: 'Only shows project with a smaller version number than max version'
-            example: '0.999'
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            description: 'How many featured projects should be shown at maximum'
-            example: 3
+              - ios
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
       responses:
         '200':
           description: OK
@@ -195,169 +245,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FeaturedProjects'
-  /projects/recent:
-    get:
-      tags:
-        - Projects
-      summary: Get the most recent programs
-      parameters:
-        - name: max_version
-          in: query
-          schema:
-            type: string
-            description: 'Only shows project with a smaller version number than max version'
-            example: '0.999'
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            description: 'How many featured projects should be shown at maximum'
-            default: 20
-            example: 10
-        - name: offset
-          in: query
-          schema:
-            type: integer
-            description: 'How many featured projects should be shown at maximum'
-            default: 0
-            example: 10
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Projects'
-  /projects/mostDownloaded:
-    get:
-      tags:
-        - Projects
-      summary: Get the most downloaded projects
-      parameters:
-        - name: max_version
-          in: query
-          schema:
-            type: string
-            description: 'Only shows project with a smaller version number than max version'
-            example: '0.999'
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 20
-            example: 10
-        - name: offset
-          in: query
-          schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 0
-            example: 10
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Projects'
-  /projects/mostViewed:
-    get:
-      tags:
-        - Projects
-      summary: Get the most viewed projects
-      parameters:
-        - name: max_version
-          in: query
-          schema:
-            type: string
-            description: 'Only shows project with a smaller version number than max version'
-            example: '0.999'
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 20
-            example: 10
-        - name: offset
-          in: query
-          schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 0
-            example: 10
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Projects'
-  /projects/randomPrograms:
-    get:
-      tags:
-        - Projects
-      summary: Get random projects
-      parameters:
-        - name: max_version
-          in: query
-          schema:
-            type: string
-            description: 'Only shows project with a smaller version number than max version'
-            example: '0.999'
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 20
-            example: 10
-        - name: offset
-          in: query
-          schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 0
-            example: 10
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Projects'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
   /projects/search:
     get:
       tags:
         - Projects
-      summary: Search for programs associated with a keywords
+      summary: Search for projects associated with a keywords
       parameters:
-        - name: query
+        - name: query_string
           in: query
+          required: true
           schema:
             type: string
-            description: String to be searched
-        - name: max_version
-          in: query
-          schema:
-            type: string
-            description: 'Only shows project with a smaller version number than max version'
-            example: '0.999'
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            description: 'How many projects should be shown at maximum'
-            default: 20
-            example: 10
-        - name: offset
-          in: query
-          schema:
-            type: integer
-            description: 'How many projects should be given in addition to limit'
-            default: 0
-            example: 10
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
       responses:
         '200':
           description: OK
@@ -365,64 +271,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Projects'
-  /projects/upload:
-    post:
-      tags:
-        - Projects
-      summary: Upload a catrobat program
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Upload'
-      parameters:
-        - name: token
-          in: header
-          required: true
-          schema:
-            $ref: '#/components/schemas/Token'
-      responses:
-        '200':
-          description: Upload OK
         '400':
-          description: Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UploadError'
-  /projects/public/user/{user_id}:
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+  /projects/user/:
     get:
+      security:
+        - PandaAuth: []
       tags:
         - Projects
-      summary: Get the public projects of a user, if user is logged in, then there will also be private programs
+      summary: Get the projects of the logged in user
       parameters:
-        - in: path
-          name: user_id
-          schema:
-            type: string
-            example: '1234abcd-12ab-12ab-12ab-123456abcdef'
-          required: true
-          description: UUID/ID of any given user
-        - name: max_version
-          in: query
-          description: 'Only shows project with a smaller version number than max version'
-          schema:
-            type: string
-            example: '0.999'
-        - name: limit
-          in: query
-          description: 'How many projects should be shown at maximum'
-          schema:
-            type: integer
-            default: 20
-            example: 10
-        - name: offset
-          in: query
-          description: 'How many projects should be shown at maximum'
-          schema:
-            type: integer
-            example: 10
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
       responses:
         '200':
           description: Valid request
@@ -430,57 +294,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Projects'
-        '404':
-          description: User does not exist
-  /projects/user/{user_id}:
-    get:
-      tags:
-        - Projects
-      summary: Get the projects of a user, if user is logged in, then there will also be private programs
-      parameters:
-        - in: path
-          name: user_id
-          schema:
-            type: string
-            example: '1234abcd-12ab-12ab-12ab-123456abcdef'
-          required: true
-          description: UUID/ID of any given user
-        - name: max_version
-          in: query
-          description: 'Only shows project with a smaller version number than max version'
-          schema:
-            type: string
-            example: '0.999'
-        - name: limit
-          in: query
-          description: 'How many projects should be shown at maximum'
-          schema:
-            type: integer
-            default: 20
-            example: 10
-        - name: offset
-          in: query
-          description: 'How many projects should be shown at maximum'
-          schema:
-            type: integer
-            example: 10
-        - name: token
-          in: header
-          required: true
-          schema:
-            $ref: '#/components/schemas/Token'
-      responses:
-        '200':
-          description: Valid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Projects'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
-          description: NOT OK - Authentification required
-        '403':
-          description: NOT OK - Invalid credentials
-  /project/{project_id}:
+          $ref: '#/components/responses/UnauthorizedError'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+  '/projects/user/{user_id}':
+    get:
+      tags:
+        - Projects
+      summary: Get the public projects of a given user
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: string
+            pattern: '^[a-zA-Z0-9-]+$'
+            example: 1234abcd-12ab-12ab-12ab-123456abcdef
+          required: true
+          description: UUID/ID of any given user
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        '200':
+          description: Valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+  '/project/{project_id}':
     get:
       tags:
         - Projects
@@ -490,7 +341,8 @@ paths:
           name: project_id
           schema:
             type: string
-            example: '1234abcd-12ab-12ab-12ab-123456abcdef'
+            pattern: '^[a-zA-Z0-9-]+$'
+            example: 1234abcd-12ab-12ab-12ab-123456abcdef
           required: true
           description: UUID/ID of any given project
       responses:
@@ -500,117 +352,320 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '404':
-          description: Project does not exist
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+  '/media/package/{package_name}':
+    get:
+      tags:
+        - Media Library
+      summary: Get media-library asstes of a named package
+      parameters:
+        - in: path
+          name: package_name
+          schema:
+            type: string
+            pattern: '^[a-zA-Z0-9-_]+$'
+            example: looks
+          required: true
+          description: Name of the package
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFiles'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/media/files':
+    get:
+      tags:
+        - Media Library
+      summary: 'Get *all* content of the media library.'
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFiles'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+  '/media/file/{id}':
+    get:
+      tags:
+        - Media Library
+      summary: Get the information of a specific media file
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            example: 123
+          required: true
+          description: ID of any given media file
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFile'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  '/media/files/search':
+    get:
+      tags:
+        - Media Library
+      summary: Search for mediafiles associated with keywords
+      parameters:
+        - name: query_string
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/Flavor'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - name: package_name
+          description: In which package you want to search (for more fine tuned results)
+          example: looks
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFiles'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
 components:
+  responses:
+    OK:
+      description: OK
+    UnauthorizedError:
+      description: Invalid JWT token | JWT token not found | JWT token expired
+    BadRequest:
+      description: BAD Request - invalid or missing required parameters
+    InvalidCredentials:
+      description: Invalid Credentials
+    NotAcceptable:
+      description: Not Acceptable - client must accept application/json as content type
+    UnsupportedMediaType:
+      description: >-
+        Unsupported Media Type - request must use application/json as content
+        type
+    NotFound:
+      description: Not Found
+
+  securitySchemes:
+    PandaAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    Locale:
+      in: header
+      name: Accept-Language
+      required: false
+      schema:
+        type: string
+        description: ISO_639-1 or ISO_3166-1 locale of the user. Defaults internally to en
+    ProjectType:
+      in: query
+      name: project_type
+      required: true
+      schema:
+        type: string
+        enum:
+          - recent
+          - random
+          - most_viewed
+          - most_downloaded
+          - example
+          - scratch
+    Flavor:
+      name: flavor
+      in: query
+      schema:
+        type: string
+        description: Available flavors
+        enum:
+          - pocketcode
+          - pocketalice
+          - pocketgalaxy
+          - pocketphiro
+          - phirocode
+          - luna
+          - create@school
+          - embroidery
+          - arduino
+    MaxVersion:
+      name: max_version
+      in: query
+      schema:
+        $ref: '#/components/schemas/MaxVersion'
+    Limit:
+      name: limit
+      in: query
+      schema:
+        $ref: '#/components/schemas/Limit'
+    Offset:
+      name: offset
+      in: query
+      schema:
+        $ref: '#/components/schemas/Offset'
   schemas:
-    BodyUsername:
+    MediaPackages:
       type: object
       properties:
-        username:
+        media_packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaPackage'
+        total_results:
+          type: integer
+          description: Amount of overall packages of this query not limited by limit or offset
+          example: 1
+    MediaPackage:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+          description: ID of the package
+        name:
           type: string
-          example: hei-wicki-hei
-    Token:
+          example: Looks
+          description: Name of the package
+        url:
+          type: string
+          example: 'https://share.catrob.at/app/media-library/looks'
+          description: Absolute path to the package
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaCategories'
+    MediaCategories:
+      type: object
+      properties:
+        media_categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaCategory'
+        total_results:
+          type: integer
+          description: Amount of overall files of this query not limited by limit or offset
+          example: 1
+    MediaCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+          description: ID of the category
+        name:
+          type: string
+          example: Portrait
+          description: Name of the category
+        priority:
+          type: integer
+          example: 10
+          description: Shows how important a category is (0 is the least priority)
+          minimum: 0
+    MaxVersion:
       type: string
-      example: tkf4e26780c9e6b1d171f3dbeafa194cac
-    Upload:
-      type: object
-      properties:
-        checksum:
-          type: string
-          example: 'asd'
-          description: 'Checksum of the *.catrobat file'
-        file:
-          type: string
-          format: binary
-          description: '*.catrobat file'
-        flavor:
-          type: string
-          example: 'pocketcode'
-          default: 'pocketcode'
-          description: 'The flavor the uploaded program is associated with.'
+      description: Only shows project with a smaller version number than max version
+      example: '0.999'
+      pattern: '[0-9]\.[0-9]{3}'
+    Limit:
+      type: integer
+      minimum: 0
+      description: How many projects should be shown at maximum
+      default: 20
+      example: 3
+    Offset:
+      type: integer
+      minimum: 0
+      description: How many projects should be skipped
+      default: 0
+      example: 2
+    JWTToken:
+      type: string
+      example: xxxxx.yyyyy.zzzzz
     UploadError:
       type: object
       properties:
-        status:
-          type: integer
-          example: 418
         error:
           type: string
-          enum: [Token invalid, Checksum invalid, ZIP invalid, XML invalid, Flavor invalid]
-          example:
-            - Checksum invalid
-            - XML invalid
-    APIValidationResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 418
-          description: Statuscode if validation was successfull or yielded errors (200 or 400)
-        email:
-          type: string
-          example:
-            - EMail not valid
-            - EMail already in use!
-        username:
-          type: string
-          example:
-            - Username too short!
-            - Username already in use!
-        password:
-          type: string
-          example:
-            - Password too short
-            - Password contains invalid chars
+          example: There is a problem
     Register:
       type: object
       properties:
+        dry-run:
+          type: boolean
+          default: false
+          description: Indicates wether sent user should be verified or registerd.
         email:
           type: string
-          example: 'test@test.lan'
-          description: EMail of the user. Validation via /registerValidation
+          format: email
+          example: test@test.lan
+          description: EMail of the user.
         username:
           type: string
-          example: 'Testuser'
-          description: Username. Validation via /registerValidation
+          example: Testuser
+          description: 'Name of the user | minLength: 3 |maxLength: 180'
         password:
           type: string
-          example: 'password'
-          description: A secure password. Validation via /registerValidation
-        locale:
-          type: string
-          example: 'de'
-          description: The locale, in which the answer message shoudl be translated. If not given default will be 'en'.
+          format: password
+          example: password
+          description: 'A secure password | minLength: 6 | maxLength: 4096'
     Login:
       type: object
       properties:
         username:
-          type: string
-          example: 'Testuser'
-          description: Username. Validation via /registerValidation
+          $ref: '#/components/schemas/Username'
         password:
-          type: string
-          example: 'password'
-          description: A secure password. Validation via /registerValidation
-    LoginResponseOK:
+          $ref: '#/components/schemas/Password'
+    JWTTokenResponse:
       type: object
       properties:
         token:
-          type: string
-          example: 'tkf4e26780c9e6b1d171f3dbeafa194cac'
-    Logout:
+          $ref: '#/components/schemas/JWTToken'
+    MediaFiles:
       type: object
       properties:
-        username:
-          type: string
-          example: 'Testuser'
-          description: Username. Validation via /registerValidation
-    Packages:
-      type: array
-      items:
-        $ref: '#/components/schemas/Package'
-    Package:
+        media_files:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaFile'
+        total_results:
+          type: integer
+          description: Amount of overall files of this query not limited by limit or offset
+          example: 1
+    MediaFile:
       type: object
       properties:
         id:
@@ -618,66 +673,89 @@ components:
           example: 1
         name:
           type: string
-          example: 'luna_sinde_2'
+          example: luna_sinde_2
         flavor:
           type: string
-          example: 'luna'
+          description: Available flavors
+          enum:
+            - pocketcode
+            - pocketalice
+            - pocketgalaxy
+            - pocketphiro
+            - phirocode
+            - luna
+            - create@school
+            - embroidery
+            - arduino
+          example: pocketcode
         package:
           type: string
-          example: 'Looks'
+          example: Looks
         category:
           type: string
-          example: 'Luna&Cat'
+          example: Luna&Cat
         author:
           type: string
-          example: 'CatrowebAdmin'
+          example: CatrowebAdmin
         extension:
           type: string
-          example: 'png'
+          example: png
         download_url:
           type: string
           example: 'https://share.catrob.at/pocketcode/download-media/983.png'
     FeaturedProjects:
-      type: array
-      items:
-        $ref: '#/components/schemas/FeaturedProject'
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturedProject'
+        total_results:
+          type: integer
+          description: Amount of overall projects of this query not limited by limit or offset
     FeaturedProject:
       type: object
       properties:
         id:
           type: string
-          example: '1234abcd-12ab-12ab-12ab-123456abcdef'
+          example: 1234abcd-12ab-12ab-12ab-123456abcdef
         name:
           type: string
-          example: 'My example of a Program'
+          example: My example of a Project
         author:
           type: string
-          example: 'Admin'
+          example: Admin
         featured_image:
           type: string
           example: 'https://share.catrob.at/resources/featured/featured_999.png'
     Projects:
-      type: array
-      items:
-        $ref: '#/components/schemas/Project'
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        total_results:
+          type: integer
+          description: Amount of overall projects of this query not limited by limit or offset
     Project:
       type: object
       properties:
         id:
           type: string
-          example: '1234abcd-12ab-12ab-12ab-123456abcdef'
+          example: 1234abcd-12ab-12ab-12ab-123456abcdef
         name:
           type: string
-          example: 'My example of a Program'
+          example: My example of a Project
         author:
           type: string
-          example: 'Admin'
+          example: Admin
         description:
           type: string
-          example: 'My very cool program!'
+          example: My very cool project!
         version:
           type: string
-          example: '0.9.66'
+          example: 0.9.66
         views:
           type: integer
           example: 2
@@ -687,25 +765,56 @@ components:
         private:
           type: boolean
           example: false
+        flavor:
+          type: string
+          description: Available flavors
+          enum:
+            - pocketcode
+            - pocketalice
+            - pocketgalaxy
+            - pocketphiro
+            - phirocode
+            - luna
+            - create@school
+            - embroidery
+            - arduino
+          example: pocketcode
         uploaded:
           type: integer
           example: 1575562569
         uploaded_string:
           type: string
-          example: '11 minutes ago'
+          example: 11 minutes ago
         screenshot_large:
           type: string
-          example: 'https://share.catrob.at/resources/screenshots/screen_1234abcd-12ab-12ab-12ab-123456abcdef.png'
+          example: >-
+            https://share.catrob.at/resources/screenshots/screen_1234abcd-12ab-12ab-12ab-123456abcdef.png
         screenshot_small:
           type: string
-          example: 'https://share.catrob.at/resources/thumbnails/screen_1234abcd-12ab-12ab-12ab-123456abcdef.png'
-        projectUrl:
+          example: >-
+            https://share.catrob.at/resources/thumbnails/screen_1234abcd-12ab-12ab-12ab-123456abcdef.png
+        project_url:
           type: string
-          example: 'https://share.catrob.at/pocketcode/project/1234abcd-12ab-12ab-12ab-123456abcdef'
-        downloadUrl:
+          example: >-
+            https://share.catrob.at/pocketcode/project/1234abcd-12ab-12ab-12ab-123456abcdef
+        download_url:
           type: string
-          example: 'https://share.catrob.at/pocketcode/download/1234abcd-12ab-12ab-12ab-123456abcdef.catrobat'
+          example: >-
+            https://share.catrob.at/pocketcode/download/1234abcd-12ab-12ab-12ab-123456abcdef.catrobat
         filesize:
           type: number
           example: 0.14381762458251943
-          description: 'filesize in megabytes'
+          description: filesize in megabytes
+    Username:
+      type: string
+      minLength: 3
+      maxLength: 180
+      example: Testuser
+      description: Name of the user
+    Password:
+      type: string
+      format: password
+      minLength: 6
+      maxLength: 4096
+      example: password
+      description: A secure password.

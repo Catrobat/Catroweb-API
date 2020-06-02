@@ -21,6 +21,15 @@ services:
         arguments:
             - '@validator'
 
+    open_api_server.controller.authentication:
+        class: OpenAPI\Server\Controller\AuthenticationController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+        tags: ['controller.service_arguments']
+        autowire: true
+
     open_api_server.controller.mediaLibrary:
         class: OpenAPI\Server\Controller\MediaLibraryController
         calls:
@@ -39,8 +48,8 @@ services:
         tags: ['controller.service_arguments']
         autowire: true
 
-    open_api_server.controller.security:
-        class: OpenAPI\Server\Controller\SecurityController
+    open_api_server.controller.user:
+        class: OpenAPI\Server\Controller\UserController
         calls:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]
