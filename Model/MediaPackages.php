@@ -1,6 +1,6 @@
 <?php
 /**
- * Projects.
+ * MediaPackages.
  *
  * PHP version 5
  *
@@ -34,24 +34,24 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the Projects model.
+ * Class representing the MediaPackages model.
  *
  * @author  OpenAPI Generator team
  */
-class Projects
+class MediaPackages
 {
   /**
-   * @var OpenAPI\Server\Model\Project[]|null
-   * @SerializedName("projects")
+   * @var OpenAPI\Server\Model\MediaPackage[]|null
+   * @SerializedName("media_packages")
    * @Assert\All({
-   *     @Assert\Type("OpenAPI\Server\Model\Project")
+   *     @Assert\Type("OpenAPI\Server\Model\MediaPackage")
    * })
-   * @Type("array<OpenAPI\Server\Model\Project>")
+   * @Type("array<OpenAPI\Server\Model\MediaPackage>")
    */
-  protected $projects;
+  protected $media_packages;
 
   /**
-   * Amount of overall projects of this query not limited by limit or offset.
+   * Amount of overall packages of this query not limited by limit or offset.
    *
    * @var int|null
    * @SerializedName("total_results")
@@ -67,30 +67,30 @@ class Projects
    */
   public function __construct(array $data = null)
   {
-    $this->projects = isset($data['projects']) ? $data['projects'] : null;
+    $this->media_packages = isset($data['media_packages']) ? $data['media_packages'] : null;
     $this->total_results = isset($data['total_results']) ? $data['total_results'] : null;
   }
 
   /**
-   * Gets projects.
+   * Gets media_packages.
    *
-   * @return OpenAPI\Server\Model\Project[]|null
+   * @return OpenAPI\Server\Model\MediaPackage[]|null
    */
-  public function getProjects()
+  public function getMediaPackages()
   {
-    return $this->projects;
+    return $this->media_packages;
   }
 
   /**
-   * Sets projects.
+   * Sets media_packages.
    *
-   * @param OpenAPI\Server\Model\Project[]|null $projects
+   * @param OpenAPI\Server\Model\MediaPackage[]|null $media_packages
    *
    * @return $this
    */
-  public function setProjects(array $projects = null)
+  public function setMediaPackages(array $media_packages = null)
   {
-    $this->projects = $projects;
+    $this->media_packages = $media_packages;
 
     return $this;
   }
@@ -108,7 +108,7 @@ class Projects
   /**
    * Sets total_results.
    *
-   * @param int|null $total_results Amount of overall projects of this query not limited by limit or offset
+   * @param int|null $total_results Amount of overall packages of this query not limited by limit or offset
    *
    * @return $this
    */

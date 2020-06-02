@@ -1,6 +1,6 @@
 <?php
 /**
- * Projects.
+ * MediaCategories.
  *
  * PHP version 5
  *
@@ -34,24 +34,24 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the Projects model.
+ * Class representing the MediaCategories model.
  *
  * @author  OpenAPI Generator team
  */
-class Projects
+class MediaCategories
 {
   /**
-   * @var OpenAPI\Server\Model\Project[]|null
-   * @SerializedName("projects")
+   * @var OpenAPI\Server\Model\MediaCategory[]|null
+   * @SerializedName("media_categories")
    * @Assert\All({
-   *     @Assert\Type("OpenAPI\Server\Model\Project")
+   *     @Assert\Type("OpenAPI\Server\Model\MediaCategory")
    * })
-   * @Type("array<OpenAPI\Server\Model\Project>")
+   * @Type("array<OpenAPI\Server\Model\MediaCategory>")
    */
-  protected $projects;
+  protected $media_categories;
 
   /**
-   * Amount of overall projects of this query not limited by limit or offset.
+   * Amount of overall files of this query not limited by limit or offset.
    *
    * @var int|null
    * @SerializedName("total_results")
@@ -67,30 +67,30 @@ class Projects
    */
   public function __construct(array $data = null)
   {
-    $this->projects = isset($data['projects']) ? $data['projects'] : null;
+    $this->media_categories = isset($data['media_categories']) ? $data['media_categories'] : null;
     $this->total_results = isset($data['total_results']) ? $data['total_results'] : null;
   }
 
   /**
-   * Gets projects.
+   * Gets media_categories.
    *
-   * @return OpenAPI\Server\Model\Project[]|null
+   * @return OpenAPI\Server\Model\MediaCategory[]|null
    */
-  public function getProjects()
+  public function getMediaCategories()
   {
-    return $this->projects;
+    return $this->media_categories;
   }
 
   /**
-   * Sets projects.
+   * Sets media_categories.
    *
-   * @param OpenAPI\Server\Model\Project[]|null $projects
+   * @param OpenAPI\Server\Model\MediaCategory[]|null $media_categories
    *
    * @return $this
    */
-  public function setProjects(array $projects = null)
+  public function setMediaCategories(array $media_categories = null)
   {
-    $this->projects = $projects;
+    $this->media_categories = $media_categories;
 
     return $this;
   }
@@ -108,7 +108,7 @@ class Projects
   /**
    * Sets total_results.
    *
-   * @param int|null $total_results Amount of overall projects of this query not limited by limit or offset
+   * @param int|null $total_results Amount of overall files of this query not limited by limit or offset
    *
    * @return $this
    */
