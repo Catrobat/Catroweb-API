@@ -1,6 +1,6 @@
 <?php
 /**
- * FeaturedProject.
+ * MediaCategory.
  *
  * PHP version 5
  *
@@ -34,21 +34,25 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the FeaturedProject model.
+ * Class representing the MediaCategory model.
  *
  * @author  OpenAPI Generator team
  */
-class FeaturedProject
+class MediaCategory
 {
   /**
-   * @var string|null
+   * ID of the category.
+   *
+   * @var int|null
    * @SerializedName("id")
-   * @Assert\Type("string")
-   * @Type("string")
+   * @Assert\Type("int")
+   * @Type("int")
    */
   protected $id;
 
   /**
+   * Name of the category.
+   *
    * @var string|null
    * @SerializedName("name")
    * @Assert\Type("string")
@@ -57,20 +61,15 @@ class FeaturedProject
   protected $name;
 
   /**
-   * @var string|null
-   * @SerializedName("author")
-   * @Assert\Type("string")
-   * @Type("string")
+   * Shows how important a category is (0 is the least priority).
+   *
+   * @var int|null
+   * @SerializedName("priority")
+   * @Assert\Type("int")
+   * @Type("int")
+   * @Assert\GreaterThanOrEqual(0)
    */
-  protected $author;
-
-  /**
-   * @var string|null
-   * @SerializedName("featured_image")
-   * @Assert\Type("string")
-   * @Type("string")
-   */
-  protected $featured_image;
+  protected $priority;
 
   /**
    * Constructor.
@@ -81,14 +80,13 @@ class FeaturedProject
   {
     $this->id = isset($data['id']) ? $data['id'] : null;
     $this->name = isset($data['name']) ? $data['name'] : null;
-    $this->author = isset($data['author']) ? $data['author'] : null;
-    $this->featured_image = isset($data['featured_image']) ? $data['featured_image'] : null;
+    $this->priority = isset($data['priority']) ? $data['priority'] : null;
   }
 
   /**
    * Gets id.
    *
-   * @return string|null
+   * @return int|null
    */
   public function getId()
   {
@@ -98,9 +96,11 @@ class FeaturedProject
   /**
    * Sets id.
    *
+   * @param int|null $id ID of the category
+   *
    * @return $this
    */
-  public function setId(string $id = null)
+  public function setId(int $id = null)
   {
     $this->id = $id;
 
@@ -120,6 +120,8 @@ class FeaturedProject
   /**
    * Sets name.
    *
+   * @param string|null $name Name of the category
+   *
    * @return $this
    */
   public function setName(string $name = null)
@@ -130,45 +132,25 @@ class FeaturedProject
   }
 
   /**
-   * Gets author.
+   * Gets priority.
    *
-   * @return string|null
+   * @return int|null
    */
-  public function getAuthor()
+  public function getPriority()
   {
-    return $this->author;
+    return $this->priority;
   }
 
   /**
-   * Sets author.
+   * Sets priority.
+   *
+   * @param int|null $priority Shows how important a category is (0 is the least priority)
    *
    * @return $this
    */
-  public function setAuthor(string $author = null)
+  public function setPriority(int $priority = null)
   {
-    $this->author = $author;
-
-    return $this;
-  }
-
-  /**
-   * Gets featured_image.
-   *
-   * @return string|null
-   */
-  public function getFeaturedImage()
-  {
-    return $this->featured_image;
-  }
-
-  /**
-   * Sets featured_image.
-   *
-   * @return $this
-   */
-  public function setFeaturedImage(string $featured_image = null)
-  {
-    $this->featured_image = $featured_image;
+    $this->priority = $priority;
 
     return $this;
   }

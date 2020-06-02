@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.37"
+  version: "v1.0.39"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -132,33 +132,6 @@ paths:
                       - Password too long
                       - Password contains invalid chars
                       - Password missing
-  '/media/package/{package_name}':
-    get:
-      tags:
-        - Media Library
-      summary: Get media-library asstes of a named package
-      parameters:
-        - in: path
-          name: package_name
-          schema:
-            type: string
-            pattern: '^[a-zA-Z0-9-_]+$'
-            example: looks
-          required: true
-          description: Name of the package
-        - $ref: '#/components/parameters/Limit'
-        - $ref: '#/components/parameters/Offset'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MediaFiles'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
   /projects:
     parameters:
       - $ref: '#/components/parameters/Locale'
@@ -385,7 +358,79 @@ paths:
           $ref: '#/components/responses/NotFound'
         '406':
           $ref: '#/components/responses/NotAcceptable'
-  '/media/file/search':
+  '/media/package/{package_name}':
+    get:
+      tags:
+        - Media Library
+      summary: Get media-library asstes of a named package
+      parameters:
+        - in: path
+          name: package_name
+          schema:
+            type: string
+            pattern: '^[a-zA-Z0-9-_]+$'
+            example: looks
+          required: true
+          description: Name of the package
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFiles'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  '/media/files':
+    get:
+      tags:
+        - Media Library
+      summary: 'Get *all* content of the media library.'
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFiles'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+  '/media/file/{id}':
+    get:
+      tags:
+        - Media Library
+      summary: Get the information of a specific media file
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            example: 123
+          required: true
+          description: ID of any given media file
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFile'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  '/media/files/search':
     get:
       tags:
         - Media Library
@@ -434,6 +479,7 @@ components:
         type
     NotFound:
       description: Not Found
+
   securitySchemes:
     PandaAuth:
       type: http
@@ -492,6 +538,63 @@ components:
       schema:
         $ref: '#/components/schemas/Offset'
   schemas:
+    MediaPackages:
+      type: object
+      properties:
+        media_packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaPackage'
+        total_results:
+          type: integer
+          description: Amount of overall packages of this query not limited by limit or offset
+          example: 1
+    MediaPackage:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+          description: ID of the package
+        name:
+          type: string
+          example: Looks
+          description: Name of the package
+        url:
+          type: string
+          example: 'https://share.catrob.at/app/media-library/looks'
+          description: Absolute path to the package
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaCategories'
+    MediaCategories:
+      type: object
+      properties:
+        media_categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaCategory'
+        total_results:
+          type: integer
+          description: Amount of overall files of this query not limited by limit or offset
+          example: 1
+    MediaCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+          description: ID of the category
+        name:
+          type: string
+          example: Portrait
+          description: Name of the category
+        priority:
+          type: integer
+          example: 10
+          description: Shows how important a category is (0 is the least priority)
+          minimum: 0
     MaxVersion:
       type: string
       description: Only shows project with a smaller version number than max version
@@ -561,6 +664,7 @@ components:
         total_results:
           type: integer
           description: Amount of overall files of this query not limited by limit or offset
+          example: 1
     MediaFile:
       type: object
       properties:

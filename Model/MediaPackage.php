@@ -1,6 +1,6 @@
 <?php
 /**
- * FeaturedProject.
+ * MediaPackage.
  *
  * PHP version 5
  *
@@ -34,21 +34,25 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the FeaturedProject model.
+ * Class representing the MediaPackage model.
  *
  * @author  OpenAPI Generator team
  */
-class FeaturedProject
+class MediaPackage
 {
   /**
-   * @var string|null
+   * ID of the package.
+   *
+   * @var int|null
    * @SerializedName("id")
-   * @Assert\Type("string")
-   * @Type("string")
+   * @Assert\Type("int")
+   * @Type("int")
    */
   protected $id;
 
   /**
+   * Name of the package.
+   *
    * @var string|null
    * @SerializedName("name")
    * @Assert\Type("string")
@@ -57,20 +61,24 @@ class FeaturedProject
   protected $name;
 
   /**
+   * Absolute path to the package.
+   *
    * @var string|null
-   * @SerializedName("author")
+   * @SerializedName("url")
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $author;
+  protected $url;
 
   /**
-   * @var string|null
-   * @SerializedName("featured_image")
-   * @Assert\Type("string")
-   * @Type("string")
+   * @var OpenAPI\Server\Model\MediaCategories[]|null
+   * @SerializedName("categories")
+   * @Assert\All({
+   *     @Assert\Type("OpenAPI\Server\Model\MediaCategories")
+   * })
+   * @Type("array<OpenAPI\Server\Model\MediaCategories>")
    */
-  protected $featured_image;
+  protected $categories;
 
   /**
    * Constructor.
@@ -81,14 +89,14 @@ class FeaturedProject
   {
     $this->id = isset($data['id']) ? $data['id'] : null;
     $this->name = isset($data['name']) ? $data['name'] : null;
-    $this->author = isset($data['author']) ? $data['author'] : null;
-    $this->featured_image = isset($data['featured_image']) ? $data['featured_image'] : null;
+    $this->url = isset($data['url']) ? $data['url'] : null;
+    $this->categories = isset($data['categories']) ? $data['categories'] : null;
   }
 
   /**
    * Gets id.
    *
-   * @return string|null
+   * @return int|null
    */
   public function getId()
   {
@@ -98,9 +106,11 @@ class FeaturedProject
   /**
    * Sets id.
    *
+   * @param int|null $id ID of the package
+   *
    * @return $this
    */
-  public function setId(string $id = null)
+  public function setId(int $id = null)
   {
     $this->id = $id;
 
@@ -120,6 +130,8 @@ class FeaturedProject
   /**
    * Sets name.
    *
+   * @param string|null $name Name of the package
+   *
    * @return $this
    */
   public function setName(string $name = null)
@@ -130,45 +142,49 @@ class FeaturedProject
   }
 
   /**
-   * Gets author.
+   * Gets url.
    *
    * @return string|null
    */
-  public function getAuthor()
+  public function getUrl()
   {
-    return $this->author;
+    return $this->url;
   }
 
   /**
-   * Sets author.
+   * Sets url.
+   *
+   * @param string|null $url Absolute path to the package
    *
    * @return $this
    */
-  public function setAuthor(string $author = null)
+  public function setUrl(string $url = null)
   {
-    $this->author = $author;
+    $this->url = $url;
 
     return $this;
   }
 
   /**
-   * Gets featured_image.
+   * Gets categories.
    *
-   * @return string|null
+   * @return OpenAPI\Server\Model\MediaCategories[]|null
    */
-  public function getFeaturedImage()
+  public function getCategories()
   {
-    return $this->featured_image;
+    return $this->categories;
   }
 
   /**
-   * Sets featured_image.
+   * Sets categories.
+   *
+   * @param OpenAPI\Server\Model\MediaCategories[]|null $categories
    *
    * @return $this
    */
-  public function setFeaturedImage(string $featured_image = null)
+  public function setCategories(array $categories = null)
   {
-    $this->featured_image = $featured_image;
+    $this->categories = $categories;
 
     return $this;
   }
