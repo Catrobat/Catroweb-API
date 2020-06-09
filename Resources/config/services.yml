@@ -57,3 +57,12 @@ services:
         tags: ['controller.service_arguments']
         autowire: true
 
+    open_api_server.controller.utility:
+        class: OpenAPI\Server\Controller\UtilityController
+        calls:
+         - [setSerializer, ['@open_api_server.service.serializer']]
+         - [setValidator,  ['@open_api_server.service.validator']]
+         - [setApiServer,  ['@open_api_server.api.api_server']]
+        tags: ['controller.service_arguments']
+        autowire: true
+

@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.39"
+  version: "v1.0.40"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -28,6 +28,8 @@ tags:
     description: Everything related to projects
   - name: Media Library
     description: Everything related to the media library
+  - name: Utility
+    description: Utility frunctionality for infrastructure
 paths:
   /authentication:
     get:
@@ -70,6 +72,15 @@ paths:
           $ref: '#/components/responses/NotAcceptable'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
+  /health:
+    get:
+      tags:
+        - Utility
+      summary: Health Check
+      responses:
+        '204':
+          description: System is alive and healthy!
+
   /user:
     parameters:
       - $ref: '#/components/parameters/Locale'
@@ -427,6 +438,8 @@ paths:
                 $ref: '#/components/schemas/MediaFile'
         '400':
           $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
