@@ -1,16 +1,12 @@
-# Package
+# ProjectUpload
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] 
-**name** | **string** |  | [optional] 
+**checksum** | **string** | Checksum of the *.catrobat file | 
+**file** | [**UploadedFile**](UploadedFile.md) | *.catrobat file | 
 **flavor** | **string** | Available flavors | [optional] 
-**package** | **string** |  | [optional] 
-**category** | **string** |  | [optional] 
-**author** | **string** |  | [optional] 
-**extension** | **string** |  | [optional] 
-**download_url** | **string** |  | [optional] 
+**private** | **bool** | Indicates whether a program should be private from the start. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

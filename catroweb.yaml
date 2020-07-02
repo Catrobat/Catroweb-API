@@ -37,7 +37,7 @@ paths:
         - PandaAuth: []
       tags:
         - Authentication
-      summary: Check Token
+      summary: Check token
       description: Checks if a token is valid or expired.
       responses:
         '200':
@@ -82,13 +82,43 @@ paths:
           description: System is alive and healthy!
 
   /user:
-    parameters:
-      - $ref: '#/components/parameters/Locale'
+    delete:
+      security:
+        - PandaAuth: []
+      tags:
+        - User
+      summary: Delete user account
+      description: Delete your user account. But be warned, there is no way to restore the user data!
+      responses:
+        '204':
+          description: User successfully deleted.
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    get:
+      security:
+        - PandaAuth: []
+      tags:
+        - User
+      summary: Get your private user data
+      description: Get your private user data. Additionally to the public user data, this response contains all your private settings.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPrivateGet'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
     post:
+      parameters:
+        - $ref: '#/components/parameters/Locale'
       tags:
         - User
       summary: Register
-      description: Register a user
+      description: Register a user. For pre-validation you might wanna use the dry-run option.
       requestBody:
         required: true
         content:
@@ -97,7 +127,7 @@ paths:
               $ref: '#/components/schemas/Register'
       responses:
         201:
-          description: User successfully registered.
+          description: User successfully registered
           headers:
             Location:
               schema:
@@ -120,29 +150,84 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  email:
-                    type: string
-                    enum:
-                      - EMail already in use
-                      - Not a valid EMail
-                      - EMail missing
-                  username:
-                    type: string
-                    enum:
-                      - Username too short
-                      - Username too long
-                      - Username already in use
-                      - Username missing
-                      - Username must not be email
-                  password:
-                    type: string
-                    enum:
-                      - Password too short
-                      - Password too long
-                      - Password contains invalid chars
-                      - Password missing
+                $ref: '#/components/schemas/RegisterError'
+    put:
+      parameters:
+        - $ref: '#/components/parameters/Locale'
+      security:
+        - PandaAuth: []
+      tags:
+        - User
+      summary: Update User
+      description: Update your user account. You can change all members at once, or one by one with different calls.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUser'
+      responses:
+        '204':
+          description: User successfully updated
+        '401':
+          $ref: '#/components/responses/InvalidCredentials'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserError'
+  /user/{id}:
+    get:
+      tags:
+        - User
+      summary: Get the public data of a user
+      description: Get the public data of a user.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            pattern: '^[a-zA-Z0-9-]+$'
+            example: 1234abcd-12ab-12ab-12ab-123456abcdef
+          required: true
+          description: UUID/ID of any given user
+      responses:
+        '200':
+          description: Valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPublicGet'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+  /users/search:
+    get:
+      tags:
+        - User
+      summary: Search for users
+      description: Search for users associated by keywords.
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
   /projects:
     parameters:
       - $ref: '#/components/parameters/Locale'
@@ -177,36 +262,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: object
-              properties:
-                checksum:
-                  type: string
-                  example: asd
-                  description: Checksum of the *.catrobat file
-                file:
-                  type: string
-                  format: binary
-                  description: '*.catrobat file'
-                flavor:
-                  type: string
-                  description: Available flavors
-                  enum:
-                    - pocketcode
-                    - pocketalice
-                    - pocketgalaxy
-                    - pocketphiro
-                    - phirocode
-                    - luna
-                    - create@school
-                    - embroidery
-                    - arduino
-                  example: pocketcode
-                private:
-                  type: boolean
-                  description: Indicates whether a program should be private from the start.
-              required:
-                - checksum
-                - file
+              $ref: '#/components/schemas/ProjectUpload'
       responses:
         '201':
           description: Project successfully uploaded.
@@ -266,7 +322,7 @@ paths:
         - Projects
       summary: Search for projects associated with a keywords
       parameters:
-        - name: query_string
+        - name: query
           in: query
           required: true
           schema:
@@ -449,7 +505,7 @@ paths:
         - Media Library
       summary: Search for mediafiles associated with keywords
       parameters:
-        - name: query_string
+        - name: query
           in: query
           required: true
           schema:
@@ -481,17 +537,19 @@ components:
     UnauthorizedError:
       description: Invalid JWT token | JWT token not found | JWT token expired
     BadRequest:
-      description: BAD Request - invalid or missing required parameters
+      description: Bad request (Invalid, or missing parameters)
     InvalidCredentials:
-      description: Invalid Credentials
+      description: Invalid credentials
     NotAcceptable:
-      description: Not Acceptable - client must accept application/json as content type
+      description: Not acceptable - client must accept application/json as content type
     UnsupportedMediaType:
       description: >-
         Unsupported Media Type - request must use application/json as content
         type
     NotFound:
-      description: Not Found
+      description: Not found
+    UnprocessableEntity:
+      description: Unprocessable Entity
 
   securitySchemes:
     PandaAuth:
@@ -558,10 +616,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MediaPackage'
-        total_results:
-          type: integer
-          description: Amount of overall packages of this query not limited by limit or offset
-          example: 1
     MediaPackage:
       type: object
       properties:
@@ -588,10 +642,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MediaCategory'
-        total_results:
-          type: integer
-          description: Amount of overall files of this query not limited by limit or offset
-          example: 1
     MediaCategory:
       type: object
       properties:
@@ -634,27 +684,100 @@ components:
         error:
           type: string
           example: There is a problem
+    RegisterError:
+      type: object
+      properties:
+        email:
+          type: string
+          enum:
+            - Email already in use
+            - Email invalid
+            - Email missing
+        username:
+          type: string
+          enum:
+            - Username too short
+            - Username too long
+            - Username already in use
+            - Username missing
+            - Username must not contain an email address
+        password:
+          type: string
+          enum:
+            - Password too short
+            - Password too long
+            - Password contains invalid chars
+            - Password missing
+    UpdateUserError:
+      type: object
+      properties:
+        email:
+          type: string
+          enum:
+            - Email already in use
+            - Email invalid
+        username:
+          type: string
+          enum:
+            - Username too short
+            - Username too long
+            - Username already in use
+            - Username must not contain an email address
+        password:
+          type: string
+          enum:
+            - Password too short
+            - Password too long
+            - Password contains invalid chars
+        image:
+          type: string
+          enum:
+            - Image invalid
+        country:
+          type: string
+          enum:
+            - Country invalid
+
+    BaseUser:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: test@test.lan
+          description: Email of the user.
+        username:
+          type: string
+          example: Testuser
+          description: 'Name of the user | minLength: 3 | maxLength: 180'
+        password:
+          type: string
+          format: password
+          example: password
+          description: 'A secure password | minLength: 6 | maxLength: 4096'
     Register:
+      allOf:
+        - $ref: '#/components/schemas/DryRun'
+        - $ref: '#/components/schemas/BaseUser'
+    UpdateUser:
+      allOf:
+        - $ref: '#/components/schemas/DryRun'
+        - $ref: '#/components/schemas/BaseUser'
+        - type: object
+          properties:
+            country:
+              type: string
+              example: AT
+            image:
+              type: string
+              format: binary
+    DryRun:
       type: object
       properties:
         dry-run:
           type: boolean
           default: false
           description: Indicates wether sent user should be verified or registerd.
-        email:
-          type: string
-          format: email
-          example: test@test.lan
-          description: EMail of the user.
-        username:
-          type: string
-          example: Testuser
-          description: 'Name of the user | minLength: 3 |maxLength: 180'
-        password:
-          type: string
-          format: password
-          example: password
-          description: 'A secure password | minLength: 6 | maxLength: 4096'
     Login:
       type: object
       properties:
@@ -668,16 +791,9 @@ components:
         token:
           $ref: '#/components/schemas/JWTToken'
     MediaFiles:
-      type: object
-      properties:
-        media_files:
-          type: array
-          items:
-            $ref: '#/components/schemas/MediaFile'
-        total_results:
-          type: integer
-          description: Amount of overall files of this query not limited by limit or offset
-          example: 1
+      type: array
+      items:
+        $ref: '#/components/schemas/MediaFile'
     MediaFile:
       type: object
       properties:
@@ -717,15 +833,9 @@ components:
           type: string
           example: 'https://share.catrob.at/pocketcode/download-media/983.png'
     FeaturedProjects:
-      type: object
-      properties:
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturedProject'
-        total_results:
-          type: integer
-          description: Amount of overall projects of this query not limited by limit or offset
+      type: array
+      items:
+        $ref: '#/components/schemas/FeaturedProject'
     FeaturedProject:
       type: object
       properties:
@@ -742,15 +852,9 @@ components:
           type: string
           example: 'https://share.catrob.at/resources/featured/featured_999.png'
     Projects:
-      type: object
-      properties:
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        total_results:
-          type: integer
-          description: Amount of overall projects of this query not limited by limit or offset
+      type: array
+      items:
+        $ref: '#/components/schemas/Project'
     Project:
       type: object
       properties:
@@ -818,6 +922,53 @@ components:
           type: number
           example: 0.14381762458251943
           description: filesize in megabytes
+    UserPrivateGet:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1234abcd-12ab-12ab-12ab-123456abcdef
+        username:
+          type: string
+          example: My example of a Project
+        email:
+          type: string
+          format: email
+          example: test@test.lan
+          description: EMail of the user.
+        profile_image:
+          type: string
+        country:
+          type: string
+        projects:
+          type: integer
+        followers:
+          type: integer
+        following:
+          type: integer
+    UserPublicGet:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1234abcd-12ab-12ab-12ab-123456abcdef
+        username:
+          type: string
+          example: My example of a Project
+        profile_image:
+          type: string
+        country:
+          type: string
+        projects:
+          type: integer
+        followers:
+          type: integer
+        following:
+          type: integer
+    Users:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserPublicGet'
     Username:
       type: string
       minLength: 3
@@ -831,3 +982,34 @@ components:
       maxLength: 4096
       example: password
       description: A secure password.
+    ProjectUpload:
+      type: object
+      properties:
+        checksum:
+          type: string
+          example: asd
+          description: Checksum of the *.catrobat file
+        file:
+          type: string
+          format: binary
+          description: '*.catrobat file'
+        flavor:
+          type: string
+          description: Available flavors
+          enum:
+            - pocketcode
+            - pocketalice
+            - pocketgalaxy
+            - pocketphiro
+            - phirocode
+            - luna
+            - create@school
+            - embroidery
+            - arduino
+          example: pocketcode
+        private:
+          type: boolean
+          description: Indicates whether a program should be private from the start.
+      required:
+        - checksum
+        - file

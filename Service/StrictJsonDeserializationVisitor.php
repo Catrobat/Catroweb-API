@@ -22,55 +22,51 @@ use JMS\Serializer\JsonDeserializationVisitor;
 
 class StrictJsonDeserializationVisitor extends JsonDeserializationVisitor
 {
-  /**
-   * {@inheritdoc}
-   */
-  public function visitString($data, array $type, Context $context)
-  {
-    if (!is_string($data))
+    /**
+     * {@inheritdoc}
+     */
+    public function visitString($data, array $type, Context $context)
     {
-      throw TypeMismatchException::fromValue('string', $data, $context);
+        if (!is_string($data)) {
+            throw TypeMismatchException::fromValue('string', $data, $context);
+        }
+
+        return parent::visitString($data, $type, $context);
     }
 
-    return parent::visitString($data, $type, $context);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function visitBoolean($data, array $type, Context $context)
-  {
-    if (!is_bool($data))
+    /**
+     * {@inheritdoc}
+     */
+    public function visitBoolean($data, array $type, Context $context)
     {
-      throw TypeMismatchException::fromValue('boolean', $data, $context);
+        if (!is_bool($data)) {
+            throw TypeMismatchException::fromValue('boolean', $data, $context);
+        }
+
+        return parent::visitBoolean($data, $type, $context);
     }
 
-    return parent::visitBoolean($data, $type, $context);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function visitInteger($data, array $type, Context $context)
-  {
-    if (!is_int($data))
+    /**
+     * {@inheritdoc}
+     */
+    public function visitInteger($data, array $type, Context $context)
     {
-      throw TypeMismatchException::fromValue('integer', $data, $context);
+        if (!is_int($data)) {
+            throw TypeMismatchException::fromValue('integer', $data, $context);
+        }
+
+        return parent::visitInteger($data, $type, $context);
     }
 
-    return parent::visitInteger($data, $type, $context);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function visitDouble($data, array $type, Context $context)
-  {
-    if (!is_float($data) && !is_integer($data))
+    /**
+     * {@inheritdoc}
+     */
+    public function visitDouble($data, array $type, Context $context)
     {
-      throw TypeMismatchException::fromValue('double', $data, $context);
-    }
+        if (!is_float($data) && !is_integer($data)) {
+            throw TypeMismatchException::fromValue('double', $data, $context);
+        }
 
-    return parent::visitDouble($data, $type, $context);
-  }
+        return parent::visitDouble($data, $type, $context);
+    }
 }

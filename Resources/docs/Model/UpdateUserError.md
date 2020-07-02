@@ -1,10 +1,13 @@
-# Projects
+# UpdateUserError
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**projects** | [**OpenAPI\Server\Model\Project**](Project.md) |  | [optional] 
-**total_results** | **int** | Amount of overall projects of this query not limited by limit or offset | [optional] 
+**email** | **string** |  | [optional] 
+**username** | **string** |  | [optional] 
+**password** | **string** |  | [optional] 
+**image** | **string** |  | [optional] 
+**country** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

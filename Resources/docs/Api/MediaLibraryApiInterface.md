@@ -75,7 +75,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **mediaFilesGet**
-> OpenAPI\Server\Model\MediaFiles mediaFilesGet($limit, $offset, $flavor)
+> OpenAPI\Server\Model\MediaFile mediaFilesGet($limit, $offset, $flavor)
 
 Get *all* content of the media library.
 
@@ -115,7 +115,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\MediaFiles**](../Model/MediaFiles.md)
+[**OpenAPI\Server\Model\MediaFile**](../Model/MediaFile.md)
 
 ### Authorization
 
@@ -129,7 +129,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **mediaFilesSearchGet**
-> OpenAPI\Server\Model\MediaFiles mediaFilesSearchGet($query_string, $flavor, $limit, $offset, $package_name)
+> OpenAPI\Server\Model\MediaFile mediaFilesSearchGet($query, $flavor, $limit, $offset, $package_name)
 
 Search for mediafiles associated with keywords
 
@@ -150,7 +150,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaFilesSearchGet
      */
-    public function mediaFilesSearchGet(string $query_string, string $flavor = null, int $limit = '20', int $offset = '0', string $package_name = null)
+    public function mediaFilesSearchGet(string $query, string $flavor = null, int $limit = '20', int $offset = '0', string $package_name = null)
     {
         // Implement the operation ...
     }
@@ -163,7 +163,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_string** | **string**|  |
+ **query** | **string**|  |
  **flavor** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\MediaFiles**](../Model/MediaFiles.md)
+[**OpenAPI\Server\Model\MediaFile**](../Model/MediaFile.md)
 
 ### Authorization
 
@@ -185,7 +185,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **mediaPackagePackageNameGet**
-> OpenAPI\Server\Model\MediaFiles mediaPackagePackageNameGet($package_name, $limit, $offset)
+> OpenAPI\Server\Model\MediaFile mediaPackagePackageNameGet($package_name, $limit, $offset)
 
 Get media-library asstes of a named package
 
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\MediaFiles**](../Model/MediaFiles.md)
+[**OpenAPI\Server\Model\MediaFile**](../Model/MediaFile.md)
 
 ### Authorization
 

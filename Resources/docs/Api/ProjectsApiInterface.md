@@ -78,7 +78,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsFeaturedGet**
-> OpenAPI\Server\Model\FeaturedProjects projectsFeaturedGet($platform, $max_version, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\FeaturedProject projectsFeaturedGet($platform, $max_version, $limit, $offset, $flavor)
 
 Get the currently featured projects
 
@@ -120,7 +120,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\FeaturedProjects**](../Model/FeaturedProjects.md)
+[**OpenAPI\Server\Model\FeaturedProject**](../Model/FeaturedProject.md)
 
 ### Authorization
 
@@ -134,7 +134,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsGet**
-> OpenAPI\Server\Model\Projects projectsGet($project_type, $accept_language, $max_version, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\Project projectsGet($project_type, $accept_language, $max_version, $limit, $offset, $flavor)
 
 Get projects
 
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\Projects**](../Model/Projects.md)
+[**OpenAPI\Server\Model\Project**](../Model/Project.md)
 
 ### Authorization
 
@@ -247,7 +247,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsSearchGet**
-> OpenAPI\Server\Model\Projects projectsSearchGet($query_string, $max_version, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\Project projectsSearchGet($query, $max_version, $limit, $offset, $flavor)
 
 Search for projects associated with a keywords
 
@@ -268,7 +268,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsSearchGet
      */
-    public function projectsSearchGet(string $query_string, string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
+    public function projectsSearchGet(string $query, string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -281,7 +281,7 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_string** | **string**|  |
+ **query** | **string**|  |
  **max_version** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\Projects**](../Model/Projects.md)
+[**OpenAPI\Server\Model\Project**](../Model/Project.md)
 
 ### Authorization
 
@@ -303,7 +303,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsUserGet**
-> OpenAPI\Server\Model\Projects projectsUserGet($max_version, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\Project projectsUserGet($max_version, $limit, $offset, $flavor)
 
 Get the projects of the logged in user
 
@@ -344,7 +344,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\Projects**](../Model/Projects.md)
+[**OpenAPI\Server\Model\Project**](../Model/Project.md)
 
 ### Authorization
 
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsUserUserIdGet**
-> OpenAPI\Server\Model\Projects projectsUserUserIdGet($user_id, $max_version, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\Project projectsUserUserIdGet($user_id, $max_version, $limit, $offset, $flavor)
 
 Get the public projects of a given user
 
@@ -400,7 +400,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\Projects**](../Model/Projects.md)
+[**OpenAPI\Server\Model\Project**](../Model/Project.md)
 
 ### Authorization
 

@@ -1,11 +1,15 @@
-# InlineResponse422
+# UserPublicGet
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **string** |  | [optional] 
+**id** | **string** |  | [optional] 
 **username** | **string** |  | [optional] 
-**password** | **string** |  | [optional] 
+**profile_image** | **string** |  | [optional] 
+**country** | **string** |  | [optional] 
+**projects** | **int** |  | [optional] 
+**followers** | **int** |  | [optional] 
+**following** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

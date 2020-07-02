@@ -22,34 +22,31 @@ use JMS\Serializer\Exception\RuntimeException;
 
 class TypeMismatchException extends RuntimeException
 {
-  /**
-   * A handy method for building exception instance.
-   *
-   * @param string $expected_type
-   * @param mixed  $actual_value
-   *
-   * @return TypeMismatchException
-   */
-  public static function fromValue(
+    /**
+     * A handy method for building exception instance.
+     *
+     * @param string $expected_type
+     * @param mixed $actual_value
+     * @param DeserializationContext|null $context
+     * @return TypeMismatchException
+     */
+    public static function fromValue(
         $expected_type,
         $actual_value,
         DeserializationContext $context = null
     ) {
-    if (null !== $context && count($context->getCurrentPath()) > 0)
-    {
-      $property = sprintf('property "%s" to be ', implode('.', $context->getCurrentPath()));
-    }
-    else
-    {
-      $property = '';
-    }
+        if (null !== $context && count($context->getCurrentPath()) > 0) {
+            $property = sprintf('property "%s" to be ', implode('.', $context->getCurrentPath()));
+        } else {
+            $property = '';
+        }
 
-    return new static(sprintf(
+        return new static(sprintf(
             'Expected %s%s, but got %s: %s',
             $property,
             $expected_type,
             gettype($actual_value),
             json_encode($actual_value)
         ));
-  }
+    }
 }

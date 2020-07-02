@@ -9,7 +9,7 @@ For more information, please visit [https://share.catrob.at](https://share.catro
 
 ## Requirements
 
-PHP 5.4.0 and later
+PHP 7.1.3 and later
 
 ## Installation & Usage
 
@@ -117,7 +117,7 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AuthenticationApiInterface* | [**authenticationGet**](Resources/docs/Api/AuthenticationApiInterface.md#authenticationget) | **GET** /authentication | Check Token
+*AuthenticationApiInterface* | [**authenticationGet**](Resources/docs/Api/AuthenticationApiInterface.md#authenticationget) | **GET** /authentication | Check token
 *AuthenticationApiInterface* | [**authenticationPost**](Resources/docs/Api/AuthenticationApiInterface.md#authenticationpost) | **POST** /authentication | Login
 *MediaLibraryApiInterface* | [**mediaFileIdGet**](Resources/docs/Api/MediaLibraryApiInterface.md#mediafileidget) | **GET** /media/file/{id} | Get the information of a specific media file
 *MediaLibraryApiInterface* | [**mediaFilesGet**](Resources/docs/Api/MediaLibraryApiInterface.md#mediafilesget) | **GET** /media/files | Get *all* content of the media library.
@@ -130,28 +130,37 @@ Class | Method | HTTP request | Description
 *ProjectsApiInterface* | [**projectsSearchGet**](Resources/docs/Api/ProjectsApiInterface.md#projectssearchget) | **GET** /projects/search | Search for projects associated with a keywords
 *ProjectsApiInterface* | [**projectsUserGet**](Resources/docs/Api/ProjectsApiInterface.md#projectsuserget) | **GET** /projects/user/ | Get the projects of the logged in user
 *ProjectsApiInterface* | [**projectsUserUserIdGet**](Resources/docs/Api/ProjectsApiInterface.md#projectsuseruseridget) | **GET** /projects/user/{user_id} | Get the public projects of a given user
+*UserApiInterface* | [**userDelete**](Resources/docs/Api/UserApiInterface.md#userdelete) | **DELETE** /user | Delete user account
+*UserApiInterface* | [**userGet**](Resources/docs/Api/UserApiInterface.md#userget) | **GET** /user | Get your private user data
+*UserApiInterface* | [**userIdGet**](Resources/docs/Api/UserApiInterface.md#useridget) | **GET** /user/{id} | Get the public data of a user
 *UserApiInterface* | [**userPost**](Resources/docs/Api/UserApiInterface.md#userpost) | **POST** /user | Register
+*UserApiInterface* | [**userPut**](Resources/docs/Api/UserApiInterface.md#userput) | **PUT** /user | Update User
+*UserApiInterface* | [**usersSearchGet**](Resources/docs/Api/UserApiInterface.md#userssearchget) | **GET** /users/search | Search for users
 *UtilityApiInterface* | [**healthGet**](Resources/docs/Api/UtilityApiInterface.md#healthget) | **GET** /health | Health Check
 
 
 ## Documentation For Models
 
+ - [BaseUser](Resources/docs/Model/BaseUser.md)
+ - [DryRun](Resources/docs/Model/DryRun.md)
  - [FeaturedProject](Resources/docs/Model/FeaturedProject.md)
- - [FeaturedProjects](Resources/docs/Model/FeaturedProjects.md)
- - [InlineObject](Resources/docs/Model/InlineObject.md)
- - [InlineResponse422](Resources/docs/Model/InlineResponse422.md)
  - [JWTTokenResponse](Resources/docs/Model/JWTTokenResponse.md)
  - [Login](Resources/docs/Model/Login.md)
  - [MediaCategories](Resources/docs/Model/MediaCategories.md)
  - [MediaCategory](Resources/docs/Model/MediaCategory.md)
  - [MediaFile](Resources/docs/Model/MediaFile.md)
- - [MediaFiles](Resources/docs/Model/MediaFiles.md)
  - [MediaPackage](Resources/docs/Model/MediaPackage.md)
  - [MediaPackages](Resources/docs/Model/MediaPackages.md)
  - [Project](Resources/docs/Model/Project.md)
- - [Projects](Resources/docs/Model/Projects.md)
+ - [ProjectUpload](Resources/docs/Model/ProjectUpload.md)
  - [Register](Resources/docs/Model/Register.md)
+ - [RegisterError](Resources/docs/Model/RegisterError.md)
+ - [UpdateUser](Resources/docs/Model/UpdateUser.md)
+ - [UpdateUserAllOf](Resources/docs/Model/UpdateUserAllOf.md)
+ - [UpdateUserError](Resources/docs/Model/UpdateUserError.md)
  - [UploadError](Resources/docs/Model/UploadError.md)
+ - [UserPrivateGet](Resources/docs/Model/UserPrivateGet.md)
+ - [UserPublicGet](Resources/docs/Model/UserPublicGet.md)
 
 
 ## Documentation For Authorization

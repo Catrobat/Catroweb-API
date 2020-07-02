@@ -4,7 +4,7 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**authenticationGet**](AuthenticationApiInterface.md#authenticationGet) | **GET** /authentication | Check Token
+[**authenticationGet**](AuthenticationApiInterface.md#authenticationGet) | **GET** /authentication | Check token
 [**authenticationPost**](AuthenticationApiInterface.md#authenticationPost) | **POST** /authentication | Login
 
 
@@ -23,7 +23,7 @@ services:
 ## **authenticationGet**
 > authenticationGet()
 
-Check Token
+Check token
 
 Checks if a token is valid or expired.
 
