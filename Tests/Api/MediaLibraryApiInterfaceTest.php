@@ -118,16 +118,16 @@ class MediaLibraryApiInterfaceTest extends WebTestCase
   }
 
   /**
-   * Test case for mediaPackagePackageNameGet.
+   * Test case for mediaPackageNameGet.
    *
    * Get media-library asstes of a named package.
    */
-  public function testMediaPackagePackageNameGet()
+  public function testMediaPackageNameGet()
   {
     $client = static::createClient();
 
-    $path = '/media/package/{package_name}';
-    $pattern = '{package_name}';
+    $path = '/media/package/{name}';
+    $pattern = '{name}';
     $data = $this->genTestData('^[a-zA-Z0-9\\-_]+$');
     $path = str_replace($pattern, $data, $path);
 

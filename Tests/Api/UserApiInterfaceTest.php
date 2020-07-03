@@ -103,7 +103,7 @@ class UserApiInterfaceTest extends WebTestCase
   /**
    * Test case for userIdGet.
    *
-   * Get the public data of a user.
+   * Get public user data.
    */
   public function testUserIdGet()
   {

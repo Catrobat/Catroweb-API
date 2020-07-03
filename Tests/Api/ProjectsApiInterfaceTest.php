@@ -73,16 +73,16 @@ class ProjectsApiInterfaceTest extends WebTestCase
   }
 
   /**
-   * Test case for projectProjectIdGet.
+   * Test case for projectIdGet.
    *
    * Get the information of a project.
    */
-  public function testProjectProjectIdGet()
+  public function testProjectIdGet()
   {
     $client = static::createClient();
 
-    $path = '/project/{project_id}';
-    $pattern = '{project_id}';
+    $path = '/project/{id}';
+    $pattern = '{id}';
     $data = $this->genTestData('^[a-zA-Z0-9\\-]+$');
     $path = str_replace($pattern, $data, $path);
 
@@ -160,16 +160,16 @@ class ProjectsApiInterfaceTest extends WebTestCase
   }
 
   /**
-   * Test case for projectsUserUserIdGet.
+   * Test case for projectsUserIdGet.
    *
    * Get the public projects of a given user.
    */
-  public function testProjectsUserUserIdGet()
+  public function testProjectsUserIdGet()
   {
     $client = static::createClient();
 
-    $path = '/projects/user/{user_id}';
-    $pattern = '{user_id}';
+    $path = '/projects/user/{id}';
+    $pattern = '{id}';
     $data = $this->genTestData('^[a-zA-Z0-9\\-]+$');
     $path = str_replace($pattern, $data, $path);
 

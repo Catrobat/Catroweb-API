@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**userDelete**](UserApiInterface.md#userDelete) | **DELETE** /user | Delete user account
 [**userGet**](UserApiInterface.md#userGet) | **GET** /user | Get your private user data
-[**userIdGet**](UserApiInterface.md#userIdGet) | **GET** /user/{id} | Get the public data of a user
+[**userIdGet**](UserApiInterface.md#userIdGet) | **GET** /user/{id} | Get public user data
 [**userPost**](UserApiInterface.md#userPost) | **POST** /user | Register
 [**userPut**](UserApiInterface.md#userPut) | **PUT** /user | Update User
 [**usersSearchGet**](UserApiInterface.md#usersSearchGet) | **GET** /users/search | Search for users
@@ -76,11 +76,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **userGet**
-> OpenAPI\Server\Model\UserPrivateGet userGet()
+> OpenAPI\Server\Model\ExtendedUserDataResponse userGet()
 
 Get your private user data
 
-Get your private user data. Additionally to the public user data, this response contains all your private settings.
+Get your private user data. Additionally to the public user data,  this responses contains all your private data like settings.
 
 ### Example Implementation
 ```php
@@ -113,7 +113,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**OpenAPI\Server\Model\UserPrivateGet**](../Model/UserPrivateGet.md)
+[**OpenAPI\Server\Model\ExtendedUserDataResponse**](../Model/ExtendedUserDataResponse.md)
 
 ### Authorization
 
@@ -127,11 +127,11 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **userIdGet**
-> OpenAPI\Server\Model\UserPublicGet userIdGet($id)
+> OpenAPI\Server\Model\BasicUserDataResponse userIdGet($id)
 
-Get the public data of a user
+Get public user data
 
-Get the public data of a user.
+Get all the public data of a user.
 
 ### Example Implementation
 ```php
@@ -163,11 +163,11 @@ class UserApi implements UserApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| UUID/ID of any given user |
+ **id** | **string**|  |
 
 ### Return type
 
-[**OpenAPI\Server\Model\UserPublicGet**](../Model/UserPublicGet.md)
+[**OpenAPI\Server\Model\BasicUserDataResponse**](../Model/BasicUserDataResponse.md)
 
 ### Authorization
 
@@ -181,11 +181,11 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **userPost**
-> array userPost($register, $accept_language)
+> array userPost($register_request, $accept_language)
 
 Register
 
-Register a user. For pre-validation you might wanna use the dry-run option.
+Register a user. For pre-validation use the dry-run option. Using Dry run the request is validated but no object is created on the server.
 
 ### Example Implementation
 ```php
@@ -204,7 +204,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userPost
      */
-    public function userPost(Register $register, string $accept_language = null)
+    public function userPost(RegisterRequest $register_request, string $accept_language = null)
     {
         // Implement the operation ...
     }
@@ -217,7 +217,7 @@ class UserApi implements UserApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **register** | [**OpenAPI\Server\Model\Register**](../Model/Register.md)|  |
+ **register_request** | [**OpenAPI\Server\Model\RegisterRequest**](../Model/RegisterRequest.md)|  |
  **accept_language** | **string**|  | [optional]
 
 ### Return type
@@ -236,11 +236,11 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **userPut**
-> userPut($update_user, $accept_language)
+> userPut($update_user_request, $accept_language)
 
 Update User
 
-Update your user account. You can change all members at once, or one by one with different calls.
+Update your user account. All attributes are optional. For example you can update only the username. Or you can update multiple attributes at once. E.g. username + email + image.
 
 ### Example Implementation
 ```php
@@ -259,7 +259,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userPut
      */
-    public function userPut(UpdateUser $update_user, string $accept_language = null)
+    public function userPut(UpdateUserRequest $update_user_request, string $accept_language = null)
     {
         // Implement the operation ...
     }
@@ -272,7 +272,7 @@ class UserApi implements UserApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **update_user** | [**OpenAPI\Server\Model\UpdateUser**](../Model/UpdateUser.md)|  |
+ **update_user_request** | [**OpenAPI\Server\Model\UpdateUserRequest**](../Model/UpdateUserRequest.md)|  |
  **accept_language** | **string**|  | [optional]
 
 ### Return type
@@ -291,7 +291,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **usersSearchGet**
-> OpenAPI\Server\Model\UserPublicGet usersSearchGet($query, $limit, $offset)
+> OpenAPI\Server\Model\BasicUserDataResponse usersSearchGet($query, $limit, $offset)
 
 Search for users
 
@@ -333,7 +333,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\UserPublicGet**](../Model/UserPublicGet.md)
+[**OpenAPI\Server\Model\BasicUserDataResponse**](../Model/BasicUserDataResponse.md)
 
 ### Authorization
 
