@@ -188,7 +188,7 @@ paths:
           name: id
           schema:
             type: string
-            pattern: '^[a-zA-Z0-9-]+$'
+            pattern: '^[a-zA-Z0-9\-]+$'
             example: 1234abcd-12ab-12ab-12ab-123456abcdef
           required: true
           description: UUID/ID of any given user
@@ -377,7 +377,7 @@ paths:
           name: user_id
           schema:
             type: string
-            pattern: '^[a-zA-Z0-9-]+$'
+            pattern: '^[a-zA-Z0-9\-]+$'
             example: 1234abcd-12ab-12ab-12ab-123456abcdef
           required: true
           description: UUID/ID of any given user
@@ -408,7 +408,7 @@ paths:
           name: project_id
           schema:
             type: string
-            pattern: '^[a-zA-Z0-9-]+$'
+            pattern: '^[a-zA-Z0-9\-]+$'
             example: 1234abcd-12ab-12ab-12ab-123456abcdef
           required: true
           description: UUID/ID of any given project
@@ -435,7 +435,7 @@ paths:
           name: package_name
           schema:
             type: string
-            pattern: '^[a-zA-Z0-9-_]+$'
+            pattern: '^[a-zA-Z0-9\-_]+$'
             example: looks
           required: true
           description: Name of the package
@@ -660,9 +660,8 @@ components:
           minimum: 0
     MaxVersion:
       type: string
-      description: Only shows project with a smaller version number than max version
+      description: Only shows project with a smaller version number than max version. Warning! Current implementation is kinda broken. To ensure correct results use the following format '[0-9]\.[0-9]{3}'
       example: '0.999'
-      pattern: '[0-9]\.[0-9]{3}'
     Limit:
       type: integer
       minimum: 0

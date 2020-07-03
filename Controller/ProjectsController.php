@@ -87,7 +87,7 @@ class ProjectsController extends Controller
         $asserts = [];
         $asserts[] = new Assert\NotNull();
         $asserts[] = new Assert\Type("string");
-        $asserts[] = new Assert\Regex("/^[a-zA-Z0-9-]+$/");
+        $asserts[] = new Assert\Regex("/^[a-zA-Z0-9\\-]+$/");
         $response = $this->validate($project_id, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -189,7 +189,6 @@ class ProjectsController extends Controller
         }
         $asserts = [];
         $asserts[] = new Assert\Type("string");
-        $asserts[] = new Assert\Regex("/[0-9]\\.[0-9]{3}/");
         $response = $this->validate($max_version, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -318,7 +317,6 @@ class ProjectsController extends Controller
         }
         $asserts = [];
         $asserts[] = new Assert\Type("string");
-        $asserts[] = new Assert\Regex("/[0-9]\\.[0-9]{3}/");
         $response = $this->validate($max_version, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -563,7 +561,6 @@ class ProjectsController extends Controller
         }
         $asserts = [];
         $asserts[] = new Assert\Type("string");
-        $asserts[] = new Assert\Regex("/[0-9]\\.[0-9]{3}/");
         $response = $this->validate($max_version, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -677,7 +674,6 @@ class ProjectsController extends Controller
         // Validate the input values
         $asserts = [];
         $asserts[] = new Assert\Type("string");
-        $asserts[] = new Assert\Regex("/[0-9]\\.[0-9]{3}/");
         $response = $this->validate($max_version, $asserts);
         if ($response instanceof Response) {
             return $response;
@@ -795,14 +791,13 @@ class ProjectsController extends Controller
         $asserts = [];
         $asserts[] = new Assert\NotNull();
         $asserts[] = new Assert\Type("string");
-        $asserts[] = new Assert\Regex("/^[a-zA-Z0-9-]+$/");
+        $asserts[] = new Assert\Regex("/^[a-zA-Z0-9\\-]+$/");
         $response = $this->validate($user_id, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
         $asserts[] = new Assert\Type("string");
-        $asserts[] = new Assert\Regex("/[0-9]\\.[0-9]{3}/");
         $response = $this->validate($max_version, $asserts);
         if ($response instanceof Response) {
             return $response;

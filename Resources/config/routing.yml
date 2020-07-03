@@ -42,7 +42,7 @@ open_api_server_mediaLibrary_mediapackagepackagenameget:
     defaults:
         _controller: open_api_server.controller.mediaLibrary:mediaPackagePackageNameGetAction
     requirements:
-        package_name: '^[a-zA-Z0-9-_]+$'
+        package_name: '^[a-zA-Z0-9\\-_]+$'
 
 # projects
 open_api_server_projects_projectprojectidget:
@@ -51,7 +51,7 @@ open_api_server_projects_projectprojectidget:
     defaults:
         _controller: open_api_server.controller.projects:projectProjectIdGetAction
     requirements:
-        project_id: '^[a-zA-Z0-9-]+$'
+        project_id: '^[a-zA-Z0-9\\-]+$'
 
 open_api_server_projects_projectsfeaturedget:
     path:     /projects/featured
@@ -89,7 +89,7 @@ open_api_server_projects_projectsuseruseridget:
     defaults:
         _controller: open_api_server.controller.projects:projectsUserUserIdGetAction
     requirements:
-        user_id: '^[a-zA-Z0-9-]+$'
+        user_id: '^[a-zA-Z0-9\\-]+$'
 
 # user
 open_api_server_user_userdelete:
@@ -110,7 +110,7 @@ open_api_server_user_useridget:
     defaults:
         _controller: open_api_server.controller.user:userIdGetAction
     requirements:
-        id: '^[a-zA-Z0-9-]+$'
+        id: '^[a-zA-Z0-9\\-]+$'
 
 open_api_server_user_userpost:
     path:     /user
