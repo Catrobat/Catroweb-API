@@ -4,7 +4,7 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**authenticationGet**](AuthenticationApiInterface.md#authenticationGet) | **GET** /authentication | Check Token
+[**authenticationGet**](AuthenticationApiInterface.md#authenticationGet) | **GET** /authentication | Check token
 [**authenticationPost**](AuthenticationApiInterface.md#authenticationPost) | **POST** /authentication | Login
 
 
@@ -23,7 +23,7 @@ services:
 ## **authenticationGet**
 > authenticationGet()
 
-Check Token
+Check token
 
 Checks if a token is valid or expired.
 
@@ -72,11 +72,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **authenticationPost**
-> OpenAPI\Server\Model\JWTTokenResponse authenticationPost($login)
+> OpenAPI\Server\Model\JWTResponse authenticationPost($login_request)
 
 Login
 
-Returns an JWT token which provides authorization.
+Returns an JWT token which provides authorization for a limited time.
 
 ### Example Implementation
 ```php
@@ -95,7 +95,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationPost
      */
-    public function authenticationPost(Login $login)
+    public function authenticationPost(LoginRequest $login_request)
     {
         // Implement the operation ...
     }
@@ -108,11 +108,11 @@ class AuthenticationApi implements AuthenticationApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **login** | [**OpenAPI\Server\Model\Login**](../Model/Login.md)|  |
+ **login_request** | [**OpenAPI\Server\Model\LoginRequest**](../Model/LoginRequest.md)|  |
 
 ### Return type
 
-[**OpenAPI\Server\Model\JWTTokenResponse**](../Model/JWTTokenResponse.md)
+[**OpenAPI\Server\Model\JWTResponse**](../Model/JWTResponse.md)
 
 ### Authorization
 
