@@ -8,6 +8,7 @@ info:
     name: Catrobat
     url: 'https://share.catrob.at'
     email: webmaster@catrobat.org
+    
 servers:
   - url: 'https://share.catrob.at/api'
     description: Main production server
@@ -187,7 +188,7 @@ paths:
       description: |
         Update your user account. All attributes are optional.
         For example you can update only the username.
-        Or you can update multiple attributes at once. E.g. username + email + image.
+        Or you can update multiple attributes at once. E.g. username + email.
       requestBody:
         required: true
         content:
@@ -855,9 +856,6 @@ components:
             country:
               type: string
               example: AT
-            image:
-              type: string
-              format: binary
 
     DryRun:
       type: object
@@ -890,10 +888,6 @@ components:
           format: email
           example: test@test.lan
           description: EMail of the user.
-        image:
-          type: string
-          example: https://share.catrob.at/resources/images/...
-          description: Profile image of the user.
         country:
           type: string
           example: AT
@@ -962,10 +956,6 @@ components:
             - Password too short
             - Password too long
             - Password contains invalid chars
-        image:
-          type: string
-          enum:
-            - Image invalid
         country:
           type: string
           enum:
