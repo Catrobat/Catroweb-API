@@ -87,6 +87,20 @@ class AuthenticationApiInterfaceTest extends WebTestCase
   }
 
   /**
+   * Test case for authenticationOauthPost.
+   *
+   * OAuth Login.
+   */
+  public function testAuthenticationOauthPost()
+  {
+    $client = static::createClient();
+
+    $path = '/authentication/oauth';
+
+    $crawler = $client->request('POST', $path, [], [], ['CONTENT_TYPE' => 'application/json']);
+  }
+
+  /**
    * Test case for authenticationPost.
    *
    * Login.

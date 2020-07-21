@@ -113,6 +113,122 @@ class AuthenticationController extends Controller
   }
 
   /**
+   * Operation authenticationOauthPost.
+   *
+   * OAuth Login
+   *
+   * @param Request $request the Symfony request to handle
+   *
+   * @return Response the Symfony response
+   */
+  public function authenticationOauthPostAction(Request $request)
+  {
+    // Make sure that the client is providing something that we can consume
+    $consumes = ['application/json'];
+    if (!static::isContentTypeAllowed($request, $consumes))
+    {
+      // We can't consume the content that the client is sending us
+      return new Response('', 415);
+    }
+
+    // Figure out what data format to return to the client
+    $produces = ['application/json'];
+    // Figure out what the client accepts
+    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
+    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
+    if (null === $responseFormat)
+    {
+      return new Response('', 406);
+    }
+
+    // Handle authentication
+    // Authentication 'PandaAuth' required
+    // HTTP basic authentication required
+    $securityPandaAuth = $request->headers->get('authorization');
+
+    // Read out all input parameter values into variables
+    $o_auth_login_request = $request->getContent();
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
+    {
+      $inputFormat = $request->getMimeType($request->getContentType());
+      $o_auth_login_request = $this->deserialize($o_auth_login_request, 'OpenAPI\Server\Model\OAuthLoginRequest', $inputFormat);
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
+
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('OpenAPI\\Server\\Model\\OAuthLoginRequest');
+    $asserts[] = new Assert\Valid();
+    $response = $this->validate($o_auth_login_request, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+
+    try
+    {
+      $handler = $this->getApiHandler();
+
+      // Set authentication method 'PandaAuth'
+      $handler->setPandaAuth($securityPandaAuth);
+
+      // Make the call to the business logic
+      $responseCode = 200;
+      $responseHeaders = [];
+      $result = $handler->authenticationOauthPost($o_auth_login_request, $responseCode, $responseHeaders);
+
+      // Find default response message
+      $message = '';
+
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'OK';
+                    break;
+                case 400:
+                    $message = 'Bad request (Invalid, or missing parameters)';
+                    break;
+                case 401:
+                    $message = 'Invalid Client ID token';
+                    break;
+                case 406:
+                    $message = 'Not acceptable - client must accept application/json as content type';
+                    break;
+                case 415:
+                    $message = 'Unsupported Media Type - request must use application/json as content type';
+                    break;
+                case 422:
+                    $message = 'Unprocessable Entity';
+                    break;
+            }
+
+      return new Response(
+                null !== $result ? $this->serialize($result, $responseFormat) : '',
+                $responseCode,
+                array_merge(
+                    $responseHeaders,
+                    [
+                      'Content-Type' => $responseFormat,
+                      'X-OpenAPI-Message' => $message,
+                    ]
+                )
+            );
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
    * Operation authenticationPost.
    *
    * Login

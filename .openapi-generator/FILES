@@ -20,6 +20,7 @@
 ./Model/MediaCategoryResponse.php
 ./Model/MediaFileResponse.php
 ./Model/MediaPackageResponse.php
+./Model/OAuthLoginRequest.php
 ./Model/ProjectResponse.php
 ./Model/ProjectUploadRequest.php
 ./Model/RegisterErrorResponse.php
@@ -51,6 +52,7 @@
 ./Tests/Model/MediaCategoryResponseTest.php
 ./Tests/Model/MediaFileResponseTest.php
 ./Tests/Model/MediaPackageResponseTest.php
+./Tests/Model/OAuthLoginRequestTest.php
 ./Tests/Model/ProjectResponseTest.php
 ./Tests/Model/ProjectUploadRequestTest.php
 ./Tests/Model/RegisterErrorResponseTest.php
@@ -85,6 +87,7 @@ Resources/docs/Model/LoginRequest.md
 Resources/docs/Model/MediaCategoryResponse.md
 Resources/docs/Model/MediaFileResponse.md
 Resources/docs/Model/MediaPackageResponse.md
+Resources/docs/Model/OAuthLoginRequest.md
 Resources/docs/Model/ProjectResponse.md
 Resources/docs/Model/ProjectUploadRequest.md
 Resources/docs/Model/RegisterErrorResponse.md

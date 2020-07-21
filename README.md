@@ -118,6 +118,7 @@ All URIs are relative to *https://share.catrob.at/api*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AuthenticationApiInterface* | [**authenticationGet**](Resources/docs/Api/AuthenticationApiInterface.md#authenticationget) | **GET** /authentication | Check token
+*AuthenticationApiInterface* | [**authenticationOauthPost**](Resources/docs/Api/AuthenticationApiInterface.md#authenticationoauthpost) | **POST** /authentication/oauth | OAuth Login
 *AuthenticationApiInterface* | [**authenticationPost**](Resources/docs/Api/AuthenticationApiInterface.md#authenticationpost) | **POST** /authentication | Login
 *MediaLibraryApiInterface* | [**mediaFileIdGet**](Resources/docs/Api/MediaLibraryApiInterface.md#mediafileidget) | **GET** /media/file/{id} | Get the information of a specific media file
 *MediaLibraryApiInterface* | [**mediaFilesGet**](Resources/docs/Api/MediaLibraryApiInterface.md#mediafilesget) | **GET** /media/files | Get *all* content of the media library.
@@ -151,6 +152,7 @@ Class | Method | HTTP request | Description
  - [MediaCategoryResponse](Resources/docs/Model/MediaCategoryResponse.md)
  - [MediaFileResponse](Resources/docs/Model/MediaFileResponse.md)
  - [MediaPackageResponse](Resources/docs/Model/MediaPackageResponse.md)
+ - [OAuthLoginRequest](Resources/docs/Model/OAuthLoginRequest.md)
  - [ProjectResponse](Resources/docs/Model/ProjectResponse.md)
  - [ProjectUploadRequest](Resources/docs/Model/ProjectUploadRequest.md)
  - [RegisterErrorResponse](Resources/docs/Model/RegisterErrorResponse.md)
