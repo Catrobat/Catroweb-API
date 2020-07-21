@@ -79,6 +79,37 @@ paths:
           $ref: '#/components/responses/NotAcceptable'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
+  /authentication/oauth:
+    post:
+      security:
+        - PandaAuth: []
+      tags:
+        - Authentication
+      summary: OAuth Login
+      description: Returns an JWT token which provides authorization.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthLoginRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidIdToken'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        422:
+          description: Unprocessable Entity
 
   ##############################################
   # Utility
@@ -594,6 +625,9 @@ components:
 
     UnprocessableEntity:
       description: Unprocessable Entity
+      
+    InvalidIdToken:
+      description: Invalid Client ID token
 
   ##############################################
   # Security Schemes
@@ -805,6 +839,17 @@ components:
           maxLength: 4096
           example: password
           description: A secure password.
+    OAuthLoginRequest:
+      type: object
+      properties:
+        id_token:
+          type: string
+          example: .eydfdf23232323
+          description: User ID token
+        resource_owner:
+          type: string
+          example: google
+          description: OAuth provider
 
     ## Response
 
@@ -813,7 +858,7 @@ components:
       properties:
         token:
           type: string
-          example: xxxxx.yyyyy.zzzzz
+          example: xxxxx.yyyyy.zzzzz          
 
     ##############################################
     # UserSchemas
