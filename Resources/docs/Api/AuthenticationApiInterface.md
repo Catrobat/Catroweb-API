@@ -5,6 +5,7 @@ All URIs are relative to *https://share.catrob.at/api*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**authenticationGet**](AuthenticationApiInterface.md#authenticationGet) | **GET** /authentication | Check token
+[**authenticationOauthPost**](AuthenticationApiInterface.md#authenticationOauthPost) | **POST** /authentication/oauth | OAuth Login
 [**authenticationPost**](AuthenticationApiInterface.md#authenticationPost) | **POST** /authentication | Login
 
 
@@ -68,6 +69,60 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+## **authenticationOauthPost**
+> OpenAPI\Server\Model\JWTResponse authenticationOauthPost($o_auth_login_request)
+
+OAuth Login
+
+Returns an JWT token which provides authorization.
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/AuthenticationApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\AuthenticationApiInterface;
+
+class AuthenticationApi implements AuthenticationApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of AuthenticationApiInterface#authenticationOauthPost
+     */
+    public function authenticationOauthPost(OAuthLoginRequest $o_auth_login_request)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **o_auth_login_request** | [**OpenAPI\Server\Model\OAuthLoginRequest**](../Model/OAuthLoginRequest.md)|  |
+
+### Return type
+
+[**OpenAPI\Server\Model\JWTResponse**](../Model/JWTResponse.md)
+
+### Authorization
+
+[PandaAuth](../../README.md#PandaAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

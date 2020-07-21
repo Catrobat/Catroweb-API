@@ -29,6 +29,7 @@
 namespace OpenAPI\Server\Api;
 
 use OpenAPI\Server\Model\LoginRequest;
+use OpenAPI\Server\Model\OAuthLoginRequest;
 
 /**
  * AuthenticationApiInterface Interface Doc Comment.
@@ -57,6 +58,19 @@ interface AuthenticationApiInterface
    * @param array $responseHeaders Additional HTTP headers to return with the response ()
    */
   public function authenticationGet(&$responseCode, array &$responseHeaders);
+
+  /**
+   * Operation authenticationOauthPost.
+   *
+   * OAuth Login
+   *
+   * @param OpenAPI\Server\Model\OAuthLoginRequest $o_auth_login_request (required)
+   * @param int                                    $responseCode         The HTTP response code to return
+   * @param array                                  $responseHeaders      Additional HTTP headers to return with the response ()
+   *
+   * @return OpenAPI\Server\Model\JWTResponse
+   */
+  public function authenticationOauthPost(OAuthLoginRequest $o_auth_login_request, &$responseCode, array &$responseHeaders);
 
   /**
    * Operation authenticationPost.
