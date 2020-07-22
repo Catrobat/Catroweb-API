@@ -240,7 +240,7 @@ No authorization required
 
 Update User
 
-Update your user account. All attributes are optional. For example you can update only the username. Or you can update multiple attributes at once. E.g. username + email + image.
+Update your user account. All attributes are optional. For example you can update only the username. Or you can update multiple attributes at once. E.g. username + email.
 
 ### Example Implementation
 ```php

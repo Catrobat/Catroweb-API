@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 **id** | **string** | Unique ID of the user. | [optional] 
 **username** | **string** | Nickname of the user. | [optional] 
 **email** | **string** | EMail of the user. | [optional] 
-**image** | **string** | Profile image of the user. | [optional] 
 **country** | **string** | Country code of the user. | [optional] 
 **projects** | **int** | Amount of projects of the user. | [optional] 
 **followers** | **int** | Amount of users that follow this user. | [optional] 
