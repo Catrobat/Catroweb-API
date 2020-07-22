@@ -8,7 +8,7 @@ info:
     name: Catrobat
     url: 'https://share.catrob.at'
     email: webmaster@catrobat.org
-    
+
 servers:
   - url: 'https://share.catrob.at/api'
     description: Main production server
@@ -626,7 +626,7 @@ components:
 
     UnprocessableEntity:
       description: Unprocessable Entity
-      
+
     InvalidIdToken:
       description: Invalid Client ID token
 
@@ -859,7 +859,7 @@ components:
       properties:
         token:
           type: string
-          example: xxxxx.yyyyy.zzzzz          
+          example: xxxxx.yyyyy.zzzzz
 
     ##############################################
     # UserSchemas
