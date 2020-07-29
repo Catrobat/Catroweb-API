@@ -142,9 +142,6 @@ class AuthenticationController extends Controller
     }
 
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
     $o_auth_login_request = $request->getContent();
@@ -176,9 +173,6 @@ class AuthenticationController extends Controller
     try
     {
       $handler = $this->getApiHandler();
-
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
 
       // Make the call to the business logic
       $responseCode = 200;
