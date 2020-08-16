@@ -301,6 +301,8 @@ paths:
         - $ref: '#/components/parameters/Limit'
         - $ref: '#/components/parameters/Offset'
         - $ref: '#/components/parameters/Flavor'
+        - $ref: '#/components/parameters/ProgramId'
+
       responses:
         '200':
           description: OK
@@ -658,7 +660,11 @@ components:
       schema:
         $ref: '#/components/schemas/Uuid'
       required: true
-
+    ProgramId:
+      name: program_id
+      in: query
+      schema:
+        $ref: '#/components/schemas/Uuid'
     Flavor:
       in: query
       name: flavor
@@ -694,6 +700,7 @@ components:
           - most_downloaded
           - example
           - scratch
+          - similar
 
     MaxVersion:
       name: max_version
