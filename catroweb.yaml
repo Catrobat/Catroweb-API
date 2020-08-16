@@ -694,6 +694,7 @@ components:
           - most_downloaded
           - example
           - scratch
+          - recommended
 
     MaxVersion:
       name: max_version
