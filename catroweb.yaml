@@ -507,6 +507,32 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
+  '/project/{id}/recommendations':
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+
+    get:
+      tags:
+        - Projects
+      summary: Get recommended projects related to the specific project
+      parameters:
+        - $ref: '#/components/parameters/Uuid'
+        - $ref: '#/components/parameters/RecommendedProjectType'
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
   ################################################
   # Media Library
   #
@@ -723,6 +749,20 @@ components:
           - scratch
           - recommended
 
+    RecommendedProjectType:
+      in: query
+      name: category
+      required: true
+      schema:
+        type: string
+        enum:
+          - similar
+          - also downloaded
+          - more from user
+      description: |
+        * `similar` - Get similar projects to the specific project
+        * `also downloaded` - Get projects that users who downloaded the specific project also downloaded
+        * `more from user` - Get more projects from the owner of the specific project
     MaxVersion:
       name: max_version
       in: query
