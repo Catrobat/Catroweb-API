@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.42"
+  version: "v1.0.43"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -480,6 +480,33 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
+  '/projects/{id}/report':
+    post:
+      security:
+        - PandaAuth: []
+      tags:
+        - Projects
+      summary: Report a project
+      parameters:
+        - $ref: '#/components/parameters/Uuid'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectReportRequest'
+      responses:
+        '204':
+          description: Project successfully reported.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
   ################################################
   # Media Library
   #
@@ -899,6 +926,20 @@ components:
             country:
               type: string
               example: AT
+
+    ProjectReportRequest:
+      type: object
+      properties:
+        category:
+          type: string
+          enum:
+            - Sexual content
+            - Graphic violence
+            - Hateful or abusive content
+            - Improper content rating
+            - Illegal prescription or other drug
+            - Copycat or impersonation
+            - Other objection
 
     DryRun:
       type: object
