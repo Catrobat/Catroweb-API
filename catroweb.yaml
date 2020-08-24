@@ -32,6 +32,8 @@ tags:
     description: Everything related to the media library
   - name: Utility
     description: Utility frunctionality for infrastructure
+  - name: Notifications
+    description: Everything related for notifications
 
 paths:
 
@@ -508,6 +510,81 @@ paths:
           $ref: '#/components/responses/NotAcceptable'
 
   ################################################
+  # Notifications
+  #
+  /notifications:
+    get:
+      security:
+        - PandaAuth: []
+      tags:
+        - Notifications
+      summary: Get user notifications
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/NotificationsType'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  '/notifications/{id}/read':
+    put:
+      security:
+        - PandaAuth: []
+      tags:
+        - Notifications
+      summary: Mark specified notification as read
+      parameters:
+        - $ref: '#/components/parameters/NotificationsId'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /notifications/read:
+    put:
+      security:
+        - PandaAuth: []
+      tags:
+        - Notifications
+      summary: Mark all notifications as read
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /notifications/count:
+    get:
+      security:
+        - PandaAuth: []
+      tags:
+        - Notifications
+      summary: Count the number of unseen notifications
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationsCountResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  ################################################
   # Media Library
   #
   '/media/package/{name}':
@@ -630,6 +707,9 @@ components:
     OK:
       description: OK
 
+    NoContent:
+      description: No Content
+
     UnauthorizedError:
       description: Invalid JWT token | JWT token not found | JWT token expired
 
@@ -645,7 +725,6 @@ components:
     UnsupportedMediaType:
       description: >-
         Unsupported Media Type - request must use application/json as content type
-
     NotFound:
       description: Not found
 
@@ -704,6 +783,22 @@ components:
       in: query
       schema:
         $ref: '#/components/schemas/Offset'
+
+    ##
+    # Notifications specific
+    #
+    NotificationsId:
+      name: id
+      in: path
+      schema:
+        $ref: '#/components/schemas/NotificationsId'
+      required: true
+
+    NotificationsType:
+      name: type
+      in: query
+      schema:
+        $ref: '#/components/schemas/NotificationsType'
 
     ##
     # Project specific
@@ -1163,3 +1258,104 @@ components:
           type: number
           example: 0.14381762458251943
           description: filesize in megabytes
+
+    NotificationsId:
+      type: integer
+      minimum: 0
+      description: Id of a notification
+      default: 0
+      example: 2
+
+    NotificationsType:
+      type: string
+      enum:
+        - all
+        - reaction
+        - follow
+        - comment
+        - remix
+      default: all
+
+    NotificationsCountResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 9
+        like:
+          type: integer
+          example: 1
+        follower:
+          type: integer
+          example: 0
+        comment:
+          type: integer
+          example: 5
+        remix:
+          type: integer
+          example: 3
+
+    NotificationsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/NotificationResponse'
+
+    NotificationResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+          description: Id of the notification
+        type:
+          type: string
+          example: remix
+          description: Notification Type
+        seen:
+          type: boolean
+          description: Seen status of the notification
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationContent'
+
+    NotificationContent:
+      type: object
+      properties:
+        from:
+          description: Id of the user who caused the notification
+          allOf:
+            - $ref: '#/components/schemas/Uuid'
+        from_name:
+          type: string
+          example: Catroweb
+          description: Username of the user who caused the notification
+        program:
+          description: Id of the program for which the notification is about
+          allOf:
+            - $ref: '#/components/schemas/Uuid'
+        program_name:
+          type: string
+          example: Awesome Game
+          description: Name of the program for which the notification is about
+        avatar:
+          type: string
+          example: 'https://share.catrob.at/pocketcode/images/default/avatar_default.png'
+          description: Avatar of the user who caused the notification
+        remixed_program:
+          description: Id of the remixed program
+          allOf:
+            - $ref: '#/components/schemas/Uuid'
+        remixed_program_name:
+          type: string
+          example: Awesome Remixed Game
+          description: Name of the remixed program
+        message:
+          type: string
+          example: >-
+            User1 created a remix Awesome Game of your game Awesome Remixed
+            Game.
+          description: Notification message
+        prize:
+          type: string
+          description: Prize for anniversary notifications
