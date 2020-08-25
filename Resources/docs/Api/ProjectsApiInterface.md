@@ -5,8 +5,10 @@ All URIs are relative to *https://share.catrob.at/api*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**projectIdGet**](ProjectsApiInterface.md#projectIdGet) | **GET** /project/{id} | Get the information of a project
+[**projectIdRecommendationsGet**](ProjectsApiInterface.md#projectIdRecommendationsGet) | **GET** /project/{id}/recommendations | Get recommended projects related to the specific project
 [**projectsFeaturedGet**](ProjectsApiInterface.md#projectsFeaturedGet) | **GET** /projects/featured | Get the currently featured projects
 [**projectsGet**](ProjectsApiInterface.md#projectsGet) | **GET** /projects | Get projects
+[**projectsIdReportPost**](ProjectsApiInterface.md#projectsIdReportPost) | **POST** /projects/{id}/report | Report a project
 [**projectsPost**](ProjectsApiInterface.md#projectsPost) | **POST** /projects | Upload a catrobat project
 [**projectsSearchGet**](ProjectsApiInterface.md#projectsSearchGet) | **GET** /projects/search | Search for projects associated with a keywords
 [**projectsUserGet**](ProjectsApiInterface.md#projectsUserGet) | **GET** /projects/user/ | Get the projects of the logged in user
@@ -61,6 +63,64 @@ class ProjectsApi implements ProjectsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**|  |
+
+### Return type
+
+[**OpenAPI\Server\Model\ProjectResponse**](../Model/ProjectResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+## **projectIdRecommendationsGet**
+> OpenAPI\Server\Model\ProjectResponse projectIdRecommendationsGet($id, $category, $accept_language, $max_version, $limit, $offset, $flavor)
+
+Get recommended projects related to the specific project
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/ProjectsApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\ProjectsApiInterface;
+
+class ProjectsApi implements ProjectsApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of ProjectsApiInterface#projectIdRecommendationsGet
+     */
+    public function projectIdRecommendationsGet(string $id, string $category, string $accept_language = null, string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**|  |
+ **category** | **string**| * &#x60;similar&#x60; - Get similar projects to the specific project * &#x60;also downloaded&#x60; - Get projects that users who downloaded the specific project also downloaded * &#x60;more from user&#x60; - Get more projects from the owner of the specific project |
+ **accept_language** | **string**|  | [optional]
+ **max_version** | **string**|  | [optional]
+ **limit** | **int**|  | [optional] [default to 20]
+ **offset** | **int**|  | [optional] [default to 0]
+ **flavor** | **string**|  | [optional]
 
 ### Return type
 
@@ -187,6 +247,59 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+## **projectsIdReportPost**
+> projectsIdReportPost($id, $project_report_request)
+
+Report a project
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/ProjectsApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\ProjectsApiInterface;
+
+class ProjectsApi implements ProjectsApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of ProjectsApiInterface#projectsIdReportPost
+     */
+    public function projectsIdReportPost(string $id, ProjectReportRequest $project_report_request)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**|  |
+ **project_report_request** | [**OpenAPI\Server\Model\ProjectReportRequest**](../Model/ProjectReportRequest.md)|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[PandaAuth](../../README.md#PandaAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
