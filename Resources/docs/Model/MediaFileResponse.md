@@ -5,8 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] 
 **name** | **string** |  | [optional] 
-**flavor** | **string** |  | [optional] 
-**package** | **string** |  | [optional] 
+**flavors** | **string** |  | [optional] 
+**packages** | **string** |  | [optional] 
 **category** | **string** |  | [optional] 
 **author** | **string** |  | [optional] 
 **extension** | **string** |  | [optional] 
