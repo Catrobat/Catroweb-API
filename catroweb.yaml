@@ -959,12 +959,16 @@ components:
         name:
           type: string
           example: luna_sinde_2
-        flavor:
-          type: string
-          example: luna
-        package:
-          type: string
-          example: Looks
+        flavors:
+          type: array
+          items:
+            type: string
+          example: [luna, pocketcode]
+        packages:
+          type: array
+          items:
+            type: string
+          example: [Looks, Sounds]
         category:
           type: string
           example: Luna&Cat
