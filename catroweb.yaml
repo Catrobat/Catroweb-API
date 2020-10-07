@@ -482,7 +482,7 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
-  '/projects/{id}/report':
+  '/project/{id}/report':
     post:
       security:
         - PandaAuth: []
