@@ -294,6 +294,119 @@ class ProjectsController extends Controller
   }
 
   /**
+   * Operation projectIdReportPost.
+   *
+   * Report a project
+   *
+   * @param Request $request the Symfony request to handle
+   * @param mixed   $id
+   *
+   * @return Response the Symfony response
+   */
+  public function projectIdReportPostAction(Request $request, $id)
+  {
+    // Make sure that the client is providing something that we can consume
+    $consumes = ['application/json'];
+    if (!static::isContentTypeAllowed($request, $consumes))
+    {
+      // We can't consume the content that the client is sending us
+      return new Response('', 415);
+    }
+
+    // Handle authentication
+    // Authentication 'PandaAuth' required
+    // HTTP basic authentication required
+    $securityPandaAuth = $request->headers->get('authorization');
+
+    // Read out all input parameter values into variables
+    $project_report_request = $request->getContent();
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try
+    {
+      $id = $this->deserialize($id, 'string', 'string');
+      $inputFormat = $request->getMimeType($request->getContentType());
+      $project_report_request = $this->deserialize($project_report_request, 'OpenAPI\Server\Model\ProjectReportRequest', $inputFormat);
+    }
+    catch (SerializerRuntimeException $exception)
+    {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
+
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('string');
+    $asserts[] = new Assert\Regex('/^[a-zA-Z0-9\\-]+$/');
+    $response = $this->validate($id, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('OpenAPI\\Server\\Model\\ProjectReportRequest');
+    $asserts[] = new Assert\Valid();
+    $response = $this->validate($project_report_request, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+
+    try
+    {
+      $handler = $this->getApiHandler();
+
+      // Set authentication method 'PandaAuth'
+      $handler->setPandaAuth($securityPandaAuth);
+
+      // Make the call to the business logic
+      $responseCode = 204;
+      $responseHeaders = [];
+      $result = $handler->projectIdReportPost($id, $project_report_request, $responseCode, $responseHeaders);
+
+      // Find default response message
+      $message = '';
+
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 204:
+                    $message = 'Project successfully reported.';
+                    break;
+                case 400:
+                    $message = 'Bad request (Invalid, or missing parameters)';
+                    break;
+                case 401:
+                    $message = 'Invalid JWT token | JWT token not found | JWT token expired';
+                    break;
+                case 404:
+                    $message = 'Not found';
+                    break;
+                case 406:
+                    $message = 'Not acceptable - client must accept application/json as content type';
+                    break;
+            }
+
+      return new Response(
+                '',
+                $responseCode,
+                array_merge(
+                    $responseHeaders,
+                    [
+                      'X-OpenAPI-Message' => $message,
+                    ]
+                )
+            );
+    }
+    catch (Exception $fallthrough)
+    {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
    * Operation projectsFeaturedGet.
    *
    * Get the currently featured projects
@@ -550,119 +663,6 @@ class ProjectsController extends Controller
                     $responseHeaders,
                     [
                       'Content-Type' => $responseFormat,
-                      'X-OpenAPI-Message' => $message,
-                    ]
-                )
-            );
-    }
-    catch (Exception $fallthrough)
-    {
-      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-    }
-  }
-
-  /**
-   * Operation projectsIdReportPost.
-   *
-   * Report a project
-   *
-   * @param Request $request the Symfony request to handle
-   * @param mixed   $id
-   *
-   * @return Response the Symfony response
-   */
-  public function projectsIdReportPostAction(Request $request, $id)
-  {
-    // Make sure that the client is providing something that we can consume
-    $consumes = ['application/json'];
-    if (!static::isContentTypeAllowed($request, $consumes))
-    {
-      // We can't consume the content that the client is sending us
-      return new Response('', 415);
-    }
-
-    // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
-
-    // Read out all input parameter values into variables
-    $project_report_request = $request->getContent();
-
-    // Use the default value if no value was provided
-
-    // Deserialize the input values that needs it
-    try
-    {
-      $id = $this->deserialize($id, 'string', 'string');
-      $inputFormat = $request->getMimeType($request->getContentType());
-      $project_report_request = $this->deserialize($project_report_request, 'OpenAPI\Server\Model\ProjectReportRequest', $inputFormat);
-    }
-    catch (SerializerRuntimeException $exception)
-    {
-      return $this->createBadRequestResponse($exception->getMessage());
-    }
-
-    // Validate the input values
-    $asserts = [];
-    $asserts[] = new Assert\NotNull();
-    $asserts[] = new Assert\Type('string');
-    $asserts[] = new Assert\Regex('/^[a-zA-Z0-9\\-]+$/');
-    $response = $this->validate($id, $asserts);
-    if ($response instanceof Response)
-    {
-      return $response;
-    }
-    $asserts = [];
-    $asserts[] = new Assert\NotNull();
-    $asserts[] = new Assert\Type('OpenAPI\\Server\\Model\\ProjectReportRequest');
-    $asserts[] = new Assert\Valid();
-    $response = $this->validate($project_report_request, $asserts);
-    if ($response instanceof Response)
-    {
-      return $response;
-    }
-
-    try
-    {
-      $handler = $this->getApiHandler();
-
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
-
-      // Make the call to the business logic
-      $responseCode = 204;
-      $responseHeaders = [];
-      $result = $handler->projectsIdReportPost($id, $project_report_request, $responseCode, $responseHeaders);
-
-      // Find default response message
-      $message = '';
-
-      // Find a more specific message, if available
-      switch ($responseCode) {
-                case 204:
-                    $message = 'Project successfully reported.';
-                    break;
-                case 400:
-                    $message = 'Bad request (Invalid, or missing parameters)';
-                    break;
-                case 401:
-                    $message = 'Invalid JWT token | JWT token not found | JWT token expired';
-                    break;
-                case 404:
-                    $message = 'Not found';
-                    break;
-                case 406:
-                    $message = 'Not acceptable - client must accept application/json as content type';
-                    break;
-            }
-
-      return new Response(
-                '',
-                $responseCode,
-                array_merge(
-                    $responseHeaders,
-                    [
                       'X-OpenAPI-Message' => $message,
                     ]
                 )
