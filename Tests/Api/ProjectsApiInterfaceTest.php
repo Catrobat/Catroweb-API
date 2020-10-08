@@ -107,6 +107,23 @@ class ProjectsApiInterfaceTest extends WebTestCase
   }
 
   /**
+   * Test case for projectIdReportPost.
+   *
+   * Report a project.
+   */
+  public function testProjectIdReportPost()
+  {
+    $client = static::createClient();
+
+    $path = '/project/{id}/report';
+    $pattern = '{id}';
+    $data = $this->genTestData('^[a-zA-Z0-9\\-]+$');
+    $path = str_replace($pattern, $data, $path);
+
+    $crawler = $client->request('POST', $path, [], [], ['CONTENT_TYPE' => 'application/json']);
+  }
+
+  /**
    * Test case for projectsFeaturedGet.
    *
    * Get the currently featured projects.
@@ -132,23 +149,6 @@ class ProjectsApiInterfaceTest extends WebTestCase
     $path = '/projects';
 
     $crawler = $client->request('GET', $path);
-  }
-
-  /**
-   * Test case for projectsIdReportPost.
-   *
-   * Report a project.
-   */
-  public function testProjectsIdReportPost()
-  {
-    $client = static::createClient();
-
-    $path = '/projects/{id}/report';
-    $pattern = '{id}';
-    $data = $this->genTestData('^[a-zA-Z0-9\\-]+$');
-    $path = str_replace($pattern, $data, $path);
-
-    $crawler = $client->request('POST', $path, [], [], ['CONTENT_TYPE' => 'application/json']);
   }
 
   /**

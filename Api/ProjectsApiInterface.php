@@ -82,6 +82,18 @@ interface ProjectsApiInterface
   public function projectIdRecommendationsGet(string $id, string $category, string $accept_language = null, string $max_version = null, int $limit = 20, int $offset = 0, string $flavor = null, &$responseCode, array &$responseHeaders);
 
   /**
+   * Operation projectIdReportPost.
+   *
+   * Report a project
+   *
+   * @param string                                    $id                     (required)
+   * @param OpenAPI\Server\Model\ProjectReportRequest $project_report_request (required)
+   * @param int                                       $responseCode           The HTTP response code to return
+   * @param array                                     $responseHeaders        Additional HTTP headers to return with the response ()
+   */
+  public function projectIdReportPost(string $id, ProjectReportRequest $project_report_request, &$responseCode, array &$responseHeaders);
+
+  /**
    * Operation projectsFeaturedGet.
    *
    * Get the currently featured projects
@@ -115,18 +127,6 @@ interface ProjectsApiInterface
    * @return OpenAPI\Server\Model\ProjectResponse[]
    */
   public function projectsGet(string $category, string $accept_language = null, string $max_version = null, int $limit = 20, int $offset = 0, string $flavor = null, &$responseCode, array &$responseHeaders);
-
-  /**
-   * Operation projectsIdReportPost.
-   *
-   * Report a project
-   *
-   * @param string                                    $id                     (required)
-   * @param OpenAPI\Server\Model\ProjectReportRequest $project_report_request (required)
-   * @param int                                       $responseCode           The HTTP response code to return
-   * @param array                                     $responseHeaders        Additional HTTP headers to return with the response ()
-   */
-  public function projectsIdReportPost(string $id, ProjectReportRequest $project_report_request, &$responseCode, array &$responseHeaders);
 
   /**
    * Operation projectsPost.

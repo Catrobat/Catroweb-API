@@ -130,9 +130,9 @@ Class | Method | HTTP request | Description
 *NotificationsApiInterface* | [**notificationsReadPut**](Resources/docs/Api/NotificationsApiInterface.md#notificationsreadput) | **PUT** /notifications/read | Mark all notifications as read
 *ProjectsApiInterface* | [**projectIdGet**](Resources/docs/Api/ProjectsApiInterface.md#projectidget) | **GET** /project/{id} | Get the information of a project
 *ProjectsApiInterface* | [**projectIdRecommendationsGet**](Resources/docs/Api/ProjectsApiInterface.md#projectidrecommendationsget) | **GET** /project/{id}/recommendations | Get recommended projects related to the specific project
+*ProjectsApiInterface* | [**projectIdReportPost**](Resources/docs/Api/ProjectsApiInterface.md#projectidreportpost) | **POST** /project/{id}/report | Report a project
 *ProjectsApiInterface* | [**projectsFeaturedGet**](Resources/docs/Api/ProjectsApiInterface.md#projectsfeaturedget) | **GET** /projects/featured | Get the currently featured projects
 *ProjectsApiInterface* | [**projectsGet**](Resources/docs/Api/ProjectsApiInterface.md#projectsget) | **GET** /projects | Get projects
-*ProjectsApiInterface* | [**projectsIdReportPost**](Resources/docs/Api/ProjectsApiInterface.md#projectsidreportpost) | **POST** /projects/{id}/report | Report a project
 *ProjectsApiInterface* | [**projectsPost**](Resources/docs/Api/ProjectsApiInterface.md#projectspost) | **POST** /projects | Upload a catrobat project
 *ProjectsApiInterface* | [**projectsSearchGet**](Resources/docs/Api/ProjectsApiInterface.md#projectssearchget) | **GET** /projects/search | Search for projects associated with a keywords
 *ProjectsApiInterface* | [**projectsUserGet**](Resources/docs/Api/ProjectsApiInterface.md#projectsuserget) | **GET** /projects/user/ | Get the projects of the logged in user
