@@ -82,6 +82,35 @@ paths:
           $ref: '#/components/responses/NotAcceptable'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
+  /authentication/refresh:
+    post:
+      security:
+        - PandaAuth: []
+      tags:
+        - Authentication
+      summary: Refresh token
+      description: Returns a new JWT token with help of the refresh token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidRefreshToken'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
   /authentication/oauth:
     post:
       tags:
@@ -111,6 +140,35 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaType'
         422:
           description: Unprocessable Entity
+  /authentication/logout:
+    post:
+      security:
+        - PandaAuth: []
+      tags:
+        - Authentication
+      summary: Expires refresh token
+      description: Sets refresh token to expired
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidRefreshToken'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
 
   ##############################################
   # Utility
@@ -745,6 +803,9 @@ components:
     InvalidCredentials:
       description: Invalid credentials
 
+    InvalidRefreshToken:
+      description: Refresh Token expired | Refresh Token has been used more than once (single use)
+
     NotAcceptable:
       description: Not acceptable - client must accept application/json as content type
 
@@ -1016,6 +1077,12 @@ components:
           type: string
           example: google
           description: OAuth provider
+    RefreshRequest:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+          example: xxxxx.yyyyy.zzzzz
 
     ## Response
 
@@ -1023,6 +1090,9 @@ components:
       type: object
       properties:
         token:
+          type: string
+          example: xxxxx.yyyyy.zzzzz
+        refresh_token:
           type: string
           example: xxxxx.yyyyy.zzzzz
 
