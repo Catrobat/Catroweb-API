@@ -30,6 +30,7 @@
 ./Model/ProjectReportRequest.php
 ./Model/ProjectResponse.php
 ./Model/ProjectUploadRequest.php
+./Model/RefreshRequest.php
 ./Model/RegisterErrorResponse.php
 ./Model/RegisterRequest.php
 ./Model/UpdateUserErrorResponse.php
@@ -68,6 +69,7 @@
 ./Tests/Model/ProjectReportRequestTest.php
 ./Tests/Model/ProjectResponseTest.php
 ./Tests/Model/ProjectUploadRequestTest.php
+./Tests/Model/RefreshRequestTest.php
 ./Tests/Model/RegisterErrorResponseTest.php
 ./Tests/Model/RegisterRequestTest.php
 ./Tests/Model/UpdateUserErrorResponseTest.php
@@ -109,6 +111,7 @@ Resources/docs/Model/OAuthLoginRequest.md
 Resources/docs/Model/ProjectReportRequest.md
 Resources/docs/Model/ProjectResponse.md
 Resources/docs/Model/ProjectUploadRequest.md
+Resources/docs/Model/RefreshRequest.md
 Resources/docs/Model/RegisterErrorResponse.md
 Resources/docs/Model/RegisterRequest.md
 Resources/docs/Model/UpdateUserErrorResponse.md

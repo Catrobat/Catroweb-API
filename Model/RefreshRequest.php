@@ -1,6 +1,6 @@
 <?php
 /**
- * UploadErrorResponse.
+ * RefreshRequest.
  *
  * PHP version 7.1.3
  *
@@ -34,19 +34,19 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the UploadErrorResponse model.
+ * Class representing the RefreshRequest model.
  *
  * @author  OpenAPI Generator team
  */
-class UploadErrorResponse
+class RefreshRequest
 {
   /**
    * @var string|null
-   * @SerializedName("error")
+   * @SerializedName("refresh_token")
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $error;
+  protected $refresh_token;
 
   /**
    * Constructor.
@@ -55,25 +55,25 @@ class UploadErrorResponse
    */
   public function __construct(array $data = null)
   {
-    $this->error = isset($data['error']) ? $data['error'] : null;
+    $this->refresh_token = isset($data['refresh_token']) ? $data['refresh_token'] : null;
   }
 
   /**
-   * Gets error.
+   * Gets refresh_token.
    */
-  public function getError(): ?string
+  public function getRefreshToken(): ?string
   {
-    return $this->error;
+    return $this->refresh_token;
   }
 
   /**
-   * Sets error.
+   * Sets refresh_token.
    *
    * @return $this
    */
-  public function setError(string $error = null)
+  public function setRefreshToken(string $refresh_token = null)
   {
-    $this->error = $error;
+    $this->refresh_token = $refresh_token;
 
     return $this;
   }

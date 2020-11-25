@@ -5,8 +5,10 @@ All URIs are relative to *https://share.catrob.at/api*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**authenticationGet**](AuthenticationApiInterface.md#authenticationGet) | **GET** /authentication | Check token
+[**authenticationLogoutPost**](AuthenticationApiInterface.md#authenticationLogoutPost) | **POST** /authentication/logout | Expires refresh token
 [**authenticationOauthPost**](AuthenticationApiInterface.md#authenticationOauthPost) | **POST** /authentication/oauth | OAuth Login
 [**authenticationPost**](AuthenticationApiInterface.md#authenticationPost) | **POST** /authentication | Login
+[**authenticationRefreshPost**](AuthenticationApiInterface.md#authenticationRefreshPost) | **POST** /authentication/refresh | Refresh token
 
 
 ## Service Declaration
@@ -69,6 +71,60 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+## **authenticationLogoutPost**
+> OpenAPI\Server\Model\JWTResponse authenticationLogoutPost($refresh_request)
+
+Expires refresh token
+
+Sets refresh token to expired
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/AuthenticationApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\AuthenticationApiInterface;
+
+class AuthenticationApi implements AuthenticationApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of AuthenticationApiInterface#authenticationLogoutPost
+     */
+    public function authenticationLogoutPost(RefreshRequest $refresh_request)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **refresh_request** | [**OpenAPI\Server\Model\RefreshRequest**](../Model/RefreshRequest.md)|  |
+
+### Return type
+
+[**OpenAPI\Server\Model\JWTResponse**](../Model/JWTResponse.md)
+
+### Authorization
+
+[PandaAuth](../../README.md#PandaAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -164,6 +220,60 @@ class AuthenticationApi implements AuthenticationApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **login_request** | [**OpenAPI\Server\Model\LoginRequest**](../Model/LoginRequest.md)|  |
+
+### Return type
+
+[**OpenAPI\Server\Model\JWTResponse**](../Model/JWTResponse.md)
+
+### Authorization
+
+[PandaAuth](../../README.md#PandaAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+## **authenticationRefreshPost**
+> OpenAPI\Server\Model\JWTResponse authenticationRefreshPost($refresh_request)
+
+Refresh token
+
+Returns a new JWT token with help of the refresh token
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/AuthenticationApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\AuthenticationApiInterface;
+
+class AuthenticationApi implements AuthenticationApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of AuthenticationApiInterface#authenticationRefreshPost
+     */
+    public function authenticationRefreshPost(RefreshRequest $refresh_request)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **refresh_request** | [**OpenAPI\Server\Model\RefreshRequest**](../Model/RefreshRequest.md)|  |
 
 ### Return type
 
