@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateUserRequestAllOfTest.
+ * RefreshRequestTest.
  *
  * PHP version 7.1.3
  *
@@ -32,10 +32,10 @@ namespace OpenAPI\Server\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * UpdateUserRequestAllOfTest Class Doc Comment.
+ * RefreshRequestTest Class Doc Comment.
  *
  * @category    Class */
-// * @description UpdateUserRequestAllOf
+// * @description RefreshRequest
 /**
  * @author      openapi-generator contributors
  *
@@ -44,7 +44,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  * @coversNothing
  */
-class UpdateUserRequestAllOfTest extends TestCase
+class RefreshRequestTest extends TestCase
 {
   /**
    * Setup before running any test case.
@@ -75,17 +75,17 @@ class UpdateUserRequestAllOfTest extends TestCase
   }
 
   /**
-   * Test "UpdateUserRequestAllOf".
+   * Test "RefreshRequest".
    */
-  public function testUpdateUserRequestAllOf()
+  public function testRefreshRequest()
   {
-    $testUpdateUserRequestAllOf = new UpdateUserRequestAllOf();
+    $testRefreshRequest = new RefreshRequest();
   }
 
   /**
-   * Test attribute "country".
+   * Test attribute "refresh_token".
    */
-  public function testPropertyCountry()
+  public function testPropertyRefreshToken()
   {
   }
 }
