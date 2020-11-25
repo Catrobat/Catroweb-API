@@ -156,11 +156,7 @@ paths:
               $ref: '#/components/schemas/RefreshRequest'
       responses:
         '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/JWTResponse'
+          $ref: '#/components/responses/OK'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
