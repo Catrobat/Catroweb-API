@@ -236,7 +236,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **userPut**
-> userPut($update_user_request, $accept_language)
+> array userPut($update_user_request, $accept_language)
 
 Update User
 
@@ -277,7 +277,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**array**
 
 ### Authorization
 
