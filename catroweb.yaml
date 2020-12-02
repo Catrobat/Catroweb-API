@@ -283,6 +283,11 @@ paths:
       responses:
         '204':
           description: User successfully updated
+          # Content hack necessary else OpenAPI-generator will ignore content for error responses (hopefully fixed sometime)
+          content:
+            application/json:
+              schema:
+                type: object
         '401':
           $ref: '#/components/responses/InvalidCredentials'
         '406':
