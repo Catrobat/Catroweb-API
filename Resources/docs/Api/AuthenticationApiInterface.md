@@ -4,11 +4,11 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**authenticationDelete**](AuthenticationApiInterface.md#authenticationDelete) | **DELETE** /authentication | Expires refresh token
 [**authenticationGet**](AuthenticationApiInterface.md#authenticationGet) | **GET** /authentication | Check token
-[**authenticationLogoutPost**](AuthenticationApiInterface.md#authenticationLogoutPost) | **POST** /authentication/logout | Expires refresh token
 [**authenticationOauthPost**](AuthenticationApiInterface.md#authenticationOauthPost) | **POST** /authentication/oauth | OAuth Login
 [**authenticationPost**](AuthenticationApiInterface.md#authenticationPost) | **POST** /authentication | Login
-[**authenticationRefreshPost**](AuthenticationApiInterface.md#authenticationRefreshPost) | **POST** /authentication/refresh | Refresh token
+[**authenticationPut**](AuthenticationApiInterface.md#authenticationPut) | **PUT** /authentication | Refresh token
 
 
 ## Service Declaration
@@ -22,6 +22,60 @@ services:
             - { name: "open_api_server.api", api: "authentication" }
     # ...
 ```
+
+## **authenticationDelete**
+> authenticationDelete($refresh_request)
+
+Expires refresh token
+
+Sets refresh token to expired
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/AuthenticationApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\AuthenticationApiInterface;
+
+class AuthenticationApi implements AuthenticationApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of AuthenticationApiInterface#authenticationDelete
+     */
+    public function authenticationDelete(RefreshRequest $refresh_request)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **refresh_request** | [**OpenAPI\Server\Model\RefreshRequest**](../Model/RefreshRequest.md)|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[PandaAuth](../../README.md#PandaAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **authenticationGet**
 > authenticationGet()
@@ -70,60 +124,6 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-## **authenticationLogoutPost**
-> authenticationLogoutPost($refresh_request)
-
-Expires refresh token
-
-Sets refresh token to expired
-
-### Example Implementation
-```php
-<?php
-// src/Acme/MyBundle/Api/AuthenticationApiInterface.php
-
-namespace Acme\MyBundle\Api;
-
-use OpenAPI\Server\Api\AuthenticationApiInterface;
-
-class AuthenticationApi implements AuthenticationApiInterface
-{
-
-    // ...
-
-    /**
-     * Implementation of AuthenticationApiInterface#authenticationLogoutPost
-     */
-    public function authenticationLogoutPost(RefreshRequest $refresh_request)
-    {
-        // Implement the operation ...
-    }
-
-    // ...
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **refresh_request** | [**OpenAPI\Server\Model\RefreshRequest**](../Model/RefreshRequest.md)|  |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[PandaAuth](../../README.md#PandaAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -236,8 +236,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-## **authenticationRefreshPost**
-> OpenAPI\Server\Model\JWTResponse authenticationRefreshPost($refresh_request)
+## **authenticationPut**
+> OpenAPI\Server\Model\JWTResponse authenticationPut($refresh_request)
 
 Refresh token
 
@@ -258,9 +258,9 @@ class AuthenticationApi implements AuthenticationApiInterface
     // ...
 
     /**
-     * Implementation of AuthenticationApiInterface#authenticationRefreshPost
+     * Implementation of AuthenticationApiInterface#authenticationPut
      */
-    public function authenticationRefreshPost(RefreshRequest $refresh_request)
+    public function authenticationPut(RefreshRequest $refresh_request)
     {
         // Implement the operation ...
     }

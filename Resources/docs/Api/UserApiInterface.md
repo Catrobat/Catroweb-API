@@ -181,7 +181,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **userPost**
-> array userPost($register_request, $accept_language)
+> OpenAPI\Server\Model\JWTResponse userPost($register_request, $accept_language)
 
 Register
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**array**
+[**OpenAPI\Server\Model\JWTResponse**](../Model/JWTResponse.md)
 
 ### Authorization
 
