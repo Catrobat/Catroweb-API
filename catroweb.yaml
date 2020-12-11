@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.48"
+  version: "v1.0.49"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -82,8 +82,8 @@ paths:
           $ref: '#/components/responses/NotAcceptable'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
-  /authentication/refresh:
-    post:
+
+    put:
       security:
         - PandaAuth: []
       tags:
@@ -111,6 +111,32 @@ paths:
           $ref: '#/components/responses/NotAcceptable'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
+
+    delete:
+      security:
+        - PandaAuth: [ ]
+      tags:
+        - Authentication
+      summary: Expires refresh token
+      description: Sets refresh token to expired
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidRefreshToken'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+
   /authentication/oauth:
     post:
       tags:
@@ -140,31 +166,6 @@ paths:
           $ref: '#/components/responses/UnsupportedMediaType'
         422:
           description: Unprocessable Entity
-  /authentication/logout:
-    post:
-      security:
-        - PandaAuth: []
-      tags:
-        - Authentication
-      summary: Expires refresh token
-      description: Sets refresh token to expired
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RefreshRequest'
-      responses:
-        '200':
-          $ref: '#/components/responses/OK'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/InvalidRefreshToken'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaType'
 
   ##############################################
   # Utility
@@ -182,18 +183,6 @@ paths:
   # User
   ###
   /user:
-    delete:
-      security:
-        - PandaAuth: []
-      tags:
-        - User
-      summary: Delete user account
-      description: Delete your user account. But be warned, there is no way to restore the user data!
-      responses:
-        '204':
-          description: User successfully deleted.
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'
 
     get:
       security:
@@ -246,12 +235,12 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/JWTResponse'
         204:
           description: 'Dry-run successful (No Validation Error)'
         400:
           $ref: '#/components/responses/BadRequest'
-        '406':
+        406:
           $ref: '#/components/responses/NotAcceptable'
         415:
           $ref: '#/components/responses/UnsupportedMediaType'
@@ -298,6 +287,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateUserErrorResponse'
+
+    delete:
+      security:
+        - PandaAuth: [ ]
+      tags:
+        - User
+      summary: Delete user account
+      description: Delete your user account. But be warned, there is no way to restore the user data!
+      responses:
+        '204':
+          description: User successfully deleted.
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
 
   /user/{id}:
     get:
