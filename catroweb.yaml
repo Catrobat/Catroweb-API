@@ -1304,7 +1304,13 @@ components:
       properties:
         id:
           type: string
+          example: 1
+        project_id:
+          type: string
           example: 1234abcd-12ab-12ab-12ab-123456abcdef
+        project_url:
+          type: string
+          example: 'http://localhost:8080/app/project/37bf6d39-3fc3-11eb-977a-0242ac120004'
         name:
           type: string
           example: My example of a Project
