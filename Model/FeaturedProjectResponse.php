@@ -50,6 +50,22 @@ class FeaturedProjectResponse
 
   /**
    * @var string|null
+   * @SerializedName("project_id")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $project_id;
+
+  /**
+   * @var string|null
+   * @SerializedName("project_url")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $project_url;
+
+  /**
+   * @var string|null
    * @SerializedName("name")
    * @Assert\Type("string")
    * @Type("string")
@@ -80,6 +96,8 @@ class FeaturedProjectResponse
   public function __construct(array $data = null)
   {
     $this->id = isset($data['id']) ? $data['id'] : null;
+    $this->project_id = isset($data['project_id']) ? $data['project_id'] : null;
+    $this->project_url = isset($data['project_url']) ? $data['project_url'] : null;
     $this->name = isset($data['name']) ? $data['name'] : null;
     $this->author = isset($data['author']) ? $data['author'] : null;
     $this->featured_image = isset($data['featured_image']) ? $data['featured_image'] : null;
@@ -101,6 +119,46 @@ class FeaturedProjectResponse
   public function setId(string $id = null)
   {
     $this->id = $id;
+
+    return $this;
+  }
+
+  /**
+   * Gets project_id.
+   */
+  public function getProjectId(): ?string
+  {
+    return $this->project_id;
+  }
+
+  /**
+   * Sets project_id.
+   *
+   * @return $this
+   */
+  public function setProjectId(string $project_id = null)
+  {
+    $this->project_id = $project_id;
+
+    return $this;
+  }
+
+  /**
+   * Gets project_url.
+   */
+  public function getProjectUrl(): ?string
+  {
+    return $this->project_url;
+  }
+
+  /**
+   * Sets project_url.
+   *
+   * @return $this
+   */
+  public function setProjectUrl(string $project_url = null)
+  {
+    $this->project_url = $project_url;
 
     return $this;
   }
