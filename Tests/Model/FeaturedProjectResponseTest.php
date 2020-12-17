@@ -90,6 +90,20 @@ class FeaturedProjectResponseTest extends TestCase
   }
 
   /**
+   * Test attribute "project_id".
+   */
+  public function testPropertyProjectId()
+  {
+  }
+
+  /**
+   * Test attribute "project_url".
+   */
+  public function testPropertyProjectUrl()
+  {
+  }
+
+  /**
    * Test attribute "name".
    */
   public function testPropertyName()
