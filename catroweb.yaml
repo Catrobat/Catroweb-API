@@ -369,7 +369,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProjectsResponse'
           headers:
-            x-Project-Hash:
+            X-Project-Hash:
               schema:
                 type: string
                 example: '56asfd5a56sfd564a56dsf65a56sdf'
