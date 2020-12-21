@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.49"
+  version: "v1.0.51"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -119,12 +119,8 @@ paths:
         - Authentication
       summary: Expires refresh token
       description: Sets refresh token to expired
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RefreshRequest'
+      parameters:
+        - $ref: '#/components/parameters/RefreshToken'
       responses:
         '200':
           $ref: '#/components/responses/OK'
@@ -372,6 +368,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProjectsResponse'
+          headers:
+            x-Project-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+                description: 'IF you send a HEAD request you will only get this hash'
         '400':
           $ref: '#/components/responses/BadRequest'
         '406':
@@ -436,6 +438,12 @@ paths:
       responses:
         '200':
           description: OK
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example:
+              description: MD5 Hash of the response body.
           content:
             application/json:
               schema:
@@ -874,6 +882,15 @@ components:
       in: query
       schema:
         $ref: '#/components/schemas/Offset'
+
+    RefreshToken:
+      name: X-Refresh
+      in: header
+      description: Refresh Token
+      schema:
+        type: string
+        example: xxxxx.yyyyy.zzzzz
+      required: true
 
     ##
     # Notifications specific
@@ -1320,6 +1337,7 @@ components:
         featured_image:
           type: string
           example: 'https://share.catrob.at/resources/featured/featured_999.png'
+
 
     ProjectsResponse:
       type: array
