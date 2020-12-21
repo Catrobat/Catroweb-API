@@ -66,6 +66,3 @@
 
 # No reason to commit PHP CS Fixer cache files
 /.php_cs.cache
-
-#idea files
-/.idea

@@ -24,7 +24,7 @@ services:
 ```
 
 ## **authenticationDelete**
-> authenticationDelete($refresh_request)
+> authenticationDelete($x_refresh)
 
 Expires refresh token
 
@@ -47,7 +47,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationDelete
      */
-    public function authenticationDelete(RefreshRequest $refresh_request)
+    public function authenticationDelete(string $x_refresh)
     {
         // Implement the operation ...
     }
@@ -60,7 +60,7 @@ class AuthenticationApi implements AuthenticationApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **refresh_request** | [**OpenAPI\Server\Model\RefreshRequest**](../Model/RefreshRequest.md)|  |
+ **x_refresh** | **string**| Refresh Token |
 
 ### Return type
 
@@ -72,7 +72,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
