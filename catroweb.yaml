@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.51"
+  version: "v1.0.52"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -369,7 +369,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProjectsResponse'
           headers:
-            X-Project-Hash:
+            X-Response-Hash:
               schema:
                 type: string
                 example: '56asfd5a56sfd564a56dsf65a56sdf'
@@ -442,8 +442,8 @@ paths:
             X-Response-Hash:
               schema:
                 type: string
-                example:
-              description: MD5 Hash of the response body.
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+                description: 'IF you send a HEAD request you will only get this hash'
           content:
             application/json:
               schema:
@@ -471,6 +471,12 @@ paths:
       responses:
         '200':
           description: OK
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+                description: 'IF you send a HEAD request you will only get this hash'
           content:
             application/json:
               schema:
@@ -495,6 +501,12 @@ paths:
       responses:
         '200':
           description: Valid request
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+                description: 'IF you send a HEAD request you will only get this hash'
           content:
             application/json:
               schema:
@@ -520,6 +532,12 @@ paths:
       responses:
         '200':
           description: Valid request
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+                description: 'IF you send a HEAD request you will only get this hash'
           content:
             application/json:
               schema:
@@ -541,6 +559,12 @@ paths:
       responses:
         '200':
           description: Valid request
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+                description: 'IF you send a HEAD request you will only get this hash'
           content:
             application/json:
               schema:
@@ -597,6 +621,12 @@ paths:
       responses:
         '200':
           description: OK
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+                description: 'IF you send a HEAD request you will only get this hash'
           content:
             application/json:
               schema:
@@ -1374,6 +1404,11 @@ components:
         flavor:
           type: string
           example: pocketcode
+        tags:
+          type: array
+          items:
+            type: string
+          example: [Tag1, Tag2]
         uploaded:
           type: integer
           example: 1575562569
