@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenAPIServerBundle.
+ * OpenAPIServerExtension.
  *
  * PHP version 7.1.3
  *
@@ -27,14 +27,15 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Server;
+namespace OpenAPI\Server\DependencyInjection;
 
-use OpenAPI\Server\DependencyInjection\Compiler\OpenAPIServerApiPass;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
- * OpenAPIServerBundle Class Doc Comment.
+ * OpenAPIServerExtension Class Doc Comment.
  *
  * @category Class
  *
@@ -42,10 +43,16 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  * @see     https://github.com/openapitools/openapi-generator
  */
-class OpenAPIServerBundle extends Bundle
+class OpenAPIServerExtension extends Extension
 {
-  public function build(ContainerBuilder $container)
+  public function load(array $configs, ContainerBuilder $container)
   {
-    $container->addCompilerPass(new OpenAPIServerApiPass());
+    $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+    $loader->load('services.yml');
+  }
+
+  public function getAlias()
+  {
+    return 'open_api_server';
   }
 }

@@ -1,8 +1,7 @@
 <?php
 /**
- * OpenAPIServerBundle.
- *
- * PHP version 7.1.3
+ * UtilityApiInterface
+ * PHP version 7.1.3.
  *
  * @category Class
  *
@@ -27,25 +26,26 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Server;
-
-use OpenAPI\Server\DependencyInjection\Compiler\OpenAPIServerApiPass;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+namespace OpenAPI\Server\Api;
 
 /**
- * OpenAPIServerBundle Class Doc Comment.
+ * UtilityApiInterface Interface Doc Comment.
  *
- * @category Class
+ * @category Interface
  *
  * @author   OpenAPI Generator team
  *
  * @see     https://github.com/openapitools/openapi-generator
  */
-class OpenAPIServerBundle extends Bundle
+interface UtilityApiInterface
 {
-  public function build(ContainerBuilder $container)
-  {
-    $container->addCompilerPass(new OpenAPIServerApiPass());
-  }
+  /**
+   * Operation healthGet.
+   *
+   * Health Check
+   *
+   * @param int   $responseCode    The HTTP response code to return
+   * @param array $responseHeaders Additional HTTP headers to return with the response ()
+   */
+  public function healthGet(&$responseCode, array &$responseHeaders);
 }
