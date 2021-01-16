@@ -26,6 +26,9 @@ jobs:
         with:
           args: --allow-risky=yes
 
+      - name: Permissions
+        run: sudo chmod -R 777 ./
+
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
