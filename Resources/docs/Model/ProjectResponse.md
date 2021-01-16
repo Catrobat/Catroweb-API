@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **download** | **int** |  | [optional] 
 **private** | **bool** |  | [optional] 
 **flavor** | **string** |  | [optional] 
+**tags** | **string** |  | [optional] 
 **uploaded** | **int** |  | [optional] 
 **uploaded_string** | **string** |  | [optional] 
 **screenshot_large** | **string** |  | [optional] 
