@@ -5,6 +5,7 @@ All URIs are relative to *https://share.catrob.at/api*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**healthGet**](UtilityApiInterface.md#healthGet) | **GET** /health | Health Check
+[**surveyLangCodeGet**](UtilityApiInterface.md#surveyLangCodeGet) | **GET** /survey/{lang_code} | Get survey link for given language code.
 
 
 ## Service Declaration
@@ -65,6 +66,58 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+## **surveyLangCodeGet**
+> OpenAPI\Server\Model\SurveyResponse surveyLangCodeGet($lang_code)
+
+Get survey link for given language code.
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/UtilityApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\UtilityApiInterface;
+
+class UtilityApi implements UtilityApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of UtilityApiInterface#surveyLangCodeGet
+     */
+    public function surveyLangCodeGet(string $lang_code)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **lang_code** | **string**| 2 letter Language-Code is based on ISO693-1 (e.g. German &#x3D; de, English &#x3D; en, Russian &#x3D; ru) |
+
+### Return type
+
+[**OpenAPI\Server\Model\SurveyResponse**](../Model/SurveyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

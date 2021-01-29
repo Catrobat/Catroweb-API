@@ -39,6 +39,7 @@ Model/ProjectUploadRequest.php
 Model/RefreshRequest.php
 Model/RegisterErrorResponse.php
 Model/RegisterRequest.php
+Model/SurveyResponse.php
 Model/UpdateUserErrorResponse.php
 Model/UpdateUserRequest.php
 Model/UpdateUserRequestAllOf.php
@@ -74,6 +75,7 @@ Resources/docs/Model/ProjectUploadRequest.md
 Resources/docs/Model/RefreshRequest.md
 Resources/docs/Model/RegisterErrorResponse.md
 Resources/docs/Model/RegisterRequest.md
+Resources/docs/Model/SurveyResponse.md
 Resources/docs/Model/UpdateUserErrorResponse.md
 Resources/docs/Model/UpdateUserRequest.md
 Resources/docs/Model/UpdateUserRequestAllOf.md
@@ -113,6 +115,7 @@ Tests/Model/ProjectUploadRequestTest.php
 Tests/Model/RefreshRequestTest.php
 Tests/Model/RegisterErrorResponseTest.php
 Tests/Model/RegisterRequestTest.php
+Tests/Model/SurveyResponseTest.php
 Tests/Model/UpdateUserErrorResponseTest.php
 Tests/Model/UpdateUserRequestAllOfTest.php
 Tests/Model/UpdateUserRequestTest.php

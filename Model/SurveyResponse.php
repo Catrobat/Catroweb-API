@@ -1,6 +1,6 @@
 <?php
 /**
- * NotificationsType.
+ * SurveyResponse.
  *
  * PHP version 7.1.3
  *
@@ -29,13 +29,27 @@
 
 namespace OpenAPI\Server\Model;
 
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * Class representing the NotificationsType model.
+ * Class representing the SurveyResponse model.
  *
  * @author  OpenAPI Generator team
  */
-class NotificationsType
+class SurveyResponse
 {
+  /**
+   * Url to a survey for the given language.
+   *
+   * @var string|null
+   * @SerializedName("url")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $url;
+
   /**
    * Constructor.
    *
@@ -43,5 +57,28 @@ class NotificationsType
    */
   public function __construct(array $data = null)
   {
+    $this->url = isset($data['url']) ? $data['url'] : null;
+  }
+
+  /**
+   * Gets url.
+   */
+  public function getUrl(): ?string
+  {
+    return $this->url;
+  }
+
+  /**
+   * Sets url.
+   *
+   * @param string|null $url Url to a survey for the given language
+   *
+   * @return $this
+   */
+  public function setUrl(string $url = null)
+  {
+    $this->url = $url;
+
+    return $this;
   }
 }
