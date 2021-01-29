@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.52"
+  version: "v1.0.53"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -175,6 +175,37 @@ paths:
         '204':
           description: System is alive and healthy!
 
+  /survey/{lang_code}:
+    get:
+      parameters:
+        - in: path
+          name: lang_code
+          schema:
+            type: string
+            example: de
+          required: true
+          description: 2 letter Language-Code is based on ISO693-1 (e.g. German = de, English = en, Russian = ru)
+      tags:
+        - Utility
+      summary: Get survey link for given language code.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurveyResponse'
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
   ##############################################
   # User
   ###
@@ -196,6 +227,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExtendedUserDataResponse'
+
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -373,7 +405,7 @@ paths:
               schema:
                 type: string
                 example: '56asfd5a56sfd564a56dsf65a56sdf'
-                description: 'IF you send a HEAD request you will only get this hash'
+              description: 'MD5 Hash of response body. Used for caching responses.'
         '400':
           $ref: '#/components/responses/BadRequest'
         '406':
@@ -443,7 +475,7 @@ paths:
               schema:
                 type: string
                 example: '56asfd5a56sfd564a56dsf65a56sdf'
-                description: 'IF you send a HEAD request you will only get this hash'
+              description: 'MD5 Hash of response body. Used for caching responses.'
           content:
             application/json:
               schema:
@@ -476,7 +508,7 @@ paths:
               schema:
                 type: string
                 example: '56asfd5a56sfd564a56dsf65a56sdf'
-                description: 'IF you send a HEAD request you will only get this hash'
+              description: 'MD5 Hash of response body. Used for caching responses.'
           content:
             application/json:
               schema:
@@ -506,7 +538,7 @@ paths:
               schema:
                 type: string
                 example: '56asfd5a56sfd564a56dsf65a56sdf'
-                description: 'IF you send a HEAD request you will only get this hash'
+              description: 'MD5 Hash of response body. Used for caching responses.'
           content:
             application/json:
               schema:
@@ -537,7 +569,7 @@ paths:
               schema:
                 type: string
                 example: '56asfd5a56sfd564a56dsf65a56sdf'
-                description: 'IF you send a HEAD request you will only get this hash'
+              description: 'MD5 Hash of response body. Used for caching responses.'
           content:
             application/json:
               schema:
@@ -564,7 +596,7 @@ paths:
               schema:
                 type: string
                 example: '56asfd5a56sfd564a56dsf65a56sdf'
-                description: 'IF you send a HEAD request you will only get this hash'
+              description: 'MD5 Hash of response body. Used for caching responses.'
           content:
             application/json:
               schema:
@@ -626,7 +658,7 @@ paths:
               schema:
                 type: string
                 example: '56asfd5a56sfd564a56dsf65a56sdf'
-                description: 'IF you send a HEAD request you will only get this hash'
+              description: 'MD5 Hash of response body. Used for caching responses.'
           content:
             application/json:
               schema:
@@ -736,6 +768,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediaFilesResponse'
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -759,6 +797,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediaFilesResponse'
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
         '400':
           $ref: '#/components/responses/BadRequest'
         '406':
@@ -784,6 +828,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediaFileResponse'
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -818,6 +868,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediaFilesResponse'
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
         '400':
           $ref: '#/components/responses/BadRequest'
         '406':
@@ -1536,3 +1592,14 @@ components:
         prize:
           type: string
           description: Prize for anniversary notifications
+
+    ######################################################
+    # Utility Schemas
+    ###
+    SurveyResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          example:  https://www.surveylegend.com/survey/#/d29yZHByZXNzMTQzODU2~-MRPPYfbYj7-rPUTK3HH
+          description: Url to a survey for the given language
