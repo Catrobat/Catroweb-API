@@ -198,3 +198,11 @@ open_api_server_utility_healthget:
     defaults:
         _controller: open_api_server.controller.utility:healthGetAction
 
+open_api_server_utility_surveylangcodeget:
+    path:     /survey/{lang_code}
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.utility:surveyLangCodeGetAction
+    requirements:
+        lang_code: '[a-z0-9]+'
+

@@ -1,6 +1,6 @@
 <?php
 /**
- * MediaFileResponseTest.
+ * SurveyResponseTest.
  *
  * PHP version 7.1.3
  *
@@ -32,10 +32,10 @@ namespace OpenAPI\Server\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * MediaFileResponseTest Class Doc Comment.
+ * SurveyResponseTest Class Doc Comment.
  *
  * @category    Class */
-// * @description MediaFileResponse
+// * @description SurveyResponse
 /**
  * @author      openapi-generator contributors
  *
@@ -44,7 +44,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  * @coversNothing
  */
-class MediaFileResponseTest extends TestCase
+class SurveyResponseTest extends TestCase
 {
   /**
    * Setup before running any test case.
@@ -75,66 +75,17 @@ class MediaFileResponseTest extends TestCase
   }
 
   /**
-   * Test "MediaFileResponse".
+   * Test "SurveyResponse".
    */
-  public function testMediaFileResponse()
+  public function testSurveyResponse()
   {
-    $testMediaFileResponse = new MediaFileResponse();
+    $testSurveyResponse = new SurveyResponse();
   }
 
   /**
-   * Test attribute "id".
+   * Test attribute "url".
    */
-  public function testPropertyId()
-  {
-  }
-
-  /**
-   * Test attribute "name".
-   */
-  public function testPropertyName()
-  {
-  }
-
-  /**
-   * Test attribute "flavors".
-   */
-  public function testPropertyFlavors()
-  {
-  }
-
-  /**
-   * Test attribute "packages".
-   */
-  public function testPropertyPackages()
-  {
-  }
-
-  /**
-   * Test attribute "category".
-   */
-  public function testPropertyCategory()
-  {
-  }
-
-  /**
-   * Test attribute "author".
-   */
-  public function testPropertyAuthor()
-  {
-  }
-
-  /**
-   * Test attribute "extension".
-   */
-  public function testPropertyExtension()
-  {
-  }
-
-  /**
-   * Test attribute "download_url".
-   */
-  public function testPropertyDownloadUrl()
+  public function testPropertyUrl()
   {
   }
 }
