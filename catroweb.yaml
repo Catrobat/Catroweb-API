@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.53"
+  version: "v1.0.54"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -1414,6 +1414,9 @@ components:
         project_url:
           type: string
           example: 'http://localhost:8080/app/project/37bf6d39-3fc3-11eb-977a-0242ac120004'
+        url:
+          type: string
+          example: 'https://example.com/project/1234'
         name:
           type: string
           example: My example of a Project
