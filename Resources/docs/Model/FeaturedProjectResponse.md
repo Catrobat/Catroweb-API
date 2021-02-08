@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **id** | **string** |  | [optional] 
 **project_id** | **string** |  | [optional] 
 **project_url** | **string** |  | [optional] 
+**url** | **string** |  | [optional] 
 **name** | **string** |  | [optional] 
 **author** | **string** |  | [optional] 
 **featured_image** | **string** |  | [optional] 
