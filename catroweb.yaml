@@ -1,0 +1,1608 @@
+openapi: 3.0.2
+info:
+  title: Catroweb API
+  description: API for the Catrobat Share Platform
+  version: "v1.0.55"
+  termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
+  contact:
+    name: Catrobat
+    url: 'https://share.catrob.at'
+    email: webmaster@catrobat.org
+
+servers:
+  - url: 'https://share.catrob.at/api'
+    description: Main production server
+  - url: 'https://web-test.catrob.at/api'
+    description: WEB test server (might be unstabe)
+  - url: 'https://catblocks.test.catrob.at/api'
+    description: Catblocks test server
+  - url: 'https://android.test.catrob.at/api'
+    description: Android test server
+  - url: 'http://localhost/api'
+    description: Local test server (postman help)
+
+tags:
+  - name: Authentication
+    description: Everything related to authenticating to our project
+  - name: User
+    description: Everything related to users
+  - name: Projects
+    description: Everything related to projects
+  - name: Media Library
+    description: Everything related to the media library
+  - name: Utility
+    description: Utility frunctionality for infrastructure
+  - name: Notifications
+    description: Everything related for notifications
+
+paths:
+
+  ##############################################
+  # Authentication
+  ###
+  /authentication:
+    get:
+      security:
+        - PandaAuth: []
+      tags:
+        - Authentication
+      summary: Check token
+      description: Checks if a token is valid or expired.
+      responses:
+        '200':
+          $ref: '#/components/responses/OK'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+    post:
+      security:
+        - PandaAuth: []
+      tags:
+        - Authentication
+      summary: Login
+      description: Returns an JWT token which provides authorization for a limited time.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidCredentials'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+
+    put:
+      security:
+        - PandaAuth: []
+      tags:
+        - Authentication
+      summary: Refresh token
+      description: Returns a new JWT token with help of the refresh token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidRefreshToken'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+
+    delete:
+      security:
+        - PandaAuth: [ ]
+      tags:
+        - Authentication
+      summary: Expires refresh token
+      description: Sets refresh token to expired
+      parameters:
+        - $ref: '#/components/parameters/RefreshToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidRefreshToken'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+
+  /authentication/oauth:
+    post:
+      tags:
+        - Authentication
+      summary: OAuth Login
+      description: Returns an JWT token which provides authorization.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthLoginRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidIdToken'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        422:
+          description: Unprocessable Entity
+
+  ##############################################
+  # Utility
+  ###
+  /health:
+    get:
+      tags:
+        - Utility
+      summary: Health Check
+      responses:
+        '204':
+          description: System is alive and healthy!
+
+  /survey/{lang_code}:
+    get:
+      parameters:
+        - in: path
+          name: lang_code
+          schema:
+            type: string
+            example: de
+          required: true
+          description: 2 letter Language-Code is based on ISO693-1 (e.g. German = de, English = en, Russian = ru)
+      tags:
+        - Utility
+      summary: Get survey link for given language code.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurveyResponse'
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  ##############################################
+  # User
+  ###
+  /user:
+
+    get:
+      security:
+        - PandaAuth: []
+      tags:
+        - User
+      summary: Get your private user data
+      description: |
+        Get your private user data. Additionally to the public user data,
+        this responses contains all your private data like settings.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedUserDataResponse'
+
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+    post:
+      parameters:
+        - $ref: '#/components/parameters/Locale'
+      tags:
+        - User
+      summary: Register
+      description: |
+        Register a user. For pre-validation use the dry-run option.
+        Using Dry run the request is validated but no object is created on the server.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        201:
+          description: User successfully registered
+          headers:
+            Location:
+              schema:
+                type: string
+                example: >-
+                  https://share.catrob.at/app/user/3ef85528-5f08-11ea-a2ae-000c292a0f49
+              description: Resource location on server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTResponse'
+        204:
+          description: 'Dry-run successful (No Validation Error)'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+        415:
+          $ref: '#/components/responses/UnsupportedMediaType'
+        422:
+          description: Unprocessable Entity (Specific error messages will be translated to the locale)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterErrorResponse'
+
+    put:
+      parameters:
+        - $ref: '#/components/parameters/Locale'
+      security:
+        - PandaAuth: []
+      tags:
+        - User
+      summary: Update User
+      description: |
+        Update your user account. All attributes are optional.
+        For example you can update only the username.
+        Or you can update multiple attributes at once. E.g. username + email.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '204':
+          description: User successfully updated
+          # Content hack necessary else OpenAPI-generator will ignore content for error responses (hopefully fixed sometime)
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/InvalidCredentials'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          description: Unprocessable Entity. (Specific error messages will be translated to the locale)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserErrorResponse'
+
+    delete:
+      security:
+        - PandaAuth: [ ]
+      tags:
+        - User
+      summary: Delete user account
+      description: Delete your user account. But be warned, there is no way to restore the user data!
+      responses:
+        '204':
+          description: User successfully deleted.
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+
+  /user/{id}:
+    get:
+      tags:
+        - User
+      summary: Get public user data
+      description: Get all the public data of a user.
+      parameters:
+        - $ref: '#/components/parameters/Uuid'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasicUserDataResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  /users/search:
+    get:
+      tags:
+        - User
+      summary: Search for users
+      description: Search for users associated by keywords.
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersDataResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  ################################################
+  # Projects
+  #
+  /projects:
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+
+    get:
+      tags:
+        - Projects
+      summary: Get projects
+      parameters:
+        - $ref: '#/components/parameters/ProjectType'
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsResponse'
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+    post:
+      security:
+        - PandaAuth: []
+      tags:
+        - Projects
+      summary: Upload a catrobat project
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectUploadRequest'
+      responses:
+        '201':
+          description: Project successfully uploaded.
+          headers:
+            Location:
+              schema:
+                type: string
+                example: >-
+                  https://share.catrob.at/app/project/63768cf1-5f07-11ea-a2ae-000c292a0f49
+              description: Resource location on server
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          description: Upload Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadErrorResponse'
+
+  /projects/featured:
+    get:
+      tags:
+        - Projects
+      summary: Get the currently featured projects
+      parameters:
+        - name: platform
+          in: query
+          schema:
+            type: string
+            description: 'Indication what platform should be used (ios, android)'
+            enum:
+              - android
+              - ios
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeaturedProjectsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  /projects/search:
+    get:
+      tags:
+        - Projects
+      summary: Search for projects associated with a keywords
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  /projects/user/:
+    get:
+      security:
+        - PandaAuth: []
+      tags:
+        - Projects
+      summary: Get the projects of the logged in user
+      parameters:
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        '200':
+          description: Valid request
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  '/projects/user/{id}':
+    get:
+      tags:
+        - Projects
+      summary: Get the public projects of a given user
+      parameters:
+        - $ref: '#/components/parameters/Uuid'
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        '200':
+          description: Valid request
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  '/project/{id}':
+    get:
+      tags:
+        - Projects
+      summary: Get the information of a project
+      parameters:
+        - $ref: '#/components/parameters/Uuid'
+      responses:
+        '200':
+          description: Valid request
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  '/project/{id}/report':
+    post:
+      security:
+        - PandaAuth: []
+      tags:
+        - Projects
+      summary: Report a project
+      parameters:
+        - $ref: '#/components/parameters/Uuid'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectReportRequest'
+      responses:
+        '204':
+          description: Project successfully reported.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  '/project/{id}/recommendations':
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+
+    get:
+      tags:
+        - Projects
+      summary: Get recommended projects related to the specific project
+      parameters:
+        - $ref: '#/components/parameters/Uuid'
+        - $ref: '#/components/parameters/RecommendedProjectType'
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+  ################################################
+  # Notifications
+  #
+  /notifications:
+    get:
+      security:
+        - PandaAuth: []
+      tags:
+        - Notifications
+      summary: Get user notifications
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/NotificationsType'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  '/notifications/{id}/read':
+    put:
+      security:
+        - PandaAuth: []
+      tags:
+        - Notifications
+      summary: Mark specified notification as read
+      parameters:
+        - $ref: '#/components/parameters/NotificationsId'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /notifications/read:
+    put:
+      security:
+        - PandaAuth: []
+      tags:
+        - Notifications
+      summary: Mark all notifications as read
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /notifications/count:
+    get:
+      security:
+        - PandaAuth: []
+      tags:
+        - Notifications
+      summary: Count the number of unseen notifications
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationsCountResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  ################################################
+  # Media Library
+  #
+  '/media/package/{name}':
+    get:
+      tags:
+        - Media Library
+      summary: Get media-library asstes of a named package
+      parameters:
+        - in: path
+          name: name
+          schema:
+            type: string
+            pattern: '^[a-zA-Z0-9\-_]+$'
+            example: looks
+          required: true
+          description: Name of the package
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFilesResponse'
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  '/media/files':
+    get:
+      tags:
+        - Media Library
+      summary: 'Get *all* content of the media library.'
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFilesResponse'
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  '/media/file/{id}':
+    get:
+      tags:
+        - Media Library
+      summary: Get the information of a specific media file
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            example: 123
+          required: true
+          description: ID of any given media file
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFileResponse'
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  '/media/files/search':
+    get:
+      tags:
+        - Media Library
+      summary: Search for mediafiles associated with keywords
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/Flavor'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - name: package_name
+          description: In which package you want to search (for more fine tuned results)
+          example: looks
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaFilesResponse'
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+
+components:
+
+  ##############################################
+  # Default Response messages
+  ###
+  responses:
+    OK:
+      description: OK
+
+    NoContent:
+      description: No Content
+
+    UnauthorizedError:
+      description: Invalid JWT token | JWT token not found | JWT token expired
+
+    BadRequest:
+      description: Bad request (Invalid, or missing parameters)
+
+    InvalidCredentials:
+      description: Invalid credentials
+
+    InvalidRefreshToken:
+      description: Refresh Token expired | Refresh Token has been used more than once (single use)
+
+    NotAcceptable:
+      description: Not acceptable - client must accept application/json as content type
+
+    UnsupportedMediaType:
+      description: >-
+        Unsupported Media Type - request must use application/json as content type
+    NotFound:
+      description: Not found
+
+    UnprocessableEntity:
+      description: Unprocessable Entity
+
+    InvalidIdToken:
+      description: Invalid Client ID token
+
+  ##############################################
+  # Security Schemes
+  ###
+  securitySchemes:
+    PandaAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  ##############################################
+  # Request Parameters
+  ###
+  parameters:
+    ##
+    # Default
+    #
+    Locale:
+      in: header
+      name: Accept-Language
+      required: false
+      schema:
+        type: string
+        description: ISO_639-1 or ISO_3166-1 locale of the user. Defaults internally to en
+
+    Uuid:
+      name: id
+      in: path
+      schema:
+        $ref: '#/components/schemas/Uuid'
+      required: true
+
+    Flavor:
+      in: query
+      name: flavor
+      schema:
+        type: string
+        example: luna
+
+    Limit:
+      name: limit
+      in: query
+      schema:
+        $ref: '#/components/schemas/Limit'
+
+    Offset:
+      name: offset
+      in: query
+      schema:
+        $ref: '#/components/schemas/Offset'
+
+    RefreshToken:
+      name: X-Refresh
+      in: header
+      description: Refresh Token
+      schema:
+        type: string
+        example: xxxxx.yyyyy.zzzzz
+      required: true
+
+    ##
+    # Notifications specific
+    #
+    NotificationsId:
+      name: id
+      in: path
+      schema:
+        $ref: '#/components/schemas/NotificationsId'
+      required: true
+
+    NotificationsType:
+      name: type
+      in: query
+      schema:
+        $ref: '#/components/schemas/NotificationsType'
+
+    ##
+    # Project specific
+    #
+    ProjectType:
+      in: query
+      name: category
+      required: true
+      schema:
+        type: string
+        enum:
+          - recent
+          - random
+          - most_viewed
+          - most_downloaded
+          - example
+          - scratch
+          - recommended
+
+    RecommendedProjectType:
+      in: query
+      name: category
+      required: true
+      schema:
+        type: string
+        enum:
+          - similar
+          - also downloaded
+          - more from user
+      description: |
+        * `similar` - Get similar projects to the specific project
+        * `also downloaded` - Get projects that users who downloaded the specific project also downloaded
+        * `more from user` - Get more projects from the owner of the specific project
+    MaxVersion:
+      name: max_version
+      in: query
+      schema:
+        type: string
+        description: |
+          Only shows project with a smaller version number than max version.
+          Warning! Current implementation is kinda broken.
+          To ensure correct results use the following format '[0-9]\.[0-9]{3}'
+        example: '0.999'
+
+  schemas:
+
+    ##############################################
+    # Default Schemas
+    ###
+
+    Uuid:
+      type: string
+      description: Unique UUID/ID (string) of the object.
+      pattern: '^[a-zA-Z0-9\-]+$'
+      example: 1234abcd-12ab-12ab-12ab-123456abcdef
+
+    Limit:
+      type: integer
+      minimum: 0
+      description: How many objects should be shown at maximum
+      default: 20
+      example: 3
+
+    Offset:
+      type: integer
+      minimum: 0
+      description: How many objects should be skipped
+      default: 0
+      example: 2
+
+    ##############################################
+    # Media Library Schemas
+    ###
+    MediaPackagesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/MediaPackageResponse'
+
+    MediaPackageResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+          description: ID of the package
+        name:
+          type: string
+          example: Looks
+          description: Name of the package
+        url:
+          type: string
+          example: 'https://share.catrob.at/app/media-library/looks'
+          description: Absolute path to the package
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaCategoriesResponse'
+
+    MediaCategoriesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/MediaCategoryResponse'
+
+    MediaCategoryResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+          description: ID of the category
+        name:
+          type: string
+          example: Portrait
+          description: Name of the category
+        priority:
+          type: integer
+          example: 10
+          description: Shows how important a category is (0 is the least priority)
+          minimum: 0
+
+    MediaFilesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/MediaFileResponse'
+
+    MediaFileResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: luna_sinde_2
+        flavors:
+          type: array
+          items:
+            type: string
+          example: [luna, pocketcode]
+        packages:
+          type: array
+          items:
+            type: string
+          example: [Looks, Sounds]
+        category:
+          type: string
+          example: Luna&Cat
+        author:
+          type: string
+          example: CatrowebAdmin
+        extension:
+          type: string
+          example: png
+        download_url:
+          type: string
+          example: 'https://share.catrob.at/pocketcode/download-media/983.png'
+
+
+    ##############################################
+    # Authentication Schemas
+    ###
+
+    ## Request
+
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          minLength: 3
+          maxLength: 180
+          example: Testuser
+          description: Name of the user
+        password:
+          type: string
+          format: password
+          minLength: 6
+          maxLength: 4096
+          example: password
+          description: A secure password.
+    OAuthLoginRequest:
+      type: object
+      properties:
+        id_token:
+          type: string
+          example: .eydfdf23232323
+          description: User ID token
+        resource_owner:
+          type: string
+          example: google
+          description: OAuth provider
+    RefreshRequest:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+          example: xxxxx.yyyyy.zzzzz
+
+    ## Response
+
+    JWTResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          example: xxxxx.yyyyy.zzzzz
+        refresh_token:
+          type: string
+          example: xxxxx.yyyyy.zzzzz
+
+    ##############################################
+    # UserSchemas
+    ###
+
+    ## Request
+
+    BaseUser:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: test@test.lan
+          description: Email of the user.
+        username:
+          type: string
+          example: Testuser
+          # no min/max specification in order to handle the errors in catroweb instead of the autogenerated controllers.
+          description: 'Name of the user | minLength: 3 | maxLength: 180'
+        password:
+          type: string
+          format: password
+          example: password
+          # no min/max specification in order to handle the errors in catroweb instead of the autogenerated controllers.
+          description: 'A secure password | minLength: 6 | maxLength: 4096'
+
+    RegisterRequest:
+      allOf:
+        - $ref: '#/components/schemas/DryRun'
+        - $ref: '#/components/schemas/BaseUser'
+
+    UpdateUserRequest:
+      allOf:
+        - $ref: '#/components/schemas/DryRun'
+        - $ref: '#/components/schemas/BaseUser'
+        - type: object
+          properties:
+            country:
+              type: string
+              example: AT
+
+    ProjectReportRequest:
+      type: object
+      properties:
+        category:
+          type: string
+          enum:
+            - Sexual content
+            - Graphic violence
+            - Hateful or abusive content
+            - Improper content rating
+            - Illegal prescription or other drug
+            - Copycat or impersonation
+            - Other objection
+
+    DryRun:
+      type: object
+      properties:
+        dry-run:
+          type: boolean
+          default: false
+          description: Indicates wether a request should only be verified or executed.
+
+    ## Response
+
+    UsersDataResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/BasicUserDataResponse'
+
+    BasicUserDataResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1234abcd-12ab-12ab-12ab-123456abcdef
+          description: Unique ID of the user.
+        username:
+          type: string
+          example: Catroweb
+          description: Nickname of the user.
+        email:
+          type: string
+          format: email
+          example: test@test.lan
+          description: EMail of the user.
+        country:
+          type: string
+          example: AT
+          description: Country code of the user.
+        projects:
+          type: integer
+          example: 4
+          description: Amount of projects of the user.
+        followers:
+          type: integer
+          example: 11
+          description: Amount of users that follow this user.
+        following:
+          type: integer
+          example: 42
+          description: Amount of users followed by this user.
+
+    ExtendedUserDataResponse:
+      allOf:
+        - $ref: '#/components/schemas/BasicUserDataResponse'
+          # Future updates can add more private details (settings, ...?)
+
+    RegisterErrorResponse:
+      type: object
+      properties:
+        email:
+          type: string
+          enum:
+            - Email already in use
+            - Email invalid
+            - Email missing
+        username:
+          type: string
+          enum:
+            - Username too short
+            - Username too long
+            - Username already in use
+            - Username missing
+            - Username must not contain an email address
+        password:
+          type: string
+          enum:
+            - Password too short
+            - Password too long
+            - Password contains invalid chars
+            - Password missing
+
+    UpdateUserErrorResponse:
+      type: object
+      properties:
+        email:
+          type: string
+          enum:
+            - Email already in use
+            - Email invalid
+        username:
+          type: string
+          enum:
+            - Username too short
+            - Username too long
+            - Username already in use
+            - Username must not contain an email address
+        password:
+          type: string
+          enum:
+            - Password too short
+            - Password too long
+            - Password contains invalid chars
+        country:
+          type: string
+          enum:
+            - Country invalid
+
+    ######################################################
+    # Project Schemas
+    ###
+
+    # Request
+
+    ProjectUploadRequest:
+      type: object
+      properties:
+        checksum:
+          type: string
+          example: aqqoslcotroewlclcceadfgf
+          description: Checksum of the *.catrobat file
+        file:
+          type: string
+          format: binary
+          description: '*.catrobat file'
+        flavor:
+          type: string
+          example: pocketcode
+          description: The flavor of this project.
+        private:
+          type: boolean
+          description: Indicates whether a program should be private from the start.
+      required:
+        - checksum
+        - file
+
+    UploadErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: There is a problem
+
+    FeaturedProjectsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/FeaturedProjectResponse'
+
+    FeaturedProjectResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1
+        project_id:
+          type: string
+          example: 1234abcd-12ab-12ab-12ab-123456abcdef
+        project_url:
+          type: string
+          example: 'http://localhost:8080/app/project/37bf6d39-3fc3-11eb-977a-0242ac120004'
+        url:
+          type: string
+          example: 'https://example.com/project/1234'
+        name:
+          type: string
+          example: My example of a Project
+        author:
+          type: string
+          example: Admin
+        featured_image:
+          type: string
+          example: 'https://share.catrob.at/resources/featured/featured_999.png'
+
+
+    ProjectsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProjectResponse'
+
+    ProjectResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1234abcd-12ab-12ab-12ab-123456abcdef
+        name:
+          type: string
+          example: My example of a Project
+        author:
+          type: string
+          example: Admin
+        description:
+          type: string
+          example: My very cool project!
+        version:
+          type: string
+          example: 0.9.66
+        views:
+          type: integer
+          example: 2
+        download:
+          type: integer
+          example: 2
+        private:
+          type: boolean
+          example: false
+        flavor:
+          type: string
+          example: pocketcode
+        tags:
+          type: array
+          items:
+            type: string
+          example: [Tag1, Tag2]
+        uploaded:
+          type: integer
+          example: 1575562569
+        uploaded_string:
+          type: string
+          example: 11 minutes ago
+        screenshot_large:
+          type: string
+          example: >-
+            https://share.catrob.at/resources/screenshots/screen_1234abcd-12ab-12ab-12ab-123456abcdef.png
+        screenshot_small:
+          type: string
+          example: >-
+            https://share.catrob.at/resources/thumbnails/screen_1234abcd-12ab-12ab-12ab-123456abcdef.png
+        project_url:
+          type: string
+          example: >-
+            https://share.catrob.at/pocketcode/project/1234abcd-12ab-12ab-12ab-123456abcdef
+        download_url:
+          type: string
+          example: >-
+            https://share.catrob.at/pocketcode/download/1234abcd-12ab-12ab-12ab-123456abcdef.catrobat
+        filesize:
+          type: number
+          example: 0.14381762458251943
+          description: filesize in megabytes
+
+    NotificationsId:
+      type: integer
+      minimum: 0
+      description: Id of a notification
+      default: 0
+      example: 2
+
+    NotificationsType:
+      type: string
+      enum:
+        - all
+        - reaction
+        - follow
+        - comment
+        - remix
+      default: all
+
+    NotificationsCountResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 9
+        like:
+          type: integer
+          example: 1
+        follower:
+          type: integer
+          example: 0
+        comment:
+          type: integer
+          example: 5
+        remix:
+          type: integer
+          example: 3
+
+    NotificationsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/NotificationResponse'
+
+    NotificationResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+          description: Id of the notification
+        type:
+          type: string
+          example: remix
+          description: Notification Type
+        seen:
+          type: boolean
+          description: Seen status of the notification
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationContent'
+
+    NotificationContent:
+      type: object
+      properties:
+        from:
+          description: Id of the user who caused the notification
+          allOf:
+            - $ref: '#/components/schemas/Uuid'
+        from_name:
+          type: string
+          example: Catroweb
+          description: Username of the user who caused the notification
+        program:
+          description: Id of the program for which the notification is about
+          allOf:
+            - $ref: '#/components/schemas/Uuid'
+        program_name:
+          type: string
+          example: Awesome Game
+          description: Name of the program for which the notification is about
+        avatar:
+          type: string
+          example: 'https://share.catrob.at/pocketcode/images/default/avatar_default.png'
+          description: Avatar of the user who caused the notification
+        remixed_program:
+          description: Id of the remixed program
+          allOf:
+            - $ref: '#/components/schemas/Uuid'
+        remixed_program_name:
+          type: string
+          example: Awesome Remixed Game
+          description: Name of the remixed program
+        message:
+          type: string
+          example: >-
+            User1 created a remix Awesome Game of your game Awesome Remixed
+            Game.
+          description: Notification message
+        prize:
+          type: string
+          description: Prize for anniversary notifications
+
+    ######################################################
+    # Utility Schemas
+    ###
+    SurveyResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          example:  https://www.surveylegend.com/survey/#/d29yZHByZXNzMTQzODU2~-MRPPYfbYj7-rPUTK3HH
+          description: Url to a survey for the given language
