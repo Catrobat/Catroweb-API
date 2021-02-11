@@ -485,6 +485,34 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
+  /projects/categories:
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+
+    get:
+      tags:
+        - Projects
+      summary: Get all projectsCategories
+      parameters:
+        - $ref: '#/components/parameters/MaxVersion'
+        - $ref: '#/components/parameters/Flavor'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsCategoryResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
   /projects/search:
     get:
       tags:
@@ -1426,6 +1454,26 @@ components:
         featured_image:
           type: string
           example: 'https://share.catrob.at/resources/featured/featured_999.png'
+
+    ProjectsCategoryResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProjectsCategory'
+
+    ProjectsCategory:
+      type: object
+      properties:
+        id:
+          type: string
+          example: recent
+        name:
+          type: string
+          example: Newest projects
+        projectsList:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectResponse'
+
 
 
     ProjectsResponse:
