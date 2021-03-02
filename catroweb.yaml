@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.55"
+  version: "v1.0.56"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -83,7 +83,29 @@ paths:
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
 
-    put:
+    delete:
+      security:
+        - PandaAuth: [ ]
+      tags:
+        - Authentication
+      summary: Expires refresh token
+      description: Sets refresh token to expired
+      parameters:
+        - $ref: '#/components/parameters/RefreshToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidRefreshToken'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+
+  /authentication/refresh:
+    post:
       security:
         - PandaAuth: []
       tags:
@@ -111,28 +133,6 @@ paths:
           $ref: '#/components/responses/NotAcceptable'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
-
-    delete:
-      security:
-        - PandaAuth: [ ]
-      tags:
-        - Authentication
-      summary: Expires refresh token
-      description: Sets refresh token to expired
-      parameters:
-        - $ref: '#/components/parameters/RefreshToken'
-      responses:
-        '200':
-          $ref: '#/components/responses/OK'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/InvalidRefreshToken'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '415':
-          $ref: '#/components/responses/UnsupportedMediaType'
-
   /authentication/oauth:
     post:
       tags:
@@ -486,16 +486,14 @@ paths:
           $ref: '#/components/responses/NotAcceptable'
 
   /projects/categories:
-    parameters:
-      - $ref: '#/components/parameters/Locale'
-
     get:
       tags:
         - Projects
-      summary: Get all projectsCategories
+      summary: Get default number of projects per category (Most downloaded etc.)
       parameters:
         - $ref: '#/components/parameters/MaxVersion'
         - $ref: '#/components/parameters/Flavor'
+        - $ref: '#/components/parameters/Locale'
       responses:
         '200':
           description: OK
@@ -1463,14 +1461,17 @@ components:
     ProjectsCategory:
       type: object
       properties:
-        id:
+        type:
           type: string
           example: recent
+          description: The name of the categories in english.
         name:
           type: string
           example: Newest projects
+          description: Translated name according to the language header
         projectsList:
           type: array
+          description: Array of projects
           items:
             $ref: '#/components/schemas/ProjectResponse'
 
