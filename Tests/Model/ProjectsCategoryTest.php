@@ -1,6 +1,6 @@
 <?php
 /**
- * RefreshRequestTest.
+ * ProjectsCategoryTest.
  *
  * PHP version 7.1.3
  *
@@ -32,10 +32,10 @@ namespace OpenAPI\Server\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * RefreshRequestTest Class Doc Comment.
+ * ProjectsCategoryTest Class Doc Comment.
  *
  * @category    Class */
-// * @description RefreshRequest
+// * @description ProjectsCategory
 /**
  * @author      openapi-generator contributors
  *
@@ -44,7 +44,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  * @coversNothing
  */
-class RefreshRequestTest extends TestCase
+class ProjectsCategoryTest extends TestCase
 {
   /**
    * Setup before running any test case.
@@ -75,17 +75,31 @@ class RefreshRequestTest extends TestCase
   }
 
   /**
-   * Test "RefreshRequest".
+   * Test "ProjectsCategory".
    */
-  public function testRefreshRequest()
+  public function testProjectsCategory()
   {
-    $testRefreshRequest = new RefreshRequest();
+    $testProjectsCategory = new ProjectsCategory();
   }
 
   /**
-   * Test attribute "refresh_token".
+   * Test attribute "type".
    */
-  public function testPropertyRefreshToken()
+  public function testPropertyType()
+  {
+  }
+
+  /**
+   * Test attribute "name".
+   */
+  public function testPropertyName()
+  {
+  }
+
+  /**
+   * Test attribute "projects_list".
+   */
+  public function testPropertyProjectsList()
   {
   }
 }

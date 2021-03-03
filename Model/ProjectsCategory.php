@@ -1,6 +1,6 @@
 <?php
 /**
- * MediaPackageResponse.
+ * ProjectsCategory.
  *
  * PHP version 7.1.3
  *
@@ -34,24 +34,24 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the MediaPackageResponse model.
+ * Class representing the ProjectsCategory model.
  *
  * @author  OpenAPI Generator team
  */
-class MediaPackageResponse
+class ProjectsCategory
 {
   /**
-   * ID of the package.
+   * The name of the categories in english.
    *
-   * @var int|null
-   * @SerializedName("id")
-   * @Assert\Type("int")
-   * @Type("int")
+   * @var string|null
+   * @SerializedName("type")
+   * @Assert\Type("string")
+   * @Type("string")
    */
-  protected $id;
+  protected $type;
 
   /**
-   * Name of the package.
+   * Translated name according to the language header.
    *
    * @var string|null
    * @SerializedName("name")
@@ -61,24 +61,16 @@ class MediaPackageResponse
   protected $name;
 
   /**
-   * Absolute path to the package.
+   * Array of projects.
    *
-   * @var string|null
-   * @SerializedName("url")
-   * @Assert\Type("string")
-   * @Type("string")
-   */
-  protected $url;
-
-  /**
-   * @var array[]|null
-   * @SerializedName("categories")
+   * @var OpenAPI\Server\Model\ProjectResponse[]|null
+   * @SerializedName("projectsList")
    * @Assert\All({
-   *     @Assert\Type("OpenAPI\Server\Model\MediaCategoryResponse")
+   *     @Assert\Type("OpenAPI\Server\Model\ProjectResponse")
    * })
-   * @Type("array<OpenAPI\Server\Model\MediaCategoryResponse>")
+   * @Type("array<OpenAPI\Server\Model\ProjectResponse>")
    */
-  protected $categories;
+  protected $projects_list;
 
   /**
    * Constructor.
@@ -87,30 +79,29 @@ class MediaPackageResponse
    */
   public function __construct(array $data = null)
   {
-    $this->id = isset($data['id']) ? $data['id'] : null;
+    $this->type = isset($data['type']) ? $data['type'] : null;
     $this->name = isset($data['name']) ? $data['name'] : null;
-    $this->url = isset($data['url']) ? $data['url'] : null;
-    $this->categories = isset($data['categories']) ? $data['categories'] : null;
+    $this->projects_list = isset($data['projects_list']) ? $data['projects_list'] : null;
   }
 
   /**
-   * Gets id.
+   * Gets type.
    */
-  public function getId(): ?int
+  public function getType(): ?string
   {
-    return $this->id;
+    return $this->type;
   }
 
   /**
-   * Sets id.
+   * Sets type.
    *
-   * @param int|null $id ID of the package
+   * @param string|null $type the name of the categories in english
    *
    * @return $this
    */
-  public function setId(int $id = null)
+  public function setType(string $type = null)
   {
-    $this->id = $id;
+    $this->type = $type;
 
     return $this;
   }
@@ -126,7 +117,7 @@ class MediaPackageResponse
   /**
    * Sets name.
    *
-   * @param string|null $name Name of the package
+   * @param string|null $name Translated name according to the language header
    *
    * @return $this
    */
@@ -138,47 +129,25 @@ class MediaPackageResponse
   }
 
   /**
-   * Gets url.
+   * Gets projects_list.
+   *
+   * @return OpenAPI\Server\Model\ProjectResponse[]|null
    */
-  public function getUrl(): ?string
+  public function getProjectsList(): ?array
   {
-    return $this->url;
+    return $this->projects_list;
   }
 
   /**
-   * Sets url.
+   * Sets projects_list.
    *
-   * @param string|null $url Absolute path to the package
+   * @param OpenAPI\Server\Model\ProjectResponse[]|null $projects_list Array of projects
    *
    * @return $this
    */
-  public function setUrl(string $url = null)
+  public function setProjectsList(array $projects_list = null)
   {
-    $this->url = $url;
-
-    return $this;
-  }
-
-  /**
-   * Gets categories.
-   *
-   * @return array[]|null
-   */
-  public function getCategories(): ?array
-  {
-    return $this->categories;
-  }
-
-  /**
-   * Sets categories.
-   *
-   * @param array[]|null $categories
-   *
-   * @return $this
-   */
-  public function setCategories(array $categories = null)
-  {
-    $this->categories = $categories;
+    $this->projects_list = $projects_list;
 
     return $this;
   }

@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**projectIdGet**](ProjectsApiInterface.md#projectIdGet) | **GET** /project/{id} | Get the information of a project
 [**projectIdRecommendationsGet**](ProjectsApiInterface.md#projectIdRecommendationsGet) | **GET** /project/{id}/recommendations | Get recommended projects related to the specific project
 [**projectIdReportPost**](ProjectsApiInterface.md#projectIdReportPost) | **POST** /project/{id}/report | Report a project
+[**projectsCategoriesGet**](ProjectsApiInterface.md#projectsCategoriesGet) | **GET** /projects/categories | Get default number of projects per category (Most downloaded etc.)
 [**projectsFeaturedGet**](ProjectsApiInterface.md#projectsFeaturedGet) | **GET** /projects/featured | Get the currently featured projects
 [**projectsGet**](ProjectsApiInterface.md#projectsGet) | **GET** /projects | Get projects
 [**projectsPost**](ProjectsApiInterface.md#projectsPost) | **POST** /projects | Upload a catrobat project
@@ -187,6 +188,60 @@ void (empty response body)
 
  - **Content-Type**: application/json
  - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+## **projectsCategoriesGet**
+> OpenAPI\Server\Model\ProjectsCategory projectsCategoriesGet($max_version, $flavor, $accept_language)
+
+Get default number of projects per category (Most downloaded etc.)
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/ProjectsApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\ProjectsApiInterface;
+
+class ProjectsApi implements ProjectsApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of ProjectsApiInterface#projectsCategoriesGet
+     */
+    public function projectsCategoriesGet(string $max_version = null, string $flavor = null, string $accept_language = null)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **max_version** | **string**|  | [optional]
+ **flavor** | **string**|  | [optional]
+ **accept_language** | **string**|  | [optional]
+
+### Return type
+
+[**OpenAPI\Server\Model\ProjectsCategory**](../Model/ProjectsCategory.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
