@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**authenticationGet**](AuthenticationApiInterface.md#authenticationGet) | **GET** /authentication | Check token
 [**authenticationOauthPost**](AuthenticationApiInterface.md#authenticationOauthPost) | **POST** /authentication/oauth | OAuth Login
 [**authenticationPost**](AuthenticationApiInterface.md#authenticationPost) | **POST** /authentication | Login
-[**authenticationPut**](AuthenticationApiInterface.md#authenticationPut) | **PUT** /authentication | Refresh token
+[**authenticationRefreshPost**](AuthenticationApiInterface.md#authenticationRefreshPost) | **POST** /authentication/refresh | Refresh token
 
 
 ## Service Declaration
@@ -236,8 +236,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-## **authenticationPut**
-> OpenAPI\Server\Model\JWTResponse authenticationPut($refresh_request)
+## **authenticationRefreshPost**
+> OpenAPI\Server\Model\JWTResponse authenticationRefreshPost($refresh_request)
 
 Refresh token
 
@@ -258,9 +258,9 @@ class AuthenticationApi implements AuthenticationApiInterface
     // ...
 
     /**
-     * Implementation of AuthenticationApiInterface#authenticationPut
+     * Implementation of AuthenticationApiInterface#authenticationRefreshPost
      */
-    public function authenticationPut(RefreshRequest $refresh_request)
+    public function authenticationRefreshPost(RefreshRequest $refresh_request)
     {
         // Implement the operation ...
     }
