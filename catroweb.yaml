@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.56"
+  version: "v1.0.57"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -1046,12 +1046,12 @@ components:
         type: string
         enum:
           - similar
-          - also downloaded
-          - more from user
+          - also_downloaded
+          - more_from_user
       description: |
         * `similar` - Get similar projects to the specific project
-        * `also downloaded` - Get projects that users who downloaded the specific project also downloaded
-        * `more from user` - Get more projects from the owner of the specific project
+        * `also_downloaded` - Get projects that users who downloaded the specific project also downloaded
+        * `more_from_user` - Get more projects from the owner of the specific project
     MaxVersion:
       name: max_version
       in: query
