@@ -7,6 +7,7 @@ Api/AuthenticationApiInterface.php
 Api/MediaLibraryApiInterface.php
 Api/NotificationsApiInterface.php
 Api/ProjectsApiInterface.php
+Api/SearchApiInterface.php
 Api/UserApiInterface.php
 Api/UtilityApiInterface.php
 Controller/AuthenticationController.php
@@ -14,6 +15,7 @@ Controller/Controller.php
 Controller/MediaLibraryController.php
 Controller/NotificationsController.php
 Controller/ProjectsController.php
+Controller/SearchController.php
 Controller/UserController.php
 Controller/UtilityController.php
 DependencyInjection/Compiler/OpenAPIServerApiPass.php
@@ -40,6 +42,7 @@ Model/ProjectsCategory.php
 Model/RefreshRequest.php
 Model/RegisterErrorResponse.php
 Model/RegisterRequest.php
+Model/SearchResponse.php
 Model/SurveyResponse.php
 Model/UpdateUserErrorResponse.php
 Model/UpdateUserRequest.php
@@ -53,6 +56,7 @@ Resources/docs/Api/AuthenticationApiInterface.md
 Resources/docs/Api/MediaLibraryApiInterface.md
 Resources/docs/Api/NotificationsApiInterface.md
 Resources/docs/Api/ProjectsApiInterface.md
+Resources/docs/Api/SearchApiInterface.md
 Resources/docs/Api/UserApiInterface.md
 Resources/docs/Api/UtilityApiInterface.md
 Resources/docs/Model/BaseUser.md
@@ -77,6 +81,7 @@ Resources/docs/Model/ProjectsCategory.md
 Resources/docs/Model/RefreshRequest.md
 Resources/docs/Model/RegisterErrorResponse.md
 Resources/docs/Model/RegisterRequest.md
+Resources/docs/Model/SearchResponse.md
 Resources/docs/Model/SurveyResponse.md
 Resources/docs/Model/UpdateUserErrorResponse.md
 Resources/docs/Model/UpdateUserRequest.md
@@ -92,6 +97,7 @@ Tests/Api/AuthenticationApiInterfaceTest.php
 Tests/Api/MediaLibraryApiInterfaceTest.php
 Tests/Api/NotificationsApiInterfaceTest.php
 Tests/Api/ProjectsApiInterfaceTest.php
+Tests/Api/SearchApiInterfaceTest.php
 Tests/Api/UserApiInterfaceTest.php
 Tests/Api/UtilityApiInterfaceTest.php
 Tests/AppKernel.php
@@ -118,6 +124,7 @@ Tests/Model/ProjectsCategoryTest.php
 Tests/Model/RefreshRequestTest.php
 Tests/Model/RegisterErrorResponseTest.php
 Tests/Model/RegisterRequestTest.php
+Tests/Model/SearchResponseTest.php
 Tests/Model/SurveyResponseTest.php
 Tests/Model/UpdateUserErrorResponseTest.php
 Tests/Model/UpdateUserRequestAllOfTest.php

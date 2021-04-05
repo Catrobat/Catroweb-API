@@ -1,6 +1,6 @@
 <?php
 /**
- * ProjectsCategoryTest.
+ * SearchResponseTest.
  *
  * PHP version 7.1.3
  *
@@ -32,10 +32,10 @@ namespace OpenAPI\Server\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ProjectsCategoryTest Class Doc Comment.
+ * SearchResponseTest Class Doc Comment.
  *
  * @category    Class */
-// * @description ProjectsCategory
+// * @description SearchResponse
 /**
  * @author      openapi-generator contributors
  *
@@ -44,7 +44,7 @@ use PHPUnit\Framework\TestCase;
  * @internal
  * @coversNothing
  */
-class ProjectsCategoryTest extends TestCase
+class SearchResponseTest extends TestCase
 {
   /**
    * Setup before running any test case.
@@ -75,31 +75,38 @@ class ProjectsCategoryTest extends TestCase
   }
 
   /**
-   * Test "ProjectsCategory".
+   * Test "SearchResponse".
    */
-  public function testProjectsCategory()
+  public function testSearchResponse()
   {
-    $testProjectsCategory = new ProjectsCategory();
+    $testSearchResponse = new SearchResponse();
   }
 
   /**
-   * Test attribute "type".
+   * Test attribute "projects".
    */
-  public function testPropertyType()
-  {
-  }
-
-  /**
-   * Test attribute "name".
-   */
-  public function testPropertyName()
+  public function testPropertyProjects()
   {
   }
 
   /**
-   * Test attribute "projects_list".
+   * Test attribute "projects_total".
    */
-  public function testPropertyProjectsList()
+  public function testPropertyProjectsTotal()
+  {
+  }
+
+  /**
+   * Test attribute "users".
+   */
+  public function testPropertyUsers()
+  {
+  }
+
+  /**
+   * Test attribute "users_total".
+   */
+  public function testPropertyUsersTotal()
   {
   }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * UtilityApiInterfaceTest
+ * SearchApiInterfaceTest
  * PHP version 7.1.3.
  *
  * @category Class
@@ -31,7 +31,7 @@ namespace OpenAPI\Server\Tests\Api;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * UtilityApiInterfaceTest Class Doc Comment.
+ * SearchApiInterfaceTest Class Doc Comment.
  *
  * @category Class
  *
@@ -42,7 +42,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * @internal
  * @coversNothing
  */
-class UtilityApiInterfaceTest extends WebTestCase
+class SearchApiInterfaceTest extends WebTestCase
 {
   /**
    * Setup before running any test cases.
@@ -73,32 +73,15 @@ class UtilityApiInterfaceTest extends WebTestCase
   }
 
   /**
-   * Test case for healthGet.
+   * Test case for searchGet.
    *
-   * Health Check.
+   * Search for projects, users,....
    */
-  public function testHealthGet()
+  public function testSearchGet()
   {
     $client = static::createClient();
 
-    $path = '/health';
-
-    $crawler = $client->request('GET', $path);
-  }
-
-  /**
-   * Test case for surveyLangCodeGet.
-   *
-   * Get survey link for given language code..
-   */
-  public function testSurveyLangCodeGet()
-  {
-    $client = static::createClient();
-
-    $path = '/survey/{lang_code}';
-    $pattern = '{lang_code}';
-    $data = $this->genTestData('[a-z0-9]+');
-    $path = str_replace($pattern, $data, $path);
+    $path = '/search';
 
     $crawler = $client->request('GET', $path);
   }

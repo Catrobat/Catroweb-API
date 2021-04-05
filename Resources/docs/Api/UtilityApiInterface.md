@@ -70,7 +70,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **surveyLangCodeGet**
-> OpenAPI\Server\Model\SurveyResponse surveyLangCodeGet($lang_code)
+> OpenAPI\Server\Model\SurveyResponse surveyLangCodeGet($lang_code, $flavor)
 
 Get survey link for given language code.
 
@@ -91,7 +91,7 @@ class UtilityApi implements UtilityApiInterface
     /**
      * Implementation of UtilityApiInterface#surveyLangCodeGet
      */
-    public function surveyLangCodeGet(string $lang_code)
+    public function surveyLangCodeGet(string $lang_code, string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -105,6 +105,7 @@ class UtilityApi implements UtilityApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **lang_code** | **string**| 2 letter Language-Code is based on ISO693-1 (e.g. German &#x3D; de, English &#x3D; en, Russian &#x3D; ru) |
+ **flavor** | **string**|  | [optional]
 
 ### Return type
 
