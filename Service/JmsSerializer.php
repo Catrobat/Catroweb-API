@@ -28,8 +28,7 @@ class JmsSerializer implements SerializerInterface
 
   public function deserialize($data, $type, $format)
   {
-    if ('string' == $format)
-    {
+    if ('string' == $format) {
       return $this->deserializeString($data, $type);
     }
 
@@ -52,21 +51,18 @@ class JmsSerializer implements SerializerInterface
   private function deserializeString($data, $type)
   {
     // Figure out if we have an array format
-    if (1 === preg_match('/array<(csv|ssv|tsv|pipes),(int|string)>/i', $type, $matches))
-    {
+    if (1 === preg_match('/array<(csv|ssv|tsv|pipes),(int|string)>/i', $type, $matches)) {
       return $this->deserializeArrayString($matches[1], $matches[2], $data);
     }
 
     switch ($type) {
             case 'int':
             case 'integer':
-                if (is_int($data))
-                {
+                if (is_int($data)) {
                   return $data;
                 }
 
-                if (is_numeric($data))
-                {
+                if (is_numeric($data)) {
                   return $data + 0;
                 }
 
@@ -75,13 +71,11 @@ class JmsSerializer implements SerializerInterface
                 break;
             case 'boolean':
             case 'bool':
-                if ('true' === strtolower($data))
-                {
+                if ('true' === strtolower($data)) {
                   return true;
                 }
 
-                if ('false' === strtolower($data))
-                {
+                if ('false' === strtolower($data)) {
                   return false;
                 }
 
@@ -113,8 +107,7 @@ class JmsSerializer implements SerializerInterface
         }
 
     // Deserialize each of the array elements
-    foreach ($data as $key => $item)
-    {
+    foreach ($data as $key => $item) {
       $data[$key] = $this->deserializeString($item, $type);
     }
 
