@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.58"
+  version: "v1.0.60"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -953,7 +953,7 @@ paths:
     get:
       tags:
         - Search
-      summary: Search for projects, users,...
+      summary: Search for projects, users,... The default is to search for all types.
       parameters:
         - name: query
           in: query
@@ -1145,7 +1145,7 @@ components:
       in: query
       schema:
         type: string
-        default: all
+        # default: all   # Enum Default is currently not working with OpenAPI Generator
         enum:
           - all
           - projects
