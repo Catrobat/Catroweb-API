@@ -4,7 +4,7 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**searchGet**](SearchApiInterface.md#searchGet) | **GET** /search | Search for projects, users,...
+[**searchGet**](SearchApiInterface.md#searchGet) | **GET** /search | Search for projects, users,... The default is to search for all types.
 
 
 ## Service Declaration
@@ -22,7 +22,7 @@ services:
 ## **searchGet**
 > OpenAPI\Server\Model\SearchResponse searchGet($query, $type, $limit, $offset)
 
-Search for projects, users,...
+Search for projects, users,... The default is to search for all types.
 
 ### Example Implementation
 ```php
@@ -41,7 +41,7 @@ class SearchApi implements SearchApiInterface
     /**
      * Implementation of SearchApiInterface#searchGet
      */
-    public function searchGet(string $query, string $type = '''all''', int $limit = '20', int $offset = '0')
+    public function searchGet(string $query, string $type = null, int $limit = '20', int $offset = '0')
     {
         // Implement the operation ...
     }
@@ -55,7 +55,7 @@ class SearchApi implements SearchApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query** | **string**|  |
- **type** | **string**|  | [optional] [default to &#39;&#39;all&#39;&#39;]
+ **type** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
 
