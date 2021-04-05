@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.57"
+  version: "v1.0.58"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -13,7 +13,7 @@ servers:
   - url: 'https://share.catrob.at/api'
     description: Main production server
   - url: 'https://web-test.catrob.at/api'
-    description: WEB test server (might be unstabe)
+    description: WEB test server (might be unstable)
   - url: 'https://catblocks.test.catrob.at/api'
     description: Catblocks test server
   - url: 'https://android.test.catrob.at/api'
@@ -31,9 +31,11 @@ tags:
   - name: Media Library
     description: Everything related to the media library
   - name: Utility
-    description: Utility frunctionality for infrastructure
+    description: Utility functionality
   - name: Notifications
     description: Everything related for notifications
+  - name: Search
+    description: Everything related to searching
 
 paths:
 
@@ -133,6 +135,7 @@ paths:
           $ref: '#/components/responses/NotAcceptable'
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
+
   /authentication/oauth:
     post:
       tags:
@@ -185,6 +188,7 @@ paths:
             example: de
           required: true
           description: 2 letter Language-Code is based on ISO693-1 (e.g. German = de, English = en, Russian = ru)
+        - $ref: '#/components/parameters/Flavor'
       tags:
         - Utility
       summary: Get survey link for given language code.
@@ -197,14 +201,15 @@ paths:
                 $ref: '#/components/schemas/SurveyResponse'
           headers:
             X-Response-Hash:
-              schema:
-                type: string
-                example: '56asfd5a56sfd564a56dsf65a56sdf'
-              description: 'MD5 Hash of response body. Used for caching responses.'
+             $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
 
   ##############################################
   # User
@@ -227,7 +232,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExtendedUserDataResponse'
-
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -260,6 +269,10 @@ paths:
                 example: >-
                   https://share.catrob.at/app/user/3ef85528-5f08-11ea-a2ae-000c292a0f49
               description: Resource location on server
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
           content:
             application/json:
               schema:
@@ -278,6 +291,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RegisterErrorResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
 
     put:
       parameters:
@@ -315,6 +333,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateUserErrorResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
 
     delete:
       security:
@@ -328,7 +351,6 @@ paths:
           description: User successfully deleted.
         '401':
           $ref: '#/components/responses/UnauthorizedError'
-
 
   /user/{id}:
     get:
@@ -345,6 +367,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BasicUserDataResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
         '404':
           $ref: '#/components/responses/NotFound'
         '406':
@@ -371,6 +398,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UsersDataResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
         '400':
           $ref: '#/components/responses/BadRequest'
         '406':
@@ -402,10 +434,9 @@ paths:
                 $ref: '#/components/schemas/ProjectsResponse'
           headers:
             X-Response-Hash:
-              schema:
-                type: string
-                example: '56asfd5a56sfd564a56dsf65a56sdf'
-              description: 'MD5 Hash of response body. Used for caching responses.'
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
         '400':
           $ref: '#/components/responses/BadRequest'
         '406':
@@ -448,6 +479,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UploadErrorResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
 
   /projects/featured:
     get:
@@ -472,10 +508,9 @@ paths:
           description: OK
           headers:
             X-Response-Hash:
-              schema:
-                type: string
-                example: '56asfd5a56sfd564a56dsf65a56sdf'
-              description: 'MD5 Hash of response body. Used for caching responses.'
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
           content:
             application/json:
               schema:
@@ -499,10 +534,9 @@ paths:
           description: OK
           headers:
             X-Response-Hash:
-              schema:
-                type: string
-                example: '56asfd5a56sfd564a56dsf65a56sdf'
-              description: 'MD5 Hash of response body. Used for caching responses.'
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
           content:
             application/json:
               schema:
@@ -511,6 +545,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+
   /projects/search:
     get:
       tags:
@@ -531,10 +566,9 @@ paths:
           description: OK
           headers:
             X-Response-Hash:
-              schema:
-                type: string
-                example: '56asfd5a56sfd564a56dsf65a56sdf'
-              description: 'MD5 Hash of response body. Used for caching responses.'
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
           content:
             application/json:
               schema:
@@ -561,10 +595,9 @@ paths:
           description: Valid request
           headers:
             X-Response-Hash:
-              schema:
-                type: string
-                example: '56asfd5a56sfd564a56dsf65a56sdf'
-              description: 'MD5 Hash of response body. Used for caching responses.'
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
           content:
             application/json:
               schema:
@@ -592,10 +625,9 @@ paths:
           description: Valid request
           headers:
             X-Response-Hash:
-              schema:
-                type: string
-                example: '56asfd5a56sfd564a56dsf65a56sdf'
-              description: 'MD5 Hash of response body. Used for caching responses.'
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
           content:
             application/json:
               schema:
@@ -619,10 +651,9 @@ paths:
           description: Valid request
           headers:
             X-Response-Hash:
-              schema:
-                type: string
-                example: '56asfd5a56sfd564a56dsf65a56sdf'
-              description: 'MD5 Hash of response body. Used for caching responses.'
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
           content:
             application/json:
               schema:
@@ -681,10 +712,9 @@ paths:
           description: OK
           headers:
             X-Response-Hash:
-              schema:
-                type: string
-                example: '56asfd5a56sfd564a56dsf65a56sdf'
-              description: 'MD5 Hash of response body. Used for caching responses.'
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
           content:
             application/json:
               schema:
@@ -693,10 +723,13 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+
   ################################################
   # Notifications
   #
   /notifications:
+    parameters:
+      - $ref: '#/components/parameters/Locale'
     get:
       security:
         - PandaAuth: []
@@ -714,12 +747,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotificationsResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
-  '/notifications/{id}/read':
+  '/notification/{id}/read':
+    parameters:
+      - $ref: '#/components/parameters/Locale'
     put:
       security:
         - PandaAuth: []
@@ -765,6 +805,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotificationsCountResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
         '401':
           $ref: '#/components/responses/UnauthorizedError'
 
@@ -796,10 +841,9 @@ paths:
                 $ref: '#/components/schemas/MediaFilesResponse'
           headers:
             X-Response-Hash:
-              schema:
-                type: string
-                example: '56asfd5a56sfd564a56dsf65a56sdf'
-              description: 'MD5 Hash of response body. Used for caching responses.'
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -825,10 +869,9 @@ paths:
                 $ref: '#/components/schemas/MediaFilesResponse'
           headers:
             X-Response-Hash:
-              schema:
-                type: string
-                example: '56asfd5a56sfd564a56dsf65a56sdf'
-              description: 'MD5 Hash of response body. Used for caching responses.'
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
         '400':
           $ref: '#/components/responses/BadRequest'
         '406':
@@ -856,10 +899,9 @@ paths:
                 $ref: '#/components/schemas/MediaFileResponse'
           headers:
             X-Response-Hash:
-              schema:
-                type: string
-                example: '56asfd5a56sfd564a56dsf65a56sdf'
-              description: 'MD5 Hash of response body. Used for caching responses.'
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -896,15 +938,47 @@ paths:
                 $ref: '#/components/schemas/MediaFilesResponse'
           headers:
             X-Response-Hash:
-              schema:
-                type: string
-                example: '56asfd5a56sfd564a56dsf65a56sdf'
-              description: 'MD5 Hash of response body. Used for caching responses.'
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
         '400':
           $ref: '#/components/responses/BadRequest'
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
+  ######################################################
+  # Search
+  ###
+  /search:
+    get:
+      tags:
+        - Search
+      summary: Search for projects, users,...
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/SearchType'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
 
 components:
 
@@ -1062,6 +1136,38 @@ components:
           Warning! Current implementation is kinda broken.
           To ensure correct results use the following format '[0-9]\.[0-9]{3}'
         example: '0.999'
+
+    ##
+    # Search specific
+    #
+    SearchType:
+      name: type
+      in: query
+      schema:
+        type: string
+        default: all
+        enum:
+          - all
+          - projects
+          - users
+
+  ##############################################
+  # Response Headers
+  ###
+  
+  headers:
+    X-Response-Hash:
+      schema:
+        type: string
+        example: '56asfd5a56sfd564a56dsf65a56sdf'
+      description: 'MD5 Hash of response the body. Used for caching responses.'
+  
+    Content-Language:
+      schema:
+        type: string
+        example: 'de_DE'
+      description: 'Locale of the response content. Default: `en`'
+
 
   schemas:
 
@@ -1475,8 +1581,6 @@ components:
           items:
             $ref: '#/components/schemas/ProjectResponse'
 
-
-
     ProjectsResponse:
       type: array
       items:
@@ -1655,3 +1759,26 @@ components:
           type: string
           example:  https://www.surveylegend.com/survey/#/d29yZHByZXNzMTQzODU2~-MRPPYfbYj7-rPUTK3HH
           description: Url to a survey for the given language
+
+    ######################################################
+    # Search Schemas
+    ###
+    SearchResponse:
+      type: object
+      properties:
+        projects:
+          type: array
+          description: Array of projects
+          items:
+            $ref: '#/components/schemas/ProjectResponse'
+        projects_total:
+          type: integer
+          example: 15
+        users:
+          type: array
+          description: Array of users
+          items:
+            $ref: '#/components/schemas/BasicUserDataResponse'
+        users_total:
+          type: integer
+          example: 15
