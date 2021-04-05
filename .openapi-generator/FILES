@@ -1,5 +1,4 @@
 .coveralls.yml
-.gitignore
 .php_cs.dist
 .travis.yml
 Api/ApiServer.php
@@ -37,7 +36,6 @@ Model/NotificationsType.php
 Model/OAuthLoginRequest.php
 Model/ProjectReportRequest.php
 Model/ProjectResponse.php
-Model/ProjectUploadRequest.php
 Model/ProjectsCategory.php
 Model/RefreshRequest.php
 Model/RegisterErrorResponse.php
@@ -76,7 +74,6 @@ Resources/docs/Model/NotificationsType.md
 Resources/docs/Model/OAuthLoginRequest.md
 Resources/docs/Model/ProjectReportRequest.md
 Resources/docs/Model/ProjectResponse.md
-Resources/docs/Model/ProjectUploadRequest.md
 Resources/docs/Model/ProjectsCategory.md
 Resources/docs/Model/RefreshRequest.md
 Resources/docs/Model/RegisterErrorResponse.md
@@ -119,7 +116,6 @@ Tests/Model/NotificationsTypeTest.php
 Tests/Model/OAuthLoginRequestTest.php
 Tests/Model/ProjectReportRequestTest.php
 Tests/Model/ProjectResponseTest.php
-Tests/Model/ProjectUploadRequestTest.php
 Tests/Model/ProjectsCategoryTest.php
 Tests/Model/RefreshRequestTest.php
 Tests/Model/RegisterErrorResponseTest.php
