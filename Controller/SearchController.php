@@ -1,7 +1,7 @@
 <?php
 
 /**
- * UtilityController
+ * SearchController
  * PHP version 7.1.3.
  *
  * @category Class
@@ -31,14 +31,14 @@ namespace OpenAPI\Server\Controller;
 
 use Exception;
 use JMS\Serializer\Exception\RuntimeException as SerializerRuntimeException;
-use OpenAPI\Server\Api\UtilityApiInterface;
+use OpenAPI\Server\Api\SearchApiInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * UtilityController Class Doc Comment.
+ * SearchController Class Doc Comment.
  *
  * @category Class
  *
@@ -46,74 +46,18 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @see     https://github.com/openapitools/openapi-generator
  */
-class UtilityController extends Controller
+class SearchController extends Controller
 {
   /**
-   * Operation healthGet.
+   * Operation searchGet.
    *
-   * Health Check
+   * Search for projects, users,...
    *
    * @param Request $request the Symfony request to handle
    *
    * @return Response the Symfony response
    */
-  public function healthGetAction(Request $request)
-  {
-    // Handle authentication
-
-    // Read out all input parameter values into variables
-
-    // Use the default value if no value was provided
-
-    // Validate the input values
-
-    try
-    {
-      $handler = $this->getApiHandler();
-
-      // Make the call to the business logic
-      $responseCode = 204;
-      $responseHeaders = [];
-      $result = $handler->healthGet($responseCode, $responseHeaders);
-
-      // Find default response message
-      $message = '';
-
-      // Find a more specific message, if available
-      switch ($responseCode) {
-                case 204:
-                    $message = 'System is alive and healthy!';
-                    break;
-            }
-
-      return new Response(
-                '',
-                $responseCode,
-                array_merge(
-                    $responseHeaders,
-                    [
-                      'X-OpenAPI-Message' => $message,
-                    ]
-                )
-            );
-    }
-    catch (Exception $fallthrough)
-    {
-      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
-    }
-  }
-
-  /**
-   * Operation surveyLangCodeGet.
-   *
-   * Get survey link for given language code.
-   *
-   * @param Request $request   the Symfony request to handle
-   * @param mixed   $lang_code
-   *
-   * @return Response the Symfony response
-   */
-  public function surveyLangCodeGetAction(Request $request, $lang_code)
+  public function searchGetAction(Request $request)
   {
     // Figure out what data format to return to the client
     $produces = ['application/json'];
@@ -128,15 +72,20 @@ class UtilityController extends Controller
     // Handle authentication
 
     // Read out all input parameter values into variables
-    $flavor = $request->query->get('flavor');
+    $query = $request->query->get('query');
+    $type = $request->query->get('type');
+    $limit = $request->query->get('limit');
+    $offset = $request->query->get('offset');
 
     // Use the default value if no value was provided
 
     // Deserialize the input values that needs it
     try
     {
-      $lang_code = $this->deserialize($lang_code, 'string', 'string');
-      $flavor = $this->deserialize($flavor, 'string', 'string');
+      $query = $this->deserialize($query, 'string', 'string');
+      $type = $this->deserialize($type, 'string', 'string');
+      $limit = $this->deserialize($limit, 'int', 'string');
+      $offset = $this->deserialize($offset, 'int', 'string');
     }
     catch (SerializerRuntimeException $exception)
     {
@@ -147,14 +96,31 @@ class UtilityController extends Controller
     $asserts = [];
     $asserts[] = new Assert\NotNull();
     $asserts[] = new Assert\Type('string');
-    $response = $this->validate($lang_code, $asserts);
+    $response = $this->validate($query, $asserts);
     if ($response instanceof Response)
     {
       return $response;
     }
     $asserts = [];
+    $asserts[] = new Assert\Choice(['all', 'projects', 'users']);
     $asserts[] = new Assert\Type('string');
-    $response = $this->validate($flavor, $asserts);
+    $response = $this->validate($type, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($limit, $asserts);
+    if ($response instanceof Response)
+    {
+      return $response;
+    }
+    $asserts = [];
+    $asserts[] = new Assert\Type('int');
+    $asserts[] = new Assert\GreaterThanOrEqual(0);
+    $response = $this->validate($offset, $asserts);
     if ($response instanceof Response)
     {
       return $response;
@@ -167,7 +133,7 @@ class UtilityController extends Controller
       // Make the call to the business logic
       $responseCode = 200;
       $responseHeaders = [];
-      $result = $handler->surveyLangCodeGet($lang_code, $flavor, $responseCode, $responseHeaders);
+      $result = $handler->searchGet($query, $type, $limit, $offset, $responseCode, $responseHeaders);
 
       // Find default response message
       $message = '';
@@ -179,9 +145,6 @@ class UtilityController extends Controller
                     break;
                 case 400:
                     $message = 'Bad request (Invalid, or missing parameters)';
-                    break;
-                case 404:
-                    $message = 'Not found';
                     break;
                 case 406:
                     $message = 'Not acceptable - client must accept application/json as content type';
@@ -209,10 +172,10 @@ class UtilityController extends Controller
   /**
    * Returns the handler for this API controller.
    *
-   * @return UtilityApiInterface
+   * @return SearchApiInterface
    */
   public function getApiHandler()
   {
-    return $this->apiServer->getApiHandler('utility');
+    return $this->apiServer->getApiHandler('search');
   }
 }

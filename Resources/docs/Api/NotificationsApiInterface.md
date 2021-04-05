@@ -4,9 +4,9 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**notificationIdReadPut**](NotificationsApiInterface.md#notificationIdReadPut) | **PUT** /notification/{id}/read | Mark specified notification as read
 [**notificationsCountGet**](NotificationsApiInterface.md#notificationsCountGet) | **GET** /notifications/count | Count the number of unseen notifications
 [**notificationsGet**](NotificationsApiInterface.md#notificationsGet) | **GET** /notifications | Get user notifications
-[**notificationsIdReadPut**](NotificationsApiInterface.md#notificationsIdReadPut) | **PUT** /notifications/{id}/read | Mark specified notification as read
 [**notificationsReadPut**](NotificationsApiInterface.md#notificationsReadPut) | **PUT** /notifications/read | Mark all notifications as read
 
 
@@ -21,6 +21,59 @@ services:
             - { name: "open_api_server.api", api: "notifications" }
     # ...
 ```
+
+## **notificationIdReadPut**
+> notificationIdReadPut($id, $accept_language)
+
+Mark specified notification as read
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/NotificationsApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\NotificationsApiInterface;
+
+class NotificationsApi implements NotificationsApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of NotificationsApiInterface#notificationIdReadPut
+     */
+    public function notificationIdReadPut(int $id, string $accept_language = null)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**|  | [default to 0]
+ **accept_language** | **string**|  | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[PandaAuth](../../README.md#PandaAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **notificationsCountGet**
 > OpenAPI\Server\Model\NotificationsCountResponse notificationsCountGet()
@@ -72,7 +125,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **notificationsGet**
-> OpenAPI\Server\Model\NotificationResponse notificationsGet($limit, $offset, $type)
+> OpenAPI\Server\Model\NotificationResponse notificationsGet($accept_language, $limit, $offset, $type)
 
 Get user notifications
 
@@ -93,7 +146,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationsGet
      */
-    public function notificationsGet(int $limit = '20', int $offset = '0', NotificationsType $type = null)
+    public function notificationsGet(string $accept_language = null, int $limit = '20', int $offset = '0', NotificationsType $type = null)
     {
         // Implement the operation ...
     }
@@ -106,6 +159,7 @@ class NotificationsApi implements NotificationsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **accept_language** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
  **type** | [**OpenAPI\Server\Model\NotificationsType**](../Model/.md)|  | [optional]
@@ -122,58 +176,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-## **notificationsIdReadPut**
-> notificationsIdReadPut($id)
-
-Mark specified notification as read
-
-### Example Implementation
-```php
-<?php
-// src/Acme/MyBundle/Api/NotificationsApiInterface.php
-
-namespace Acme\MyBundle\Api;
-
-use OpenAPI\Server\Api\NotificationsApiInterface;
-
-class NotificationsApi implements NotificationsApiInterface
-{
-
-    // ...
-
-    /**
-     * Implementation of NotificationsApiInterface#notificationsIdReadPut
-     */
-    public function notificationsIdReadPut(int $id)
-    {
-        // Implement the operation ...
-    }
-
-    // ...
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**|  | [default to 0]
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[PandaAuth](../../README.md#PandaAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
