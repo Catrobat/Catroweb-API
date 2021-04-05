@@ -20,7 +20,7 @@ jobs:
           rm -rf .coveralls.yml .gitignore .openapi-generator-ignore .travis.yml autoload.php git_push.sh OpenAPIServerBundle.php openapitools.json phpunit.xml.dist pom.xml README.md
 
       - name: Open API code generation
-        run:
+        run: |
           npm install @openapitools/openapi-generator-cli -g
           npx @openapitools/openapi-generator-cli generate -i catroweb.yaml -g php-symfony -p sortParamsByRequiredFlag=true -p skipFormModel=true -p variableNamingConvention=snake_case -p phpLegacySupport=false -o .
 
