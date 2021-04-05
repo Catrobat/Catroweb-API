@@ -17,7 +17,7 @@ jobs:
       - name: Clean old files
         run: |
           rm -rf .openapi-generator Api Controller DependencyInjection Model Resources Service Tests
-          rm -rf .coveralls.yml .gitignore .openapi-generator-ignore .travis.yml autoload.php git_push.sh OpenAPIServerBundle.php openapitools.json phpunit.xml.dist pom.xml README.md
+          rm -rf .coveralls.yml .gitignore .travis.yml autoload.php git_push.sh OpenAPIServerBundle.php openapitools.json phpunit.xml.dist pom.xml README.md
 
       - name: Open API code generation
         run: |
