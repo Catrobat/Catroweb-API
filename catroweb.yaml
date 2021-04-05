@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.57"
+  version: "v1.0.58"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -34,6 +34,8 @@ tags:
     description: Utility frunctionality for infrastructure
   - name: Notifications
     description: Everything related for notifications
+  - name: Search
+    description: Everything related to searching
 
 paths:
 
@@ -905,6 +907,40 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
+  ######################################################
+  # Search
+  ###
+  /search:
+    get:
+      tags:
+        - Search
+      summary: Search for projects, users,...
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/SearchType'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+          headers:
+            X-Response-Hash:
+              schema:
+                type: string
+                example: '56asfd5a56sfd564a56dsf65a56sdf'
+              description: 'MD5 Hash of response body. Used for caching responses.'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
 
 components:
 
@@ -1062,6 +1098,19 @@ components:
           Warning! Current implementation is kinda broken.
           To ensure correct results use the following format '[0-9]\.[0-9]{3}'
         example: '0.999'
+
+    ##
+    # Search specific
+    #
+    SearchType:
+      name: type
+      in: query
+      schema:
+        type: string
+        enum:
+          - all
+          - projects
+          - users
 
   schemas:
 
@@ -1655,3 +1704,26 @@ components:
           type: string
           example:  https://www.surveylegend.com/survey/#/d29yZHByZXNzMTQzODU2~-MRPPYfbYj7-rPUTK3HH
           description: Url to a survey for the given language
+
+    ######################################################
+    # Search Schemas
+    ###
+    SearchResponse:
+      type: object
+      properties:
+        projects:
+          type: array
+          description: Array of projects
+          items:
+            $ref: '#/components/schemas/ProjectResponse'
+        projectsTotal:
+          type: integer
+          example: 15
+        users:
+          type: array
+          description: Array of users
+          items:
+            $ref: '#/components/schemas/BasicUserDataResponse'
+        usersTotal:
+          type: integer
+          example: 15
