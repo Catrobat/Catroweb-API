@@ -8,7 +8,8 @@ Method | HTTP request | Description
 [**authenticationGet**](AuthenticationApiInterface.md#authenticationGet) | **GET** /authentication | Check token
 [**authenticationOauthPost**](AuthenticationApiInterface.md#authenticationOauthPost) | **POST** /authentication/oauth | OAuth Login
 [**authenticationPost**](AuthenticationApiInterface.md#authenticationPost) | **POST** /authentication | Login
-[**authenticationRefreshPost**](AuthenticationApiInterface.md#authenticationRefreshPost) | **POST** /authentication/refresh | Refresh token
+[**authenticationRefreshPost**](AuthenticationApiInterface.md#authenticationRefreshPost) | **POST** /authentication/refresh | Refresh token -- StatusCode: 501 - Not yet implemented
+[**authenticationUpgradePost**](AuthenticationApiInterface.md#authenticationUpgradePost) | **POST** /authentication/upgrade | Upgrade a deprecated token -- StatusCode: 501 - Not yet implemented
 
 
 ## Service Declaration
@@ -239,7 +240,7 @@ Name | Type | Description  | Notes
 ## **authenticationRefreshPost**
 > OpenAPI\Server\Model\JWTResponse authenticationRefreshPost($refresh_request)
 
-Refresh token
+Refresh token -- StatusCode: 501 - Not yet implemented
 
 Returns a new JWT token with help of the refresh token
 
@@ -282,6 +283,60 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [PandaAuth](../../README.md#PandaAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+## **authenticationUpgradePost**
+> OpenAPI\Server\Model\JWTResponse authenticationUpgradePost($upgrade_token_request)
+
+Upgrade a deprecated token -- StatusCode: 501 - Not yet implemented
+
+Returns a new JWT token with help of a deprecated upload_token. This allows users to stay signed in apps during the transition to the new API.
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/AuthenticationApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\AuthenticationApiInterface;
+
+class AuthenticationApi implements AuthenticationApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of AuthenticationApiInterface#authenticationUpgradePost
+     */
+    public function authenticationUpgradePost(UpgradeTokenRequest $upgrade_token_request)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **upgrade_token_request** | [**OpenAPI\Server\Model\UpgradeTokenRequest**](../Model/UpgradeTokenRequest.md)|  |
+
+### Return type
+
+[**OpenAPI\Server\Model\JWTResponse**](../Model/JWTResponse.md)
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 

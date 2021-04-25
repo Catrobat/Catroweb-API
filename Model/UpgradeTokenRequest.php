@@ -1,6 +1,6 @@
 <?php
 /**
- * NotificationsType.
+ * UpgradeTokenRequest.
  *
  * PHP version 7.1.3
  *
@@ -29,13 +29,25 @@
 
 namespace OpenAPI\Server\Model;
 
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * Class representing the NotificationsType model.
+ * Class representing the UpgradeTokenRequest model.
  *
  * @author  OpenAPI Generator team
  */
-class NotificationsType
+class UpgradeTokenRequest
 {
+  /**
+   * @var string|null
+   * @SerializedName("upload_token")
+   * @Assert\Type("string")
+   * @Type("string")
+   */
+  protected $upload_token;
+
   /**
    * Constructor.
    *
@@ -43,5 +55,26 @@ class NotificationsType
    */
   public function __construct(array $data = null)
   {
+    $this->upload_token = isset($data['upload_token']) ? $data['upload_token'] : null;
+  }
+
+  /**
+   * Gets upload_token.
+   */
+  public function getUploadToken(): ?string
+  {
+    return $this->upload_token;
+  }
+
+  /**
+   * Sets upload_token.
+   *
+   * @return $this
+   */
+  public function setUploadToken(string $upload_token = null)
+  {
+    $this->upload_token = $upload_token;
+
+    return $this;
   }
 }
