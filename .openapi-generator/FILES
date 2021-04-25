@@ -23,6 +23,7 @@ Model/BaseUser.php
 Model/BasicUserDataResponse.php
 Model/DryRun.php
 Model/ExtendedUserDataResponse.php
+Model/ExtendedUserDataResponseAllOf.php
 Model/FeaturedProjectResponse.php
 Model/JWTResponse.php
 Model/LoginRequest.php
@@ -45,6 +46,7 @@ Model/SurveyResponse.php
 Model/UpdateUserErrorResponse.php
 Model/UpdateUserRequest.php
 Model/UpdateUserRequestAllOf.php
+Model/UpgradeTokenRequest.php
 Model/UploadErrorResponse.php
 OpenAPIServerBundle.php
 README.md
@@ -61,6 +63,7 @@ Resources/docs/Model/BaseUser.md
 Resources/docs/Model/BasicUserDataResponse.md
 Resources/docs/Model/DryRun.md
 Resources/docs/Model/ExtendedUserDataResponse.md
+Resources/docs/Model/ExtendedUserDataResponseAllOf.md
 Resources/docs/Model/FeaturedProjectResponse.md
 Resources/docs/Model/JWTResponse.md
 Resources/docs/Model/LoginRequest.md
@@ -83,6 +86,7 @@ Resources/docs/Model/SurveyResponse.md
 Resources/docs/Model/UpdateUserErrorResponse.md
 Resources/docs/Model/UpdateUserRequest.md
 Resources/docs/Model/UpdateUserRequestAllOf.md
+Resources/docs/Model/UpgradeTokenRequest.md
 Resources/docs/Model/UploadErrorResponse.md
 Service/JmsSerializer.php
 Service/SerializerInterface.php
@@ -102,6 +106,7 @@ Tests/Controller/ControllerTest.php
 Tests/Model/BaseUserTest.php
 Tests/Model/BasicUserDataResponseTest.php
 Tests/Model/DryRunTest.php
+Tests/Model/ExtendedUserDataResponseAllOfTest.php
 Tests/Model/ExtendedUserDataResponseTest.php
 Tests/Model/FeaturedProjectResponseTest.php
 Tests/Model/JWTResponseTest.php
@@ -125,6 +130,7 @@ Tests/Model/SurveyResponseTest.php
 Tests/Model/UpdateUserErrorResponseTest.php
 Tests/Model/UpdateUserRequestAllOfTest.php
 Tests/Model/UpdateUserRequestTest.php
+Tests/Model/UpgradeTokenRequestTest.php
 Tests/Model/UploadErrorResponseTest.php
 Tests/test_config.yml
 autoload.php

@@ -1,6 +1,6 @@
 <?php
 /**
- * OAuthLoginRequest.
+ * ExtendedUserDataResponseAllOf.
  *
  * PHP version 7.1.3
  *
@@ -34,31 +34,31 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the OAuthLoginRequest model.
+ * Class representing the ExtendedUserDataResponseAllOf model.
  *
  * @author  OpenAPI Generator team
  */
-class OAuthLoginRequest
+class ExtendedUserDataResponseAllOf
 {
   /**
-   * User ID token.
+   * EMail of the user.
    *
    * @var string|null
-   * @SerializedName("id_token")
+   * @SerializedName("email")
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $id_token;
+  protected $email;
 
   /**
-   * OAuth provider.
+   * Country code of the user.
    *
    * @var string|null
-   * @SerializedName("resource_owner")
+   * @SerializedName("country")
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $resource_owner;
+  protected $country;
 
   /**
    * Constructor.
@@ -67,50 +67,50 @@ class OAuthLoginRequest
    */
   public function __construct(array $data = null)
   {
-    $this->id_token = isset($data['id_token']) ? $data['id_token'] : null;
-    $this->resource_owner = isset($data['resource_owner']) ? $data['resource_owner'] : null;
+    $this->email = isset($data['email']) ? $data['email'] : null;
+    $this->country = isset($data['country']) ? $data['country'] : null;
   }
 
   /**
-   * Gets id_token.
+   * Gets email.
    */
-  public function getIdToken(): ?string
+  public function getEmail(): ?string
   {
-    return $this->id_token;
+    return $this->email;
   }
 
   /**
-   * Sets id_token.
+   * Sets email.
    *
-   * @param string|null $id_token User ID token
+   * @param string|null $email EMail of the user
    *
    * @return $this
    */
-  public function setIdToken(string $id_token = null)
+  public function setEmail(string $email = null)
   {
-    $this->id_token = $id_token;
+    $this->email = $email;
 
     return $this;
   }
 
   /**
-   * Gets resource_owner.
+   * Gets country.
    */
-  public function getResourceOwner(): ?string
+  public function getCountry(): ?string
   {
-    return $this->resource_owner;
+    return $this->country;
   }
 
   /**
-   * Sets resource_owner.
+   * Sets country.
    *
-   * @param string|null $resource_owner OAuth provider
+   * @param string|null $country country code of the user
    *
    * @return $this
    */
-  public function setResourceOwner(string $resource_owner = null)
+  public function setCountry(string $country = null)
   {
-    $this->resource_owner = $resource_owner;
+    $this->country = $country;
 
     return $this;
   }

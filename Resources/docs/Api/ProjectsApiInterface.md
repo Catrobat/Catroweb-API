@@ -4,9 +4,10 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**projectIdDelete**](ProjectsApiInterface.md#projectIdDelete) | **DELETE** /project/{id} | Delete a project -- StatusCode: 501 - Not yet implemented
 [**projectIdGet**](ProjectsApiInterface.md#projectIdGet) | **GET** /project/{id} | Get the information of a project
 [**projectIdRecommendationsGet**](ProjectsApiInterface.md#projectIdRecommendationsGet) | **GET** /project/{id}/recommendations | Get recommended projects related to the specific project
-[**projectIdReportPost**](ProjectsApiInterface.md#projectIdReportPost) | **POST** /project/{id}/report | Report a project
+[**projectIdReportPost**](ProjectsApiInterface.md#projectIdReportPost) | **POST** /project/{id}/report | Report a project -- StatusCode: 501 - Not yet implemented
 [**projectsCategoriesGet**](ProjectsApiInterface.md#projectsCategoriesGet) | **GET** /projects/categories | Get default number of projects per category (Most downloaded etc.)
 [**projectsFeaturedGet**](ProjectsApiInterface.md#projectsFeaturedGet) | **GET** /projects/featured | Get the currently featured projects
 [**projectsGet**](ProjectsApiInterface.md#projectsGet) | **GET** /projects | Get projects
@@ -27,6 +28,58 @@ services:
             - { name: "open_api_server.api", api: "projects" }
     # ...
 ```
+
+## **projectIdDelete**
+> projectIdDelete($id)
+
+Delete a project -- StatusCode: 501 - Not yet implemented
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/ProjectsApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\ProjectsApiInterface;
+
+class ProjectsApi implements ProjectsApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of ProjectsApiInterface#projectIdDelete
+     */
+    public function projectIdDelete(string $id)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[PandaAuth](../../README.md#PandaAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectIdGet**
 > OpenAPI\Server\Model\ProjectResponse projectIdGet($id)
@@ -141,7 +194,7 @@ No authorization required
 ## **projectIdReportPost**
 > projectIdReportPost($id, $project_report_request)
 
-Report a project
+Report a project -- StatusCode: 501 - Not yet implemented
 
 ### Example Implementation
 ```php
