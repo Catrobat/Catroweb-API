@@ -132,6 +132,34 @@ paths:
         '415':
           $ref: '#/components/responses/UnsupportedMediaType'
 
+  /authentication/upgrade:
+    post:
+      tags:
+        - Authentication
+      summary: 'Upgrade a deprecated token -- StatusCode: 501 - Not yet implemented'
+      description: Returns a new JWT token with help of a deprecated upload_token. This allows users to stay signed in apps during the transition to the new API.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpgradeTokenRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidUploadToken'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+
   /authentication/oauth:
     post:
       tags:
@@ -1001,6 +1029,9 @@ components:
     InvalidRefreshToken:
       description: Refresh Token expired | Refresh Token has been used more than once (single use)
 
+    InvalidUploadToken:
+      description: The provided deprecated upload token is invalid or has expired
+
     NotAcceptable:
       description: Not acceptable - client must accept application/json as content type
 
@@ -1317,6 +1348,12 @@ components:
       type: object
       properties:
         refresh_token:
+          type: string
+          example: xxxxx.yyyyy.zzzzz
+    UpgradeTokenRequest:
+      type: object
+      properties:
+        upload_token:
           type: string
           example: xxxxx.yyyyy.zzzzz
 
