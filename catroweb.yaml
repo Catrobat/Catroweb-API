@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.61"
+  version: "v1.0.62"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -14,10 +14,6 @@ servers:
     description: Main production server
   - url: 'https://web-test.catrob.at/api'
     description: WEB test server (might be unstable)
-  - url: 'https://catblocks.test.catrob.at/api'
-    description: Catblocks test server
-  - url: 'https://android.test.catrob.at/api'
-    description: Android test server
   - url: 'http://localhost/api'
     description: Local test server (postman help)
 
@@ -112,7 +108,7 @@ paths:
         - PandaAuth: []
       tags:
         - Authentication
-      summary: Refresh token
+      summary: 'Refresh token -- StatusCode: 501 - Not yet implemented'
       description: Returns a new JWT token with help of the refresh token
       requestBody:
         required: true
@@ -201,7 +197,7 @@ paths:
                 $ref: '#/components/schemas/SurveyResponse'
           headers:
             X-Response-Hash:
-             $ref: '#/components/headers/X-Response-Hash'
+              $ref: '#/components/headers/X-Response-Hash'
             Content-Language:
               $ref: '#/components/headers/Content-Language'
         '400':
@@ -671,7 +667,7 @@ paths:
         - PandaAuth: []
       tags:
         - Projects
-      summary: Report a project
+      summary: 'Report a project -- StatusCode: 501 - Not yet implemented'
       parameters:
         - $ref: '#/components/parameters/Uuid'
       requestBody:
@@ -735,7 +731,7 @@ paths:
         - PandaAuth: []
       tags:
         - Notifications
-      summary: Get user notifications
+      summary: 'Get user notifications -- StatusCode: 501 - Not yet implemented'
       parameters:
         - $ref: '#/components/parameters/Limit'
         - $ref: '#/components/parameters/Offset'
@@ -765,7 +761,7 @@ paths:
         - PandaAuth: []
       tags:
         - Notifications
-      summary: Mark specified notification as read
+      summary: 'Mark specified notification as read - StatusCode: 501 - Not yet implemented'
       parameters:
         - $ref: '#/components/parameters/NotificationsId'
       responses:
@@ -782,7 +778,7 @@ paths:
         - PandaAuth: []
       tags:
         - Notifications
-      summary: Mark all notifications as read
+      summary: 'Mark all notifications as read -- StatusCode: 501 - Not yet implemented'
       responses:
         '204':
           $ref: '#/components/responses/NoContent'
@@ -797,7 +793,7 @@ paths:
         - PandaAuth: []
       tags:
         - Notifications
-      summary: Count the number of unseen notifications
+      summary: 'Count the number of unseen notifications -- StatusCode: 501 - Not yet implemented'
       responses:
         '200':
           description: OK
@@ -953,7 +949,8 @@ paths:
     get:
       tags:
         - Search
-      summary: Search for projects, users,... The default is to search for all types.
+      summary: 'Search for projects, users,..  -- StatusCode: 501 - Not yet implemented'
+      description: The default is to search in all categories.
       parameters:
         - name: query
           in: query
@@ -1154,14 +1151,14 @@ components:
   ##############################################
   # Response Headers
   ###
-  
+
   headers:
     X-Response-Hash:
       schema:
         type: string
         example: '56asfd5a56sfd564a56dsf65a56sdf'
       description: 'MD5 Hash of response the body. Used for caching responses.'
-  
+
     Content-Language:
       schema:
         type: string
