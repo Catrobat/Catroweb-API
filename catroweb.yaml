@@ -688,6 +688,25 @@ paths:
           $ref: '#/components/responses/NotFound'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+    delete:
+      security:
+        - PandaAuth: []
+      tags:
+        - Projects
+      summary: 'Delete a project -- StatusCode: 501 - Not yet implemented'
+      parameters:
+        - $ref: '#/components/parameters/Uuid'
+      responses:
+        '204':
+          description: Project successfully deleted.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
 
   '/project/{id}/report':
     post:
