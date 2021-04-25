@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.61"
+  version: "v1.0.62"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -14,10 +14,6 @@ servers:
     description: Main production server
   - url: 'https://web-test.catrob.at/api'
     description: WEB test server (might be unstable)
-  - url: 'https://catblocks.test.catrob.at/api'
-    description: Catblocks test server
-  - url: 'https://android.test.catrob.at/api'
-    description: Android test server
   - url: 'http://localhost/api'
     description: Local test server (postman help)
 
@@ -112,7 +108,7 @@ paths:
         - PandaAuth: []
       tags:
         - Authentication
-      summary: Refresh token
+      summary: 'Refresh token -- StatusCode: 501 - Not yet implemented'
       description: Returns a new JWT token with help of the refresh token
       requestBody:
         required: true
@@ -131,6 +127,34 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/InvalidRefreshToken'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+
+  /authentication/upgrade:
+    post:
+      tags:
+        - Authentication
+      summary: 'Upgrade a deprecated token -- StatusCode: 501 - Not yet implemented'
+      description: Returns a new JWT token with help of a deprecated upload_token. This allows users to stay signed in apps during the transition to the new API.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpgradeTokenRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/InvalidUploadToken'
         '406':
           $ref: '#/components/responses/NotAcceptable'
         '415':
@@ -201,7 +225,7 @@ paths:
                 $ref: '#/components/schemas/SurveyResponse'
           headers:
             X-Response-Hash:
-             $ref: '#/components/headers/X-Response-Hash'
+              $ref: '#/components/headers/X-Response-Hash'
             Content-Language:
               $ref: '#/components/headers/Content-Language'
         '400':
@@ -664,6 +688,25 @@ paths:
           $ref: '#/components/responses/NotFound'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+    delete:
+      security:
+        - PandaAuth: []
+      tags:
+        - Projects
+      summary: 'Delete a project -- StatusCode: 501 - Not yet implemented'
+      parameters:
+        - $ref: '#/components/parameters/Uuid'
+      responses:
+        '204':
+          description: Project successfully deleted.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
 
   '/project/{id}/report':
     post:
@@ -671,7 +714,7 @@ paths:
         - PandaAuth: []
       tags:
         - Projects
-      summary: Report a project
+      summary: 'Report a project -- StatusCode: 501 - Not yet implemented'
       parameters:
         - $ref: '#/components/parameters/Uuid'
       requestBody:
@@ -735,7 +778,7 @@ paths:
         - PandaAuth: []
       tags:
         - Notifications
-      summary: Get user notifications
+      summary: 'Get user notifications -- StatusCode: 501 - Not yet implemented'
       parameters:
         - $ref: '#/components/parameters/Limit'
         - $ref: '#/components/parameters/Offset'
@@ -765,7 +808,7 @@ paths:
         - PandaAuth: []
       tags:
         - Notifications
-      summary: Mark specified notification as read
+      summary: 'Mark specified notification as read - StatusCode: 501 - Not yet implemented'
       parameters:
         - $ref: '#/components/parameters/NotificationsId'
       responses:
@@ -782,7 +825,7 @@ paths:
         - PandaAuth: []
       tags:
         - Notifications
-      summary: Mark all notifications as read
+      summary: 'Mark all notifications as read -- StatusCode: 501 - Not yet implemented'
       responses:
         '204':
           $ref: '#/components/responses/NoContent'
@@ -797,7 +840,7 @@ paths:
         - PandaAuth: []
       tags:
         - Notifications
-      summary: Count the number of unseen notifications
+      summary: 'Count the number of unseen notifications -- StatusCode: 501 - Not yet implemented'
       responses:
         '200':
           description: OK
@@ -953,7 +996,8 @@ paths:
     get:
       tags:
         - Search
-      summary: Search for projects, users,... The default is to search for all types.
+      summary: 'Search for projects, users,..  -- StatusCode: 501 - Not yet implemented'
+      description: The default is to search in all categories.
       parameters:
         - name: query
           in: query
@@ -1003,6 +1047,9 @@ components:
 
     InvalidRefreshToken:
       description: Refresh Token expired | Refresh Token has been used more than once (single use)
+
+    InvalidUploadToken:
+      description: The provided deprecated upload token is invalid or has expired
 
     NotAcceptable:
       description: Not acceptable - client must accept application/json as content type
@@ -1154,14 +1201,14 @@ components:
   ##############################################
   # Response Headers
   ###
-  
+
   headers:
     X-Response-Hash:
       schema:
         type: string
         example: '56asfd5a56sfd564a56dsf65a56sdf'
       description: 'MD5 Hash of response the body. Used for caching responses.'
-  
+
     Content-Language:
       schema:
         type: string
@@ -1322,6 +1369,12 @@ components:
         refresh_token:
           type: string
           example: xxxxx.yyyyy.zzzzz
+    UpgradeTokenRequest:
+      type: object
+      properties:
+        upload_token:
+          type: string
+          example: xxxxx.yyyyy.zzzzz
 
     ## Response
 
@@ -1416,15 +1469,6 @@ components:
           type: string
           example: Catroweb
           description: Nickname of the user.
-        email:
-          type: string
-          format: email
-          example: test@test.lan
-          description: EMail of the user.
-        country:
-          type: string
-          example: AT
-          description: Country code of the user.
         projects:
           type: integer
           example: 4
@@ -1441,7 +1485,18 @@ components:
     ExtendedUserDataResponse:
       allOf:
         - $ref: '#/components/schemas/BasicUserDataResponse'
-          # Future updates can add more private details (settings, ...?)
+        - type: object
+          # all private properties
+          properties:
+            email:
+              type: string
+              format: email
+              example: test@test.lan
+              description: EMail of the user.
+            country:
+              type: string
+              example: AT
+              description: Country code of the user.
 
     RegisterErrorResponse:
       type: object
