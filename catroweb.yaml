@@ -1413,15 +1413,6 @@ components:
           type: string
           example: Catroweb
           description: Nickname of the user.
-        email:
-          type: string
-          format: email
-          example: test@test.lan
-          description: EMail of the user.
-        country:
-          type: string
-          example: AT
-          description: Country code of the user.
         projects:
           type: integer
           example: 4
@@ -1438,7 +1429,18 @@ components:
     ExtendedUserDataResponse:
       allOf:
         - $ref: '#/components/schemas/BasicUserDataResponse'
-          # Future updates can add more private details (settings, ...?)
+        - type: object
+          # all private properties
+          properties:
+            email:
+              type: string
+              format: email
+              example: test@test.lan
+              description: EMail of the user.
+            country:
+              type: string
+              example: AT
+              description: Country code of the user.
 
     RegisterErrorResponse:
       type: object
