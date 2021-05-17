@@ -136,7 +136,7 @@ paths:
     post:
       tags:
         - Authentication
-      summary: 'Upgrade a deprecated token -- StatusCode: 501 - Not yet implemented'
+      summary: 'Upgrade a deprecated token to JWT'
       description: Returns a new JWT token with help of a deprecated upload_token. This allows users to stay signed in apps during the transition to the new API.
       requestBody:
         required: true
