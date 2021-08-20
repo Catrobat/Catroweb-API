@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.62"
+  version: "1.1.0"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -24,6 +24,8 @@ tags:
     description: Everything related to users
   - name: Projects
     description: Everything related to projects
+  - name: Studio
+    description: Everything related to studios
   - name: Media Library
     description: Everything related to the media library
   - name: Utility
@@ -767,6 +769,106 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
+
+  ################################################
+  # Studios
+  #
+  '/studio':
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+    post:
+        security:
+          - PandaAuth: []
+        tags:
+          - Studio
+        summary: Create a new Studio
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudioUpdateRequest'
+        responses:
+          '201':
+            description: Studio successfully created.
+            headers:
+              Location:
+                schema:
+                  type: string
+                  example: >-
+                    https://share.catrob.at/app/studio/63768cf1-5f07-11ea-a2ae-000c292a0f49
+                description: Resource location on server
+            content:
+              application/json:
+                schema:
+                  type: object
+          '400':
+            $ref: '#/components/responses/BadRequest'
+          '401':
+            $ref: '#/components/responses/UnauthorizedError'
+          '406':
+            $ref: '#/components/responses/NotAcceptable'
+          '422':
+            description: 'Unprocessable Entity'
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/UploadErrorResponse'
+            headers:
+              X-Response-Hash:
+                $ref: '#/components/headers/X-Response-Hash'
+              Content-Language:
+                $ref: '#/components/headers/Content-Language'
+                
+  '/studio/{id}':
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+    put:
+      security:
+        - PandaAuth: []
+      tags:
+        - Studio
+      summary: Update a Studio
+      parameters:
+        - $ref: '#/components/parameters/StudioID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudioUpdateRequest'
+      responses:
+        '201':
+          description: Studio successfully updated.
+          headers:
+            Location:
+              schema:
+                type: string
+                example: >-
+                  https://share.catrob.at/app/studio/63768cf1-5f07-11ea-a2ae-000c292a0f49
+              description: Resource location on server
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          description: 'Unprocessable Entity'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadErrorResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
+
   ################################################
   # Notifications
   #
@@ -1123,6 +1225,16 @@ components:
       schema:
         type: string
         example: xxxxx.yyyyy.zzzzz
+      required: true
+
+    ##
+    # Studio specific
+    #
+    StudioID:
+      name: id
+      in: path
+      schema:
+        $ref: '#/components/schemas/StudioID'
       required: true
 
     ##
@@ -1702,6 +1814,11 @@ components:
           type: number
           example: 0.14381762458251943
           description: filesize in megabytes
+          
+    StudioID:
+      type: string
+      description: ID of the studio
+      example: 1234abcd-12ab-12ab-12ab-123456abcdef
 
     NotificationsId:
       type: integer
@@ -1803,6 +1920,32 @@ components:
         prize:
           type: string
           description: Prize for anniversary notifications
+
+    ######################################################
+    # Studio Schema
+    ###
+    StudioUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example:  Panda Gang
+          description: The name of the studio
+        description:
+          type: string
+          example:  The giant panda also known as the panda bear (or simply the panda), is a bear.
+          description: A small description about the Studio
+          default: ""
+        is_public:
+          type: boolean
+          example:  true
+          default: true
+          description: This flag sets the studios' visibility to public or private
+        enable_comments:
+          type: boolean
+          example:  true
+          default: true
+          description: This flag enables or disabled the possibility to add comments to the studio
 
     ######################################################
     # Utility Schemas
