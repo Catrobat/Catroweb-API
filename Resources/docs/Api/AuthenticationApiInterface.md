@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**authenticationOauthPost**](AuthenticationApiInterface.md#authenticationOauthPost) | **POST** /authentication/oauth | OAuth Login
 [**authenticationPost**](AuthenticationApiInterface.md#authenticationPost) | **POST** /authentication | Login
 [**authenticationRefreshPost**](AuthenticationApiInterface.md#authenticationRefreshPost) | **POST** /authentication/refresh | Refresh token -- StatusCode: 501 - Not yet implemented
-[**authenticationUpgradePost**](AuthenticationApiInterface.md#authenticationUpgradePost) | **POST** /authentication/upgrade | Upgrade a deprecated token -- StatusCode: 501 - Not yet implemented
+[**authenticationUpgradePost**](AuthenticationApiInterface.md#authenticationUpgradePost) | **POST** /authentication/upgrade | Upgrade a deprecated token to JWT
 
 
 ## Service Declaration
@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
 ## **authenticationUpgradePost**
 > OpenAPI\Server\Model\JWTResponse authenticationUpgradePost($upgrade_token_request)
 
-Upgrade a deprecated token -- StatusCode: 501 - Not yet implemented
+Upgrade a deprecated token to JWT
 
 Returns a new JWT token with help of a deprecated upload_token. This allows users to stay signed in apps during the transition to the new API.
 
