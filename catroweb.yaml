@@ -2,7 +2,7 @@ openapi: 3.0.2
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.0.62"
+  version: "v1.0.63"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -1423,11 +1423,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/DryRun'
         - $ref: '#/components/schemas/BaseUser'
-        - type: object
-          properties:
-            country:
-              type: string
-              example: AT
 
     ProjectReportRequest:
       type: object
@@ -1493,10 +1488,6 @@ components:
               format: email
               example: test@test.lan
               description: EMail of the user.
-            country:
-              type: string
-              example: AT
-              description: Country code of the user.
 
     RegisterErrorResponse:
       type: object
@@ -1544,10 +1535,6 @@ components:
             - Password too short
             - Password too long
             - Password contains invalid chars
-        country:
-          type: string
-          enum:
-            - Country invalid
 
     ######################################################
     # Project Schemas
