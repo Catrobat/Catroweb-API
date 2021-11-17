@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **followers** | **int** | Amount of users that follow this user. | [optional] 
 **following** | **int** | Amount of users followed by this user. | [optional] 
 **email** | **string** | EMail of the user. | [optional] 
-**country** | **string** | Country code of the user. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
