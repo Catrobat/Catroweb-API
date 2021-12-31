@@ -88,7 +88,6 @@ Resources/docs/Model/UpgradeTokenRequest.md
 Resources/docs/Model/UploadErrorResponse.md
 Service/JmsSerializer.php
 Service/SerializerInterface.php
-Service/StrictJsonDeserializationVisitor.php
 Service/SymfonyValidator.php
 Service/TypeMismatchException.php
 Service/ValidatorInterface.php
