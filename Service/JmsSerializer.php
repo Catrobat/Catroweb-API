@@ -3,9 +3,9 @@
 namespace OpenAPI\Server\Service;
 
 use JMS\Serializer\Naming\CamelCaseNamingStrategy;
-use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\SerializerBuilder;
-use JMS\Serializer\XmlDeserializationVisitor;
+use JMS\Serializer\Visitor\Factory\JsonDeserializationVisitorFactory;
+use JMS\Serializer\Visitor\Factory\XmlDeserializationVisitorFactory;
 
 class JmsSerializer implements SerializerInterface
 {
@@ -13,10 +13,10 @@ class JmsSerializer implements SerializerInterface
 
   public function __construct()
   {
-    $naming_strategy = new SerializedNameAnnotationStrategy(new CamelCaseNamingStrategy());
     $this->serializer = SerializerBuilder::create()
-      ->setDeserializationVisitor('json', new StrictJsonDeserializationVisitor($naming_strategy))
-      ->setDeserializationVisitor('xml', new XmlDeserializationVisitor($naming_strategy))
+      ->setPropertyNamingStrategy(new CamelCaseNamingStrategy())
+      ->setDeserializationVisitor('json', new JsonDeserializationVisitorFactory())
+      ->setDeserializationVisitor('xml', new XmlDeserializationVisitorFactory())
       ->build()
     ;
   }
