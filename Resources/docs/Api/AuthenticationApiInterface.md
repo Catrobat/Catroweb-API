@@ -83,7 +83,7 @@ void (empty response body)
 
 Check token
 
-Checks if a token is valid or expired.
+Checks if a token is valid or expired
 
 ### Example Implementation
 ```php
@@ -134,7 +134,7 @@ void (empty response body)
 
 OAuth Login
 
-Returns an JWT token which provides authorization.
+Returns an JWT token which provides authorization
 
 ### Example Implementation
 ```php
@@ -188,7 +188,7 @@ No authorization required
 
 Login
 
-Returns an JWT token which provides authorization for a limited time.
+Returns an JWT token which provides authorization for a limited time
 
 ### Example Implementation
 ```php

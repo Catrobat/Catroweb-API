@@ -169,9 +169,9 @@ class ProjectsApi implements ProjectsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**|  |
- **category** | **string**| * &#x60;similar&#x60; - Get similar projects to the specific project * &#x60;also_downloaded&#x60; - Get projects that users who downloaded the specific project also downloaded * &#x60;more_from_user&#x60; - Get more projects from the owner of the specific project |
+ **category** | **string**| * &#x60;similar&#x60; - Get similar projects to the specific project  * &#x60;also_downloaded&#x60; - Get projects that users who downloaded the specific project also downloaded  * &#x60;more_from_user&#x60; - Get more projects from the owner of the specific project |
  **accept_language** | **string**|  | [optional]
- **max_version** | **string**|  | [optional]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
  **flavor** | **string**|  | [optional]
@@ -279,7 +279,7 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max_version** | **string**|  | [optional]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
  **flavor** | **string**|  | [optional]
  **accept_language** | **string**|  | [optional]
 
@@ -334,7 +334,7 @@ class ProjectsApi implements ProjectsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **platform** | **string**|  | [optional]
- **max_version** | **string**|  | [optional]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
  **flavor** | **string**|  | [optional]
@@ -391,7 +391,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **category** | **string**|  |
  **accept_language** | **string**|  | [optional]
- **max_version** | **string**|  | [optional]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
  **flavor** | **string**|  | [optional]
@@ -447,10 +447,10 @@ class ProjectsApi implements ProjectsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **checksum** | **string**| Checksum of the *.catrobat file |
- **file** | **UploadedFile****UploadedFile**| *.catrobat file |
+ **file** | **UploadedFile****UploadedFile**| The *.catrobat project file |
  **accept_language** | **string**|  | [optional]
- **flavor** | **string**| The flavor of this project. | [optional]
- **private** | **bool**| Indicates whether a program should be private from the start. | [optional]
+ **flavor** | **string**| The flavor of this project | [optional]
+ **private** | **bool**| Indicates whether a program should be private | [optional]
 
 ### Return type
 
@@ -503,7 +503,7 @@ class ProjectsApi implements ProjectsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query** | **string**|  |
- **max_version** | **string**|  | [optional]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
  **flavor** | **string**|  | [optional]
@@ -558,7 +558,7 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max_version** | **string**|  | [optional]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
  **flavor** | **string**|  | [optional]
@@ -614,7 +614,7 @@ class ProjectsApi implements ProjectsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**|  |
- **max_version** | **string**|  | [optional]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
  **flavor** | **string**|  | [optional]

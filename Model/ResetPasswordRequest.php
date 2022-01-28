@@ -1,6 +1,6 @@
 <?php
 /**
- * JWTResponse.
+ * ResetPasswordRequest.
  *
  * PHP version 7.1.3
  *
@@ -34,27 +34,21 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the JWTResponse model.
+ * Class representing the ResetPasswordRequest model.
  *
  * @author  OpenAPI Generator team
  */
-class JWTResponse
+class ResetPasswordRequest
 {
   /**
+   * Email of the user.
+   *
    * @var string|null
-   * @SerializedName("token")
+   * @SerializedName("email")
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $token;
-
-  /**
-   * @var string|null
-   * @SerializedName("refresh_token")
-   * @Assert\Type("string")
-   * @Type("string")
-   */
-  protected $refresh_token;
+  protected $email;
 
   /**
    * Constructor.
@@ -63,46 +57,27 @@ class JWTResponse
    */
   public function __construct(array $data = null)
   {
-    $this->token = isset($data['token']) ? $data['token'] : null;
-    $this->refresh_token = isset($data['refresh_token']) ? $data['refresh_token'] : null;
+    $this->email = isset($data['email']) ? $data['email'] : null;
   }
 
   /**
-   * Gets token.
+   * Gets email.
    */
-  public function getToken(): ?string
+  public function getEmail(): ?string
   {
-    return $this->token;
+    return $this->email;
   }
 
   /**
-   * Sets token.
+   * Sets email.
+   *
+   * @param string|null $email Email of the user
    *
    * @return $this
    */
-  public function setToken(string $token = null)
+  public function setEmail(string $email = null)
   {
-    $this->token = $token;
-
-    return $this;
-  }
-
-  /**
-   * Gets refresh_token.
-   */
-  public function getRefreshToken(): ?string
-  {
-    return $this->refresh_token;
-  }
-
-  /**
-   * Sets refresh_token.
-   *
-   * @return $this
-   */
-  public function setRefreshToken(string $refresh_token = null)
-  {
-    $this->refresh_token = $refresh_token;
+    $this->email = $email;
 
     return $this;
   }

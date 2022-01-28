@@ -132,7 +132,7 @@ This endpoint does not need any parameter.
 
 Get public user data
 
-Get all the public data of a user.
+Get all the public data of a user
 
 ### Example Implementation
 ```php
@@ -292,11 +292,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **userResetPasswordPost**
-> userResetPasswordPost($inline_object)
+> userResetPasswordPost($reset_password_request, $accept_language)
 
 Request email to reset password
 
-If an account with the provided email exists, an email to reset the password will be sent to the user. The email contains a link to reset the password. Note: This link is only valid for a limited amount of time.
+If an account with the provided email exists, an email to reset the password will be sent to the user. The email contains a link to reset the password. Note&#58; This link is only valid for a limited amount of time.
 
 ### Example Implementation
 ```php
@@ -315,7 +315,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userResetPasswordPost
      */
-    public function userResetPasswordPost(InlineObject $inline_object)
+    public function userResetPasswordPost(ResetPasswordRequest $reset_password_request, string $accept_language = null)
     {
         // Implement the operation ...
     }
@@ -328,7 +328,8 @@ class UserApi implements UserApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object** | [**OpenAPI\Server\Model\InlineObject**](../Model/InlineObject.md)|  |
+ **reset_password_request** | [**OpenAPI\Server\Model\ResetPasswordRequest**](../Model/ResetPasswordRequest.md)|  |
+ **accept_language** | **string**|  | [optional]
 
 ### Return type
 
@@ -341,7 +342,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
