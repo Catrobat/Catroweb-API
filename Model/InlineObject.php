@@ -1,6 +1,6 @@
 <?php
 /**
- * SurveyResponse.
+ * InlineObject.
  *
  * PHP version 7.1.3
  *
@@ -34,21 +34,21 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the SurveyResponse model.
+ * Class representing the InlineObject model.
  *
  * @author  OpenAPI Generator team
  */
-class SurveyResponse
+class InlineObject
 {
   /**
-   * Url to a survey for the given language.
+   * Email of the user.
    *
    * @var string|null
-   * @SerializedName("url")
+   * @SerializedName("email")
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $url;
+  protected $email;
 
   /**
    * Constructor.
@@ -57,27 +57,27 @@ class SurveyResponse
    */
   public function __construct(array $data = null)
   {
-    $this->url = isset($data['url']) ? $data['url'] : null;
+    $this->email = isset($data['email']) ? $data['email'] : null;
   }
 
   /**
-   * Gets url.
+   * Gets email.
    */
-  public function getUrl(): ?string
+  public function getEmail(): ?string
   {
-    return $this->url;
+    return $this->email;
   }
 
   /**
-   * Sets url.
+   * Sets email.
    *
-   * @param string|null $url Url to a survey for the given language
+   * @param string|null $email email of the user
    *
    * @return $this
    */
-  public function setUrl(string $url = null)
+  public function setEmail(string $email = null)
   {
-    $this->url = $url;
+    $this->email = $email;
 
     return $this;
   }
