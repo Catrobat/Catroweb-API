@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: "Catroweb API"
   description: "API for the Catrobat Share Platform"
-  version: "v1.0.70"
+  version: "v1.0.71"
   termsOfService: "https://share.catrob.at/pocketcode/termsOfUse"
   contact:
     name: "Catrobat"
@@ -438,6 +438,11 @@ paths:
       responses:
         '204':
           description: "If an account with this email exists, an email to reset the password will be send to the user"
+          # Content hack necessary else OpenAPI-generator will ignore content for error responses (hopefully fixed sometime)
+          content:
+            application/json:
+              schema:
+                type: object
         '400':
           $ref: '#/components/responses/BadRequest'
         '406':
