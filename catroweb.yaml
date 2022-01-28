@@ -1,8 +1,8 @@
-openapi: 3.0.2
+openapi: 3.0.3
 info:
   title: Catroweb API
   description: API for the Catrobat Share Platform
-  version: "v1.1.0"
+  version: "v1.0.65"
   termsOfService: 'https://share.catrob.at/pocketcode/termsOfUse'
   contact:
     name: Catrobat
@@ -400,6 +400,35 @@ paths:
           $ref: '#/components/responses/NotFound'
         '406':
           $ref: '#/components/responses/NotAcceptable'
+
+  /user/reset-password:
+    post:
+      tags:
+        - User
+      summary: Request email to reset password
+      description: |
+        If an account with the provided email exists, an email to reset the password will be sent to the user.
+        The email contains a link to reset the password. Note: This link is only valid for a limited amount of time.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: foo.bar@catrob.at
+                  description: Email of the user.
+      responses:
+        204:
+          description: If an account with the provided email exists, an email to reset the password has been send to the user.
+        400:
+          $ref: '#/components/responses/BadRequest'
+        415:
+          $ref: '#/components/responses/UnsupportedMediaType'
+
 
   /users/search:
     get:
