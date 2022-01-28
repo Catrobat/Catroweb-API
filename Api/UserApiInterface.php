@@ -122,6 +122,8 @@ interface UserApiInterface
    * @param \string                                    $accept_language        (optional)
    * @param \int                                       $responseCode           The HTTP response code to return
    * @param \array                                     $responseHeaders        Additional HTTP headers to return with the response ()
+   *
+   * @return \array
    */
   public function userResetPasswordPost(ResetPasswordRequest $reset_password_request, string $accept_language = null, &$responseCode, array &$responseHeaders);
 
