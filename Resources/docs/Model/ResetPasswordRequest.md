@@ -1,4 +1,4 @@
-# InlineObject
+# ResetPasswordRequest
 
 ## Properties
 Name | Type | Description | Notes
