@@ -2,7 +2,7 @@ name: Swagger UI
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
