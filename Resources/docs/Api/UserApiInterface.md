@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **userResetPasswordPost**
-> userResetPasswordPost($inline_object)
+> userResetPasswordPost($reset_password_request)
 
 Request email to reset password
 
@@ -315,7 +315,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userResetPasswordPost
      */
-    public function userResetPasswordPost(InlineObject $inline_object)
+    public function userResetPasswordPost(ResetPasswordRequest $reset_password_request)
     {
         // Implement the operation ...
     }
@@ -328,7 +328,7 @@ class UserApi implements UserApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object** | [**OpenAPI\Server\Model\InlineObject**](../Model/InlineObject.md)|  |
+ **reset_password_request** | [**OpenAPI\Server\Model\ResetPasswordRequest**](../Model/ResetPasswordRequest.md)|  |
 
 ### Return type
 
