@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**userIdGet**](UserApiInterface.md#userIdGet) | **GET** /user/{id} | Get public user data
 [**userPost**](UserApiInterface.md#userPost) | **POST** /user | Register
 [**userPut**](UserApiInterface.md#userPut) | **PUT** /user | Update User
+[**userResetPasswordPost**](UserApiInterface.md#userResetPasswordPost) | **POST** /user/reset-password | Request email to reset password
 [**usersSearchGet**](UserApiInterface.md#usersSearchGet) | **GET** /users/search | Search for users
 
 
@@ -287,6 +288,60 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+## **userResetPasswordPost**
+> userResetPasswordPost($inline_object)
+
+Request email to reset password
+
+If an account with the provided email exists, an email to reset the password will be sent to the user. The email contains a link to reset the password. Note: This link is only valid for a limited amount of time.
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/UserApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\UserApiInterface;
+
+class UserApi implements UserApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of UserApiInterface#userResetPasswordPost
+     */
+    public function userResetPasswordPost(InlineObject $inline_object)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inline_object** | [**OpenAPI\Server\Model\InlineObject**](../Model/InlineObject.md)|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
