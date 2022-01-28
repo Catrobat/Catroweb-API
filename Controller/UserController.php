@@ -506,6 +506,15 @@ class UserController extends Controller
       return new Response('', 415);
     }
 
+    // Figure out what data format to return to the client
+    $produces = ['application/json'];
+    // Figure out what the client accepts
+    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
+    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
+    if (null === $responseFormat) {
+      return new Response('', 406);
+    }
+
     // Handle authentication
 
     // Read out all input parameter values into variables
@@ -543,7 +552,7 @@ class UserController extends Controller
       $handler = $this->getApiHandler();
 
       // Make the call to the business logic
-      $responseCode = 204;
+      $responseCode = 200;
       $responseHeaders = [];
       $result = $handler->userResetPasswordPost($reset_password_request, $accept_language, $responseCode, $responseHeaders);
 
@@ -570,11 +579,12 @@ class UserController extends Controller
             }
 
       return new Response(
-                '',
+                null !== $result ? $this->serialize($result, $responseFormat) : '',
                 $responseCode,
                 array_merge(
                     $responseHeaders,
                     [
+                      'Content-Type' => $responseFormat,
                       'X-OpenAPI-Message' => $message,
                     ]
                 )

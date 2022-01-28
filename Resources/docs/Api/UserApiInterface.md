@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **userResetPasswordPost**
-> userResetPasswordPost($reset_password_request, $accept_language)
+> array userResetPasswordPost($reset_password_request, $accept_language)
 
 Request email to reset password
 
@@ -333,7 +333,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**array**
 
 ### Authorization
 
