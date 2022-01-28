@@ -25,6 +25,7 @@ Model/DryRun.php
 Model/ExtendedUserDataResponse.php
 Model/ExtendedUserDataResponseAllOf.php
 Model/FeaturedProjectResponse.php
+Model/InlineObject.php
 Model/JWTResponse.php
 Model/LoginRequest.php
 Model/MediaCategoryResponse.php
@@ -64,6 +65,7 @@ Resources/docs/Model/DryRun.md
 Resources/docs/Model/ExtendedUserDataResponse.md
 Resources/docs/Model/ExtendedUserDataResponseAllOf.md
 Resources/docs/Model/FeaturedProjectResponse.md
+Resources/docs/Model/InlineObject.md
 Resources/docs/Model/JWTResponse.md
 Resources/docs/Model/LoginRequest.md
 Resources/docs/Model/MediaCategoryResponse.md
@@ -88,6 +90,7 @@ Resources/docs/Model/UpgradeTokenRequest.md
 Resources/docs/Model/UploadErrorResponse.md
 Service/JmsSerializer.php
 Service/SerializerInterface.php
+Service/StrictJsonDeserializationVisitor.php
 Service/SymfonyValidator.php
 Service/TypeMismatchException.php
 Service/ValidatorInterface.php
@@ -106,6 +109,7 @@ Tests/Model/DryRunTest.php
 Tests/Model/ExtendedUserDataResponseAllOfTest.php
 Tests/Model/ExtendedUserDataResponseTest.php
 Tests/Model/FeaturedProjectResponseTest.php
+Tests/Model/InlineObjectTest.php
 Tests/Model/JWTResponseTest.php
 Tests/Model/LoginRequestTest.php
 Tests/Model/MediaCategoryResponseTest.php
