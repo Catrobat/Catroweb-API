@@ -1213,7 +1213,6 @@ components:
         enum:
           - "recent"
           - "random"
-          - "most_viewed"
           - "most_downloaded"
           - "example"
           - "scratch"
