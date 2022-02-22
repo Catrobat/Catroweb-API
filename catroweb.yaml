@@ -402,7 +402,7 @@ paths:
         - $ref: '#/components/parameters/Uuid'
       responses:
         '200':
-          description: "Ok"
+          description: "OK"
           content:
             application/json:
               schema:
@@ -732,7 +732,7 @@ paths:
       summary: "Get all possible project extensions. Extensions are automatically added to projects based on their bricks."
       responses:
         '200':
-          description: "Valid request"
+          description: "OK"
           headers:
             X-Response-Hash:
               $ref: '#/components/headers/X-Response-Hash'
@@ -756,7 +756,7 @@ paths:
       summary: "Get all possible project tags. Some Tags will only be availabe during events."
       responses:
         '200':
-          description: "Valid request"
+          description: "OK"
           headers:
             X-Response-Hash:
               $ref: '#/components/headers/X-Response-Hash'
@@ -780,7 +780,7 @@ paths:
         - $ref: '#/components/parameters/Uuid'
       responses:
         '200':
-          description: "Valid request"
+          description: "OK"
           headers:
             X-Response-Hash:
               $ref: '#/components/headers/X-Response-Hash'
