@@ -9,10 +9,12 @@ Method | HTTP request | Description
 [**projectIdRecommendationsGet**](ProjectsApiInterface.md#projectIdRecommendationsGet) | **GET** /project/{id}/recommendations | Get recommended projects related to the specific project
 [**projectIdReportPost**](ProjectsApiInterface.md#projectIdReportPost) | **POST** /project/{id}/report | Report a project -- StatusCode: 501 - Not yet implemented
 [**projectsCategoriesGet**](ProjectsApiInterface.md#projectsCategoriesGet) | **GET** /projects/categories | Get default number of projects per category (Most downloaded etc.)
+[**projectsExtensionsGet**](ProjectsApiInterface.md#projectsExtensionsGet) | **GET** /projects/extensions/ | Get all possible project extensions. Extensions are automatically added to projects based on their bricks.
 [**projectsFeaturedGet**](ProjectsApiInterface.md#projectsFeaturedGet) | **GET** /projects/featured | Get the currently featured projects
 [**projectsGet**](ProjectsApiInterface.md#projectsGet) | **GET** /projects | Get projects
 [**projectsPost**](ProjectsApiInterface.md#projectsPost) | **POST** /projects | Upload a catrobat project
 [**projectsSearchGet**](ProjectsApiInterface.md#projectsSearchGet) | **GET** /projects/search | Search for projects associated with a keywords
+[**projectsTagsGet**](ProjectsApiInterface.md#projectsTagsGet) | **GET** /projects/tags/ | Get all possible project tags. Some Tags will only be availabe during events.
 [**projectsUserGet**](ProjectsApiInterface.md#projectsUserGet) | **GET** /projects/user/ | Get the projects of the logged in user
 [**projectsUserIdGet**](ProjectsApiInterface.md#projectsUserIdGet) | **GET** /projects/user/{id} | Get the public projects of a given user
 
@@ -298,6 +300,58 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+## **projectsExtensionsGet**
+> OpenAPI\Server\Model\ExtensionResponse projectsExtensionsGet($accept_language)
+
+Get all possible project extensions. Extensions are automatically added to projects based on their bricks.
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/ProjectsApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\ProjectsApiInterface;
+
+class ProjectsApi implements ProjectsApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of ProjectsApiInterface#projectsExtensionsGet
+     */
+    public function projectsExtensionsGet(string $accept_language = null)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accept_language** | **string**|  | [optional]
+
+### Return type
+
+[**OpenAPI\Server\Model\ExtensionResponse**](../Model/ExtensionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 ## **projectsFeaturedGet**
 > OpenAPI\Server\Model\FeaturedProjectResponse projectsFeaturedGet($platform, $max_version, $limit, $offset, $flavor)
 
@@ -511,6 +565,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**OpenAPI\Server\Model\ProjectResponse**](../Model/ProjectResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+## **projectsTagsGet**
+> OpenAPI\Server\Model\TagResponse projectsTagsGet($accept_language)
+
+Get all possible project tags. Some Tags will only be availabe during events.
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/ProjectsApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\ProjectsApiInterface;
+
+class ProjectsApi implements ProjectsApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of ProjectsApiInterface#projectsTagsGet
+     */
+    public function projectsTagsGet(string $accept_language = null)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accept_language** | **string**|  | [optional]
+
+### Return type
+
+[**OpenAPI\Server\Model\TagResponse**](../Model/TagResponse.md)
 
 ### Authorization
 
