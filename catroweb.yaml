@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: "Catroweb API"
   description: "API for the Catrobat Share Platform"
-  version: "v1.0.71"
+  version: "v1.0.72"
   termsOfService: "https://share.catrob.at/pocketcode/termsOfUse"
   contact:
     name: "Catrobat"
@@ -676,7 +676,7 @@ paths:
         - $ref: '#/components/parameters/Flavor'
       responses:
         '200':
-          description: "Valid request"
+          description: "OK"
           headers:
             X-Response-Hash:
               $ref: '#/components/headers/X-Response-Hash'
@@ -706,7 +706,7 @@ paths:
         - $ref: '#/components/parameters/Flavor'
       responses:
         '200':
-          description: "Valid request"
+          description: "OK"
           headers:
             X-Response-Hash:
               $ref: '#/components/headers/X-Response-Hash'
@@ -720,6 +720,54 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  '/projects/extensions/':
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+    get:
+      tags:
+        - "Projects"
+      summary: "Get all possible project extensions. Extensions are automatically added to projects based on their bricks."
+      responses:
+        '200':
+          description: "Valid request"
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtensionsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+  '/projects/tags/':
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+    get:
+      tags:
+        - "Projects"
+      summary: "Get all possible project tags. Some Tags will only be availabe during events."
+      responses:
+        '200':
+          description: "Valid request"
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
@@ -1771,6 +1819,41 @@ components:
           type: number
           example: 0.14381762458251943
           description: "filesize in megabytes"
+
+    ExtensionsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ExtensionResponse'
+
+    ExtensionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "embroidery"
+          description: "The internal title of the extension"
+        text:
+          type: string
+          example: "Embroidery"
+          description: "The translated text of the project extension."
+
+
+    TagsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/TagResponse'
+
+    TagResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "game"
+          description: "The internal title of the title"
+        text:
+          type: string
+          example: "Game"
+          description: "The translated text of the project tag."
 
     NotificationsId:
       type: integer
