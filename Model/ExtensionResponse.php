@@ -1,6 +1,6 @@
 <?php
 /**
- * MediaCategoryResponse.
+ * ExtensionResponse.
  *
  * PHP version 7.1.3
  *
@@ -34,42 +34,31 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the MediaCategoryResponse model.
+ * Class representing the ExtensionResponse model.
  *
  * @author  OpenAPI Generator team
  */
-class MediaCategoryResponse
+class ExtensionResponse
 {
   /**
-   * ID of the category.
+   * The internal title of the extension.
    *
-   * @var int|null
+   * @var string|null
    * @SerializedName("id")
-   * @Assert\Type("int")
-   * @Type("int")
+   * @Assert\Type("string")
+   * @Type("string")
    */
   protected $id;
 
   /**
-   * Name of the category.
+   * The translated text of the project extension.
    *
    * @var string|null
-   * @SerializedName("name")
+   * @SerializedName("text")
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $name;
-
-  /**
-   * Shows how important a category is (0 is the least priority).
-   *
-   * @var int|null
-   * @SerializedName("priority")
-   * @Assert\Type("int")
-   * @Type("int")
-   * @Assert\GreaterThanOrEqual(0)
-   */
-  protected $priority;
+  protected $text;
 
   /**
    * Constructor.
@@ -79,14 +68,13 @@ class MediaCategoryResponse
   public function __construct(array $data = null)
   {
     $this->id = isset($data['id']) ? $data['id'] : null;
-    $this->name = isset($data['name']) ? $data['name'] : null;
-    $this->priority = isset($data['priority']) ? $data['priority'] : null;
+    $this->text = isset($data['text']) ? $data['text'] : null;
   }
 
   /**
    * Gets id.
    */
-  public function getId(): ?int
+  public function getId(): ?string
   {
     return $this->id;
   }
@@ -94,11 +82,11 @@ class MediaCategoryResponse
   /**
    * Sets id.
    *
-   * @param int|null $id ID of the category
+   * @param string|null $id The internal title of the extension
    *
    * @return $this
    */
-  public function setId(int $id = null)
+  public function setId(string $id = null)
   {
     $this->id = $id;
 
@@ -106,45 +94,23 @@ class MediaCategoryResponse
   }
 
   /**
-   * Gets name.
+   * Gets text.
    */
-  public function getName(): ?string
+  public function getText(): ?string
   {
-    return $this->name;
+    return $this->text;
   }
 
   /**
-   * Sets name.
+   * Sets text.
    *
-   * @param string|null $name Name of the category
+   * @param string|null $text the translated text of the project extension
    *
    * @return $this
    */
-  public function setName(string $name = null)
+  public function setText(string $text = null)
   {
-    $this->name = $name;
-
-    return $this;
-  }
-
-  /**
-   * Gets priority.
-   */
-  public function getPriority(): ?int
-  {
-    return $this->priority;
-  }
-
-  /**
-   * Sets priority.
-   *
-   * @param int|null $priority Shows how important a category is (0 is the least priority)
-   *
-   * @return $this
-   */
-  public function setPriority(int $priority = null)
-  {
-    $this->priority = $priority;
+    $this->text = $text;
 
     return $this;
   }

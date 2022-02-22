@@ -24,6 +24,7 @@ Model/BasicUserDataResponse.php
 Model/DryRun.php
 Model/ExtendedUserDataResponse.php
 Model/ExtendedUserDataResponseAllOf.php
+Model/ExtensionResponse.php
 Model/FeaturedProjectResponse.php
 Model/JWTResponse.php
 Model/LoginRequest.php
@@ -45,6 +46,7 @@ Model/ResetPasswordErrorResponse.php
 Model/ResetPasswordRequest.php
 Model/SearchResponse.php
 Model/SurveyResponse.php
+Model/TagResponse.php
 Model/UpdateUserErrorResponse.php
 Model/UpdateUserRequest.php
 Model/UpgradeTokenRequest.php
@@ -65,6 +67,7 @@ Resources/docs/Model/BasicUserDataResponse.md
 Resources/docs/Model/DryRun.md
 Resources/docs/Model/ExtendedUserDataResponse.md
 Resources/docs/Model/ExtendedUserDataResponseAllOf.md
+Resources/docs/Model/ExtensionResponse.md
 Resources/docs/Model/FeaturedProjectResponse.md
 Resources/docs/Model/JWTResponse.md
 Resources/docs/Model/LoginRequest.md
@@ -86,6 +89,7 @@ Resources/docs/Model/ResetPasswordErrorResponse.md
 Resources/docs/Model/ResetPasswordRequest.md
 Resources/docs/Model/SearchResponse.md
 Resources/docs/Model/SurveyResponse.md
+Resources/docs/Model/TagResponse.md
 Resources/docs/Model/UpdateUserErrorResponse.md
 Resources/docs/Model/UpdateUserRequest.md
 Resources/docs/Model/UpgradeTokenRequest.md
@@ -110,6 +114,7 @@ Tests/Model/BasicUserDataResponseTest.php
 Tests/Model/DryRunTest.php
 Tests/Model/ExtendedUserDataResponseAllOfTest.php
 Tests/Model/ExtendedUserDataResponseTest.php
+Tests/Model/ExtensionResponseTest.php
 Tests/Model/FeaturedProjectResponseTest.php
 Tests/Model/JWTResponseTest.php
 Tests/Model/LoginRequestTest.php
@@ -131,6 +136,7 @@ Tests/Model/ResetPasswordErrorResponseTest.php
 Tests/Model/ResetPasswordRequestTest.php
 Tests/Model/SearchResponseTest.php
 Tests/Model/SurveyResponseTest.php
+Tests/Model/TagResponseTest.php
 Tests/Model/UpdateUserErrorResponseTest.php
 Tests/Model/UpdateUserRequestTest.php
 Tests/Model/UpgradeTokenRequestTest.php
