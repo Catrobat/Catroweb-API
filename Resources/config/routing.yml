@@ -134,6 +134,12 @@ open_api_server_projects_projectscategoriesget:
     defaults:
         _controller: open_api_server.controller.projects:projectsCategoriesGetAction
 
+open_api_server_projects_projectsextensionsget:
+    path:     /projects/extensions/
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.projects:projectsExtensionsGetAction
+
 open_api_server_projects_projectsfeaturedget:
     path:     /projects/featured
     methods:  [GET]
@@ -157,6 +163,12 @@ open_api_server_projects_projectssearchget:
     methods:  [GET]
     defaults:
         _controller: open_api_server.controller.projects:projectsSearchGetAction
+
+open_api_server_projects_projectstagsget:
+    path:     /projects/tags/
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.projects:projectsTagsGetAction
 
 open_api_server_projects_projectsuserget:
     path:     /projects/user/
