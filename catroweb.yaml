@@ -662,7 +662,7 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
-  /projects/user/:
+  /projects/user:
     get:
       security:
         - PandaAuth: []
@@ -723,7 +723,7 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
-  '/projects/extensions/':
+  '/projects/extensions':
     parameters:
       - $ref: '#/components/parameters/Locale'
     get:
@@ -742,12 +742,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExtensionsResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
-  '/projects/tags/':
+  '/projects/tags':
     parameters:
       - $ref: '#/components/parameters/Locale'
     get:
@@ -766,8 +764,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TagsResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
