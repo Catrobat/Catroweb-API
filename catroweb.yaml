@@ -119,7 +119,7 @@ paths:
         - PandaAuth: []
       tags:
         - "Authentication"
-      summary: 'Refresh token -- StatusCode: 501 - Not yet implemented'
+      summary: 'Refresh token'
       description: "Returns a new JWT token with help of the refresh token"
       requestBody:
         required: true
