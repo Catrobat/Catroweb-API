@@ -402,7 +402,7 @@ class AuthenticationController extends Controller
   /**
    * Operation authenticationRefreshPost.
    *
-   * Refresh token -- StatusCode: 501 - Not yet implemented
+   * Refresh token
    *
    * @param Request $request the Symfony request to handle
    *

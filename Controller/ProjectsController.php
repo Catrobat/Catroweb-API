@@ -49,6 +49,87 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ProjectsController extends Controller
 {
   /**
+   * Operation projectIdCatrobatGet.
+   *
+   * Download the catrobat (=zip) file of a project -- StatusCode: 501 - Not yet implemented
+   *
+   * @param Request $request the Symfony request to handle
+   * @param mixed   $id
+   *
+   * @return Response the Symfony response
+   */
+  public function projectIdCatrobatGetAction(Request $request, $id)
+  {
+    // Figure out what data format to return to the client
+    $produces = ['application/zip'];
+    // Figure out what the client accepts
+    $clientAccepts = $request->headers->has('Accept') ? $request->headers->get('Accept') : '*/*';
+    $responseFormat = $this->getOutputFormat($clientAccepts, $produces);
+    if (null === $responseFormat) {
+      return new Response('', 406);
+    }
+
+    // Handle authentication
+
+    // Read out all input parameter values into variables
+
+    // Use the default value if no value was provided
+
+    // Deserialize the input values that needs it
+    try {
+      $id = $this->deserialize($id, 'string', 'string');
+    } catch (SerializerRuntimeException $exception) {
+      return $this->createBadRequestResponse($exception->getMessage());
+    }
+
+    // Validate the input values
+    $asserts = [];
+    $asserts[] = new Assert\NotNull();
+    $asserts[] = new Assert\Type('string');
+    $asserts[] = new Assert\Regex('/^[a-zA-Z0-9\\-]+$/');
+    $response = $this->validate($id, $asserts);
+    if ($response instanceof Response) {
+      return $response;
+    }
+
+    try {
+      $handler = $this->getApiHandler();
+
+      // Make the call to the business logic
+      $responseCode = 200;
+      $responseHeaders = [];
+      $result = $handler->projectIdCatrobatGet($id, $responseCode, $responseHeaders);
+
+      // Find default response message
+      $message = '';
+
+      // Find a more specific message, if available
+      switch ($responseCode) {
+                case 200:
+                    $message = 'Catrobat file successfully downloaded';
+                    break;
+                case 404:
+                    $message = 'Not found';
+                    break;
+            }
+
+      return new Response(
+                null !== $result ? $this->serialize($result, $responseFormat) : '',
+                $responseCode,
+                array_merge(
+                    $responseHeaders,
+                    [
+                      'Content-Type' => $responseFormat,
+                      'X-OpenAPI-Message' => $message,
+                    ]
+                )
+            );
+    } catch (Exception $fallthrough) {
+      return $this->createErrorResponse(new HttpException(500, 'An unsuspected error occurred.', $fallthrough));
+    }
+  }
+
+  /**
    * Operation projectIdDelete.
    *
    * Delete a project -- StatusCode: 501 - Not yet implemented
@@ -192,7 +273,7 @@ class ProjectsController extends Controller
       // Find a more specific message, if available
       switch ($responseCode) {
                 case 200:
-                    $message = 'Valid request';
+                    $message = 'OK';
                     break;
                 case 400:
                     $message = 'Bad request (Invalid, or missing parameters)';
@@ -615,10 +696,7 @@ class ProjectsController extends Controller
       // Find a more specific message, if available
       switch ($responseCode) {
                 case 200:
-                    $message = 'Valid request';
-                    break;
-                case 400:
-                    $message = 'Bad request (Invalid, or missing parameters)';
+                    $message = 'OK';
                     break;
                 case 406:
                     $message = 'Not acceptable - client must accept application/json as content type';
@@ -1184,10 +1262,7 @@ class ProjectsController extends Controller
       // Find a more specific message, if available
       switch ($responseCode) {
                 case 200:
-                    $message = 'Valid request';
-                    break;
-                case 400:
-                    $message = 'Bad request (Invalid, or missing parameters)';
+                    $message = 'OK';
                     break;
                 case 406:
                     $message = 'Not acceptable - client must accept application/json as content type';

@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**authenticationGet**](AuthenticationApiInterface.md#authenticationGet) | **GET** /authentication | Check token
 [**authenticationOauthPost**](AuthenticationApiInterface.md#authenticationOauthPost) | **POST** /authentication/oauth | OAuth Login
 [**authenticationPost**](AuthenticationApiInterface.md#authenticationPost) | **POST** /authentication | Login
-[**authenticationRefreshPost**](AuthenticationApiInterface.md#authenticationRefreshPost) | **POST** /authentication/refresh | Refresh token -- StatusCode: 501 - Not yet implemented
+[**authenticationRefreshPost**](AuthenticationApiInterface.md#authenticationRefreshPost) | **POST** /authentication/refresh | Refresh token
 [**authenticationUpgradePost**](AuthenticationApiInterface.md#authenticationUpgradePost) | **POST** /authentication/upgrade | Upgrade a deprecated token to JWT
 
 
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 ## **authenticationRefreshPost**
 > OpenAPI\Server\Model\JWTResponse authenticationRefreshPost($refresh_request)
 
-Refresh token -- StatusCode: 501 - Not yet implemented
+Refresh token
 
 Returns a new JWT token with help of the refresh token
 
