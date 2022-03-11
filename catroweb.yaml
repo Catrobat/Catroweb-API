@@ -816,14 +816,15 @@ paths:
     get:
       tags:
         - Projects
-      summary: 'Download the catrobat (=zip) file of a project -- StatusCode: 501 - Not yet implemented'
+      summary: 'Download the .catrobat (=zip) file of a project'
+      description: 'If the request is made by an authenticated user, further internal actions are triggered. (Download counter, ...)'
       parameters:
         - $ref: '#/components/parameters/Uuid'
       responses:
         '200':
-          description: "Catrobat file successfully downloaded"
+          description: ".catrobat file successfully downloaded"
           content:
-            application/zip:
+            application/octet-stream:
               schema:
                 type: string
                 format: binary
@@ -832,10 +833,12 @@ paths:
             Content-Disposition:
               schema:
                 type: string
-                description: Used only with `application/zip` responses
+                description: Used only with `application/octet-stream` responses
                 example: attachment; filename="name.catrobat"
         '404':
           $ref: '#/components/responses/NotFound'
+        '500':
+          description: "We were not able to create a .catrobat file for this project. There is a high possibility that the project files are missing on the server."
 
 
   '/project/{id}/report':
