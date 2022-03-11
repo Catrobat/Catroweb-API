@@ -4,18 +4,19 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**projectIdCatrobatGet**](ProjectsApiInterface.md#projectIdCatrobatGet) | **GET** /project/{id}/catrobat | Download the catrobat (&#x3D;zip) file of a project -- StatusCode: 501 - Not yet implemented
 [**projectIdDelete**](ProjectsApiInterface.md#projectIdDelete) | **DELETE** /project/{id} | Delete a project -- StatusCode: 501 - Not yet implemented
 [**projectIdGet**](ProjectsApiInterface.md#projectIdGet) | **GET** /project/{id} | Get the information of a project
 [**projectIdRecommendationsGet**](ProjectsApiInterface.md#projectIdRecommendationsGet) | **GET** /project/{id}/recommendations | Get recommended projects related to the specific project
 [**projectIdReportPost**](ProjectsApiInterface.md#projectIdReportPost) | **POST** /project/{id}/report | Report a project -- StatusCode: 501 - Not yet implemented
 [**projectsCategoriesGet**](ProjectsApiInterface.md#projectsCategoriesGet) | **GET** /projects/categories | Get default number of projects per category (Most downloaded etc.)
-[**projectsExtensionsGet**](ProjectsApiInterface.md#projectsExtensionsGet) | **GET** /projects/extensions/ | Get all possible project extensions. Extensions are automatically added to projects based on their bricks.
+[**projectsExtensionsGet**](ProjectsApiInterface.md#projectsExtensionsGet) | **GET** /projects/extensions | Get all possible project extensions. Extensions are automatically added to projects based on their bricks.
 [**projectsFeaturedGet**](ProjectsApiInterface.md#projectsFeaturedGet) | **GET** /projects/featured | Get the currently featured projects
 [**projectsGet**](ProjectsApiInterface.md#projectsGet) | **GET** /projects | Get projects
 [**projectsPost**](ProjectsApiInterface.md#projectsPost) | **POST** /projects | Upload a catrobat project
 [**projectsSearchGet**](ProjectsApiInterface.md#projectsSearchGet) | **GET** /projects/search | Search for projects associated with a keywords
-[**projectsTagsGet**](ProjectsApiInterface.md#projectsTagsGet) | **GET** /projects/tags/ | Get all possible project tags. Some Tags will only be availabe during events.
-[**projectsUserGet**](ProjectsApiInterface.md#projectsUserGet) | **GET** /projects/user/ | Get the projects of the logged in user
+[**projectsTagsGet**](ProjectsApiInterface.md#projectsTagsGet) | **GET** /projects/tags | Get all possible project tags. Some Tags will only be availabe during events.
+[**projectsUserGet**](ProjectsApiInterface.md#projectsUserGet) | **GET** /projects/user | Get the projects of the logged in user
 [**projectsUserIdGet**](ProjectsApiInterface.md#projectsUserIdGet) | **GET** /projects/user/{id} | Get the public projects of a given user
 
 
@@ -30,6 +31,58 @@ services:
             - { name: "open_api_server.api", api: "projects" }
     # ...
 ```
+
+## **projectIdCatrobatGet**
+> UploadedFile projectIdCatrobatGet($id)
+
+Download the catrobat (=zip) file of a project -- StatusCode: 501 - Not yet implemented
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/ProjectsApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\ProjectsApiInterface;
+
+class ProjectsApi implements ProjectsApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of ProjectsApiInterface#projectIdCatrobatGet
+     */
+    public function projectIdCatrobatGet(string $id)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**|  |
+
+### Return type
+
+**UploadedFile**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/zip
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectIdDelete**
 > projectIdDelete($id)

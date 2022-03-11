@@ -244,7 +244,7 @@ class UserController extends Controller
       // Find a more specific message, if available
       switch ($responseCode) {
                 case 200:
-                    $message = 'Ok';
+                    $message = 'OK';
                     break;
                 case 404:
                     $message = 'Not found';
