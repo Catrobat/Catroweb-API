@@ -824,7 +824,7 @@ paths:
         '200':
           description: ".catrobat file successfully downloaded"
           content:
-            application/octet-stream:
+            application/zip:
               schema:
                 type: string
                 format: binary
@@ -833,8 +833,10 @@ paths:
             Content-Disposition:
               schema:
                 type: string
-                description: Used only with `application/octet-stream` responses
+                description: Used only with `application/zip` responses
                 example: attachment; filename="name.catrobat"
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
         '500':
