@@ -101,7 +101,7 @@ interface AuthenticationApiInterface
   /**
    * Operation authenticationRefreshPost.
    *
-   * Refresh token -- StatusCode: 501 - Not yet implemented
+   * Refresh token
    *
    * @param \OpenAPI\Server\Model\RefreshRequest $refresh_request (required)
    * @param \int                                 $responseCode    The HTTP response code to return

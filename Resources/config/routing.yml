@@ -96,6 +96,14 @@ open_api_server_notifications_notificationsreadput:
         _controller: open_api_server.controller.notifications:notificationsReadPutAction
 
 # projects
+open_api_server_projects_projectidcatrobatget:
+    path:     /project/{id}/catrobat
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.projects:projectIdCatrobatGetAction
+    requirements:
+        id: '^[a-zA-Z0-9\\-]+$'
+
 open_api_server_projects_projectiddelete:
     path:     /project/{id}
     methods:  [DELETE]
@@ -135,7 +143,7 @@ open_api_server_projects_projectscategoriesget:
         _controller: open_api_server.controller.projects:projectsCategoriesGetAction
 
 open_api_server_projects_projectsextensionsget:
-    path:     /projects/extensions/
+    path:     /projects/extensions
     methods:  [GET]
     defaults:
         _controller: open_api_server.controller.projects:projectsExtensionsGetAction
@@ -165,13 +173,13 @@ open_api_server_projects_projectssearchget:
         _controller: open_api_server.controller.projects:projectsSearchGetAction
 
 open_api_server_projects_projectstagsget:
-    path:     /projects/tags/
+    path:     /projects/tags
     methods:  [GET]
     defaults:
         _controller: open_api_server.controller.projects:projectsTagsGetAction
 
 open_api_server_projects_projectsuserget:
-    path:     /projects/user/
+    path:     /projects/user
     methods:  [GET]
     defaults:
         _controller: open_api_server.controller.projects:projectsUserGetAction

@@ -50,6 +50,19 @@ interface ProjectsApiInterface
   public function setPandaAuth($value);
 
   /**
+   * Operation projectIdCatrobatGet.
+   *
+   * Download the catrobat (=zip) file of a project -- StatusCode: 501 - Not yet implemented
+   *
+   * @param \string $id              (required)
+   * @param \int    $responseCode    The HTTP response code to return
+   * @param \array  $responseHeaders Additional HTTP headers to return with the response ()
+   *
+   * @return \UploadedFile
+   */
+  public function projectIdCatrobatGet(string $id, &$responseCode, array &$responseHeaders);
+
+  /**
    * Operation projectIdDelete.
    *
    * Delete a project -- StatusCode: 501 - Not yet implemented

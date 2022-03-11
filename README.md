@@ -121,7 +121,7 @@ Class | Method | HTTP request | Description
 *AuthenticationApiInterface* | [**authenticationGet**](Resources/docs/Api/AuthenticationApiInterface.md#authenticationget) | **GET** /authentication | Check token
 *AuthenticationApiInterface* | [**authenticationOauthPost**](Resources/docs/Api/AuthenticationApiInterface.md#authenticationoauthpost) | **POST** /authentication/oauth | OAuth Login
 *AuthenticationApiInterface* | [**authenticationPost**](Resources/docs/Api/AuthenticationApiInterface.md#authenticationpost) | **POST** /authentication | Login
-*AuthenticationApiInterface* | [**authenticationRefreshPost**](Resources/docs/Api/AuthenticationApiInterface.md#authenticationrefreshpost) | **POST** /authentication/refresh | Refresh token -- StatusCode: 501 - Not yet implemented
+*AuthenticationApiInterface* | [**authenticationRefreshPost**](Resources/docs/Api/AuthenticationApiInterface.md#authenticationrefreshpost) | **POST** /authentication/refresh | Refresh token
 *AuthenticationApiInterface* | [**authenticationUpgradePost**](Resources/docs/Api/AuthenticationApiInterface.md#authenticationupgradepost) | **POST** /authentication/upgrade | Upgrade a deprecated token to JWT
 *MediaLibraryApiInterface* | [**mediaFileIdGet**](Resources/docs/Api/MediaLibraryApiInterface.md#mediafileidget) | **GET** /media/file/{id} | Get the information of a specific media file
 *MediaLibraryApiInterface* | [**mediaFilesGet**](Resources/docs/Api/MediaLibraryApiInterface.md#mediafilesget) | **GET** /media/files | Get *all* content of the media library.
@@ -131,18 +131,19 @@ Class | Method | HTTP request | Description
 *NotificationsApiInterface* | [**notificationsCountGet**](Resources/docs/Api/NotificationsApiInterface.md#notificationscountget) | **GET** /notifications/count | Count the number of unseen notifications -- StatusCode: 501 - Not yet implemented
 *NotificationsApiInterface* | [**notificationsGet**](Resources/docs/Api/NotificationsApiInterface.md#notificationsget) | **GET** /notifications | Get user notifications -- StatusCode: 501 - Not yet implemented
 *NotificationsApiInterface* | [**notificationsReadPut**](Resources/docs/Api/NotificationsApiInterface.md#notificationsreadput) | **PUT** /notifications/read | Mark all notifications as read -- StatusCode: 501 - Not yet implemented
+*ProjectsApiInterface* | [**projectIdCatrobatGet**](Resources/docs/Api/ProjectsApiInterface.md#projectidcatrobatget) | **GET** /project/{id}/catrobat | Download the catrobat (&#x3D;zip) file of a project -- StatusCode: 501 - Not yet implemented
 *ProjectsApiInterface* | [**projectIdDelete**](Resources/docs/Api/ProjectsApiInterface.md#projectiddelete) | **DELETE** /project/{id} | Delete a project -- StatusCode: 501 - Not yet implemented
 *ProjectsApiInterface* | [**projectIdGet**](Resources/docs/Api/ProjectsApiInterface.md#projectidget) | **GET** /project/{id} | Get the information of a project
 *ProjectsApiInterface* | [**projectIdRecommendationsGet**](Resources/docs/Api/ProjectsApiInterface.md#projectidrecommendationsget) | **GET** /project/{id}/recommendations | Get recommended projects related to the specific project
 *ProjectsApiInterface* | [**projectIdReportPost**](Resources/docs/Api/ProjectsApiInterface.md#projectidreportpost) | **POST** /project/{id}/report | Report a project -- StatusCode: 501 - Not yet implemented
 *ProjectsApiInterface* | [**projectsCategoriesGet**](Resources/docs/Api/ProjectsApiInterface.md#projectscategoriesget) | **GET** /projects/categories | Get default number of projects per category (Most downloaded etc.)
-*ProjectsApiInterface* | [**projectsExtensionsGet**](Resources/docs/Api/ProjectsApiInterface.md#projectsextensionsget) | **GET** /projects/extensions/ | Get all possible project extensions. Extensions are automatically added to projects based on their bricks.
+*ProjectsApiInterface* | [**projectsExtensionsGet**](Resources/docs/Api/ProjectsApiInterface.md#projectsextensionsget) | **GET** /projects/extensions | Get all possible project extensions. Extensions are automatically added to projects based on their bricks.
 *ProjectsApiInterface* | [**projectsFeaturedGet**](Resources/docs/Api/ProjectsApiInterface.md#projectsfeaturedget) | **GET** /projects/featured | Get the currently featured projects
 *ProjectsApiInterface* | [**projectsGet**](Resources/docs/Api/ProjectsApiInterface.md#projectsget) | **GET** /projects | Get projects
 *ProjectsApiInterface* | [**projectsPost**](Resources/docs/Api/ProjectsApiInterface.md#projectspost) | **POST** /projects | Upload a catrobat project
 *ProjectsApiInterface* | [**projectsSearchGet**](Resources/docs/Api/ProjectsApiInterface.md#projectssearchget) | **GET** /projects/search | Search for projects associated with a keywords
-*ProjectsApiInterface* | [**projectsTagsGet**](Resources/docs/Api/ProjectsApiInterface.md#projectstagsget) | **GET** /projects/tags/ | Get all possible project tags. Some Tags will only be availabe during events.
-*ProjectsApiInterface* | [**projectsUserGet**](Resources/docs/Api/ProjectsApiInterface.md#projectsuserget) | **GET** /projects/user/ | Get the projects of the logged in user
+*ProjectsApiInterface* | [**projectsTagsGet**](Resources/docs/Api/ProjectsApiInterface.md#projectstagsget) | **GET** /projects/tags | Get all possible project tags. Some Tags will only be availabe during events.
+*ProjectsApiInterface* | [**projectsUserGet**](Resources/docs/Api/ProjectsApiInterface.md#projectsuserget) | **GET** /projects/user | Get the projects of the logged in user
 *ProjectsApiInterface* | [**projectsUserIdGet**](Resources/docs/Api/ProjectsApiInterface.md#projectsuseridget) | **GET** /projects/user/{id} | Get the public projects of a given user
 *SearchApiInterface* | [**searchGet**](Resources/docs/Api/SearchApiInterface.md#searchget) | **GET** /search | Search for projects, users,..  -- StatusCode: 501 - Not yet implemented
 *UserApiInterface* | [**userDelete**](Resources/docs/Api/UserApiInterface.md#userdelete) | **DELETE** /user | Delete user account
