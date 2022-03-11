@@ -812,6 +812,32 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
+  '/project/{id}/catrobat':
+    get:
+      tags:
+        - Projects
+      summary: 'Download the catrobat (=zip) file of a project -- StatusCode: 501 - Not yet implemented'
+      parameters:
+        - $ref: '#/components/parameters/Uuid'
+      responses:
+        '200':
+          description: "Catrobat file successfully downloaded"
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+                example: 'projectName.catrobat'
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+                description: Used only with `application/zip` responses
+                example: attachment; filename="name.catrobat"
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+
   '/project/{id}/report':
     post:
       security:
