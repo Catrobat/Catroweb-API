@@ -131,7 +131,7 @@ Class | Method | HTTP request | Description
 *NotificationsApiInterface* | [**notificationsCountGet**](Resources/docs/Api/NotificationsApiInterface.md#notificationscountget) | **GET** /notifications/count | Count the number of unseen notifications -- StatusCode: 501 - Not yet implemented
 *NotificationsApiInterface* | [**notificationsGet**](Resources/docs/Api/NotificationsApiInterface.md#notificationsget) | **GET** /notifications | Get user notifications -- StatusCode: 501 - Not yet implemented
 *NotificationsApiInterface* | [**notificationsReadPut**](Resources/docs/Api/NotificationsApiInterface.md#notificationsreadput) | **PUT** /notifications/read | Mark all notifications as read -- StatusCode: 501 - Not yet implemented
-*ProjectsApiInterface* | [**projectIdCatrobatGet**](Resources/docs/Api/ProjectsApiInterface.md#projectidcatrobatget) | **GET** /project/{id}/catrobat | Download the catrobat (&#x3D;zip) file of a project -- StatusCode: 501 - Not yet implemented
+*ProjectsApiInterface* | [**projectIdCatrobatGet**](Resources/docs/Api/ProjectsApiInterface.md#projectidcatrobatget) | **GET** /project/{id}/catrobat | Download the .catrobat (&#x3D;zip) file of a project
 *ProjectsApiInterface* | [**projectIdDelete**](Resources/docs/Api/ProjectsApiInterface.md#projectiddelete) | **DELETE** /project/{id} | Delete a project -- StatusCode: 501 - Not yet implemented
 *ProjectsApiInterface* | [**projectIdGet**](Resources/docs/Api/ProjectsApiInterface.md#projectidget) | **GET** /project/{id} | Get the information of a project
 *ProjectsApiInterface* | [**projectIdRecommendationsGet**](Resources/docs/Api/ProjectsApiInterface.md#projectidrecommendationsget) | **GET** /project/{id}/recommendations | Get recommended projects related to the specific project

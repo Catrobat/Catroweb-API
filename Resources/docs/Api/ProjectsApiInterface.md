@@ -4,7 +4,7 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**projectIdCatrobatGet**](ProjectsApiInterface.md#projectIdCatrobatGet) | **GET** /project/{id}/catrobat | Download the catrobat (&#x3D;zip) file of a project -- StatusCode: 501 - Not yet implemented
+[**projectIdCatrobatGet**](ProjectsApiInterface.md#projectIdCatrobatGet) | **GET** /project/{id}/catrobat | Download the .catrobat (&#x3D;zip) file of a project
 [**projectIdDelete**](ProjectsApiInterface.md#projectIdDelete) | **DELETE** /project/{id} | Delete a project -- StatusCode: 501 - Not yet implemented
 [**projectIdGet**](ProjectsApiInterface.md#projectIdGet) | **GET** /project/{id} | Get the information of a project
 [**projectIdRecommendationsGet**](ProjectsApiInterface.md#projectIdRecommendationsGet) | **GET** /project/{id}/recommendations | Get recommended projects related to the specific project
@@ -35,7 +35,9 @@ services:
 ## **projectIdCatrobatGet**
 > UploadedFile projectIdCatrobatGet($id)
 
-Download the catrobat (=zip) file of a project -- StatusCode: 501 - Not yet implemented
+Download the .catrobat (=zip) file of a project
+
+If the request is made by an authenticated user, further internal actions are triggered. (Download counter, ...)
 
 ### Example Implementation
 ```php
@@ -80,7 +82,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/zip
+ - **Accept**: application/octet-stream
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
