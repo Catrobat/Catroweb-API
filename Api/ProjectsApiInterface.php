@@ -52,7 +52,7 @@ interface ProjectsApiInterface
   /**
    * Operation projectIdCatrobatGet.
    *
-   * Download the catrobat (=zip) file of a project -- StatusCode: 501 - Not yet implemented
+   * Download the .catrobat (=zip) file of a project
    *
    * @param \string $id              (required)
    * @param \int    $responseCode    The HTTP response code to return

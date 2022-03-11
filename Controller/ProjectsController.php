@@ -51,7 +51,7 @@ class ProjectsController extends Controller
   /**
    * Operation projectIdCatrobatGet.
    *
-   * Download the catrobat (=zip) file of a project -- StatusCode: 501 - Not yet implemented
+   * Download the .catrobat (=zip) file of a project
    *
    * @param Request $request the Symfony request to handle
    * @param mixed   $id
@@ -106,10 +106,16 @@ class ProjectsController extends Controller
       // Find a more specific message, if available
       switch ($responseCode) {
                 case 200:
-                    $message = 'Catrobat file successfully downloaded';
+                    $message = '.catrobat file successfully downloaded';
+                    break;
+                case 400:
+                    $message = 'Bad request (Invalid, or missing parameters)';
                     break;
                 case 404:
                     $message = 'Not found';
+                    break;
+                case 500:
+                    $message = 'We were not able to create a .catrobat file for this project. There is a high possibility that the project files are missing on the server.';
                     break;
             }
 
