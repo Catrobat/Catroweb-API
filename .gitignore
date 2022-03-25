@@ -1,6 +1,7 @@
 # ref: https://github.com/github/gitignore/blob/master/Symfony.gitignore
 
 .idea/
+.php-cs-fixer.cache
 
 # Cache and logs (Symfony2)
 /app/cache/*

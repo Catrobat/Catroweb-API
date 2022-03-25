@@ -24,7 +24,7 @@
  * @return void
  */
 spl_autoload_register(function ($class) {
-    // project-specific namespace prefix
+  // project-specific namespace prefix
   $prefix = 'OpenAPI\\Server\\';
 
   // base directory for the namespace prefix
