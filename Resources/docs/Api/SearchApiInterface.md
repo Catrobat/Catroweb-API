@@ -4,7 +4,7 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**searchGet**](SearchApiInterface.md#searchGet) | **GET** /search | Search for projects, users,..  -- StatusCode: 501 - Not yet implemented
+[**searchGet**](SearchApiInterface.md#searchGet) | **GET** /search | Search for projects, users,..
 
 
 ## Service Declaration
@@ -22,7 +22,7 @@ services:
 ## **searchGet**
 > OpenAPI\Server\Model\SearchResponse searchGet($query, $type, $limit, $offset)
 
-Search for projects, users,..  -- StatusCode: 501 - Not yet implemented
+Search for projects, users,..
 
 The default is to search in all categories.
 

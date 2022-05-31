@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **author** | **string** |  | [optional] 
 **extension** | **string** |  | [optional] 
 **download_url** | **string** |  | [optional] 
+**size** | **int** | Size of the file in bytes | [optional] 
+**file_type** | **string** | Type of the media file | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

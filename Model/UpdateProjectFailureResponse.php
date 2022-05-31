@@ -1,6 +1,6 @@
 <?php
 /**
- * ResetPasswordErrorResponse.
+ * UpdateProjectFailureResponse.
  *
  * PHP version 7.1.3
  *
@@ -34,20 +34,20 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the ResetPasswordErrorResponse model.
+ * Class representing the UpdateProjectFailureResponse model.
  *
  * @author  OpenAPI Generator team
  */
-class ResetPasswordErrorResponse
+class UpdateProjectFailureResponse
 {
   /**
    * @var string|null
-   * @SerializedName("email")
-   * @Assert\Choice({ "Email invalid", "Email missing" })
+   * @SerializedName("error")
+   * @Assert\Choice({ "Failed saving details of the project.", "Failed reading, converting or storing the screenshot. Please check your input." })
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $email;
+  protected $error;
 
   /**
    * Constructor.
@@ -56,25 +56,25 @@ class ResetPasswordErrorResponse
    */
   public function __construct(array $data = null)
   {
-    $this->email = isset($data['email']) ? $data['email'] : null;
+    $this->error = isset($data['error']) ? $data['error'] : null;
   }
 
   /**
-   * Gets email.
+   * Gets error.
    */
-  public function getEmail(): ?string
+  public function getError(): ?string
   {
-    return $this->email;
+    return $this->error;
   }
 
   /**
-   * Sets email.
+   * Sets error.
    *
    * @return $this
    */
-  public function setEmail(string $email = null)
+  public function setError(string $error = null)
   {
-    $this->email = $email;
+    $this->error = $error;
 
     return $this;
   }

@@ -1,6 +1,6 @@
 <?php
 /**
- * ResetPasswordErrorResponse.
+ * UpdateUserRequestAllOf.
  *
  * PHP version 7.1.3
  *
@@ -34,20 +34,21 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the ResetPasswordErrorResponse model.
+ * Class representing the UpdateUserRequestAllOf model.
  *
  * @author  OpenAPI Generator team
  */
-class ResetPasswordErrorResponse
+class UpdateUserRequestAllOf
 {
   /**
+   * The current password of the user. Required for changing the password.
+   *
    * @var string|null
-   * @SerializedName("email")
-   * @Assert\Choice({ "Email invalid", "Email missing" })
+   * @SerializedName("currentPassword")
    * @Assert\Type("string")
    * @Type("string")
    */
-  protected $email;
+  protected $current_password;
 
   /**
    * Constructor.
@@ -56,25 +57,27 @@ class ResetPasswordErrorResponse
    */
   public function __construct(array $data = null)
   {
-    $this->email = isset($data['email']) ? $data['email'] : null;
+    $this->current_password = isset($data['current_password']) ? $data['current_password'] : null;
   }
 
   /**
-   * Gets email.
+   * Gets current_password.
    */
-  public function getEmail(): ?string
+  public function getCurrentPassword(): ?string
   {
-    return $this->email;
+    return $this->current_password;
   }
 
   /**
-   * Sets email.
+   * Sets current_password.
+   *
+   * @param string|null $current_password The current password of the user. Required for changing the password.
    *
    * @return $this
    */
-  public function setEmail(string $email = null)
+  public function setCurrentPassword(string $current_password = null)
   {
-    $this->email = $email;
+    $this->current_password = $current_password;
 
     return $this;
   }
