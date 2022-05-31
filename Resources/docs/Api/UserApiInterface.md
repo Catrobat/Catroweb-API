@@ -347,7 +347,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **usersSearchGet**
-> OpenAPI\Server\Model\BasicUserDataResponse usersSearchGet($query, $limit, $offset)
+> OpenAPI\Server\Model\BasicUserDataResponse usersSearchGet($query, $limit, $offset, $attributes)
 
 Search for users
 
@@ -370,7 +370,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#usersSearchGet
      */
-    public function usersSearchGet(string $query, int $limit = '20', int $offset = '0')
+    public function usersSearchGet(string $query, int $limit = '20', int $offset = '0', string $attributes = null)
     {
         // Implement the operation ...
     }
@@ -386,6 +386,7 @@ Name | Type | Description  | Notes
  **query** | **string**|  |
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
+ **attributes** | **string**|  | [optional]
 
 ### Return type
 

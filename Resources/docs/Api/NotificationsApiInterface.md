@@ -4,10 +4,10 @@ All URIs are relative to *https://share.catrob.at/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**notificationIdReadPut**](NotificationsApiInterface.md#notificationIdReadPut) | **PUT** /notification/{id}/read | Mark specified notification as read - StatusCode: 501 - Not yet implemented
-[**notificationsCountGet**](NotificationsApiInterface.md#notificationsCountGet) | **GET** /notifications/count | Count the number of unseen notifications -- StatusCode: 501 - Not yet implemented
+[**notificationIdReadPut**](NotificationsApiInterface.md#notificationIdReadPut) | **PUT** /notification/{id}/read | Mark specified notification as read
+[**notificationsCountGet**](NotificationsApiInterface.md#notificationsCountGet) | **GET** /notifications/count | Count the number of unseen notifications
 [**notificationsGet**](NotificationsApiInterface.md#notificationsGet) | **GET** /notifications | Get user notifications -- StatusCode: 501 - Not yet implemented
-[**notificationsReadPut**](NotificationsApiInterface.md#notificationsReadPut) | **PUT** /notifications/read | Mark all notifications as read -- StatusCode: 501 - Not yet implemented
+[**notificationsReadPut**](NotificationsApiInterface.md#notificationsReadPut) | **PUT** /notifications/read | Mark all notifications as read
 
 
 ## Service Declaration
@@ -25,7 +25,7 @@ services:
 ## **notificationIdReadPut**
 > notificationIdReadPut($id, $accept_language)
 
-Mark specified notification as read - StatusCode: 501 - Not yet implemented
+Mark specified notification as read
 
 ### Example Implementation
 ```php
@@ -78,7 +78,7 @@ void (empty response body)
 ## **notificationsCountGet**
 > OpenAPI\Server\Model\NotificationsCountResponse notificationsCountGet()
 
-Count the number of unseen notifications -- StatusCode: 501 - Not yet implemented
+Count the number of unseen notifications
 
 ### Example Implementation
 ```php
@@ -125,7 +125,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **notificationsGet**
-> OpenAPI\Server\Model\NotificationResponse notificationsGet($accept_language, $limit, $offset, $type)
+> OpenAPI\Server\Model\NotificationResponse notificationsGet($accept_language, $limit, $offset, $attributes, $type)
 
 Get user notifications -- StatusCode: 501 - Not yet implemented
 
@@ -146,7 +146,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationsGet
      */
-    public function notificationsGet(string $accept_language = null, int $limit = '20', int $offset = '0', NotificationsType $type = null)
+    public function notificationsGet(string $accept_language = null, int $limit = '20', int $offset = '0', string $attributes = null, NotificationsType $type = null)
     {
         // Implement the operation ...
     }
@@ -162,6 +162,7 @@ Name | Type | Description  | Notes
  **accept_language** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
+ **attributes** | **string**|  | [optional]
  **type** | [**OpenAPI\Server\Model\NotificationsType**](../Model/.md)|  | [optional]
 
 ### Return type
@@ -182,7 +183,7 @@ Name | Type | Description  | Notes
 ## **notificationsReadPut**
 > notificationsReadPut()
 
-Mark all notifications as read -- StatusCode: 501 - Not yet implemented
+Mark all notifications as read
 
 ### Example Implementation
 ```php

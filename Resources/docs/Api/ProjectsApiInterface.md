@@ -5,8 +5,9 @@ All URIs are relative to *https://share.catrob.at/api*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**projectIdCatrobatGet**](ProjectsApiInterface.md#projectIdCatrobatGet) | **GET** /project/{id}/catrobat | Download the .catrobat (&#x3D;zip) file of a project
-[**projectIdDelete**](ProjectsApiInterface.md#projectIdDelete) | **DELETE** /project/{id} | Delete a project -- StatusCode: 501 - Not yet implemented
+[**projectIdDelete**](ProjectsApiInterface.md#projectIdDelete) | **DELETE** /project/{id} | Delete a project
 [**projectIdGet**](ProjectsApiInterface.md#projectIdGet) | **GET** /project/{id} | Get the information of a project
+[**projectIdPut**](ProjectsApiInterface.md#projectIdPut) | **PUT** /project/{id} | Update details of a project
 [**projectIdRecommendationsGet**](ProjectsApiInterface.md#projectIdRecommendationsGet) | **GET** /project/{id}/recommendations | Get recommended projects related to the specific project
 [**projectIdReportPost**](ProjectsApiInterface.md#projectIdReportPost) | **POST** /project/{id}/report | Report a project -- StatusCode: 501 - Not yet implemented
 [**projectsCategoriesGet**](ProjectsApiInterface.md#projectsCategoriesGet) | **GET** /projects/categories | Get default number of projects per category (Most downloaded etc.)
@@ -89,7 +90,7 @@ No authorization required
 ## **projectIdDelete**
 > projectIdDelete($id)
 
-Delete a project -- StatusCode: 501 - Not yet implemented
+Delete a project
 
 ### Example Implementation
 ```php
@@ -190,8 +191,64 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
+## **projectIdPut**
+> array projectIdPut($id, $update_project_request, $accept_language)
+
+Update details of a project
+
+Update one of your projects. All attributes are optional. For example you can update only the description. Or you can update multiple attributes at once.
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/ProjectsApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\ProjectsApiInterface;
+
+class ProjectsApi implements ProjectsApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of ProjectsApiInterface#projectIdPut
+     */
+    public function projectIdPut(string $id, UpdateProjectRequest $update_project_request, string $accept_language = null)
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**|  |
+ **update_project_request** | [**OpenAPI\Server\Model\UpdateProjectRequest**](../Model/UpdateProjectRequest.md)|  |
+ **accept_language** | **string**|  | [optional]
+
+### Return type
+
+**array**
+
+### Authorization
+
+[PandaAuth](../../README.md#PandaAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
 ## **projectIdRecommendationsGet**
-> OpenAPI\Server\Model\ProjectResponse projectIdRecommendationsGet($id, $category, $accept_language, $max_version, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\ProjectResponse projectIdRecommendationsGet($id, $category, $accept_language, $max_version, $limit, $offset, $attributes, $flavor)
 
 Get recommended projects related to the specific project
 
@@ -212,7 +269,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectIdRecommendationsGet
      */
-    public function projectIdRecommendationsGet(string $id, string $category, string $accept_language = null, string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
+    public function projectIdRecommendationsGet(string $id, string $category, string $accept_language = null, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -231,6 +288,7 @@ Name | Type | Description  | Notes
  **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
+ **attributes** | **string**|  | [optional]
  **flavor** | **string**|  | [optional]
 
 ### Return type
@@ -408,7 +466,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsFeaturedGet**
-> OpenAPI\Server\Model\FeaturedProjectResponse projectsFeaturedGet($platform, $max_version, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\FeaturedProjectResponse projectsFeaturedGet($platform, $max_version, $limit, $offset, $attributes, $flavor)
 
 Get the currently featured projects
 
@@ -429,7 +487,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsFeaturedGet
      */
-    public function projectsFeaturedGet(string $platform = null, string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
+    public function projectsFeaturedGet(string $platform = null, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -446,6 +504,7 @@ Name | Type | Description  | Notes
  **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
+ **attributes** | **string**|  | [optional]
  **flavor** | **string**|  | [optional]
 
 ### Return type
@@ -464,7 +523,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsGet**
-> OpenAPI\Server\Model\ProjectResponse projectsGet($category, $accept_language, $max_version, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\ProjectResponse projectsGet($category, $accept_language, $max_version, $limit, $offset, $attributes, $flavor)
 
 Get projects
 
@@ -485,7 +544,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsGet
      */
-    public function projectsGet(string $category, string $accept_language = null, string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
+    public function projectsGet(string $category, string $accept_language = null, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -503,6 +562,7 @@ Name | Type | Description  | Notes
  **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
+ **attributes** | **string**|  | [optional]
  **flavor** | **string**|  | [optional]
 
 ### Return type
@@ -577,7 +637,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsSearchGet**
-> OpenAPI\Server\Model\ProjectResponse projectsSearchGet($query, $max_version, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\ProjectResponse projectsSearchGet($query, $max_version, $limit, $offset, $attributes, $flavor)
 
 Search for projects associated with a keywords
 
@@ -598,7 +658,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsSearchGet
      */
-    public function projectsSearchGet(string $query, string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
+    public function projectsSearchGet(string $query, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -615,6 +675,7 @@ Name | Type | Description  | Notes
  **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
+ **attributes** | **string**|  | [optional]
  **flavor** | **string**|  | [optional]
 
 ### Return type
@@ -685,7 +746,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsUserGet**
-> OpenAPI\Server\Model\ProjectResponse projectsUserGet($max_version, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\ProjectResponse projectsUserGet($max_version, $limit, $offset, $attributes, $flavor)
 
 Get the projects of the logged in user
 
@@ -706,7 +767,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUserGet
      */
-    public function projectsUserGet(string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
+    public function projectsUserGet(string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -722,6 +783,7 @@ Name | Type | Description  | Notes
  **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
+ **attributes** | **string**|  | [optional]
  **flavor** | **string**|  | [optional]
 
 ### Return type
@@ -740,7 +802,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsUserIdGet**
-> OpenAPI\Server\Model\ProjectResponse projectsUserIdGet($id, $max_version, $limit, $offset, $flavor)
+> OpenAPI\Server\Model\ProjectResponse projectsUserIdGet($id, $max_version, $limit, $offset, $attributes, $flavor)
 
 Get the public projects of a given user
 
@@ -761,7 +823,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUserIdGet
      */
-    public function projectsUserIdGet(string $id, string $max_version = null, int $limit = '20', int $offset = '0', string $flavor = null)
+    public function projectsUserIdGet(string $id, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -778,6 +840,7 @@ Name | Type | Description  | Notes
  **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
+ **attributes** | **string**|  | [optional]
  **flavor** | **string**|  | [optional]
 
 ### Return type

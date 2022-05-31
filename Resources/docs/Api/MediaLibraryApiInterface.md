@@ -23,7 +23,7 @@ services:
 ```
 
 ## **mediaFileIdGet**
-> OpenAPI\Server\Model\MediaFileResponse mediaFileIdGet($id)
+> OpenAPI\Server\Model\MediaFileResponse mediaFileIdGet($id, $attributes)
 
 Get the information of a specific media file
 
@@ -44,7 +44,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaFileIdGet
      */
-    public function mediaFileIdGet(int $id)
+    public function mediaFileIdGet(int $id, string $attributes = null)
     {
         // Implement the operation ...
     }
@@ -58,6 +58,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| ID of any given media file |
+ **attributes** | **string**|  | [optional]
 
 ### Return type
 
@@ -75,7 +76,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **mediaFilesGet**
-> OpenAPI\Server\Model\MediaFileResponse mediaFilesGet($limit, $offset, $flavor)
+> OpenAPI\Server\Model\MediaFileResponse mediaFilesGet($limit, $offset, $attributes, $flavor)
 
 Get *all* content of the media library.
 
@@ -96,7 +97,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaFilesGet
      */
-    public function mediaFilesGet(int $limit = '20', int $offset = '0', string $flavor = null)
+    public function mediaFilesGet(int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
     {
         // Implement the operation ...
     }
@@ -111,6 +112,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
+ **attributes** | **string**|  | [optional]
  **flavor** | **string**|  | [optional]
 
 ### Return type
@@ -129,7 +131,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **mediaFilesSearchGet**
-> OpenAPI\Server\Model\MediaFileResponse mediaFilesSearchGet($query, $flavor, $limit, $offset, $package_name)
+> OpenAPI\Server\Model\MediaFileResponse mediaFilesSearchGet($query, $limit, $offset, $attributes, $flavor, $package_name)
 
 Search for mediafiles associated with keywords
 
@@ -150,7 +152,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaFilesSearchGet
      */
-    public function mediaFilesSearchGet(string $query, string $flavor = null, int $limit = '20', int $offset = '0', string $package_name = null)
+    public function mediaFilesSearchGet(string $query, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, string $package_name = null)
     {
         // Implement the operation ...
     }
@@ -164,9 +166,10 @@ class MediaLibraryApi implements MediaLibraryApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query** | **string**|  |
- **flavor** | **string**|  | [optional]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
+ **attributes** | **string**|  | [optional]
+ **flavor** | **string**|  | [optional]
  **package_name** | **string**| In which package you want to search (for more fine tuned results) | [optional]
 
 ### Return type
@@ -185,7 +188,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **mediaPackageNameGet**
-> OpenAPI\Server\Model\MediaFileResponse mediaPackageNameGet($name, $limit, $offset)
+> OpenAPI\Server\Model\MediaFileResponse mediaPackageNameGet($name, $limit, $offset, $attributes)
 
 Get media-library asstes of a named package
 
@@ -206,7 +209,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaPackageNameGet
      */
-    public function mediaPackageNameGet(string $name, int $limit = '20', int $offset = '0')
+    public function mediaPackageNameGet(string $name, int $limit = '20', int $offset = '0', string $attributes = null)
     {
         // Implement the operation ...
     }
@@ -222,6 +225,7 @@ Name | Type | Description  | Notes
  **name** | **string**| Name of the package |
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
+ **attributes** | **string**|  | [optional]
 
 ### Return type
 

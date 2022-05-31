@@ -47,8 +47,12 @@ Model/ResetPasswordRequest.php
 Model/SearchResponse.php
 Model/SurveyResponse.php
 Model/TagResponse.php
+Model/UpdateProjectErrorResponse.php
+Model/UpdateProjectFailureResponse.php
+Model/UpdateProjectRequest.php
 Model/UpdateUserErrorResponse.php
 Model/UpdateUserRequest.php
+Model/UpdateUserRequestAllOf.php
 Model/UpgradeTokenRequest.php
 Model/UploadErrorResponse.php
 OpenAPIServerBundle.php
@@ -90,8 +94,12 @@ Resources/docs/Model/ResetPasswordRequest.md
 Resources/docs/Model/SearchResponse.md
 Resources/docs/Model/SurveyResponse.md
 Resources/docs/Model/TagResponse.md
+Resources/docs/Model/UpdateProjectErrorResponse.md
+Resources/docs/Model/UpdateProjectFailureResponse.md
+Resources/docs/Model/UpdateProjectRequest.md
 Resources/docs/Model/UpdateUserErrorResponse.md
 Resources/docs/Model/UpdateUserRequest.md
+Resources/docs/Model/UpdateUserRequestAllOf.md
 Resources/docs/Model/UpgradeTokenRequest.md
 Resources/docs/Model/UploadErrorResponse.md
 Service/JmsSerializer.php
@@ -137,7 +145,11 @@ Tests/Model/ResetPasswordRequestTest.php
 Tests/Model/SearchResponseTest.php
 Tests/Model/SurveyResponseTest.php
 Tests/Model/TagResponseTest.php
+Tests/Model/UpdateProjectErrorResponseTest.php
+Tests/Model/UpdateProjectFailureResponseTest.php
+Tests/Model/UpdateProjectRequestTest.php
 Tests/Model/UpdateUserErrorResponseTest.php
+Tests/Model/UpdateUserRequestAllOfTest.php
 Tests/Model/UpdateUserRequestTest.php
 Tests/Model/UpgradeTokenRequestTest.php
 Tests/Model/UploadErrorResponseTest.php

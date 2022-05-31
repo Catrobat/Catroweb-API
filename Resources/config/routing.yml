@@ -120,6 +120,14 @@ open_api_server_projects_projectidget:
     requirements:
         id: '^[a-zA-Z0-9\\-]+$'
 
+open_api_server_projects_projectidput:
+    path:     /project/{id}
+    methods:  [PUT]
+    defaults:
+        _controller: open_api_server.controller.projects:projectIdPutAction
+    requirements:
+        id: '^[a-zA-Z0-9\\-]+$'
+
 open_api_server_projects_projectidrecommendationsget:
     path:     /project/{id}/recommendations
     methods:  [GET]
