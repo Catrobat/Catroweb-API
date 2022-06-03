@@ -12,11 +12,10 @@ Method | HTTP request | Description
 
 ## Service Declaration
 ```yaml
-# src/Acme/MyBundle/Resources/services.yml
+# config/services.yml
 services:
     # ...
-    acme.my_bundle.api.mediaLibrary:
-        class: Acme\MyBundle\Api\MediaLibraryApi
+    Acme\MyBundle\Api\MediaLibraryApi:
         tags:
             - { name: "open_api_server.api", api: "mediaLibrary" }
     # ...
@@ -44,7 +43,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaFileIdGet
      */
-    public function mediaFileIdGet(int $id, string $attributes = null)
+    public function mediaFileIdGet(int $id, string $attributes = null, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\MediaFileResponse
     {
         // Implement the operation ...
     }
@@ -97,7 +96,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaFilesGet
      */
-    public function mediaFilesGet(int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
+    public function mediaFilesGet(int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -152,7 +151,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaFilesSearchGet
      */
-    public function mediaFilesSearchGet(string $query, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, string $package_name = null)
+    public function mediaFilesSearchGet(string $query, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, string $package_name = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -209,7 +208,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaPackageNameGet
      */
-    public function mediaPackageNameGet(string $name, int $limit = '20', int $offset = '0', string $attributes = null)
+    public function mediaPackageNameGet(string $name, int $limit = '20', int $offset = '0', string $attributes = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }

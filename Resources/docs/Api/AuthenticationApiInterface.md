@@ -14,11 +14,10 @@ Method | HTTP request | Description
 
 ## Service Declaration
 ```yaml
-# src/Acme/MyBundle/Resources/services.yml
+# config/services.yml
 services:
     # ...
-    acme.my_bundle.api.authentication:
-        class: Acme\MyBundle\Api\AuthenticationApi
+    Acme\MyBundle\Api\AuthenticationApi:
         tags:
             - { name: "open_api_server.api", api: "authentication" }
     # ...
@@ -48,7 +47,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationDelete
      */
-    public function authenticationDelete(string $x_refresh)
+    public function authenticationDelete(string $x_refresh, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -102,7 +101,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationGet
      */
-    public function authenticationGet()
+    public function authenticationGet(, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -153,7 +152,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationOauthPost
      */
-    public function authenticationOauthPost(OAuthLoginRequest $o_auth_login_request)
+    public function authenticationOauthPost(OAuthLoginRequest $o_auth_login_request, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\JWTResponse
     {
         // Implement the operation ...
     }
@@ -207,7 +206,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationPost
      */
-    public function authenticationPost(LoginRequest $login_request)
+    public function authenticationPost(LoginRequest $login_request, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\JWTResponse
     {
         // Implement the operation ...
     }
@@ -261,7 +260,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationRefreshPost
      */
-    public function authenticationRefreshPost(RefreshRequest $refresh_request)
+    public function authenticationRefreshPost(RefreshRequest $refresh_request, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\JWTResponse
     {
         // Implement the operation ...
     }
@@ -315,7 +314,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationUpgradePost
      */
-    public function authenticationUpgradePost(UpgradeTokenRequest $upgrade_token_request)
+    public function authenticationUpgradePost(UpgradeTokenRequest $upgrade_token_request, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\JWTResponse
     {
         // Implement the operation ...
     }

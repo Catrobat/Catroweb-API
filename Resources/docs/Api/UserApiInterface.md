@@ -15,11 +15,10 @@ Method | HTTP request | Description
 
 ## Service Declaration
 ```yaml
-# src/Acme/MyBundle/Resources/services.yml
+# config/services.yml
 services:
     # ...
-    acme.my_bundle.api.user:
-        class: Acme\MyBundle\Api\UserApi
+    Acme\MyBundle\Api\UserApi:
         tags:
             - { name: "open_api_server.api", api: "user" }
     # ...
@@ -49,7 +48,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userDelete
      */
-    public function userDelete()
+    public function userDelete(, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -100,7 +99,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userGet
      */
-    public function userGet()
+    public function userGet(, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\ExtendedUserDataResponse
     {
         // Implement the operation ...
     }
@@ -151,7 +150,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userIdGet
      */
-    public function userIdGet(string $id)
+    public function userIdGet(string $id, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\BasicUserDataResponse
     {
         // Implement the operation ...
     }
@@ -205,7 +204,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userPost
      */
-    public function userPost(RegisterRequest $register_request, string $accept_language = null)
+    public function userPost(RegisterRequest $register_request, string $accept_language = null, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\JWTResponse
     {
         // Implement the operation ...
     }
@@ -260,7 +259,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userPut
      */
-    public function userPut(UpdateUserRequest $update_user_request, string $accept_language = null)
+    public function userPut(UpdateUserRequest $update_user_request, string $accept_language = null, &$responseCode, array &$responseHeaders): array|\array
     {
         // Implement the operation ...
     }
@@ -315,7 +314,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userResetPasswordPost
      */
-    public function userResetPasswordPost(ResetPasswordRequest $reset_password_request, string $accept_language = null)
+    public function userResetPasswordPost(ResetPasswordRequest $reset_password_request, string $accept_language = null, &$responseCode, array &$responseHeaders): array|\array
     {
         // Implement the operation ...
     }
@@ -370,7 +369,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#usersSearchGet
      */
-    public function usersSearchGet(string $query, int $limit = '20', int $offset = '0', string $attributes = null)
+    public function usersSearchGet(string $query, int $limit = '20', int $offset = '0', string $attributes = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }

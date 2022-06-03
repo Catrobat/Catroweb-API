@@ -16,21 +16,24 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
+        "php": ">=7.4.0|>=8.0.2",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "symfony/validator": "*",
-        "jms/serializer-bundle": "^3.5|^4.0",
-        "symfony/framework-bundle": "^4.4|^5.0|^6.0"
+        "symfony/validator": "^5.0|^6.0",
+        "jms/serializer-bundle": "^4.0",
+        "symfony/framework-bundle": "^5.0|^6.0"
     },
     "require-dev": {
-        "symfony/browser-kit": "*"
+        "phpunit/phpunit": "^9.5",
+        "friendsofphp/php-cs-fixer": "*",
+        "symfony/browser-kit": "^5.0|^6.0",
+        "symfony/yaml": "^5.0|^6.0",
+        "hoa/regex": "~1.0"
     },
     "autoload": {
-        "psr-4": { "OpenAPI\\Server\\" : "./" }
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit"
+        "psr-4": {
+            "OpenAPI\\Server\\" : "./"
+        }
     }
 }

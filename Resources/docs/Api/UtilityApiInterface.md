@@ -10,11 +10,10 @@ Method | HTTP request | Description
 
 ## Service Declaration
 ```yaml
-# src/Acme/MyBundle/Resources/services.yml
+# config/services.yml
 services:
     # ...
-    acme.my_bundle.api.utility:
-        class: Acme\MyBundle\Api\UtilityApi
+    Acme\MyBundle\Api\UtilityApi:
         tags:
             - { name: "open_api_server.api", api: "utility" }
     # ...
@@ -42,7 +41,7 @@ class UtilityApi implements UtilityApiInterface
     /**
      * Implementation of UtilityApiInterface#healthGet
      */
-    public function healthGet()
+    public function healthGet(, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -91,7 +90,7 @@ class UtilityApi implements UtilityApiInterface
     /**
      * Implementation of UtilityApiInterface#surveyLangCodeGet
      */
-    public function surveyLangCodeGet(string $lang_code, string $flavor = null)
+    public function surveyLangCodeGet(string $lang_code, string $flavor = null, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\SurveyResponse
     {
         // Implement the operation ...
     }

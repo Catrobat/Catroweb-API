@@ -9,11 +9,10 @@ Method | HTTP request | Description
 
 ## Service Declaration
 ```yaml
-# src/Acme/MyBundle/Resources/services.yml
+# config/services.yml
 services:
     # ...
-    acme.my_bundle.api.search:
-        class: Acme\MyBundle\Api\SearchApi
+    Acme\MyBundle\Api\SearchApi:
         tags:
             - { name: "open_api_server.api", api: "search" }
     # ...
@@ -43,7 +42,7 @@ class SearchApi implements SearchApiInterface
     /**
      * Implementation of SearchApiInterface#searchGet
      */
-    public function searchGet(string $query, string $type = null, int $limit = '20', int $offset = '0')
+    public function searchGet(string $query, string $type = null, int $limit = '20', int $offset = '0', &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\SearchResponse
     {
         // Implement the operation ...
     }

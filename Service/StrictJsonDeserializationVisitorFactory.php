@@ -9,25 +9,26 @@ use JMS\Serializer\Visitor\Factory\DeserializationVisitorFactory;
 
 final class StrictJsonDeserializationVisitorFactory implements DeserializationVisitorFactory
 {
-  private int $options = 0;
-  private int $depth = 512;
+    private int $options = 0;
 
-  public function getVisitor(): DeserializationVisitorInterface
-  {
-    return new StrictJsonDeserializationVisitor($this->options, $this->depth);
-  }
+    private int $depth = 512;
 
-  public function setOptions(int $options): self
-  {
-    $this->options = $options;
+    public function getVisitor(): DeserializationVisitorInterface
+    {
+        return new StrictJsonDeserializationVisitor($this->options, $this->depth);
+    }
 
-    return $this;
-  }
+    public function setOptions(int $options): self
+    {
+        $this->options = $options;
 
-  public function setDepth(int $depth): self
-  {
-    $this->depth = $depth;
+        return $this;
+    }
 
-    return $this;
-  }
+    public function setDepth(int $depth): self
+    {
+        $this->depth = $depth;
+
+        return $this;
+    }
 }

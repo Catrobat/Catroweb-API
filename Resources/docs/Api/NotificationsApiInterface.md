@@ -12,11 +12,10 @@ Method | HTTP request | Description
 
 ## Service Declaration
 ```yaml
-# src/Acme/MyBundle/Resources/services.yml
+# config/services.yml
 services:
     # ...
-    acme.my_bundle.api.notifications:
-        class: Acme\MyBundle\Api\NotificationsApi
+    Acme\MyBundle\Api\NotificationsApi:
         tags:
             - { name: "open_api_server.api", api: "notifications" }
     # ...
@@ -44,7 +43,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationIdReadPut
      */
-    public function notificationIdReadPut(int $id, string $accept_language = null)
+    public function notificationIdReadPut(int $id, string $accept_language = null, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -97,7 +96,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationsCountGet
      */
-    public function notificationsCountGet()
+    public function notificationsCountGet(, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\NotificationsCountResponse
     {
         // Implement the operation ...
     }
@@ -146,7 +145,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationsGet
      */
-    public function notificationsGet(string $accept_language = null, int $limit = '20', int $offset = '0', string $attributes = null, NotificationsType $type = null)
+    public function notificationsGet(string $accept_language = null, int $limit = '20', int $offset = '0', string $attributes = null, $type = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -163,7 +162,7 @@ Name | Type | Description  | Notes
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
  **attributes** | **string**|  | [optional]
- **type** | [**OpenAPI\Server\Model\NotificationsType**](../Model/.md)|  | [optional]
+ **type** | [**NotificationsType**](../Model/.md)|  | [optional]
 
 ### Return type
 
@@ -202,7 +201,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationsReadPut
      */
-    public function notificationsReadPut()
+    public function notificationsReadPut(, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }

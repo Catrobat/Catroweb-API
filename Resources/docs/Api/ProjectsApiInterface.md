@@ -23,11 +23,10 @@ Method | HTTP request | Description
 
 ## Service Declaration
 ```yaml
-# src/Acme/MyBundle/Resources/services.yml
+# config/services.yml
 services:
     # ...
-    acme.my_bundle.api.projects:
-        class: Acme\MyBundle\Api\ProjectsApi
+    Acme\MyBundle\Api\ProjectsApi:
         tags:
             - { name: "open_api_server.api", api: "projects" }
     # ...
@@ -57,7 +56,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectIdCatrobatGet
      */
-    public function projectIdCatrobatGet(string $id)
+    public function projectIdCatrobatGet(string $id, &$responseCode, array &$responseHeaders): array|UploadedFile
     {
         // Implement the operation ...
     }
@@ -109,7 +108,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectIdDelete
      */
-    public function projectIdDelete(string $id)
+    public function projectIdDelete(string $id, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -161,7 +160,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectIdGet
      */
-    public function projectIdGet(string $id)
+    public function projectIdGet(string $id, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\ProjectResponse
     {
         // Implement the operation ...
     }
@@ -215,7 +214,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectIdPut
      */
-    public function projectIdPut(string $id, UpdateProjectRequest $update_project_request, string $accept_language = null)
+    public function projectIdPut(string $id, UpdateProjectRequest $update_project_request, string $accept_language = null, &$responseCode, array &$responseHeaders): array|\array
     {
         // Implement the operation ...
     }
@@ -269,7 +268,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectIdRecommendationsGet
      */
-    public function projectIdRecommendationsGet(string $id, string $category, string $accept_language = null, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
+    public function projectIdRecommendationsGet(string $id, string $category, string $accept_language = null, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -328,7 +327,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectIdReportPost
      */
-    public function projectIdReportPost(string $id, ProjectReportRequest $project_report_request)
+    public function projectIdReportPost(string $id, ProjectReportRequest $project_report_request, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -381,7 +380,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsCategoriesGet
      */
-    public function projectsCategoriesGet(string $max_version = null, string $flavor = null, string $accept_language = null)
+    public function projectsCategoriesGet(string $max_version = null, string $flavor = null, string $accept_language = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -435,7 +434,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsExtensionsGet
      */
-    public function projectsExtensionsGet(string $accept_language = null)
+    public function projectsExtensionsGet(string $accept_language = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -487,7 +486,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsFeaturedGet
      */
-    public function projectsFeaturedGet(string $platform = null, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
+    public function projectsFeaturedGet(string $platform = null, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -544,7 +543,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsGet
      */
-    public function projectsGet(string $category, string $accept_language = null, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
+    public function projectsGet(string $category, string $accept_language = null, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -602,7 +601,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsPost
      */
-    public function projectsPost(string $checksum, UploadedFile $file, string $accept_language = null, string $flavor = null, bool $private = null)
+    public function projectsPost(string $checksum, UploadedFile $file, string $accept_language = null, string $flavor = null, bool $private = null, &$responseCode, array &$responseHeaders): array|\array
     {
         // Implement the operation ...
     }
@@ -658,7 +657,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsSearchGet
      */
-    public function projectsSearchGet(string $query, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
+    public function projectsSearchGet(string $query, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -715,7 +714,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsTagsGet
      */
-    public function projectsTagsGet(string $accept_language = null)
+    public function projectsTagsGet(string $accept_language = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -767,7 +766,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUserGet
      */
-    public function projectsUserGet(string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
+    public function projectsUserGet(string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -823,7 +822,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUserIdGet
      */
-    public function projectsUserIdGet(string $id, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null)
+    public function projectsUserIdGet(string $id, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }

@@ -27,8 +27,8 @@ services:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]
          - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
         tags: ['controller.service_arguments']
-        autowire: true
 
     open_api_server.controller.mediaLibrary:
         class: OpenAPI\Server\Controller\MediaLibraryController
@@ -36,8 +36,8 @@ services:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]
          - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
         tags: ['controller.service_arguments']
-        autowire: true
 
     open_api_server.controller.notifications:
         class: OpenAPI\Server\Controller\NotificationsController
@@ -45,8 +45,8 @@ services:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]
          - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
         tags: ['controller.service_arguments']
-        autowire: true
 
     open_api_server.controller.projects:
         class: OpenAPI\Server\Controller\ProjectsController
@@ -54,8 +54,8 @@ services:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]
          - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
         tags: ['controller.service_arguments']
-        autowire: true
 
     open_api_server.controller.search:
         class: OpenAPI\Server\Controller\SearchController
@@ -63,8 +63,8 @@ services:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]
          - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
         tags: ['controller.service_arguments']
-        autowire: true
 
     open_api_server.controller.user:
         class: OpenAPI\Server\Controller\UserController
@@ -72,8 +72,8 @@ services:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]
          - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
         tags: ['controller.service_arguments']
-        autowire: true
 
     open_api_server.controller.utility:
         class: OpenAPI\Server\Controller\UtilityController
@@ -81,6 +81,6 @@ services:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]
          - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
         tags: ['controller.service_arguments']
-        autowire: true
 
