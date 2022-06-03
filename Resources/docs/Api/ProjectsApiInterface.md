@@ -56,7 +56,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectIdCatrobatGet
      */
-    public function projectIdCatrobatGet(string $id, &$responseCode, array &$responseHeaders): array|UploadedFile
+    public function projectIdCatrobatGet(string $id, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -108,7 +108,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectIdDelete
      */
-    public function projectIdDelete(string $id, &$responseCode, array &$responseHeaders): void
+    public function projectIdDelete(string $id, int &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -160,7 +160,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectIdGet
      */
-    public function projectIdGet(string $id, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\ProjectResponse
+    public function projectIdGet(string $id, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -214,7 +214,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectIdPut
      */
-    public function projectIdPut(string $id, UpdateProjectRequest $update_project_request, string $accept_language = null, &$responseCode, array &$responseHeaders): array|\array
+    public function projectIdPut(string $id, UpdateProjectRequest $update_project_request, string $accept_language, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**|  |
  **update_project_request** | [**OpenAPI\Server\Model\UpdateProjectRequest**](../Model/UpdateProjectRequest.md)|  |
- **accept_language** | **string**|  | [optional]
+ **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
 
 ### Return type
 
@@ -268,7 +268,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectIdRecommendationsGet
      */
-    public function projectIdRecommendationsGet(string $id, string $category, string $accept_language = null, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
+    public function projectIdRecommendationsGet(string $id, string $category, string $accept_language, string $max_version, int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -283,12 +283,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**|  |
  **category** | **string**| * &#x60;similar&#x60; - Get similar projects to the specific project  * &#x60;also_downloaded&#x60; - Get projects that users who downloaded the specific project also downloaded  * &#x60;more_from_user&#x60; - Get more projects from the owner of the specific project |
- **accept_language** | **string**|  | [optional]
- **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
+ **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional] [default to &#39;&#39;]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **attributes** | **string**|  | [optional]
- **flavor** | **string**|  | [optional]
+ **attributes** | **string**|  | [optional] [default to &#39;&#39;]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
@@ -327,7 +327,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectIdReportPost
      */
-    public function projectIdReportPost(string $id, ProjectReportRequest $project_report_request, &$responseCode, array &$responseHeaders): void
+    public function projectIdReportPost(string $id, ProjectReportRequest $project_report_request, int &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -380,7 +380,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsCategoriesGet
      */
-    public function projectsCategoriesGet(string $max_version = null, string $flavor = null, string $accept_language = null, &$responseCode, array &$responseHeaders): iterable
+    public function projectsCategoriesGet(string $max_version, string $flavor, string $accept_language, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -393,9 +393,9 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
- **flavor** | **string**|  | [optional]
- **accept_language** | **string**|  | [optional]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional] [default to &#39;&#39;]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;]
+ **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
 
 ### Return type
 
@@ -434,7 +434,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsExtensionsGet
      */
-    public function projectsExtensionsGet(string $accept_language = null, &$responseCode, array &$responseHeaders): iterable
+    public function projectsExtensionsGet(string $accept_language, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -447,7 +447,7 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accept_language** | **string**|  | [optional]
+ **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
 
 ### Return type
 
@@ -486,7 +486,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsFeaturedGet
      */
-    public function projectsFeaturedGet(string $platform = null, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
+    public function projectsFeaturedGet(string $platform, string $max_version, int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -499,12 +499,12 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **platform** | **string**|  | [optional]
- **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
+ **platform** | **string**|  | [optional] [default to &#39;&#39;]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional] [default to &#39;&#39;]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **attributes** | **string**|  | [optional]
- **flavor** | **string**|  | [optional]
+ **attributes** | **string**|  | [optional] [default to &#39;&#39;]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
@@ -543,7 +543,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsGet
      */
-    public function projectsGet(string $category, string $accept_language = null, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
+    public function projectsGet(string $category, string $accept_language, string $max_version, int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -557,12 +557,12 @@ class ProjectsApi implements ProjectsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **category** | **string**|  |
- **accept_language** | **string**|  | [optional]
- **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
+ **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional] [default to &#39;&#39;]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **attributes** | **string**|  | [optional]
- **flavor** | **string**|  | [optional]
+ **attributes** | **string**|  | [optional] [default to &#39;&#39;]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
@@ -601,7 +601,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsPost
      */
-    public function projectsPost(string $checksum, UploadedFile $file, string $accept_language = null, string $flavor = null, bool $private = null, &$responseCode, array &$responseHeaders): array|\array
+    public function projectsPost(string $checksum, UploadedFile $file, string $accept_language, string $flavor, bool $private, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -616,7 +616,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **checksum** | **string**| Checksum of the *.catrobat file |
  **file** | **UploadedFile****UploadedFile**| The *.catrobat project file |
- **accept_language** | **string**|  | [optional]
+ **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
  **flavor** | **string**| The flavor of this project | [optional]
  **private** | **bool**| Indicates whether a program should be private | [optional]
 
@@ -657,7 +657,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsSearchGet
      */
-    public function projectsSearchGet(string $query, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
+    public function projectsSearchGet(string $query, string $max_version, int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -671,11 +671,11 @@ class ProjectsApi implements ProjectsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query** | **string**|  |
- **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional] [default to &#39;&#39;]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **attributes** | **string**|  | [optional]
- **flavor** | **string**|  | [optional]
+ **attributes** | **string**|  | [optional] [default to &#39;&#39;]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
@@ -714,7 +714,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsTagsGet
      */
-    public function projectsTagsGet(string $accept_language = null, &$responseCode, array &$responseHeaders): iterable
+    public function projectsTagsGet(string $accept_language, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -727,7 +727,7 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accept_language** | **string**|  | [optional]
+ **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
 
 ### Return type
 
@@ -766,7 +766,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUserGet
      */
-    public function projectsUserGet(string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
+    public function projectsUserGet(string $max_version, int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -779,11 +779,11 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional] [default to &#39;&#39;]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **attributes** | **string**|  | [optional]
- **flavor** | **string**|  | [optional]
+ **attributes** | **string**|  | [optional] [default to &#39;&#39;]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
@@ -822,7 +822,7 @@ class ProjectsApi implements ProjectsApiInterface
     /**
      * Implementation of ProjectsApiInterface#projectsUserIdGet
      */
-    public function projectsUserIdGet(string $id, string $max_version = null, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
+    public function projectsUserIdGet(string $id, string $max_version, int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -836,11 +836,11 @@ class ProjectsApi implements ProjectsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**|  |
- **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional]
+ **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional] [default to &#39;&#39;]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **attributes** | **string**|  | [optional]
- **flavor** | **string**|  | [optional]
+ **attributes** | **string**|  | [optional] [default to &#39;&#39;]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 

@@ -47,7 +47,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationDelete
      */
-    public function authenticationDelete(string $x_refresh, &$responseCode, array &$responseHeaders): void
+    public function authenticationDelete(string $x_refresh, int &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -101,7 +101,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationGet
      */
-    public function authenticationGet(, &$responseCode, array &$responseHeaders): void
+    public function authenticationGet(, int &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -152,7 +152,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationOauthPost
      */
-    public function authenticationOauthPost(OAuthLoginRequest $o_auth_login_request, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\JWTResponse
+    public function authenticationOauthPost(OAuthLoginRequest $o_auth_login_request, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -206,7 +206,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationPost
      */
-    public function authenticationPost(LoginRequest $login_request, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\JWTResponse
+    public function authenticationPost(LoginRequest $login_request, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -260,7 +260,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationRefreshPost
      */
-    public function authenticationRefreshPost(RefreshRequest $refresh_request, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\JWTResponse
+    public function authenticationRefreshPost(RefreshRequest $refresh_request, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -314,7 +314,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationUpgradePost
      */
-    public function authenticationUpgradePost(UpgradeTokenRequest $upgrade_token_request, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\JWTResponse
+    public function authenticationUpgradePost(UpgradeTokenRequest $upgrade_token_request, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }

@@ -43,7 +43,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaFileIdGet
      */
-    public function mediaFileIdGet(int $id, string $attributes = null, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\MediaFileResponse
+    public function mediaFileIdGet(int $id, string $attributes, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -57,7 +57,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| ID of any given media file |
- **attributes** | **string**|  | [optional]
+ **attributes** | **string**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
@@ -96,7 +96,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaFilesGet
      */
-    public function mediaFilesGet(int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, &$responseCode, array &$responseHeaders): iterable
+    public function mediaFilesGet(int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -111,8 +111,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **attributes** | **string**|  | [optional]
- **flavor** | **string**|  | [optional]
+ **attributes** | **string**|  | [optional] [default to &#39;&#39;]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
@@ -151,7 +151,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaFilesSearchGet
      */
-    public function mediaFilesSearchGet(string $query, int $limit = '20', int $offset = '0', string $attributes = null, string $flavor = null, string $package_name = null, &$responseCode, array &$responseHeaders): iterable
+    public function mediaFilesSearchGet(string $query, int $limit, int $offset, string $attributes, string $flavor, string $package_name, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -167,8 +167,8 @@ Name | Type | Description  | Notes
  **query** | **string**|  |
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **attributes** | **string**|  | [optional]
- **flavor** | **string**|  | [optional]
+ **attributes** | **string**|  | [optional] [default to &#39;&#39;]
+ **flavor** | **string**|  | [optional] [default to &#39;&#39;]
  **package_name** | **string**| In which package you want to search (for more fine tuned results) | [optional]
 
 ### Return type
@@ -208,7 +208,7 @@ class MediaLibraryApi implements MediaLibraryApiInterface
     /**
      * Implementation of MediaLibraryApiInterface#mediaPackageNameGet
      */
-    public function mediaPackageNameGet(string $name, int $limit = '20', int $offset = '0', string $attributes = null, &$responseCode, array &$responseHeaders): iterable
+    public function mediaPackageNameGet(string $name, int $limit, int $offset, string $attributes, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
  **name** | **string**| Name of the package |
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **attributes** | **string**|  | [optional]
+ **attributes** | **string**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 

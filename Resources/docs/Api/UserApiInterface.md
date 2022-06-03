@@ -48,7 +48,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userDelete
      */
-    public function userDelete(, &$responseCode, array &$responseHeaders): void
+    public function userDelete(, int &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -99,7 +99,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userGet
      */
-    public function userGet(, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\ExtendedUserDataResponse
+    public function userGet(, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -150,7 +150,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userIdGet
      */
-    public function userIdGet(string $id, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\BasicUserDataResponse
+    public function userIdGet(string $id, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -204,7 +204,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userPost
      */
-    public function userPost(RegisterRequest $register_request, string $accept_language = null, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\JWTResponse
+    public function userPost(RegisterRequest $register_request, string $accept_language, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -218,7 +218,7 @@ class UserApi implements UserApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **register_request** | [**OpenAPI\Server\Model\RegisterRequest**](../Model/RegisterRequest.md)|  |
- **accept_language** | **string**|  | [optional]
+ **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
 
 ### Return type
 
@@ -259,7 +259,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userPut
      */
-    public function userPut(UpdateUserRequest $update_user_request, string $accept_language = null, &$responseCode, array &$responseHeaders): array|\array
+    public function userPut(UpdateUserRequest $update_user_request, string $accept_language, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -273,7 +273,7 @@ class UserApi implements UserApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **update_user_request** | [**OpenAPI\Server\Model\UpdateUserRequest**](../Model/UpdateUserRequest.md)|  |
- **accept_language** | **string**|  | [optional]
+ **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
 
 ### Return type
 
@@ -314,7 +314,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userResetPasswordPost
      */
-    public function userResetPasswordPost(ResetPasswordRequest $reset_password_request, string $accept_language = null, &$responseCode, array &$responseHeaders): array|\array
+    public function userResetPasswordPost(ResetPasswordRequest $reset_password_request, string $accept_language, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -328,7 +328,7 @@ class UserApi implements UserApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **reset_password_request** | [**OpenAPI\Server\Model\ResetPasswordRequest**](../Model/ResetPasswordRequest.md)|  |
- **accept_language** | **string**|  | [optional]
+ **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
 
 ### Return type
 
@@ -369,7 +369,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#usersSearchGet
      */
-    public function usersSearchGet(string $query, int $limit = '20', int $offset = '0', string $attributes = null, &$responseCode, array &$responseHeaders): iterable
+    public function usersSearchGet(string $query, int $limit, int $offset, string $attributes, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -385,7 +385,7 @@ Name | Type | Description  | Notes
  **query** | **string**|  |
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **attributes** | **string**|  | [optional]
+ **attributes** | **string**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 

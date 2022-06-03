@@ -1,0 +1,9 @@
+parameters:
+  level: 4  # 0 is the loosest lvl and 8 is the strictest
+  paths:
+      - Api
+      - Controller
+      - DependencyInjection
+      - Model
+      - Tests
+

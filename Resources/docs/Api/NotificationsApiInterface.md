@@ -43,7 +43,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationIdReadPut
      */
-    public function notificationIdReadPut(int $id, string $accept_language = null, &$responseCode, array &$responseHeaders): void
+    public function notificationIdReadPut(int $id, string $accept_language, int &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -57,7 +57,7 @@ class NotificationsApi implements NotificationsApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**|  | [default to 0]
- **accept_language** | **string**|  | [optional]
+ **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
 
 ### Return type
 
@@ -96,7 +96,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationsCountGet
      */
-    public function notificationsCountGet(, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\NotificationsCountResponse
+    public function notificationsCountGet(, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }
@@ -145,7 +145,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationsGet
      */
-    public function notificationsGet(string $accept_language = null, int $limit = '20', int $offset = '0', string $attributes = null, $type = null, &$responseCode, array &$responseHeaders): iterable
+    public function notificationsGet(string $accept_language, int $limit, int $offset, string $attributes, string $type, int &$responseCode, array &$responseHeaders): ?iterable
     {
         // Implement the operation ...
     }
@@ -158,11 +158,11 @@ class NotificationsApi implements NotificationsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accept_language** | **string**|  | [optional]
+ **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
- **attributes** | **string**|  | [optional]
- **type** | [**NotificationsType**](../Model/.md)|  | [optional]
+ **attributes** | **string**|  | [optional] [default to &#39;&#39;]
+ **type** | **string**|  | [optional] [default to &#39;all&#39;]
 
 ### Return type
 
@@ -201,7 +201,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationsReadPut
      */
-    public function notificationsReadPut(, &$responseCode, array &$responseHeaders): void
+    public function notificationsReadPut(, int &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }

@@ -42,7 +42,7 @@ class SearchApi implements SearchApiInterface
     /**
      * Implementation of SearchApiInterface#searchGet
      */
-    public function searchGet(string $query, string $type = null, int $limit = '20', int $offset = '0', &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\SearchResponse
+    public function searchGet(string $query, string $type, int $limit, int $offset, int &$responseCode, array &$responseHeaders): ?object
     {
         // Implement the operation ...
     }

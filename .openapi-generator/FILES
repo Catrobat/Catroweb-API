@@ -34,7 +34,6 @@ Model/MediaPackageResponse.php
 Model/NotificationContent.php
 Model/NotificationResponse.php
 Model/NotificationsCountResponse.php
-Model/NotificationsType.php
 Model/OAuthLoginRequest.php
 Model/ProjectReportRequest.php
 Model/ProjectResponse.php
@@ -81,7 +80,6 @@ Resources/docs/Model/MediaPackageResponse.md
 Resources/docs/Model/NotificationContent.md
 Resources/docs/Model/NotificationResponse.md
 Resources/docs/Model/NotificationsCountResponse.md
-Resources/docs/Model/NotificationsType.md
 Resources/docs/Model/OAuthLoginRequest.md
 Resources/docs/Model/ProjectReportRequest.md
 Resources/docs/Model/ProjectResponse.md

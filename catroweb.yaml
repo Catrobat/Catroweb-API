@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: "Catroweb API"
   description: "API for the Catrobat Share Platform"
-  version: "v1.1.1"
+  version: "v1.1.2"
   termsOfService: "https://share.catrob.at/pocketcode/termsOfUse"
   contact:
     name: "Catrobat"
@@ -584,7 +584,9 @@ paths:
           schema:
             type: string
             description: 'Indication what platform should be used (ios, android)'
+            default: ""
             enum:
+              - ""
               - "android"
               - "ios"
         - $ref: '#/components/parameters/MaxVersion'
@@ -1306,6 +1308,7 @@ components:
       schema:
         type: string
         description: "ISO_639-1 or ISO_3166-1 locale of the user. Defaults internally to en"
+        default: 'en'
 
     Uuid:
       name: id
@@ -1320,6 +1323,7 @@ components:
       schema:
         type: string
         example: "luna"
+        default: ''
 
     Limit:
       name: limit
@@ -1341,6 +1345,7 @@ components:
         description: "Comma-separated list of attributes to include in the response"
         pattern: '^[a-zA-Z0-9\-_]+(,[a-zA-Z0-9\-_]+)*$'
         example: "id,name,description"
+        default: ''
 
     RefreshToken:
       name: X-Refresh
@@ -1365,7 +1370,14 @@ components:
       name: type
       in: query
       schema:
-        $ref: '#/components/schemas/NotificationsType'
+        type: string
+        enum:
+          - "all"
+          - "reaction"
+          - "follow"
+          - "comment"
+          - "remix"
+        default: "all"
 
     ##
     # Project specific
@@ -1407,6 +1419,7 @@ components:
       schema:
         type: string
         example: '0.999'
+        default: ''
       description:
         "
             Only shows project with a smaller version number than max version.\n
@@ -2097,16 +2110,6 @@ components:
       description: "Id of a notification"
       default: 0
       example: 2
-
-    NotificationsType:
-      type: string
-      enum:
-        - "all"
-        - "reaction"
-        - "follow"
-        - "comment"
-        - "remix"
-      default: "all"
 
     NotificationsCountResponse:
       type: object
