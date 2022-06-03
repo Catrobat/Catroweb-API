@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
  **offset** | **int**|  | [optional] [default to 0]
  **attributes** | **string**|  | [optional] [default to &#39;&#39;]
  **flavor** | **string**|  | [optional] [default to &#39;&#39;]
- **package_name** | **string**| In which package you want to search (for more fine tuned results) | [optional]
+ **package_name** | **string**| In which package you want to search (for more fine tuned results) | [optional] [default to &#39;&#39;]
 
 ### Return type
 
