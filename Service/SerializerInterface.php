@@ -16,5 +16,5 @@ interface SerializerInterface
    *
    * @return object|array|scalar
    */
-  public function deserialize(string $data, string $type, string $format);
+  public function deserialize(?string $data, string $type, string $format);
 }

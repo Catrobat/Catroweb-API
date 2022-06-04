@@ -36,7 +36,7 @@ class JmsSerializer implements SerializerInterface
   /**
    * {@inheritdoc}
    */
-  public function deserialize($data, $type, $format)
+  public function deserialize(?string $data, string $type, string $format)
   {
     if ('string' == $format) {
       return $this->deserializeString($data, $type);
@@ -46,7 +46,7 @@ class JmsSerializer implements SerializerInterface
     return $this->serializer->deserialize($data, $type, $this->convertFormat($format));
   }
 
-  private function convertFormat($format): ?string
+  private function convertFormat(string $format): ?string
   {
     switch ($format) {
             case 'application/json':
@@ -58,7 +58,7 @@ class JmsSerializer implements SerializerInterface
     return null;
   }
 
-  private function deserializeString($data, $type)
+  private function deserializeString(?string $data, string $type)
   {
     // Figure out if we have an array format
     if (1 === preg_match('/array<(csv|ssv|tsv|pipes),(int|string)>/i', $type, $matches)) {
@@ -101,9 +101,9 @@ class JmsSerializer implements SerializerInterface
     return $data;
   }
 
-  private function deserializeArrayString(string $format, string $type, ?array $data): array
+  private function deserializeArrayString(string $format, string $type, ?string $data): array
   {
-    if (null === $data) {
+    if (empty($data)) {
       return [];
     }
 
