@@ -617,7 +617,7 @@ Name | Type | Description  | Notes
  **checksum** | **string**| Checksum of the *.catrobat file |
  **file** | **UploadedFile****UploadedFile**| The *.catrobat project file |
  **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
- **flavor** | **string**| The flavor of this project | [optional]
+ **flavor** | **string**| The flavor of this project | [optional] [default to &#39;pocketcode&#39;]
  **private** | **bool**| Indicates whether a program should be private | [optional] [default to false]
 
 ### Return type

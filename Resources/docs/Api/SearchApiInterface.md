@@ -56,7 +56,7 @@ class SearchApi implements SearchApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query** | **string**|  |
- **type** | **string**|  | [optional]
+ **type** | **string**|  | [optional] [default to &#39;all&#39;]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]
 
