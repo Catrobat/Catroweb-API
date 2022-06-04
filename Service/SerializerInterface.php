@@ -14,7 +14,9 @@ interface SerializerInterface
   /**
    * Deserializes the given data to the specified type.
    *
+   * @param mixed $data
+   *
    * @return object|array|scalar
    */
-  public function deserialize(?string $data, string $type, string $format);
+  public function deserialize($data, string $type, string $format);
 }
