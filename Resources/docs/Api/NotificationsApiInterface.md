@@ -96,7 +96,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationsCountGet
      */
-    public function notificationsCountGet(, int &$responseCode, array &$responseHeaders): array|object|null
+    public function notificationsCountGet(int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -201,7 +201,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationsReadPut
      */
-    public function notificationsReadPut(, int &$responseCode, array &$responseHeaders): void
+    public function notificationsReadPut(int &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }

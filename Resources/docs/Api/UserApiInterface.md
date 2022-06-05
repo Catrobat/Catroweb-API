@@ -48,7 +48,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userDelete
      */
-    public function userDelete(, int &$responseCode, array &$responseHeaders): void
+    public function userDelete(int &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -99,7 +99,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userGet
      */
-    public function userGet(, int &$responseCode, array &$responseHeaders): array|object|null
+    public function userGet(int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }

@@ -41,7 +41,7 @@ class UtilityApi implements UtilityApiInterface
     /**
      * Implementation of UtilityApiInterface#healthGet
      */
-    public function healthGet(, int &$responseCode, array &$responseHeaders): void
+    public function healthGet(int &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }

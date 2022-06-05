@@ -101,7 +101,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationGet
      */
-    public function authenticationGet(, int &$responseCode, array &$responseHeaders): void
+    public function authenticationGet(int &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
