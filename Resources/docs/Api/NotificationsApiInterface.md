@@ -96,7 +96,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationsCountGet
      */
-    public function notificationsCountGet(, int &$responseCode, array &$responseHeaders): ?object
+    public function notificationsCountGet(, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -145,7 +145,7 @@ class NotificationsApi implements NotificationsApiInterface
     /**
      * Implementation of NotificationsApiInterface#notificationsGet
      */
-    public function notificationsGet(string $accept_language, int $limit, int $offset, string $attributes, string $type, int &$responseCode, array &$responseHeaders): ?iterable
+    public function notificationsGet(string $accept_language, int $limit, int $offset, string $attributes, string $type, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }

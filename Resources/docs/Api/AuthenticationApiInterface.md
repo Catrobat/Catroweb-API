@@ -152,7 +152,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationOauthPost
      */
-    public function authenticationOauthPost(OAuthLoginRequest $o_auth_login_request, int &$responseCode, array &$responseHeaders): ?object
+    public function authenticationOauthPost(OAuthLoginRequest $o_auth_login_request, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -206,7 +206,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationPost
      */
-    public function authenticationPost(LoginRequest $login_request, int &$responseCode, array &$responseHeaders): ?object
+    public function authenticationPost(LoginRequest $login_request, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -260,7 +260,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationRefreshPost
      */
-    public function authenticationRefreshPost(RefreshRequest $refresh_request, int &$responseCode, array &$responseHeaders): ?object
+    public function authenticationRefreshPost(RefreshRequest $refresh_request, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -314,7 +314,7 @@ class AuthenticationApi implements AuthenticationApiInterface
     /**
      * Implementation of AuthenticationApiInterface#authenticationUpgradePost
      */
-    public function authenticationUpgradePost(UpgradeTokenRequest $upgrade_token_request, int &$responseCode, array &$responseHeaders): ?object
+    public function authenticationUpgradePost(UpgradeTokenRequest $upgrade_token_request, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }

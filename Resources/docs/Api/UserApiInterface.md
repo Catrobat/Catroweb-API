@@ -99,7 +99,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userGet
      */
-    public function userGet(, int &$responseCode, array &$responseHeaders): ?object
+    public function userGet(, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -150,7 +150,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userIdGet
      */
-    public function userIdGet(string $id, int &$responseCode, array &$responseHeaders): ?object
+    public function userIdGet(string $id, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -204,7 +204,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userPost
      */
-    public function userPost(RegisterRequest $register_request, string $accept_language, int &$responseCode, array &$responseHeaders): ?object
+    public function userPost(RegisterRequest $register_request, string $accept_language, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -259,7 +259,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userPut
      */
-    public function userPut(UpdateUserRequest $update_user_request, string $accept_language, int &$responseCode, array &$responseHeaders): ?object
+    public function userPut(UpdateUserRequest $update_user_request, string $accept_language, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -314,7 +314,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#userResetPasswordPost
      */
-    public function userResetPasswordPost(ResetPasswordRequest $reset_password_request, string $accept_language, int &$responseCode, array &$responseHeaders): ?object
+    public function userResetPasswordPost(ResetPasswordRequest $reset_password_request, string $accept_language, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -369,7 +369,7 @@ class UserApi implements UserApiInterface
     /**
      * Implementation of UserApiInterface#usersSearchGet
      */
-    public function usersSearchGet(string $query, int $limit, int $offset, string $attributes, int &$responseCode, array &$responseHeaders): ?iterable
+    public function usersSearchGet(string $query, int $limit, int $offset, string $attributes, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }

@@ -90,7 +90,7 @@ class UtilityApi implements UtilityApiInterface
     /**
      * Implementation of UtilityApiInterface#surveyLangCodeGet
      */
-    public function surveyLangCodeGet(string $lang_code, string $flavor, int &$responseCode, array &$responseHeaders): ?object
+    public function surveyLangCodeGet(string $lang_code, string $flavor, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
