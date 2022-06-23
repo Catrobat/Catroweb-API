@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: "Catroweb API"
   description: "API for the Catrobat Share Platform"
-  version: "v1.1.14"
+  version: "v1.1.15"
   termsOfService: "https://share.catrob.at/pocketcode/termsOfUse"
   contact:
     name: "Catrobat"
@@ -2032,6 +2032,11 @@ components:
           type: integer
           description: "The projects' count of views"
           example: 2
+        download:
+          type: integer
+          example: 2
+          deprecated: true
+          description: "The projects' count of downloads. Deprecated. Use downloads"
         downloads:
           type: integer
           description: "The projects' count of downloads"
