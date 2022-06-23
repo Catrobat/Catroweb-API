@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **credits** | **string** | Credits and notes for the project. E.g., credits for using ideas, scripts or artwork from other people. | [optional] 
 **version** | **string** | The catrobat version that was used to create this project. | [optional] 
 **views** | **int** | The projects&#39; count of views | [optional] 
+**download** | **int** | The projects&#39; count of downloads. Deprecated. Use downloads | [optional] 
 **downloads** | **int** | The projects&#39; count of downloads | [optional] 
 **reactions** | **int** | The projects&#39; count of reactions | [optional] 
 **comments** | **int** | The projects&#39; count of comments | [optional] 
