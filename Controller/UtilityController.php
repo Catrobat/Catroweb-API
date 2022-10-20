@@ -125,6 +125,14 @@ class UtilityController extends Controller
 
     // Read out all input parameter values into variables
     $flavor = $request->query->get('flavor', '');
+    if (is_null($flavor) || trim($flavor) == '') {
+      $flavor = 'pocketcode';
+    }
+
+    $platform = $request->query->get('platform', '');
+    if (is_null($platform) || trim($platform) == '') {
+      $platform = 'Android';
+    }
 
     // Use the default value if no value was provided
 
@@ -132,6 +140,7 @@ class UtilityController extends Controller
     try {
       $lang_code = $this->deserialize($lang_code, 'string', 'string');
       $flavor = $this->deserialize($flavor, 'string', 'string');
+      $platform = $this->deserialize($platform, 'string', 'string');
     } catch (SerializerRuntimeException $exception) {
       return $this->createBadRequestResponse($exception->getMessage());
     }
@@ -150,6 +159,13 @@ class UtilityController extends Controller
     if ($response instanceof Response) {
       return $response;
     }
+    $asserts = [];
+    $asserts[] = new Assert\Type('string');
+    $response = $this->validate($platform, $asserts);
+    if ($response instanceof Response) {
+      return $response;
+    }
+    
 
     try {
       $handler = $this->getApiHandler();
@@ -158,7 +174,7 @@ class UtilityController extends Controller
       $responseCode = 200;
       $responseHeaders = [];
 
-      $result = $handler->surveyLangCodeGet($lang_code, $flavor, $responseCode, $responseHeaders);
+      $result = $handler->surveyLangCodeGet($lang_code, $flavor, $platform, $responseCode, $responseHeaders);
 
       // Find default response message
       $message = '';

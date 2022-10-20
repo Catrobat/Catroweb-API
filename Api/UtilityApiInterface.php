@@ -56,9 +56,10 @@ interface UtilityApiInterface
    * Get survey link for given language code.
    *
    * @param string $lang_code       2 letter Language-Code is based on ISO693-1 (e.g. German &#x3D; de, English &#x3D; en, Russian &#x3D; ru) (required)
-   * @param string $flavor          (optional, default to '')
+   * @param string $flavor          (optional, default to 'pocketcode')
+   * @param string $platform        (optional, default to 'Android')
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function surveyLangCodeGet(string $lang_code, string $flavor, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function surveyLangCodeGet(string $lang_code, string $flavor, string $platform, int &$responseCode, array &$responseHeaders): array|object|null;
 }
