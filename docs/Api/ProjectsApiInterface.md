@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 ## Service Declaration
 ```yaml
-# config/services.yml
+# config/services.yaml
 services:
     # ...
     Acme\MyBundle\Api\ProjectsApi:
@@ -499,7 +499,7 @@ class ProjectsApi implements ProjectsApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **platform** | **string**|  | [optional] [default to &#39;&#39;]
+ **platform** | **string**| Indication for which platform the response should be optimized (ios, android) | [optional] [default to &#39;&#39;]
  **max_version** | **string**| Only shows project with a smaller version number than max version.  &#x60;Warning!&#x60; Current implementation is kinda broken. To ensure correct results use the following format &#39;[0-9].[0-9]{3}&#39; | [optional] [default to &#39;&#39;]
  **limit** | **int**|  | [optional] [default to 20]
  **offset** | **int**|  | [optional] [default to 0]

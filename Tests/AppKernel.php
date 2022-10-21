@@ -8,6 +8,9 @@ use Symfony\Component\HttpKernel\Kernel;
 
 class AppKernel extends Kernel
 {
+  /**
+   * {@inheritDoc}
+   */
   public function registerBundles(): iterable
   {
     return [
@@ -16,12 +19,12 @@ class AppKernel extends Kernel
   }
 
   /**
-   * @throws \Exception
+   * {@inheritDoc}
    *
-   * @return mixed
+   * @throws \Exception
    */
   public function registerContainerConfiguration(LoaderInterface $loader)
   {
-    $loader->load(__DIR__.'/test_config.yml');
+    $loader->load(__DIR__.'/test_config.yaml');
   }
 }
