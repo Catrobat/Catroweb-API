@@ -42,11 +42,11 @@ class TypeMismatchException extends RuntimeException
     }
 
     return new static(sprintf(
-            'Expected %s%s, but got %s: %s',
-            $property,
-            $expected_type,
-            gettype($actual_value),
-            json_encode($actual_value)
-        ));
+      'Expected %s%s, but got %s: %s',
+      $property,
+      $expected_type,
+      gettype($actual_value),
+      json_encode($actual_value)
+    ));
   }
 }

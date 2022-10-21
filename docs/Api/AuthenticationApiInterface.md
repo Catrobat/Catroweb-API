@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## Service Declaration
 ```yaml
-# config/services.yml
+# config/services.yaml
 services:
     # ...
     Acme\MyBundle\Api\AuthenticationApi:
