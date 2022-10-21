@@ -104,7 +104,8 @@ class UtilityApi implements UtilityApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **lang_code** | **string**| 2 letter Language-Code is based on ISO693-1 (e.g. German &#x3D; de, English &#x3D; en, Russian &#x3D; ru) |
- **flavor** | **string**|  | [optional] [default to &#39;&#39;]
+ **flavor** | **string**|  | [optional] [default to &#39;pocketcode&#39;]
+ **platform** | **string**|  | [optional] [default to &#39;Android&#39;]
 
 ### Return type
 
