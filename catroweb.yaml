@@ -224,27 +224,6 @@ paths:
           required: true
           description: "2 letter Language-Code is based on ISO693-1 (e.g. German = de, English = en, Russian = ru)"
         - $ref: '#/components/parameters/Flavor'
-        
-        - in: query
-          name: flavor
-          schema:
-            type: string
-            example: "pocketcode"
-          required: false
-          description: "Indication what platform should be used (pocketcode, luna, embroidery, etc.)"
-        - $ref: '#/components/parameters/Flavor'
-
-        - in: query
-          name: platform
-          schema:
-            type: string
-            example: "ios"
-          required: false
-          description: "Indication what platform should be used (ios, android)"
-          enum:
-              - ""
-              - "android"
-              - "ios"
         - $ref: '#/components/parameters/Platform'
       tags:
         - Utility
@@ -601,16 +580,7 @@ paths:
         - "Projects"
       summary: "Get the currently featured projects"
       parameters:
-        - name: platform
-          in: query
-          schema:
-            type: string
-            description: 'Indication what platform should be used (ios, android)'
-            default: ""
-            enum:
-              - ""
-              - "android"
-              - "ios"
+        - $ref: '#/components/parameters/Platform'
         - $ref: '#/components/parameters/MaxVersion'
         - $ref: '#/components/parameters/Limit'
         - $ref: '#/components/parameters/Offset'
@@ -1347,6 +1317,20 @@ components:
         type: string
         example: "luna"
         default: ''
+
+    Platform:
+      in: query
+      name: platform
+      required: false
+      description: "Indication for which platform the response should be optimized (ios, android)"
+      schema:
+        type: string
+        example: "ios"
+        default: ""
+        enum:
+          - ""
+          - "android"
+          - "ios"
 
     Limit:
       name: limit
