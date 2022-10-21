@@ -224,6 +224,28 @@ paths:
           required: true
           description: "2 letter Language-Code is based on ISO693-1 (e.g. German = de, English = en, Russian = ru)"
         - $ref: '#/components/parameters/Flavor'
+        
+        - in: query
+          name: flavor
+          schema:
+            type: string
+            example: "pocketcode"
+          required: false
+          description: "Indication what platform should be used (pocketcode, luna, embroidery, etc.)"
+        - $ref: '#/components/parameters/Flavor'
+
+        - in: query
+          name: platform
+          schema:
+            type: string
+            example: "ios"
+          required: false
+          description: "Indication what platform should be used (ios, android)"
+          enum:
+              - ""
+              - "android"
+              - "ios"
+        - $ref: '#/components/parameters/Platform'
       tags:
         - Utility
       summary: "Get survey link for given language code."
