@@ -2,13 +2,11 @@
 
 namespace OpenAPI\Server\Service;
 
-use DateTime;
 use JMS\Serializer\Naming\CamelCaseNamingStrategy;
 use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\Visitor\Factory\XmlDeserializationVisitorFactory;
-use RuntimeException;
 
 class JmsSerializer implements SerializerInterface
 {
@@ -96,9 +94,9 @@ class JmsSerializer implements SerializerInterface
         break;
       case 'DateTime':
       case '\DateTime':
-        return new DateTime($data);
+        return new \DateTime($data);
       default:
-        throw new RuntimeException(sprintf('Type %s is unsupported', $type));
+        throw new \RuntimeException(sprintf('Type %s is unsupported', $type));
     }
 
     // If we end up here, just return data
