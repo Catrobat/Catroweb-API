@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: "Catroweb API"
   description: "API for the Catrobat Share Platform"
-  version: "v1.1.17"
+  version: "v1.1.18"
   termsOfService: "https://share.catrob.at/pocketcode/termsOfUse"
   contact:
     name: "Catrobat"
@@ -553,7 +553,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/ProjectResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
