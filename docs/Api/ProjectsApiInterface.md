@@ -580,7 +580,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **projectsPost**
-> array projectsPost($checksum, $file, $accept_language, $flavor, $private)
+> OpenAPI\Server\Model\ProjectResponse projectsPost($checksum, $file, $accept_language, $flavor, $private)
 
 Upload a catrobat project
 
@@ -622,7 +622,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**array**
+[**OpenAPI\Server\Model\ProjectResponse**](../Model/ProjectResponse.md)
 
 ### Authorization
 
