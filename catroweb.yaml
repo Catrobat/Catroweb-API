@@ -1073,7 +1073,7 @@ paths:
           name: name
           schema:
             type: string
-            pattern: '^[a-zA-Z0-9\-_]+$'
+            pattern: '^[a-zA-Z0-9-_]+$'
             example: "looks"
           required: true
           description: "Name of the package"
