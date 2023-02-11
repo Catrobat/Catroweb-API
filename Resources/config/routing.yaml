@@ -66,7 +66,7 @@ open_api_server_mediaLibrary_mediapackagenameget:
     defaults:
         _controller: open_api_server.controller.mediaLibrary::mediaPackageNameGetAction
     requirements:
-        name: '^[a-zA-Z0-9\\-_]+$'
+        name: '^[a-zA-Z0-9-_]+$'
 
 # notifications
 open_api_server_notifications_notificationidreadput:
