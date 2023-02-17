@@ -136,7 +136,7 @@ Class | Method | HTTP request | Description
 *ProjectsApiInterface* | [**projectsGet**](docs/Api/ProjectsApiInterface.md#projectsget) | **GET** /projects | Get projects
 *ProjectsApiInterface* | [**projectsPost**](docs/Api/ProjectsApiInterface.md#projectspost) | **POST** /projects | Upload a catrobat project
 *ProjectsApiInterface* | [**projectsSearchGet**](docs/Api/ProjectsApiInterface.md#projectssearchget) | **GET** /projects/search | Search for projects associated with a keywords
-*ProjectsApiInterface* | [**projectsTagsGet**](docs/Api/ProjectsApiInterface.md#projectstagsget) | **GET** /projects/tags | Get all possible project tags. Some Tags will only be availabe during events.
+*ProjectsApiInterface* | [**projectsTagsGet**](docs/Api/ProjectsApiInterface.md#projectstagsget) | **GET** /projects/tags | Get all possible project tags. Some Tags will only be available during events.
 *ProjectsApiInterface* | [**projectsUserGet**](docs/Api/ProjectsApiInterface.md#projectsuserget) | **GET** /projects/user | Get the projects of the logged in user
 *ProjectsApiInterface* | [**projectsUserIdGet**](docs/Api/ProjectsApiInterface.md#projectsuseridget) | **GET** /projects/user/{id} | Get the public projects of a given user
 *SearchApiInterface* | [**searchGet**](docs/Api/SearchApiInterface.md#searchget) | **GET** /search | Search for projects, users,..
