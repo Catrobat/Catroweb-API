@@ -1404,6 +1404,7 @@ components:
           - "scratch"
           - "recommended"
           - "trending"
+          - "popular"
 
     RecommendedProjectType:
       in: query
