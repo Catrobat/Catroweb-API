@@ -1403,6 +1403,7 @@ components:
           - "example"
           - "scratch"
           - "recommended"
+          - "trending"
           - "popular"
 
     RecommendedProjectType:
