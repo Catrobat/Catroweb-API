@@ -110,7 +110,7 @@ class UpdateProjectErrorResponse
    *
    * @return $this
    */
-  public function setName(?string $name = null): self
+  public function setName(string $name = null): self
   {
     $this->name = $name;
 
@@ -130,7 +130,7 @@ class UpdateProjectErrorResponse
    *
    * @return $this
    */
-  public function setDescription(?string $description = null): self
+  public function setDescription(string $description = null): self
   {
     $this->description = $description;
 
@@ -150,7 +150,7 @@ class UpdateProjectErrorResponse
    *
    * @return $this
    */
-  public function setCredits(?string $credits = null): self
+  public function setCredits(string $credits = null): self
   {
     $this->credits = $credits;
 
@@ -170,7 +170,7 @@ class UpdateProjectErrorResponse
    *
    * @return $this
    */
-  public function setScreenshot(?string $screenshot = null): self
+  public function setScreenshot(string $screenshot = null): self
   {
     $this->screenshot = $screenshot;
 

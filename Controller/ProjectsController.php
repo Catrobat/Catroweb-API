@@ -53,7 +53,6 @@ class ProjectsController extends Controller
    * Download the .catrobat (=zip) file of a project
    *
    * @param Request $request the Symfony request to handle
-   * @param mixed   $id
    *
    * @return Response the Symfony response
    */
@@ -141,7 +140,6 @@ class ProjectsController extends Controller
    * Delete a project
    *
    * @param Request $request the Symfony request to handle
-   * @param mixed   $id
    *
    * @return Response the Symfony response
    */
@@ -149,8 +147,6 @@ class ProjectsController extends Controller
   {
     // Handle authentication
     // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
 
@@ -228,7 +224,6 @@ class ProjectsController extends Controller
    * Get the information of a project
    *
    * @param Request $request the Symfony request to handle
-   * @param mixed   $id
    *
    * @return Response the Symfony response
    */
@@ -316,7 +311,6 @@ class ProjectsController extends Controller
    * Update details of a project
    *
    * @param Request $request the Symfony request to handle
-   * @param mixed   $id
    *
    * @return Response the Symfony response
    */
@@ -340,8 +334,6 @@ class ProjectsController extends Controller
 
     // Handle authentication
     // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
     $accept_language = $request->headers->get('Accept-Language', 'en');
@@ -445,7 +437,6 @@ class ProjectsController extends Controller
    * Get recommended projects related to the specific project
    *
    * @param Request $request the Symfony request to handle
-   * @param mixed   $id
    *
    * @return Response the Symfony response
    */
@@ -591,7 +582,6 @@ class ProjectsController extends Controller
    * Report a project -- StatusCode: 501 - Not yet implemented
    *
    * @param Request $request the Symfony request to handle
-   * @param mixed   $id
    *
    * @return Response the Symfony response
    */
@@ -606,8 +596,6 @@ class ProjectsController extends Controller
 
     // Handle authentication
     // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
     $project_report_request = $request->getContent();
@@ -1045,7 +1033,7 @@ class ProjectsController extends Controller
     // Validate the input values
     $asserts = [];
     $asserts[] = new Assert\NotNull();
-    $asserts[] = new Assert\Choice(['recent', 'random', 'most_viewed', 'most_downloaded', 'example', 'scratch', 'recommended']);
+    $asserts[] = new Assert\Choice(['recent', 'random', 'most_viewed', 'most_downloaded', 'example', 'scratch', 'recommended', 'trending', 'popular']);
     $asserts[] = new Assert\Type('string');
     $response = $this->validate($category, $asserts);
     if ($response instanceof Response) {
@@ -1154,8 +1142,6 @@ class ProjectsController extends Controller
 
     // Handle authentication
     // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
     $accept_language = $request->headers->get('Accept-Language', 'en');
@@ -1492,8 +1478,6 @@ class ProjectsController extends Controller
 
     // Handle authentication
     // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
     $max_version = $request->query->get('max_version', '');
@@ -1606,7 +1590,6 @@ class ProjectsController extends Controller
    * Get the public projects of a given user
    *
    * @param Request $request the Symfony request to handle
-   * @param mixed   $id
    *
    * @return Response the Symfony response
    */

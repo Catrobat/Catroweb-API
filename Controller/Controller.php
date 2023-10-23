@@ -129,10 +129,6 @@ class Controller extends AbstractController
     return $this->serializer->deserialize($data, $class, $format);
   }
 
-  /**
-   * @param mixed $data
-   * @param mixed $asserts
-   */
   protected function validate($data, $asserts = null): ?Response
   {
     $errors = $this->validator->validate($data, $asserts);
@@ -181,6 +177,9 @@ class Controller extends AbstractController
   {
     // Figure out what the client accepts
     $accept = preg_split('/[\\s,]+/', $accept);
+
+    // Remove q-factor weighting. E.g. "application/json;q=0.8" becomes "application/json"
+    $accept = array_map(function ($type) {return explode(';', $type)[0]; }, $accept);
 
     if (in_array('*/*', $accept, true) || in_array('application/*', $accept, true)) {
       // Prefer JSON if the client has no preference

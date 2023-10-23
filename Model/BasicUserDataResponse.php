@@ -160,7 +160,7 @@ class BasicUserDataResponse
    *
    * @return $this
    */
-  public function setId(?string $id = null): self
+  public function setId(string $id = null): self
   {
     $this->id = $id;
 
@@ -182,7 +182,7 @@ class BasicUserDataResponse
    *
    * @return $this
    */
-  public function setUsername(?string $username = null): self
+  public function setUsername(string $username = null): self
   {
     $this->username = $username;
 
@@ -204,7 +204,7 @@ class BasicUserDataResponse
    *
    * @return $this
    */
-  public function setPicture(?string $picture = null): self
+  public function setPicture(string $picture = null): self
   {
     $this->picture = $picture;
 
@@ -226,7 +226,7 @@ class BasicUserDataResponse
    *
    * @return $this
    */
-  public function setAbout(?string $about = null): self
+  public function setAbout(string $about = null): self
   {
     $this->about = $about;
 
@@ -248,7 +248,7 @@ class BasicUserDataResponse
    *
    * @return $this
    */
-  public function setCurrentlyWorkingOn(?string $currently_working_on = null): self
+  public function setCurrentlyWorkingOn(string $currently_working_on = null): self
   {
     $this->currently_working_on = $currently_working_on;
 
@@ -270,7 +270,7 @@ class BasicUserDataResponse
    *
    * @return $this
    */
-  public function setProjects(?int $projects = null): self
+  public function setProjects(int $projects = null): self
   {
     $this->projects = $projects;
 
@@ -292,7 +292,7 @@ class BasicUserDataResponse
    *
    * @return $this
    */
-  public function setFollowers(?int $followers = null): self
+  public function setFollowers(int $followers = null): self
   {
     $this->followers = $followers;
 
@@ -314,7 +314,7 @@ class BasicUserDataResponse
    *
    * @return $this
    */
-  public function setFollowing(?int $following = null): self
+  public function setFollowing(int $following = null): self
   {
     $this->following = $following;
 

@@ -74,7 +74,7 @@ class UpdateProjectFailureResponse
    *
    * @return $this
    */
-  public function setError(?string $error = null): self
+  public function setError(string $error = null): self
   {
     $this->error = $error;
 

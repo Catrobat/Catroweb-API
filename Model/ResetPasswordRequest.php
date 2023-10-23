@@ -76,7 +76,7 @@ class ResetPasswordRequest
    *
    * @return $this
    */
-  public function setEmail(?string $email = null): self
+  public function setEmail(string $email = null): self
   {
     $this->email = $email;
 

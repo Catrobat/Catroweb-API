@@ -52,5 +52,5 @@ interface SearchApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function searchGet(string $query, string $type, int $limit, int $offset, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function searchGet(string $query, string $type, int $limit, int $offset, int &$responseCode, array &$responseHeaders): null|array|object;
 }

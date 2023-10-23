@@ -105,8 +105,7 @@ class UtilityController extends Controller
    *
    * Get survey link for given language code.
    *
-   * @param Request $request   the Symfony request to handle
-   * @param mixed   $lang_code
+   * @param Request $request the Symfony request to handle
    *
    * @return Response the Symfony response
    */

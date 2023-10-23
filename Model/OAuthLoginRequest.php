@@ -88,7 +88,7 @@ class OAuthLoginRequest
    *
    * @return $this
    */
-  public function setIdToken(?string $id_token = null): self
+  public function setIdToken(string $id_token = null): self
   {
     $this->id_token = $id_token;
 
@@ -110,7 +110,7 @@ class OAuthLoginRequest
    *
    * @return $this
    */
-  public function setResourceOwner(?string $resource_owner = null): self
+  public function setResourceOwner(string $resource_owner = null): self
   {
     $this->resource_owner = $resource_owner;
 

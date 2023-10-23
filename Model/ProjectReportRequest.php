@@ -74,7 +74,7 @@ class ProjectReportRequest
    *
    * @return $this
    */
-  public function setCategory(?string $category = null): self
+  public function setCategory(string $category = null): self
   {
     $this->category = $category;
 

@@ -112,7 +112,7 @@ class NotificationsCountResponse
    *
    * @return $this
    */
-  public function setTotal(?int $total = null): self
+  public function setTotal(int $total = null): self
   {
     $this->total = $total;
 
@@ -132,7 +132,7 @@ class NotificationsCountResponse
    *
    * @return $this
    */
-  public function setLike(?int $like = null): self
+  public function setLike(int $like = null): self
   {
     $this->like = $like;
 
@@ -152,7 +152,7 @@ class NotificationsCountResponse
    *
    * @return $this
    */
-  public function setFollower(?int $follower = null): self
+  public function setFollower(int $follower = null): self
   {
     $this->follower = $follower;
 
@@ -172,7 +172,7 @@ class NotificationsCountResponse
    *
    * @return $this
    */
-  public function setComment(?int $comment = null): self
+  public function setComment(int $comment = null): self
   {
     $this->comment = $comment;
 
@@ -192,7 +192,7 @@ class NotificationsCountResponse
    *
    * @return $this
    */
-  public function setRemix(?int $remix = null): self
+  public function setRemix(int $remix = null): self
   {
     $this->remix = $remix;
 

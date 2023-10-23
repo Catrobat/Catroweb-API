@@ -61,5 +61,5 @@ interface UtilityApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function surveyLangCodeGet(string $lang_code, string $flavor, string $platform, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function surveyLangCodeGet(string $lang_code, string $flavor, string $platform, int &$responseCode, array &$responseHeaders): null|array|object;
 }

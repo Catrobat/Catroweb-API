@@ -98,7 +98,7 @@ class RegisterErrorResponse
    *
    * @return $this
    */
-  public function setEmail(?string $email = null): self
+  public function setEmail(string $email = null): self
   {
     $this->email = $email;
 
@@ -118,7 +118,7 @@ class RegisterErrorResponse
    *
    * @return $this
    */
-  public function setUsername(?string $username = null): self
+  public function setUsername(string $username = null): self
   {
     $this->username = $username;
 
@@ -138,7 +138,7 @@ class RegisterErrorResponse
    *
    * @return $this
    */
-  public function setPassword(?string $password = null): self
+  public function setPassword(string $password = null): self
   {
     $this->password = $password;
 

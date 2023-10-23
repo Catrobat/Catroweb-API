@@ -122,7 +122,7 @@ class UpdateUserErrorResponse
    *
    * @return $this
    */
-  public function setEmail(?string $email = null): self
+  public function setEmail(string $email = null): self
   {
     $this->email = $email;
 
@@ -142,7 +142,7 @@ class UpdateUserErrorResponse
    *
    * @return $this
    */
-  public function setUsername(?string $username = null): self
+  public function setUsername(string $username = null): self
   {
     $this->username = $username;
 
@@ -162,7 +162,7 @@ class UpdateUserErrorResponse
    *
    * @return $this
    */
-  public function setPassword(?string $password = null): self
+  public function setPassword(string $password = null): self
   {
     $this->password = $password;
 
@@ -182,7 +182,7 @@ class UpdateUserErrorResponse
    *
    * @return $this
    */
-  public function setCurrentPassword(?string $current_password = null): self
+  public function setCurrentPassword(string $current_password = null): self
   {
     $this->current_password = $current_password;
 
@@ -202,7 +202,7 @@ class UpdateUserErrorResponse
    *
    * @return $this
    */
-  public function setPicture(?string $picture = null): self
+  public function setPicture(string $picture = null): self
   {
     $this->picture = $picture;
 

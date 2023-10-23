@@ -67,7 +67,7 @@ interface NotificationsApiInterface
    * @param int   &$responseCode   The HTTP Response Code
    * @param array $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function notificationsCountGet(int &$responseCode, array &$responseHeaders): array|object|null;
+  public function notificationsCountGet(int &$responseCode, array &$responseHeaders): null|array|object;
 
   /**
    * Operation notificationsGet.
@@ -82,7 +82,7 @@ interface NotificationsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function notificationsGet(string $accept_language, int $limit, int $offset, string $attributes, string $type, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function notificationsGet(string $accept_language, int $limit, int $offset, string $attributes, string $type, int &$responseCode, array &$responseHeaders): null|array|object;
 
   /**
    * Operation notificationsReadPut.

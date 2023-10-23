@@ -69,7 +69,7 @@ interface UserApiInterface
    * @param int   &$responseCode   The HTTP Response Code
    * @param array $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function userGet(int &$responseCode, array &$responseHeaders): array|object|null;
+  public function userGet(int &$responseCode, array &$responseHeaders): null|array|object;
 
   /**
    * Operation userIdGet.
@@ -80,7 +80,7 @@ interface UserApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function userIdGet(string $id, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function userIdGet(string $id, int &$responseCode, array &$responseHeaders): null|array|object;
 
   /**
    * Operation userPost.
@@ -92,7 +92,7 @@ interface UserApiInterface
    * @param int             &$responseCode    The HTTP Response Code
    * @param array           $responseHeaders  Additional HTTP headers to return with the response ()
    */
-  public function userPost(RegisterRequest $register_request, string $accept_language, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function userPost(RegisterRequest $register_request, string $accept_language, int &$responseCode, array &$responseHeaders): null|array|object;
 
   /**
    * Operation userPut.
@@ -104,7 +104,7 @@ interface UserApiInterface
    * @param int               &$responseCode       The HTTP Response Code
    * @param array             $responseHeaders     Additional HTTP headers to return with the response ()
    */
-  public function userPut(UpdateUserRequest $update_user_request, string $accept_language, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function userPut(UpdateUserRequest $update_user_request, string $accept_language, int &$responseCode, array &$responseHeaders): null|array|object;
 
   /**
    * Operation userResetPasswordPost.
@@ -116,7 +116,7 @@ interface UserApiInterface
    * @param int                  &$responseCode          The HTTP Response Code
    * @param array                $responseHeaders        Additional HTTP headers to return with the response ()
    */
-  public function userResetPasswordPost(ResetPasswordRequest $reset_password_request, string $accept_language, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function userResetPasswordPost(ResetPasswordRequest $reset_password_request, string $accept_language, int &$responseCode, array &$responseHeaders): null|array|object;
 
   /**
    * Operation usersSearchGet.
@@ -130,5 +130,5 @@ interface UserApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function usersSearchGet(string $query, int $limit, int $offset, string $attributes, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function usersSearchGet(string $query, int $limit, int $offset, string $attributes, int &$responseCode, array &$responseHeaders): null|array|object;
 }

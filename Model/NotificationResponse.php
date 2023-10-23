@@ -113,7 +113,7 @@ class NotificationResponse
    *
    * @return $this
    */
-  public function setId(?int $id = null): self
+  public function setId(int $id = null): self
   {
     $this->id = $id;
 
@@ -135,7 +135,7 @@ class NotificationResponse
    *
    * @return $this
    */
-  public function setType(?string $type = null): self
+  public function setType(string $type = null): self
   {
     $this->type = $type;
 
@@ -157,7 +157,7 @@ class NotificationResponse
    *
    * @return $this
    */
-  public function setSeen(?bool $seen = null): self
+  public function setSeen(bool $seen = null): self
   {
     $this->seen = $seen;
 
@@ -177,7 +177,7 @@ class NotificationResponse
    *
    * @return $this
    */
-  public function setContent(?array $content = null): self
+  public function setContent(array $content = null): self
   {
     $this->content = $content;
 

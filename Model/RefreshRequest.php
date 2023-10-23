@@ -72,7 +72,7 @@ class RefreshRequest
    *
    * @return $this
    */
-  public function setRefreshToken(?string $refresh_token = null): self
+  public function setRefreshToken(string $refresh_token = null): self
   {
     $this->refresh_token = $refresh_token;
 

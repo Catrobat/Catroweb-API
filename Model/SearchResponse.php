@@ -114,7 +114,7 @@ class SearchResponse
    *
    * @return $this
    */
-  public function setProjects(?array $projects = null): self
+  public function setProjects(array $projects = null): self
   {
     $this->projects = $projects;
 
@@ -134,7 +134,7 @@ class SearchResponse
    *
    * @return $this
    */
-  public function setProjectsTotal(?int $projects_total = null): self
+  public function setProjectsTotal(int $projects_total = null): self
   {
     $this->projects_total = $projects_total;
 
@@ -156,7 +156,7 @@ class SearchResponse
    *
    * @return $this
    */
-  public function setUsers(?array $users = null): self
+  public function setUsers(array $users = null): self
   {
     $this->users = $users;
 
@@ -176,7 +176,7 @@ class SearchResponse
    *
    * @return $this
    */
-  public function setUsersTotal(?int $users_total = null): self
+  public function setUsersTotal(int $users_total = null): self
   {
     $this->users_total = $users_total;
 

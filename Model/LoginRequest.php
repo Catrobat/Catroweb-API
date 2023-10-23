@@ -102,7 +102,7 @@ class LoginRequest
    *
    * @return $this
    */
-  public function setUsername(?string $username = null): self
+  public function setUsername(string $username = null): self
   {
     $this->username = $username;
 
@@ -124,7 +124,7 @@ class LoginRequest
    *
    * @return $this
    */
-  public function setPassword(?string $password = null): self
+  public function setPassword(string $password = null): self
   {
     $this->password = $password;
 

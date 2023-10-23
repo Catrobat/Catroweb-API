@@ -82,7 +82,7 @@ class JWTResponse
    *
    * @return $this
    */
-  public function setToken(?string $token = null): self
+  public function setToken(string $token = null): self
   {
     $this->token = $token;
 
@@ -102,7 +102,7 @@ class JWTResponse
    *
    * @return $this
    */
-  public function setRefreshToken(?string $refresh_token = null): self
+  public function setRefreshToken(string $refresh_token = null): self
   {
     $this->refresh_token = $refresh_token;
 

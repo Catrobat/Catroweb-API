@@ -41,13 +41,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 class NotificationContent
 {
   /**
-   * Id of the user who caused the notification.
+   * Unique UUID/ID (string) of the object.
    *
    * @SerializedName("from")
    *
    * @Assert\Type("string")
    *
    * @Type("string")
+   *
+   * @Assert\Regex("/^[a-zA-Z0-9\\-]+$/")
    */
   protected ?string $from = null;
 
@@ -63,13 +65,15 @@ class NotificationContent
   protected ?string $from_name = null;
 
   /**
-   * Id of the program for which the notification is about.
+   * Unique UUID/ID (string) of the object.
    *
    * @SerializedName("program")
    *
    * @Assert\Type("string")
    *
    * @Type("string")
+   *
+   * @Assert\Regex("/^[a-zA-Z0-9\\-]+$/")
    */
   protected ?string $program = null;
 
@@ -96,13 +100,15 @@ class NotificationContent
   protected ?string $avatar = null;
 
   /**
-   * Id of the remixed program.
+   * Unique UUID/ID (string) of the object.
    *
    * @SerializedName("remixed_program")
    *
    * @Assert\Type("string")
    *
    * @Type("string")
+   *
+   * @Assert\Regex("/^[a-zA-Z0-9\\-]+$/")
    */
   protected ?string $remixed_program = null;
 
@@ -168,11 +174,11 @@ class NotificationContent
   /**
    * Sets from.
    *
-   * @param string|null $from Id of the user who caused the notification
+   * @param string|null $from Unique UUID/ID (string) of the object
    *
    * @return $this
    */
-  public function setFrom(?string $from = null): self
+  public function setFrom(string $from = null): self
   {
     $this->from = $from;
 
@@ -194,7 +200,7 @@ class NotificationContent
    *
    * @return $this
    */
-  public function setFromName(?string $from_name = null): self
+  public function setFromName(string $from_name = null): self
   {
     $this->from_name = $from_name;
 
@@ -212,11 +218,11 @@ class NotificationContent
   /**
    * Sets program.
    *
-   * @param string|null $program Id of the program for which the notification is about
+   * @param string|null $program Unique UUID/ID (string) of the object
    *
    * @return $this
    */
-  public function setProgram(?string $program = null): self
+  public function setProgram(string $program = null): self
   {
     $this->program = $program;
 
@@ -238,7 +244,7 @@ class NotificationContent
    *
    * @return $this
    */
-  public function setProgramName(?string $program_name = null): self
+  public function setProgramName(string $program_name = null): self
   {
     $this->program_name = $program_name;
 
@@ -260,7 +266,7 @@ class NotificationContent
    *
    * @return $this
    */
-  public function setAvatar(?string $avatar = null): self
+  public function setAvatar(string $avatar = null): self
   {
     $this->avatar = $avatar;
 
@@ -278,11 +284,11 @@ class NotificationContent
   /**
    * Sets remixed_program.
    *
-   * @param string|null $remixed_program Id of the remixed program
+   * @param string|null $remixed_program Unique UUID/ID (string) of the object
    *
    * @return $this
    */
-  public function setRemixedProgram(?string $remixed_program = null): self
+  public function setRemixedProgram(string $remixed_program = null): self
   {
     $this->remixed_program = $remixed_program;
 
@@ -304,7 +310,7 @@ class NotificationContent
    *
    * @return $this
    */
-  public function setRemixedProgramName(?string $remixed_program_name = null): self
+  public function setRemixedProgramName(string $remixed_program_name = null): self
   {
     $this->remixed_program_name = $remixed_program_name;
 
@@ -326,7 +332,7 @@ class NotificationContent
    *
    * @return $this
    */
-  public function setMessage(?string $message = null): self
+  public function setMessage(string $message = null): self
   {
     $this->message = $message;
 
@@ -348,7 +354,7 @@ class NotificationContent
    *
    * @return $this
    */
-  public function setPrize(?string $prize = null): self
+  public function setPrize(string $prize = null): self
   {
     $this->prize = $prize;
 

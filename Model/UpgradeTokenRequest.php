@@ -72,7 +72,7 @@ class UpgradeTokenRequest
    *
    * @return $this
    */
-  public function setUploadToken(?string $upload_token = null): self
+  public function setUploadToken(string $upload_token = null): self
   {
     $this->upload_token = $upload_token;
 

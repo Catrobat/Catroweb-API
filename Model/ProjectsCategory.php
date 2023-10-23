@@ -103,7 +103,7 @@ class ProjectsCategory
    *
    * @return $this
    */
-  public function setType(?string $type = null): self
+  public function setType(string $type = null): self
   {
     $this->type = $type;
 
@@ -125,7 +125,7 @@ class ProjectsCategory
    *
    * @return $this
    */
-  public function setName(?string $name = null): self
+  public function setName(string $name = null): self
   {
     $this->name = $name;
 
@@ -147,7 +147,7 @@ class ProjectsCategory
    *
    * @return $this
    */
-  public function setProjectsList(?array $projects_list = null): self
+  public function setProjectsList(array $projects_list = null): self
   {
     $this->projects_list = $projects_list;
 

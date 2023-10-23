@@ -102,7 +102,7 @@ class MediaCategoryResponse
    *
    * @return $this
    */
-  public function setId(?int $id = null): self
+  public function setId(int $id = null): self
   {
     $this->id = $id;
 
@@ -124,7 +124,7 @@ class MediaCategoryResponse
    *
    * @return $this
    */
-  public function setName(?string $name = null): self
+  public function setName(string $name = null): self
   {
     $this->name = $name;
 
@@ -146,7 +146,7 @@ class MediaCategoryResponse
    *
    * @return $this
    */
-  public function setPriority(?int $priority = null): self
+  public function setPriority(int $priority = null): self
   {
     $this->priority = $priority;
 

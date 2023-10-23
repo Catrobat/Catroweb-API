@@ -51,9 +51,7 @@ class UserApiInterfaceTest extends WebTestCase
   /**
    * Setup before running any test cases.
    */
-  public static function setUpBeforeClass(): void
-  {
-  }
+  public static function setUpBeforeClass(): void {}
 
   /**
    * Setup before running each test case.
@@ -76,9 +74,7 @@ class UserApiInterfaceTest extends WebTestCase
   /**
    * Clean up after running all test cases.
    */
-  public static function tearDownAfterClass(): void
-  {
-  }
+  public static function tearDownAfterClass(): void {}
 
   /**
    * Test case for userDelete.
@@ -188,9 +184,6 @@ class UserApiInterfaceTest extends WebTestCase
     $this->markTestSkipped('Test for usersSearchGet not implemented');
   }
 
-  /**
-   * @return mixed
-   */
   protected function genTestData(string $regexp)
   {
     $grammar = new \Hoa\File\Read('hoa://Library/Regex/Grammar.pp');

@@ -49,14 +49,12 @@ use PHPUnit\Framework\TestCase;
  */
 class UpdateProjectErrorResponseTest extends TestCase
 {
-  protected UpdateProjectErrorResponse|MockObject $object;
+  protected MockObject|UpdateProjectErrorResponse $object;
 
   /**
    * Setup before running any test case.
    */
-  public static function setUpBeforeClass(): void
-  {
-  }
+  public static function setUpBeforeClass(): void {}
 
   /**
    * Setup before running each test case.
@@ -69,16 +67,12 @@ class UpdateProjectErrorResponseTest extends TestCase
   /**
    * Clean up after running each test case.
    */
-  public function tearDown(): void
-  {
-  }
+  public function tearDown(): void {}
 
   /**
    * Clean up after running all test cases.
    */
-  public static function tearDownAfterClass(): void
-  {
-  }
+  public static function tearDownAfterClass(): void {}
 
   /**
    * @group integration

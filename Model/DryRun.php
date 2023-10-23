@@ -76,7 +76,7 @@ class DryRun
    *
    * @return $this
    */
-  public function setDryRun(?bool $dry_run = null): self
+  public function setDryRun(bool $dry_run = null): self
   {
     $this->dry_run = $dry_run;
 

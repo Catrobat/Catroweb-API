@@ -68,7 +68,7 @@ Step 4: Implement the API calls:
 
 ```php
 <?php
-// src/Acme/MyBundle/Api/AuthenticationApiInterface.php
+// src/Acme/MyBundle/Api/AuthenticationApi.php
 
 namespace Acme\MyBundle\Api;
 
@@ -157,7 +157,6 @@ Class | Method | HTTP request | Description
  - [BasicUserDataResponse](docs/Model/BasicUserDataResponse.md)
  - [DryRun](docs/Model/DryRun.md)
  - [ExtendedUserDataResponse](docs/Model/ExtendedUserDataResponse.md)
- - [ExtendedUserDataResponseAllOf](docs/Model/ExtendedUserDataResponseAllOf.md)
  - [ExtensionResponse](docs/Model/ExtensionResponse.md)
  - [FeaturedProjectResponse](docs/Model/FeaturedProjectResponse.md)
  - [JWTResponse](docs/Model/JWTResponse.md)
@@ -185,7 +184,6 @@ Class | Method | HTTP request | Description
  - [UpdateProjectRequest](docs/Model/UpdateProjectRequest.md)
  - [UpdateUserErrorResponse](docs/Model/UpdateUserErrorResponse.md)
  - [UpdateUserRequest](docs/Model/UpdateUserRequest.md)
- - [UpdateUserRequestAllOf](docs/Model/UpdateUserRequestAllOf.md)
  - [UpgradeTokenRequest](docs/Model/UpgradeTokenRequest.md)
  - [UploadErrorResponse](docs/Model/UploadErrorResponse.md)
 
@@ -193,9 +191,10 @@ Class | Method | HTTP request | Description
 ## Documentation For Authorization
 
 
-## PandaAuth
+Authentication schemes defined for the API:
+### PandaAuth
 
-- **Type**: HTTP basic authentication
+- **Type**: HTTP Bearer Token authentication (JWT)
 
 
 ## Author

@@ -53,7 +53,6 @@ class MediaLibraryController extends Controller
    * Get the information of a specific media file
    *
    * @param Request $request the Symfony request to handle
-   * @param mixed   $id
    *
    * @return Response the Symfony response
    */
@@ -386,7 +385,6 @@ class MediaLibraryController extends Controller
    * Get media-library asstes of a named package
    *
    * @param Request $request the Symfony request to handle
-   * @param mixed   $name
    *
    * @return Response the Symfony response
    */

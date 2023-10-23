@@ -113,7 +113,7 @@ class MediaPackageResponse
    *
    * @return $this
    */
-  public function setId(?int $id = null): self
+  public function setId(int $id = null): self
   {
     $this->id = $id;
 
@@ -135,7 +135,7 @@ class MediaPackageResponse
    *
    * @return $this
    */
-  public function setName(?string $name = null): self
+  public function setName(string $name = null): self
   {
     $this->name = $name;
 
@@ -157,7 +157,7 @@ class MediaPackageResponse
    *
    * @return $this
    */
-  public function setUrl(?string $url = null): self
+  public function setUrl(string $url = null): self
   {
     $this->url = $url;
 
@@ -177,7 +177,7 @@ class MediaPackageResponse
    *
    * @return $this
    */
-  public function setCategories(?array $categories = null): self
+  public function setCategories(array $categories = null): self
   {
     $this->categories = $categories;
 

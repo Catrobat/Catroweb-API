@@ -88,7 +88,7 @@ class TagResponse
    *
    * @return $this
    */
-  public function setId(?string $id = null): self
+  public function setId(string $id = null): self
   {
     $this->id = $id;
 
@@ -110,7 +110,7 @@ class TagResponse
    *
    * @return $this
    */
-  public function setText(?string $text = null): self
+  public function setText(string $text = null): self
   {
     $this->text = $text;
 

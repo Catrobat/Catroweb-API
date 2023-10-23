@@ -160,7 +160,7 @@ class UpdateUserRequest
    *
    * @return $this
    */
-  public function setDryRun(?bool $dry_run = null): self
+  public function setDryRun(bool $dry_run = null): self
   {
     $this->dry_run = $dry_run;
 
@@ -182,7 +182,7 @@ class UpdateUserRequest
    *
    * @return $this
    */
-  public function setEmail(?string $email = null): self
+  public function setEmail(string $email = null): self
   {
     $this->email = $email;
 
@@ -204,7 +204,7 @@ class UpdateUserRequest
    *
    * @return $this
    */
-  public function setUsername(?string $username = null): self
+  public function setUsername(string $username = null): self
   {
     $this->username = $username;
 
@@ -226,7 +226,7 @@ class UpdateUserRequest
    *
    * @return $this
    */
-  public function setPassword(?string $password = null): self
+  public function setPassword(string $password = null): self
   {
     $this->password = $password;
 
@@ -248,7 +248,7 @@ class UpdateUserRequest
    *
    * @return $this
    */
-  public function setPicture(?string $picture = null): self
+  public function setPicture(string $picture = null): self
   {
     $this->picture = $picture;
 
@@ -270,7 +270,7 @@ class UpdateUserRequest
    *
    * @return $this
    */
-  public function setAbout(?string $about = null): self
+  public function setAbout(string $about = null): self
   {
     $this->about = $about;
 
@@ -292,7 +292,7 @@ class UpdateUserRequest
    *
    * @return $this
    */
-  public function setCurrentlyWorkingOn(?string $currently_working_on = null): self
+  public function setCurrentlyWorkingOn(string $currently_working_on = null): self
   {
     $this->currently_working_on = $currently_working_on;
 
@@ -314,7 +314,7 @@ class UpdateUserRequest
    *
    * @return $this
    */
-  public function setCurrentPassword(?string $current_password = null): self
+  public function setCurrentPassword(string $current_password = null): self
   {
     $this->current_password = $current_password;
 

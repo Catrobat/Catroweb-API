@@ -76,7 +76,7 @@ class SurveyResponse
    *
    * @return $this
    */
-  public function setUrl(?string $url = null): self
+  public function setUrl(string $url = null): self
   {
     $this->url = $url;
 
