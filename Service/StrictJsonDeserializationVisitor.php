@@ -30,23 +30,17 @@ class StrictJsonDeserializationVisitor implements DeserializationVisitorInterfac
   protected JsonDeserializationVisitor $jsonDeserializationVisitor;
 
   public function __construct(
-        int $options = 0,
-        int $depth = 512
-    ) {
+    int $options = 0,
+    int $depth = 512
+  ) {
     $this->jsonDeserializationVisitor = new JsonDeserializationVisitor($options, $depth);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function visitNull($data, array $type)
   {
     return $this->jsonDeserializationVisitor->visitNull($data, $type);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function visitString($data, array $type): string
   {
     if (!is_string($data)) {
@@ -56,9 +50,6 @@ class StrictJsonDeserializationVisitor implements DeserializationVisitorInterfac
     return $this->jsonDeserializationVisitor->visitString($data, $type);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function visitBoolean($data, array $type): bool
   {
     if (!is_bool($data)) {
@@ -68,9 +59,6 @@ class StrictJsonDeserializationVisitor implements DeserializationVisitorInterfac
     return $this->jsonDeserializationVisitor->visitBoolean($data, $type);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function visitInteger($data, array $type): int
   {
     if (!is_int($data)) {
@@ -80,9 +68,6 @@ class StrictJsonDeserializationVisitor implements DeserializationVisitorInterfac
     return $this->jsonDeserializationVisitor->visitInteger($data, $type);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function visitDouble($data, array $type): float
   {
     if (!is_float($data) && !is_integer($data)) {
@@ -92,65 +77,41 @@ class StrictJsonDeserializationVisitor implements DeserializationVisitorInterfac
     return $this->jsonDeserializationVisitor->visitDouble($data, $type);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function visitArray($data, array $type): array
   {
     return $this->jsonDeserializationVisitor->visitArray($data, $type);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function visitDiscriminatorMapProperty($data, ClassMetadata $metadata): string
   {
     return $this->jsonDeserializationVisitor->visitDiscriminatorMapProperty($data, $metadata);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function startVisitingObject(ClassMetadata $metadata, object $data, array $type): void
   {
     $this->jsonDeserializationVisitor->startVisitingObject($metadata, $data, $type);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function visitProperty(PropertyMetadata $metadata, $data)
   {
     return $this->jsonDeserializationVisitor->visitProperty($metadata, $data);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function endVisitingObject(ClassMetadata $metadata, $data, array $type): object
   {
     return $this->jsonDeserializationVisitor->endVisitingObject($metadata, $data, $type);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function getResult($data)
   {
     return $this->jsonDeserializationVisitor->getResult($data);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function prepare($data)
   {
     return $this->jsonDeserializationVisitor->prepare($data);
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function setNavigator(GraphNavigatorInterface $navigator): void
   {
     $this->jsonDeserializationVisitor->setNavigator($navigator);

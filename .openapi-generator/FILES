@@ -23,7 +23,6 @@ Model/BaseUser.php
 Model/BasicUserDataResponse.php
 Model/DryRun.php
 Model/ExtendedUserDataResponse.php
-Model/ExtendedUserDataResponseAllOf.php
 Model/ExtensionResponse.php
 Model/FeaturedProjectResponse.php
 Model/JWTResponse.php
@@ -51,7 +50,6 @@ Model/UpdateProjectFailureResponse.php
 Model/UpdateProjectRequest.php
 Model/UpdateUserErrorResponse.php
 Model/UpdateUserRequest.php
-Model/UpdateUserRequestAllOf.php
 Model/UpgradeTokenRequest.php
 Model/UploadErrorResponse.php
 OpenAPIServerBundle.php
@@ -77,7 +75,6 @@ Tests/Controller/ControllerTest.php
 Tests/Model/BaseUserTest.php
 Tests/Model/BasicUserDataResponseTest.php
 Tests/Model/DryRunTest.php
-Tests/Model/ExtendedUserDataResponseAllOfTest.php
 Tests/Model/ExtendedUserDataResponseTest.php
 Tests/Model/ExtensionResponseTest.php
 Tests/Model/FeaturedProjectResponseTest.php
@@ -105,7 +102,6 @@ Tests/Model/UpdateProjectErrorResponseTest.php
 Tests/Model/UpdateProjectFailureResponseTest.php
 Tests/Model/UpdateProjectRequestTest.php
 Tests/Model/UpdateUserErrorResponseTest.php
-Tests/Model/UpdateUserRequestAllOfTest.php
 Tests/Model/UpdateUserRequestTest.php
 Tests/Model/UpgradeTokenRequestTest.php
 Tests/Model/UploadErrorResponseTest.php
@@ -122,7 +118,6 @@ docs/Model/BaseUser.md
 docs/Model/BasicUserDataResponse.md
 docs/Model/DryRun.md
 docs/Model/ExtendedUserDataResponse.md
-docs/Model/ExtendedUserDataResponseAllOf.md
 docs/Model/ExtensionResponse.md
 docs/Model/FeaturedProjectResponse.md
 docs/Model/JWTResponse.md
@@ -150,7 +145,6 @@ docs/Model/UpdateProjectFailureResponse.md
 docs/Model/UpdateProjectRequest.md
 docs/Model/UpdateUserErrorResponse.md
 docs/Model/UpdateUserRequest.md
-docs/Model/UpdateUserRequestAllOf.md
 docs/Model/UpgradeTokenRequest.md
 docs/Model/UploadErrorResponse.md
 git_push.sh
