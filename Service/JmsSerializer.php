@@ -23,17 +23,11 @@ class JmsSerializer implements SerializerInterface
     ;
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function serialize($data, string $format): string
   {
     return SerializerBuilder::create()->build()->serialize($data, $this->convertFormat($format));
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function deserialize($data, string $type, string $format)
   {
     if ('string' == $format) {
@@ -94,7 +88,7 @@ class JmsSerializer implements SerializerInterface
         break;
       case 'DateTime':
       case '\DateTime':
-        return new \DateTime($data);
+        return is_null($data) ? null : new \DateTime($data);
       default:
         throw new \RuntimeException(sprintf('Type %s is unsupported', $type));
     }
@@ -124,7 +118,7 @@ class JmsSerializer implements SerializerInterface
         $data = explode('|', $data);
         break;
       default:
-      $data = [];
+        $data = [];
     }
 
     // Deserialize each of the array elements
