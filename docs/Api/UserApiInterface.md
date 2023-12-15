@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**userPost**](UserApiInterface.md#userPost) | **POST** /user | Register
 [**userPut**](UserApiInterface.md#userPut) | **PUT** /user | Update User
 [**userResetPasswordPost**](UserApiInterface.md#userResetPasswordPost) | **POST** /user/reset-password | Request email to reset password
+[**usersGet**](UserApiInterface.md#usersGet) | **GET** /users | Get users
 [**usersSearchGet**](UserApiInterface.md#usersSearchGet) | **GET** /users/search | Search for users
 
 
@@ -341,6 +342,62 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+## **usersGet**
+> OpenAPI\Server\Model\BasicUserDataResponse usersGet($query, $limit, $offset)
+
+Get users
+
+Get all users with their corresponding data
+
+### Example Implementation
+```php
+<?php
+// src/Acme/MyBundle/Api/UserApiInterface.php
+
+namespace Acme\MyBundle\Api;
+
+use OpenAPI\Server\Api\UserApiInterface;
+
+class UserApi implements UserApiInterface
+{
+
+    // ...
+
+    /**
+     * Implementation of UserApiInterface#usersGet
+     */
+    public function usersGet(string $query, int $limit, int $offset, int &$responseCode, array &$responseHeaders): array|object|null
+    {
+        // Implement the operation ...
+    }
+
+    // ...
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **query** | **string**|  |
+ **limit** | **int**|  | [optional] [default to 20]
+ **offset** | **int**|  | [optional] [default to 0]
+
+### Return type
+
+[**OpenAPI\Server\Model\BasicUserDataResponse**](../Model/BasicUserDataResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
