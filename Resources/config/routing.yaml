@@ -246,6 +246,12 @@ open_api_server_user_userresetpasswordpost:
     defaults:
         _controller: open_api_server.controller.user::userResetPasswordPostAction
 
+open_api_server_user_usersget:
+    path:     /users
+    methods:  [GET]
+    defaults:
+        _controller: open_api_server.controller.user::usersGetAction
+
 open_api_server_user_userssearchget:
     path:     /users/search
     methods:  [GET]
