@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: "Catroweb API"
   description: "API for the Catrobat Share Platform"
-  version: "v1.1.20"
+  version: "v1.2.0"
   termsOfService: "https://share.catrob.at/pocketcode/termsOfUse"
   contact:
     name: "Catrobat"
@@ -478,6 +478,37 @@ paths:
         - $ref: '#/components/parameters/Limit'
         - $ref: '#/components/parameters/Offset'
         - $ref: '#/components/parameters/Attributes'
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersDataResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+          
+  /users:
+    get:
+      tags:
+        - "User"
+      summary: "Get users"
+      description: "Get all users with their corresponding data"
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
       responses:
         '200':
           description: "OK"
@@ -1781,6 +1812,10 @@ components:
           type: integer
           example: 42
           description: "Amount of users followed by this user"
+        ranking_score:
+          type: integer
+          example: 151
+          description: "Ranking score of this user"
 
     ExtendedUserDataResponse:
       allOf:
