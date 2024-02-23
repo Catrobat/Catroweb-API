@@ -2135,6 +2135,10 @@ components:
           type: number
           example: 0.14381762458251943
           description: "The filesize of the catrobat file in megabytes"
+        not_for_kids:
+          type: number
+          example: 0
+          description: "Indicates whether a project is suitable for kids or not (0 = safe for kids, 1 = not safe for kids, 2 = not safe for kids set by moderator)"
 
     ExtensionsResponse:
       type: array
