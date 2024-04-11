@@ -69,8 +69,10 @@ class ExtensionResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->id = $data['id'] ?? null;
-    $this->text = $data['text'] ?? null;
+    if (is_array($data)) {
+      $this->id = array_key_exists('id', $data) ? $data['id'] : $this->id;
+      $this->text = array_key_exists('text', $data) ? $data['text'] : $this->text;
+    }
   }
 
   /**

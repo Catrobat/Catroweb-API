@@ -41,13 +41,6 @@ namespace OpenAPI\Server\Api;
 interface NotificationsApiInterface
 {
   /**
-   * Sets authentication method PandaAuth.
-   *
-   * @param string|null $value value of the PandaAuth authentication method
-   */
-  public function setPandaAuth(?string $value): void;
-
-  /**
    * Operation notificationIdReadPut.
    *
    * Mark specified notification as read
@@ -57,7 +50,12 @@ interface NotificationsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function notificationIdReadPut(int $id, string $accept_language, int &$responseCode, array &$responseHeaders): void;
+  public function notificationIdReadPut(
+    int $id,
+    string $accept_language,
+    int &$responseCode,
+    array &$responseHeaders
+  ): void;
 
   /**
    * Operation notificationsCountGet.
@@ -67,7 +65,10 @@ interface NotificationsApiInterface
    * @param int   &$responseCode   The HTTP Response Code
    * @param array $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function notificationsCountGet(int &$responseCode, array &$responseHeaders): array|object|null;
+  public function notificationsCountGet(
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation notificationsGet.
@@ -82,7 +83,15 @@ interface NotificationsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function notificationsGet(string $accept_language, int $limit, int $offset, string $attributes, string $type, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function notificationsGet(
+    string $accept_language,
+    int $limit,
+    int $offset,
+    string $attributes,
+    string $type,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation notificationsReadPut.
@@ -92,5 +101,8 @@ interface NotificationsApiInterface
    * @param int   &$responseCode   The HTTP Response Code
    * @param array $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function notificationsReadPut(int &$responseCode, array &$responseHeaders): void;
+  public function notificationsReadPut(
+    int &$responseCode,
+    array &$responseHeaders
+  ): void;
 }

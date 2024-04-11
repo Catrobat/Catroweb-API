@@ -56,7 +56,9 @@ class RefreshRequest
    */
   public function __construct(?array $data = null)
   {
-    $this->refresh_token = $data['refresh_token'] ?? null;
+    if (is_array($data)) {
+      $this->refresh_token = array_key_exists('refresh_token', $data) ? $data['refresh_token'] : $this->refresh_token;
+    }
   }
 
   /**

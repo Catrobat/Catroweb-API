@@ -146,9 +146,6 @@ class ProjectsController extends Controller
   public function projectIdDeleteAction(Request $request, $id)
   {
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
 
@@ -173,9 +170,6 @@ class ProjectsController extends Controller
 
     try {
       $handler = $this->getApiHandler();
-
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
 
       // Make the call to the business logic
       $responseCode = 204;
@@ -335,9 +329,6 @@ class ProjectsController extends Controller
     }
 
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
     $accept_language = $request->headers->get('Accept-Language', 'en');
@@ -381,9 +372,6 @@ class ProjectsController extends Controller
 
     try {
       $handler = $this->getApiHandler();
-
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
 
       // Make the call to the business logic
       $responseCode = 200;
@@ -599,9 +587,6 @@ class ProjectsController extends Controller
     }
 
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
     $project_report_request = $request->getContent();
@@ -637,9 +622,6 @@ class ProjectsController extends Controller
 
     try {
       $handler = $this->getApiHandler();
-
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
 
       // Make the call to the business logic
       $responseCode = 204;
@@ -1147,9 +1129,6 @@ class ProjectsController extends Controller
     }
 
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
     $accept_language = $request->headers->get('Accept-Language', 'en');
@@ -1206,9 +1185,6 @@ class ProjectsController extends Controller
 
     try {
       $handler = $this->getApiHandler();
-
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
 
       // Make the call to the business logic
       $responseCode = 200;
@@ -1485,9 +1461,6 @@ class ProjectsController extends Controller
     }
 
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
     $max_version = $request->query->get('max_version', '');
@@ -1546,9 +1519,6 @@ class ProjectsController extends Controller
 
     try {
       $handler = $this->getApiHandler();
-
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
 
       // Make the call to the business logic
       $responseCode = 200;

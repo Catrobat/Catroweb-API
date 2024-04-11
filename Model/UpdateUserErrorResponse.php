@@ -102,11 +102,13 @@ class UpdateUserErrorResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->email = $data['email'] ?? null;
-    $this->username = $data['username'] ?? null;
-    $this->password = $data['password'] ?? null;
-    $this->current_password = $data['current_password'] ?? null;
-    $this->picture = $data['picture'] ?? null;
+    if (is_array($data)) {
+      $this->email = array_key_exists('email', $data) ? $data['email'] : $this->email;
+      $this->username = array_key_exists('username', $data) ? $data['username'] : $this->username;
+      $this->password = array_key_exists('password', $data) ? $data['password'] : $this->password;
+      $this->current_password = array_key_exists('current_password', $data) ? $data['current_password'] : $this->current_password;
+      $this->picture = array_key_exists('picture', $data) ? $data['picture'] : $this->picture;
+    }
   }
 
   /**

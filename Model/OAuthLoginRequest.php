@@ -69,8 +69,10 @@ class OAuthLoginRequest
    */
   public function __construct(?array $data = null)
   {
-    $this->id_token = $data['id_token'] ?? null;
-    $this->resource_owner = $data['resource_owner'] ?? null;
+    if (is_array($data)) {
+      $this->id_token = array_key_exists('id_token', $data) ? $data['id_token'] : $this->id_token;
+      $this->resource_owner = array_key_exists('resource_owner', $data) ? $data['resource_owner'] : $this->resource_owner;
+    }
   }
 
   /**

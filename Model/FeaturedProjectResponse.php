@@ -110,13 +110,15 @@ class FeaturedProjectResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->id = $data['id'] ?? null;
-    $this->project_id = $data['project_id'] ?? null;
-    $this->project_url = $data['project_url'] ?? null;
-    $this->url = $data['url'] ?? null;
-    $this->name = $data['name'] ?? null;
-    $this->author = $data['author'] ?? null;
-    $this->featured_image = $data['featured_image'] ?? null;
+    if (is_array($data)) {
+      $this->id = array_key_exists('id', $data) ? $data['id'] : $this->id;
+      $this->project_id = array_key_exists('project_id', $data) ? $data['project_id'] : $this->project_id;
+      $this->project_url = array_key_exists('project_url', $data) ? $data['project_url'] : $this->project_url;
+      $this->url = array_key_exists('url', $data) ? $data['url'] : $this->url;
+      $this->name = array_key_exists('name', $data) ? $data['name'] : $this->name;
+      $this->author = array_key_exists('author', $data) ? $data['author'] : $this->author;
+      $this->featured_image = array_key_exists('featured_image', $data) ? $data['featured_image'] : $this->featured_image;
+    }
   }
 
   /**

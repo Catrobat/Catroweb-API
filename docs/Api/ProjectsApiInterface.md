@@ -129,7 +129,7 @@ void (empty response body)
 
 ### Authorization
 
-[PandaAuth](../../README.md#PandaAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[PandaAuth](../../README.md#PandaAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -349,7 +349,7 @@ void (empty response body)
 
 ### Authorization
 
-[PandaAuth](../../README.md#PandaAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -626,7 +626,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[PandaAuth](../../README.md#PandaAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -791,7 +791,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[PandaAuth](../../README.md#PandaAuth)
+No authorization required
 
 ### HTTP request headers
 

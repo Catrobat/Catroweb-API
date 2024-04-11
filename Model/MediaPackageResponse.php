@@ -74,6 +74,8 @@ class MediaPackageResponse
   protected ?string $url = null;
 
   /**
+   * @var array[]|null
+   *
    * @SerializedName("categories")
    *
    * @Assert\All({
@@ -92,10 +94,12 @@ class MediaPackageResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->id = $data['id'] ?? null;
-    $this->name = $data['name'] ?? null;
-    $this->url = $data['url'] ?? null;
-    $this->categories = $data['categories'] ?? null;
+    if (is_array($data)) {
+      $this->id = array_key_exists('id', $data) ? $data['id'] : $this->id;
+      $this->name = array_key_exists('name', $data) ? $data['name'] : $this->name;
+      $this->url = array_key_exists('url', $data) ? $data['url'] : $this->url;
+      $this->categories = array_key_exists('categories', $data) ? $data['categories'] : $this->categories;
+    }
   }
 
   /**
@@ -166,6 +170,8 @@ class MediaPackageResponse
 
   /**
    * Gets categories.
+   *
+   * @return array[]|null
    */
   public function getCategories(): ?array
   {
@@ -174,6 +180,8 @@ class MediaPackageResponse
 
   /**
    * Sets categories.
+   *
+   * @param array[]|null $categories
    *
    * @return $this
    */

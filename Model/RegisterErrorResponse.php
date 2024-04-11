@@ -80,9 +80,11 @@ class RegisterErrorResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->email = $data['email'] ?? null;
-    $this->username = $data['username'] ?? null;
-    $this->password = $data['password'] ?? null;
+    if (is_array($data)) {
+      $this->email = array_key_exists('email', $data) ? $data['email'] : $this->email;
+      $this->username = array_key_exists('username', $data) ? $data['username'] : $this->username;
+      $this->password = array_key_exists('password', $data) ? $data['password'] : $this->password;
+    }
   }
 
   /**

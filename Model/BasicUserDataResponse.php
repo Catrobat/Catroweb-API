@@ -146,15 +146,17 @@ class BasicUserDataResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->id = $data['id'] ?? null;
-    $this->username = $data['username'] ?? null;
-    $this->picture = $data['picture'] ?? null;
-    $this->about = $data['about'] ?? null;
-    $this->currently_working_on = $data['currently_working_on'] ?? null;
-    $this->projects = $data['projects'] ?? null;
-    $this->followers = $data['followers'] ?? null;
-    $this->following = $data['following'] ?? null;
-    $this->ranking_score = $data['ranking_score'] ?? null;
+    if (is_array($data)) {
+      $this->id = array_key_exists('id', $data) ? $data['id'] : $this->id;
+      $this->username = array_key_exists('username', $data) ? $data['username'] : $this->username;
+      $this->picture = array_key_exists('picture', $data) ? $data['picture'] : $this->picture;
+      $this->about = array_key_exists('about', $data) ? $data['about'] : $this->about;
+      $this->currently_working_on = array_key_exists('currently_working_on', $data) ? $data['currently_working_on'] : $this->currently_working_on;
+      $this->projects = array_key_exists('projects', $data) ? $data['projects'] : $this->projects;
+      $this->followers = array_key_exists('followers', $data) ? $data['followers'] : $this->followers;
+      $this->following = array_key_exists('following', $data) ? $data['following'] : $this->following;
+      $this->ranking_score = array_key_exists('ranking_score', $data) ? $data['ranking_score'] : $this->ranking_score;
+    }
   }
 
   /**

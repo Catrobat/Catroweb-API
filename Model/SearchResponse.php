@@ -43,6 +43,8 @@ class SearchResponse
   /**
    * Array of projects.
    *
+   * @var ProjectResponse[]|null
+   *
    * @SerializedName("projects")
    *
    * @Assert\All({
@@ -65,6 +67,8 @@ class SearchResponse
 
   /**
    * Array of users.
+   *
+   * @var BasicUserDataResponse[]|null
    *
    * @SerializedName("users")
    *
@@ -93,14 +97,18 @@ class SearchResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->projects = $data['projects'] ?? null;
-    $this->projects_total = $data['projects_total'] ?? null;
-    $this->users = $data['users'] ?? null;
-    $this->users_total = $data['users_total'] ?? null;
+    if (is_array($data)) {
+      $this->projects = array_key_exists('projects', $data) ? $data['projects'] : $this->projects;
+      $this->projects_total = array_key_exists('projects_total', $data) ? $data['projects_total'] : $this->projects_total;
+      $this->users = array_key_exists('users', $data) ? $data['users'] : $this->users;
+      $this->users_total = array_key_exists('users_total', $data) ? $data['users_total'] : $this->users_total;
+    }
   }
 
   /**
    * Gets projects.
+   *
+   * @return ProjectResponse[]|null
    */
   public function getProjects(): ?array
   {
@@ -110,7 +118,7 @@ class SearchResponse
   /**
    * Sets projects.
    *
-   * @param array|null $projects Array of projects
+   * @param ProjectResponse[]|null $projects Array of projects
    *
    * @return $this
    */
@@ -143,6 +151,8 @@ class SearchResponse
 
   /**
    * Gets users.
+   *
+   * @return BasicUserDataResponse[]|null
    */
   public function getUsers(): ?array
   {
@@ -152,7 +162,7 @@ class SearchResponse
   /**
    * Sets users.
    *
-   * @param array|null $users Array of users
+   * @param BasicUserDataResponse[]|null $users Array of users
    *
    * @return $this
    */

@@ -59,9 +59,6 @@ class UserController extends Controller
   public function userDeleteAction(Request $request)
   {
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
 
@@ -71,9 +68,6 @@ class UserController extends Controller
 
     try {
       $handler = $this->getApiHandler();
-
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
 
       // Make the call to the business logic
       $responseCode = 204;
@@ -130,9 +124,6 @@ class UserController extends Controller
     }
 
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
 
@@ -142,9 +133,6 @@ class UserController extends Controller
 
     try {
       $handler = $this->getApiHandler();
-
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
 
       // Make the call to the business logic
       $responseCode = 200;
@@ -409,9 +397,6 @@ class UserController extends Controller
     }
 
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
     $accept_language = $request->headers->get('Accept-Language', 'en');
@@ -446,9 +431,6 @@ class UserController extends Controller
 
     try {
       $handler = $this->getApiHandler();
-
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
 
       // Make the call to the business logic
       $responseCode = 200;
