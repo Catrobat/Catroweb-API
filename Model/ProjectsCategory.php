@@ -65,6 +65,8 @@ class ProjectsCategory
   /**
    * Array of projects.
    *
+   * @var ProjectResponse[]|null
+   *
    * @SerializedName("projectsList")
    *
    * @Assert\All({
@@ -83,9 +85,11 @@ class ProjectsCategory
    */
   public function __construct(?array $data = null)
   {
-    $this->type = $data['type'] ?? null;
-    $this->name = $data['name'] ?? null;
-    $this->projects_list = $data['projects_list'] ?? null;
+    if (is_array($data)) {
+      $this->type = array_key_exists('type', $data) ? $data['type'] : $this->type;
+      $this->name = array_key_exists('name', $data) ? $data['name'] : $this->name;
+      $this->projects_list = array_key_exists('projects_list', $data) ? $data['projects_list'] : $this->projects_list;
+    }
   }
 
   /**
@@ -134,6 +138,8 @@ class ProjectsCategory
 
   /**
    * Gets projects_list.
+   *
+   * @return ProjectResponse[]|null
    */
   public function getProjectsList(): ?array
   {
@@ -143,7 +149,7 @@ class ProjectsCategory
   /**
    * Sets projects_list.
    *
-   * @param array|null $projects_list Array of projects
+   * @param ProjectResponse[]|null $projects_list Array of projects
    *
    * @return $this
    */

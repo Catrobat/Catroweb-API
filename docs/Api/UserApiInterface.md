@@ -67,7 +67,7 @@ void (empty response body)
 
 ### Authorization
 
-[PandaAuth](../../README.md#PandaAuth)
+[BearerAuth](../../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -118,7 +118,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[PandaAuth](../../README.md#PandaAuth)
+[BearerAuth](../../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -282,7 +282,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[PandaAuth](../../README.md#PandaAuth)
+[BearerAuth](../../README.md#BearerAuth)
 
 ### HTTP request headers
 

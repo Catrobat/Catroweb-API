@@ -59,9 +59,7 @@ class UserController extends Controller
   public function userDeleteAction(Request $request)
   {
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
+    // Authentication 'BearerAuth' required
 
     // Read out all input parameter values into variables
 
@@ -72,8 +70,8 @@ class UserController extends Controller
     try {
       $handler = $this->getApiHandler();
 
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
+      // Set authentication method 'BearerAuth'
+      $handler->setBearerAuth($securityBearerAuth);
 
       // Make the call to the business logic
       $responseCode = 204;
@@ -130,9 +128,7 @@ class UserController extends Controller
     }
 
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
+    // Authentication 'BearerAuth' required
 
     // Read out all input parameter values into variables
 
@@ -143,8 +139,8 @@ class UserController extends Controller
     try {
       $handler = $this->getApiHandler();
 
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
+      // Set authentication method 'BearerAuth'
+      $handler->setBearerAuth($securityBearerAuth);
 
       // Make the call to the business logic
       $responseCode = 200;
@@ -409,9 +405,7 @@ class UserController extends Controller
     }
 
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
+    // Authentication 'BearerAuth' required
 
     // Read out all input parameter values into variables
     $accept_language = $request->headers->get('Accept-Language', 'en');
@@ -447,8 +441,8 @@ class UserController extends Controller
     try {
       $handler = $this->getApiHandler();
 
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
+      // Set authentication method 'BearerAuth'
+      $handler->setBearerAuth($securityBearerAuth);
 
       // Make the call to the business logic
       $responseCode = 200;

@@ -49,7 +49,7 @@ class DryRun
    *
    * @Type("bool")
    */
-  protected ?bool $dry_run = null;
+  protected ?bool $dry_run = false;
 
   /**
    * Constructor.
@@ -58,7 +58,9 @@ class DryRun
    */
   public function __construct(?array $data = null)
   {
-    $this->dry_run = $data['dry_run'] ?? null;
+    if (is_array($data)) {
+      $this->dry_run = array_key_exists('dry_run', $data) ? $data['dry_run'] : $this->dry_run;
+    }
   }
 
   /**

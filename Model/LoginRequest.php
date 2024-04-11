@@ -83,8 +83,10 @@ class LoginRequest
    */
   public function __construct(?array $data = null)
   {
-    $this->username = $data['username'] ?? null;
-    $this->password = $data['password'] ?? null;
+    if (is_array($data)) {
+      $this->username = array_key_exists('username', $data) ? $data['username'] : $this->username;
+      $this->password = array_key_exists('password', $data) ? $data['password'] : $this->password;
+    }
   }
 
   /**

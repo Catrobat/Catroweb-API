@@ -102,11 +102,13 @@ class UpdateProjectRequest
    */
   public function __construct(?array $data = null)
   {
-    $this->name = $data['name'] ?? null;
-    $this->description = $data['description'] ?? null;
-    $this->credits = $data['credits'] ?? null;
-    $this->private = $data['private'] ?? null;
-    $this->screenshot = $data['screenshot'] ?? null;
+    if (is_array($data)) {
+      $this->name = array_key_exists('name', $data) ? $data['name'] : $this->name;
+      $this->description = array_key_exists('description', $data) ? $data['description'] : $this->description;
+      $this->credits = array_key_exists('credits', $data) ? $data['credits'] : $this->credits;
+      $this->private = array_key_exists('private', $data) ? $data['private'] : $this->private;
+      $this->screenshot = array_key_exists('screenshot', $data) ? $data['screenshot'] : $this->screenshot;
+    }
   }
 
   /**

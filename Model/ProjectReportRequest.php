@@ -58,7 +58,9 @@ class ProjectReportRequest
    */
   public function __construct(?array $data = null)
   {
-    $this->category = $data['category'] ?? null;
+    if (is_array($data)) {
+      $this->category = array_key_exists('category', $data) ? $data['category'] : $this->category;
+    }
   }
 
   /**

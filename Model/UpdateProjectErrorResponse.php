@@ -91,10 +91,12 @@ class UpdateProjectErrorResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->name = $data['name'] ?? null;
-    $this->description = $data['description'] ?? null;
-    $this->credits = $data['credits'] ?? null;
-    $this->screenshot = $data['screenshot'] ?? null;
+    if (is_array($data)) {
+      $this->name = array_key_exists('name', $data) ? $data['name'] : $this->name;
+      $this->description = array_key_exists('description', $data) ? $data['description'] : $this->description;
+      $this->credits = array_key_exists('credits', $data) ? $data['credits'] : $this->credits;
+      $this->screenshot = array_key_exists('screenshot', $data) ? $data['screenshot'] : $this->screenshot;
+    }
   }
 
   /**
