@@ -1313,7 +1313,7 @@ components:
   # Security Schemes
   ###
   securitySchemes:
-    PandaAuth:
+    BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
