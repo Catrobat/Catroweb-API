@@ -184,6 +184,8 @@ class ProjectResponse
   /**
    * Tags allow projects to be categorized by their creators.
    *
+   * @var string[]|null
+   *
    * @SerializedName("tags")
    *
    * @Assert\All({
@@ -286,28 +288,30 @@ class ProjectResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->id = $data['id'] ?? null;
-    $this->name = $data['name'] ?? null;
-    $this->author = $data['author'] ?? null;
-    $this->description = $data['description'] ?? null;
-    $this->credits = $data['credits'] ?? null;
-    $this->version = $data['version'] ?? null;
-    $this->views = $data['views'] ?? null;
-    $this->download = $data['download'] ?? null;
-    $this->downloads = $data['downloads'] ?? null;
-    $this->reactions = $data['reactions'] ?? null;
-    $this->comments = $data['comments'] ?? null;
-    $this->private = $data['private'] ?? null;
-    $this->flavor = $data['flavor'] ?? null;
-    $this->tags = $data['tags'] ?? null;
-    $this->uploaded = $data['uploaded'] ?? null;
-    $this->uploaded_string = $data['uploaded_string'] ?? null;
-    $this->screenshot_large = $data['screenshot_large'] ?? null;
-    $this->screenshot_small = $data['screenshot_small'] ?? null;
-    $this->project_url = $data['project_url'] ?? null;
-    $this->download_url = $data['download_url'] ?? null;
-    $this->filesize = $data['filesize'] ?? null;
-    $this->not_for_kids = $data['not_for_kids'] ?? null;
+    if (is_array($data)) {
+      $this->id = array_key_exists('id', $data) ? $data['id'] : $this->id;
+      $this->name = array_key_exists('name', $data) ? $data['name'] : $this->name;
+      $this->author = array_key_exists('author', $data) ? $data['author'] : $this->author;
+      $this->description = array_key_exists('description', $data) ? $data['description'] : $this->description;
+      $this->credits = array_key_exists('credits', $data) ? $data['credits'] : $this->credits;
+      $this->version = array_key_exists('version', $data) ? $data['version'] : $this->version;
+      $this->views = array_key_exists('views', $data) ? $data['views'] : $this->views;
+      $this->download = array_key_exists('download', $data) ? $data['download'] : $this->download;
+      $this->downloads = array_key_exists('downloads', $data) ? $data['downloads'] : $this->downloads;
+      $this->reactions = array_key_exists('reactions', $data) ? $data['reactions'] : $this->reactions;
+      $this->comments = array_key_exists('comments', $data) ? $data['comments'] : $this->comments;
+      $this->private = array_key_exists('private', $data) ? $data['private'] : $this->private;
+      $this->flavor = array_key_exists('flavor', $data) ? $data['flavor'] : $this->flavor;
+      $this->tags = array_key_exists('tags', $data) ? $data['tags'] : $this->tags;
+      $this->uploaded = array_key_exists('uploaded', $data) ? $data['uploaded'] : $this->uploaded;
+      $this->uploaded_string = array_key_exists('uploaded_string', $data) ? $data['uploaded_string'] : $this->uploaded_string;
+      $this->screenshot_large = array_key_exists('screenshot_large', $data) ? $data['screenshot_large'] : $this->screenshot_large;
+      $this->screenshot_small = array_key_exists('screenshot_small', $data) ? $data['screenshot_small'] : $this->screenshot_small;
+      $this->project_url = array_key_exists('project_url', $data) ? $data['project_url'] : $this->project_url;
+      $this->download_url = array_key_exists('download_url', $data) ? $data['download_url'] : $this->download_url;
+      $this->filesize = array_key_exists('filesize', $data) ? $data['filesize'] : $this->filesize;
+      $this->not_for_kids = array_key_exists('not_for_kids', $data) ? $data['not_for_kids'] : $this->not_for_kids;
+    }
   }
 
   /**
@@ -596,6 +600,8 @@ class ProjectResponse
 
   /**
    * Gets tags.
+   *
+   * @return string[]|null
    */
   public function getTags(): ?array
   {
@@ -605,7 +611,7 @@ class ProjectResponse
   /**
    * Sets tags.
    *
-   * @param array|null $tags Tags allow projects to be categorized by their creators
+   * @param string[]|null $tags Tags allow projects to be categorized by their creators
    *
    * @return $this
    */

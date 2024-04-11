@@ -60,7 +60,11 @@ interface ProjectsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function projectIdCatrobatGet(string $id, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function projectIdCatrobatGet(
+    string $id,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation projectIdDelete.
@@ -71,7 +75,11 @@ interface ProjectsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function projectIdDelete(string $id, int &$responseCode, array &$responseHeaders): void;
+  public function projectIdDelete(
+    string $id,
+    int &$responseCode,
+    array &$responseHeaders
+  ): void;
 
   /**
    * Operation projectIdGet.
@@ -82,7 +90,11 @@ interface ProjectsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function projectIdGet(string $id, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function projectIdGet(
+    string $id,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation projectIdPut.
@@ -95,7 +107,13 @@ interface ProjectsApiInterface
    * @param int                  &$responseCode          The HTTP Response Code
    * @param array                $responseHeaders        Additional HTTP headers to return with the response ()
    */
-  public function projectIdPut(string $id, UpdateProjectRequest $update_project_request, string $accept_language, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function projectIdPut(
+    string $id,
+    UpdateProjectRequest $update_project_request,
+    string $accept_language,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation projectIdRecommendationsGet.
@@ -113,7 +131,18 @@ interface ProjectsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function projectIdRecommendationsGet(string $id, string $category, string $accept_language, string $max_version, int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function projectIdRecommendationsGet(
+    string $id,
+    string $category,
+    string $accept_language,
+    string $max_version,
+    int $limit,
+    int $offset,
+    string $attributes,
+    string $flavor,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation projectIdReportPost.
@@ -125,7 +154,12 @@ interface ProjectsApiInterface
    * @param int                  &$responseCode          The HTTP Response Code
    * @param array                $responseHeaders        Additional HTTP headers to return with the response ()
    */
-  public function projectIdReportPost(string $id, ProjectReportRequest $project_report_request, int &$responseCode, array &$responseHeaders): void;
+  public function projectIdReportPost(
+    string $id,
+    ProjectReportRequest $project_report_request,
+    int &$responseCode,
+    array &$responseHeaders
+  ): void;
 
   /**
    * Operation projectsCategoriesGet.
@@ -138,7 +172,13 @@ interface ProjectsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function projectsCategoriesGet(string $max_version, string $flavor, string $accept_language, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function projectsCategoriesGet(
+    string $max_version,
+    string $flavor,
+    string $accept_language,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation projectsExtensionsGet.
@@ -149,7 +189,11 @@ interface ProjectsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function projectsExtensionsGet(string $accept_language, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function projectsExtensionsGet(
+    string $accept_language,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation projectsFeaturedGet.
@@ -165,7 +209,16 @@ interface ProjectsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function projectsFeaturedGet(string $platform, string $max_version, int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function projectsFeaturedGet(
+    string $platform,
+    string $max_version,
+    int $limit,
+    int $offset,
+    string $attributes,
+    string $flavor,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation projectsGet.
@@ -182,7 +235,17 @@ interface ProjectsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function projectsGet(string $category, string $accept_language, string $max_version, int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function projectsGet(
+    string $category,
+    string $accept_language,
+    string $max_version,
+    int $limit,
+    int $offset,
+    string $attributes,
+    string $flavor,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation projectsPost.
@@ -197,7 +260,15 @@ interface ProjectsApiInterface
    * @param int          &$responseCode   The HTTP Response Code
    * @param array        $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function projectsPost(string $checksum, UploadedFile $file, string $accept_language, string $flavor, bool $private, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function projectsPost(
+    string $checksum,
+    UploadedFile $file,
+    string $accept_language,
+    string $flavor,
+    bool $private,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation projectsSearchGet.
@@ -213,7 +284,16 @@ interface ProjectsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function projectsSearchGet(string $query, string $max_version, int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function projectsSearchGet(
+    string $query,
+    string $max_version,
+    int $limit,
+    int $offset,
+    string $attributes,
+    string $flavor,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation projectsTagsGet.
@@ -224,7 +304,11 @@ interface ProjectsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function projectsTagsGet(string $accept_language, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function projectsTagsGet(
+    string $accept_language,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation projectsUserGet.
@@ -239,7 +323,15 @@ interface ProjectsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function projectsUserGet(string $max_version, int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function projectsUserGet(
+    string $max_version,
+    int $limit,
+    int $offset,
+    string $attributes,
+    string $flavor,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation projectsUserIdGet.
@@ -255,5 +347,14 @@ interface ProjectsApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function projectsUserIdGet(string $id, string $max_version, int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function projectsUserIdGet(
+    string $id,
+    string $max_version,
+    int $limit,
+    int $offset,
+    string $attributes,
+    string $flavor,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 }

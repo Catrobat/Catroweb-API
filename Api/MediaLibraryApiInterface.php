@@ -50,7 +50,12 @@ interface MediaLibraryApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function mediaFileIdGet(int $id, string $attributes, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function mediaFileIdGet(
+    int $id,
+    string $attributes,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation mediaFilesGet.
@@ -64,7 +69,14 @@ interface MediaLibraryApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function mediaFilesGet(int $limit, int $offset, string $attributes, string $flavor, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function mediaFilesGet(
+    int $limit,
+    int $offset,
+    string $attributes,
+    string $flavor,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation mediaFilesSearchGet.
@@ -80,7 +92,16 @@ interface MediaLibraryApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function mediaFilesSearchGet(string $query, int $limit, int $offset, string $attributes, string $flavor, string $package_name, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function mediaFilesSearchGet(
+    string $query,
+    int $limit,
+    int $offset,
+    string $attributes,
+    string $flavor,
+    string $package_name,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation mediaPackageNameGet.
@@ -94,5 +115,12 @@ interface MediaLibraryApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function mediaPackageNameGet(string $name, int $limit, int $offset, string $attributes, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function mediaPackageNameGet(
+    string $name,
+    int $limit,
+    int $offset,
+    string $attributes,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 }

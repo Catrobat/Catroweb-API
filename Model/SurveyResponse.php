@@ -58,7 +58,9 @@ class SurveyResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->url = $data['url'] ?? null;
+    if (is_array($data)) {
+      $this->url = array_key_exists('url', $data) ? $data['url'] : $this->url;
+    }
   }
 
   /**

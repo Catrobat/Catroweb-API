@@ -58,7 +58,9 @@ class ResetPasswordRequest
    */
   public function __construct(?array $data = null)
   {
-    $this->email = $data['email'] ?? null;
+    if (is_array($data)) {
+      $this->email = array_key_exists('email', $data) ? $data['email'] : $this->email;
+    }
   }
 
   /**

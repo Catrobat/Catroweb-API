@@ -113,12 +113,14 @@ class BaseUser
    */
   public function __construct(?array $data = null)
   {
-    $this->email = $data['email'] ?? null;
-    $this->username = $data['username'] ?? null;
-    $this->password = $data['password'] ?? null;
-    $this->picture = $data['picture'] ?? null;
-    $this->about = $data['about'] ?? null;
-    $this->currently_working_on = $data['currently_working_on'] ?? null;
+    if (is_array($data)) {
+      $this->email = array_key_exists('email', $data) ? $data['email'] : $this->email;
+      $this->username = array_key_exists('username', $data) ? $data['username'] : $this->username;
+      $this->password = array_key_exists('password', $data) ? $data['password'] : $this->password;
+      $this->picture = array_key_exists('picture', $data) ? $data['picture'] : $this->picture;
+      $this->about = array_key_exists('about', $data) ? $data['about'] : $this->about;
+      $this->currently_working_on = array_key_exists('currently_working_on', $data) ? $data['currently_working_on'] : $this->currently_working_on;
+    }
   }
 
   /**

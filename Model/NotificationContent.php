@@ -41,7 +41,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class NotificationContent
 {
   /**
-   * Unique UUID/ID (string) of the object.
+   * Id of the user who caused the notification.
    *
    * @SerializedName("from")
    *
@@ -65,7 +65,7 @@ class NotificationContent
   protected ?string $from_name = null;
 
   /**
-   * Unique UUID/ID (string) of the object.
+   * Id of the program for which the notification is about.
    *
    * @SerializedName("program")
    *
@@ -100,7 +100,7 @@ class NotificationContent
   protected ?string $avatar = null;
 
   /**
-   * Unique UUID/ID (string) of the object.
+   * Id of the remixed program.
    *
    * @SerializedName("remixed_program")
    *
@@ -152,15 +152,17 @@ class NotificationContent
    */
   public function __construct(?array $data = null)
   {
-    $this->from = $data['from'] ?? null;
-    $this->from_name = $data['from_name'] ?? null;
-    $this->program = $data['program'] ?? null;
-    $this->program_name = $data['program_name'] ?? null;
-    $this->avatar = $data['avatar'] ?? null;
-    $this->remixed_program = $data['remixed_program'] ?? null;
-    $this->remixed_program_name = $data['remixed_program_name'] ?? null;
-    $this->message = $data['message'] ?? null;
-    $this->prize = $data['prize'] ?? null;
+    if (is_array($data)) {
+      $this->from = array_key_exists('from', $data) ? $data['from'] : $this->from;
+      $this->from_name = array_key_exists('from_name', $data) ? $data['from_name'] : $this->from_name;
+      $this->program = array_key_exists('program', $data) ? $data['program'] : $this->program;
+      $this->program_name = array_key_exists('program_name', $data) ? $data['program_name'] : $this->program_name;
+      $this->avatar = array_key_exists('avatar', $data) ? $data['avatar'] : $this->avatar;
+      $this->remixed_program = array_key_exists('remixed_program', $data) ? $data['remixed_program'] : $this->remixed_program;
+      $this->remixed_program_name = array_key_exists('remixed_program_name', $data) ? $data['remixed_program_name'] : $this->remixed_program_name;
+      $this->message = array_key_exists('message', $data) ? $data['message'] : $this->message;
+      $this->prize = array_key_exists('prize', $data) ? $data['prize'] : $this->prize;
+    }
   }
 
   /**
@@ -174,7 +176,7 @@ class NotificationContent
   /**
    * Sets from.
    *
-   * @param string|null $from Unique UUID/ID (string) of the object
+   * @param string|null $from Id of the user who caused the notification
    *
    * @return $this
    */
@@ -218,7 +220,7 @@ class NotificationContent
   /**
    * Sets program.
    *
-   * @param string|null $program Unique UUID/ID (string) of the object
+   * @param string|null $program Id of the program for which the notification is about
    *
    * @return $this
    */
@@ -284,7 +286,7 @@ class NotificationContent
   /**
    * Sets remixed_program.
    *
-   * @param string|null $remixed_program Unique UUID/ID (string) of the object
+   * @param string|null $remixed_program Id of the remixed program
    *
    * @return $this
    */

@@ -65,8 +65,10 @@ class JWTResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->token = $data['token'] ?? null;
-    $this->refresh_token = $data['refresh_token'] ?? null;
+    if (is_array($data)) {
+      $this->token = array_key_exists('token', $data) ? $data['token'] : $this->token;
+      $this->refresh_token = array_key_exists('refresh_token', $data) ? $data['refresh_token'] : $this->refresh_token;
+    }
   }
 
   /**

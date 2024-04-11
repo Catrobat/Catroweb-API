@@ -60,8 +60,6 @@ class AuthenticationController extends Controller
   {
     // Handle authentication
     // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
     $x_refresh = $request->headers->get('X-Refresh');
@@ -146,8 +144,6 @@ class AuthenticationController extends Controller
   {
     // Handle authentication
     // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
 
@@ -326,8 +322,6 @@ class AuthenticationController extends Controller
 
     // Handle authentication
     // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
     $login_request = $request->getContent();
@@ -431,8 +425,6 @@ class AuthenticationController extends Controller
 
     // Handle authentication
     // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
 
     // Read out all input parameter values into variables
     $refresh_request = $request->getContent();

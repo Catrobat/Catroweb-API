@@ -58,7 +58,9 @@ class UpdateProjectFailureResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->error = $data['error'] ?? null;
+    if (is_array($data)) {
+      $this->error = array_key_exists('error', $data) ? $data['error'] : $this->error;
+    }
   }
 
   /**

@@ -92,11 +92,13 @@ class NotificationsCountResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->total = $data['total'] ?? null;
-    $this->like = $data['like'] ?? null;
-    $this->follower = $data['follower'] ?? null;
-    $this->comment = $data['comment'] ?? null;
-    $this->remix = $data['remix'] ?? null;
+    if (is_array($data)) {
+      $this->total = array_key_exists('total', $data) ? $data['total'] : $this->total;
+      $this->like = array_key_exists('like', $data) ? $data['like'] : $this->like;
+      $this->follower = array_key_exists('follower', $data) ? $data['follower'] : $this->follower;
+      $this->comment = array_key_exists('comment', $data) ? $data['comment'] : $this->comment;
+      $this->remix = array_key_exists('remix', $data) ? $data['remix'] : $this->remix;
+    }
   }
 
   /**

@@ -61,7 +61,11 @@ interface AuthenticationApiInterface
    * @param int    &$responseCode   The HTTP Response Code
    * @param array  $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function authenticationDelete(string $x_refresh, int &$responseCode, array &$responseHeaders): void;
+  public function authenticationDelete(
+    string $x_refresh,
+    int &$responseCode,
+    array &$responseHeaders
+  ): void;
 
   /**
    * Operation authenticationGet.
@@ -71,7 +75,10 @@ interface AuthenticationApiInterface
    * @param int   &$responseCode   The HTTP Response Code
    * @param array $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function authenticationGet(int &$responseCode, array &$responseHeaders): void;
+  public function authenticationGet(
+    int &$responseCode,
+    array &$responseHeaders
+  ): void;
 
   /**
    * Operation authenticationOauthPost.
@@ -82,7 +89,11 @@ interface AuthenticationApiInterface
    * @param int               &$responseCode        The HTTP Response Code
    * @param array             $responseHeaders      Additional HTTP headers to return with the response ()
    */
-  public function authenticationOauthPost(OAuthLoginRequest $o_auth_login_request, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function authenticationOauthPost(
+    OAuthLoginRequest $o_auth_login_request,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation authenticationPost.
@@ -93,7 +104,11 @@ interface AuthenticationApiInterface
    * @param int          &$responseCode   The HTTP Response Code
    * @param array        $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function authenticationPost(LoginRequest $login_request, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function authenticationPost(
+    LoginRequest $login_request,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation authenticationRefreshPost.
@@ -104,7 +119,11 @@ interface AuthenticationApiInterface
    * @param int            &$responseCode   The HTTP Response Code
    * @param array          $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function authenticationRefreshPost(RefreshRequest $refresh_request, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function authenticationRefreshPost(
+    RefreshRequest $refresh_request,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 
   /**
    * Operation authenticationUpgradePost.
@@ -115,5 +134,9 @@ interface AuthenticationApiInterface
    * @param int                 &$responseCode         The HTTP Response Code
    * @param array               $responseHeaders       Additional HTTP headers to return with the response ()
    */
-  public function authenticationUpgradePost(UpgradeTokenRequest $upgrade_token_request, int &$responseCode, array &$responseHeaders): array|object|null;
+  public function authenticationUpgradePost(
+    UpgradeTokenRequest $upgrade_token_request,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
 }

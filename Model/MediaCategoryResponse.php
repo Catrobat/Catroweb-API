@@ -82,9 +82,11 @@ class MediaCategoryResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->id = $data['id'] ?? null;
-    $this->name = $data['name'] ?? null;
-    $this->priority = $data['priority'] ?? null;
+    if (is_array($data)) {
+      $this->id = array_key_exists('id', $data) ? $data['id'] : $this->id;
+      $this->name = array_key_exists('name', $data) ? $data['name'] : $this->name;
+      $this->priority = array_key_exists('priority', $data) ? $data['priority'] : $this->priority;
+    }
   }
 
   /**

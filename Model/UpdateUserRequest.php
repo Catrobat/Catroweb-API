@@ -49,7 +49,7 @@ class UpdateUserRequest
    *
    * @Type("bool")
    */
-  protected ?bool $dry_run = null;
+  protected ?bool $dry_run = false;
 
   /**
    * Email of the user.
@@ -135,14 +135,16 @@ class UpdateUserRequest
    */
   public function __construct(?array $data = null)
   {
-    $this->dry_run = $data['dry_run'] ?? null;
-    $this->email = $data['email'] ?? null;
-    $this->username = $data['username'] ?? null;
-    $this->password = $data['password'] ?? null;
-    $this->picture = $data['picture'] ?? null;
-    $this->about = $data['about'] ?? null;
-    $this->currently_working_on = $data['currently_working_on'] ?? null;
-    $this->current_password = $data['current_password'] ?? null;
+    if (is_array($data)) {
+      $this->dry_run = array_key_exists('dry_run', $data) ? $data['dry_run'] : $this->dry_run;
+      $this->email = array_key_exists('email', $data) ? $data['email'] : $this->email;
+      $this->username = array_key_exists('username', $data) ? $data['username'] : $this->username;
+      $this->password = array_key_exists('password', $data) ? $data['password'] : $this->password;
+      $this->picture = array_key_exists('picture', $data) ? $data['picture'] : $this->picture;
+      $this->about = array_key_exists('about', $data) ? $data['about'] : $this->about;
+      $this->currently_working_on = array_key_exists('currently_working_on', $data) ? $data['currently_working_on'] : $this->currently_working_on;
+      $this->current_password = array_key_exists('current_password', $data) ? $data['current_password'] : $this->current_password;
+    }
   }
 
   /**
