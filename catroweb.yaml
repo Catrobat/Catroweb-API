@@ -52,7 +52,7 @@ paths:
   /authentication:
     get:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "Authentication"
       summary: "Check token"
@@ -65,7 +65,7 @@ paths:
 
     post:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "Authentication"
       summary: "Login"
@@ -94,7 +94,7 @@ paths:
 
     delete:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "Authentication"
       summary: "Expires refresh token"
@@ -116,7 +116,7 @@ paths:
   /authentication/refresh:
     post:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "Authentication"
       summary: 'Refresh token'
@@ -254,7 +254,7 @@ paths:
 
     get:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "User"
       summary: "Get your private user data"
@@ -340,7 +340,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Locale'
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "User"
       summary: "Update User"
@@ -382,7 +382,7 @@ paths:
 
     delete:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "User"
       summary: "Delete user account"
@@ -563,7 +563,7 @@ paths:
 
     post:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "Projects"
       summary: "Upload a catrobat project"
@@ -696,7 +696,7 @@ paths:
   /projects/user:
     get:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "Projects"
       summary: "Get the projects of the logged in user"
@@ -832,7 +832,7 @@ paths:
         - $ref: '#/components/parameters/Uuid'
         - $ref: '#/components/parameters/Locale'
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "Projects"
       summary: "Update details of a project"
@@ -888,7 +888,7 @@ paths:
               $ref: '#/components/headers/Content-Language'
     delete:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - Projects
       summary: 'Delete a project'
@@ -940,7 +940,7 @@ paths:
   '/project/{id}/report':
     post:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - Projects
       summary: 'Report a project -- StatusCode: 501 - Not yet implemented'
@@ -1005,7 +1005,7 @@ paths:
       - $ref: '#/components/parameters/Locale'
     get:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "Notifications"
       summary: 'Get user notifications -- StatusCode: 501 - Not yet implemented'
@@ -1036,7 +1036,7 @@ paths:
       - $ref: '#/components/parameters/Locale'
     put:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "Notifications"
       summary: 'Mark specified notification as read'
@@ -1053,7 +1053,7 @@ paths:
   /notifications/read:
     put:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "Notifications"
       summary: 'Mark all notifications as read'
@@ -1070,7 +1070,7 @@ paths:
   /notifications/count:
     get:
       security:
-        - PandaAuth: []
+        - BearerAuth: []
       tags:
         - "Notifications"
       summary: 'Count the number of unseen notifications'
