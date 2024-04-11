@@ -59,6 +59,8 @@ class MediaFileResponse
   protected ?string $name = null;
 
   /**
+   * @var string[]|null
+   *
    * @SerializedName("flavors")
    *
    * @Assert\All({
@@ -71,6 +73,8 @@ class MediaFileResponse
   protected ?array $flavors = null;
 
   /**
+   * @var string[]|null
+   *
    * @SerializedName("packages")
    *
    * @Assert\All({
@@ -149,16 +153,18 @@ class MediaFileResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->id = $data['id'] ?? null;
-    $this->name = $data['name'] ?? null;
-    $this->flavors = $data['flavors'] ?? null;
-    $this->packages = $data['packages'] ?? null;
-    $this->category = $data['category'] ?? null;
-    $this->author = $data['author'] ?? null;
-    $this->extension = $data['extension'] ?? null;
-    $this->download_url = $data['download_url'] ?? null;
-    $this->size = $data['size'] ?? null;
-    $this->file_type = $data['file_type'] ?? null;
+    if (is_array($data)) {
+      $this->id = array_key_exists('id', $data) ? $data['id'] : $this->id;
+      $this->name = array_key_exists('name', $data) ? $data['name'] : $this->name;
+      $this->flavors = array_key_exists('flavors', $data) ? $data['flavors'] : $this->flavors;
+      $this->packages = array_key_exists('packages', $data) ? $data['packages'] : $this->packages;
+      $this->category = array_key_exists('category', $data) ? $data['category'] : $this->category;
+      $this->author = array_key_exists('author', $data) ? $data['author'] : $this->author;
+      $this->extension = array_key_exists('extension', $data) ? $data['extension'] : $this->extension;
+      $this->download_url = array_key_exists('download_url', $data) ? $data['download_url'] : $this->download_url;
+      $this->size = array_key_exists('size', $data) ? $data['size'] : $this->size;
+      $this->file_type = array_key_exists('file_type', $data) ? $data['file_type'] : $this->file_type;
+    }
   }
 
   /**
@@ -203,6 +209,8 @@ class MediaFileResponse
 
   /**
    * Gets flavors.
+   *
+   * @return string[]|null
    */
   public function getFlavors(): ?array
   {
@@ -211,6 +219,8 @@ class MediaFileResponse
 
   /**
    * Sets flavors.
+   *
+   * @param string[]|null $flavors
    *
    * @return $this
    */
@@ -223,6 +233,8 @@ class MediaFileResponse
 
   /**
    * Gets packages.
+   *
+   * @return string[]|null
    */
   public function getPackages(): ?array
   {
@@ -231,6 +243,8 @@ class MediaFileResponse
 
   /**
    * Sets packages.
+   *
+   * @param string[]|null $packages
    *
    * @return $this
    */

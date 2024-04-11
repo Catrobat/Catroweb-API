@@ -56,7 +56,9 @@ class UpgradeTokenRequest
    */
   public function __construct(?array $data = null)
   {
-    $this->upload_token = $data['upload_token'] ?? null;
+    if (is_array($data)) {
+      $this->upload_token = array_key_exists('upload_token', $data) ? $data['upload_token'] : $this->upload_token;
+    }
   }
 
   /**

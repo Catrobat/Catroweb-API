@@ -59,9 +59,7 @@ class NotificationsController extends Controller
   public function notificationIdReadPutAction(Request $request, $id)
   {
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
+    // Authentication 'BearerAuth' required
 
     // Read out all input parameter values into variables
     $accept_language = $request->headers->get('Accept-Language', 'en');
@@ -95,8 +93,8 @@ class NotificationsController extends Controller
     try {
       $handler = $this->getApiHandler();
 
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
+      // Set authentication method 'BearerAuth'
+      $handler->setBearerAuth($securityBearerAuth);
 
       // Make the call to the business logic
       $responseCode = 204;
@@ -156,9 +154,7 @@ class NotificationsController extends Controller
     }
 
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
+    // Authentication 'BearerAuth' required
 
     // Read out all input parameter values into variables
 
@@ -169,8 +165,8 @@ class NotificationsController extends Controller
     try {
       $handler = $this->getApiHandler();
 
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
+      // Set authentication method 'BearerAuth'
+      $handler->setBearerAuth($securityBearerAuth);
 
       // Make the call to the business logic
       $responseCode = 200;
@@ -231,9 +227,7 @@ class NotificationsController extends Controller
     }
 
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
+    // Authentication 'BearerAuth' required
 
     // Read out all input parameter values into variables
     $limit = $request->query->get('limit', 20);
@@ -294,8 +288,8 @@ class NotificationsController extends Controller
     try {
       $handler = $this->getApiHandler();
 
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
+      // Set authentication method 'BearerAuth'
+      $handler->setBearerAuth($securityBearerAuth);
 
       // Make the call to the business logic
       $responseCode = 200;
@@ -347,9 +341,7 @@ class NotificationsController extends Controller
   public function notificationsReadPutAction(Request $request)
   {
     // Handle authentication
-    // Authentication 'PandaAuth' required
-    // HTTP basic authentication required
-    $securityPandaAuth = $request->headers->get('authorization');
+    // Authentication 'BearerAuth' required
 
     // Read out all input parameter values into variables
 
@@ -360,8 +352,8 @@ class NotificationsController extends Controller
     try {
       $handler = $this->getApiHandler();
 
-      // Set authentication method 'PandaAuth'
-      $handler->setPandaAuth($securityPandaAuth);
+      // Set authentication method 'BearerAuth'
+      $handler->setBearerAuth($securityBearerAuth);
 
       // Make the call to the business logic
       $responseCode = 204;

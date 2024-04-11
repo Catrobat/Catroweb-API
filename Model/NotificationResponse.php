@@ -74,6 +74,8 @@ class NotificationResponse
   protected ?bool $seen = null;
 
   /**
+   * @var NotificationContent[]|null
+   *
    * @SerializedName("content")
    *
    * @Assert\All({
@@ -92,10 +94,12 @@ class NotificationResponse
    */
   public function __construct(?array $data = null)
   {
-    $this->id = $data['id'] ?? null;
-    $this->type = $data['type'] ?? null;
-    $this->seen = $data['seen'] ?? null;
-    $this->content = $data['content'] ?? null;
+    if (is_array($data)) {
+      $this->id = array_key_exists('id', $data) ? $data['id'] : $this->id;
+      $this->type = array_key_exists('type', $data) ? $data['type'] : $this->type;
+      $this->seen = array_key_exists('seen', $data) ? $data['seen'] : $this->seen;
+      $this->content = array_key_exists('content', $data) ? $data['content'] : $this->content;
+    }
   }
 
   /**
@@ -166,6 +170,8 @@ class NotificationResponse
 
   /**
    * Gets content.
+   *
+   * @return NotificationContent[]|null
    */
   public function getContent(): ?array
   {
@@ -174,6 +180,8 @@ class NotificationResponse
 
   /**
    * Sets content.
+   *
+   * @param NotificationContent[]|null $content
    *
    * @return $this
    */
