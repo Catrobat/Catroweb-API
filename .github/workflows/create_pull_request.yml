@@ -22,7 +22,7 @@ jobs:
       - name: Open API code generation
         run: |
           npm install @openapitools/openapi-generator-cli
-          npx @openapitools/openapi-generator-cli version-manager set 7.4.0
+          npx @openapitools/openapi-generator-cli version-manager set 7.5.0
           npx @openapitools/openapi-generator-cli generate -i catroweb.yaml -g php-symfony -p sortParamsByRequiredFlag=true -p skipFormModel=true -p variableNamingConvention=snake_case -p phpLegacySupport=false -o .
 
       - name: Permissions
