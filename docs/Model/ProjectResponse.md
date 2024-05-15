@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **project_url** | **string** | The url to the project on our official share community platform | [optional] 
 **download_url** | **string** | The url to GET the catrobat file of this project | [optional] 
 **filesize** | **float** | The filesize of the catrobat file in megabytes | [optional] 
-**not_for_kids** | **float** | Indicates whether a project is suitable for kids or not (0 &#x3D; safe for kids, 1 &#x3D; not safe for kids, 2 &#x3D; not safe for kids set by moderator) | [optional] 
+**not_for_kids** | **int** | Indicates whether a project is suitable for kids or not (0 &#x3D; safe for kids, 1 &#x3D; not safe for kids, 2 &#x3D; not safe for kids set by moderator) | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
