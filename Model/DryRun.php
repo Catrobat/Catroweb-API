@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -42,13 +41,9 @@ class DryRun
 {
   /**
    * Indicates wether a request should only be verified or executed.
-   *
-   * @SerializedName("dry-run")
-   *
-   * @Assert\Type("bool")
-   *
-   * @Type("bool")
    */
+  #[Assert\Type('bool')]
+  #[SerializedName('dry-run')]
   protected ?bool $dry_run = false;
 
   /**

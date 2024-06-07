@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -40,49 +39,24 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class NotificationsCountResponse
 {
-  /**
-   * @SerializedName("total")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
-   */
+  #[Assert\Type('int')]
+  #[SerializedName('total')]
   protected ?int $total = null;
 
-  /**
-   * @SerializedName("like")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
-   */
+  #[Assert\Type('int')]
+  #[SerializedName('like')]
   protected ?int $like = null;
 
-  /**
-   * @SerializedName("follower")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
-   */
+  #[Assert\Type('int')]
+  #[SerializedName('follower')]
   protected ?int $follower = null;
 
-  /**
-   * @SerializedName("comment")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
-   */
+  #[Assert\Type('int')]
+  #[SerializedName('comment')]
   protected ?int $comment = null;
 
-  /**
-   * @SerializedName("remix")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
-   */
+  #[Assert\Type('int')]
+  #[SerializedName('remix')]
   protected ?int $remix = null;
 
   /**

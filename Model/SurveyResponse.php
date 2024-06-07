@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -42,13 +41,9 @@ class SurveyResponse
 {
   /**
    * Url to a survey for the given language.
-   *
-   * @SerializedName("url")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('url')]
   protected ?string $url = null;
 
   /**

@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -42,68 +41,44 @@ class BaseUser
 {
   /**
    * Email of the user.
-   *
-   * @SerializedName("email")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('email')]
   protected ?string $email = null;
 
   /**
    * Name of the user | minLength: 3 | maxLength: 180.
-   *
-   * @SerializedName("username")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('username')]
   protected ?string $username = null;
 
   /**
    * A secure password | minLength: 6 | maxLength: 4096.
-   *
-   * @SerializedName("password")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('password')]
   protected ?string $password = null;
 
   /**
    * The profile picture of the user in data URI scheme.
-   *
-   * @SerializedName("picture")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('picture')]
   protected ?string $picture = null;
 
   /**
    * An introduction of the user.
-   *
-   * @SerializedName("about")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('about')]
   protected ?string $about = null;
 
   /**
    * A short description about the project the user is currently working on.
-   *
-   * @SerializedName("currentlyWorkingOn")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('currentlyWorkingOn')]
   protected ?string $currently_working_on = null;
 
   /**

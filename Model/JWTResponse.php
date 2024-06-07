@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -40,22 +39,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class JWTResponse
 {
-  /**
-   * @SerializedName("token")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('token')]
   protected ?string $token = null;
 
-  /**
-   * @SerializedName("refresh_token")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('refresh_token')]
   protected ?string $refresh_token = null;
 
   /**

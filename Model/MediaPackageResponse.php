@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -42,49 +41,36 @@ class MediaPackageResponse
 {
   /**
    * ID of the package.
-   *
-   * @SerializedName("id")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
    */
+  #[Assert\Type('int')]
+  #[SerializedName('id')]
   protected ?int $id = null;
 
   /**
    * Name of the package.
-   *
-   * @SerializedName("name")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('name')]
   protected ?string $name = null;
 
   /**
    * Absolute path to the package.
-   *
-   * @SerializedName("url")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('url')]
   protected ?string $url = null;
 
   /**
    * @var array[]|null
-   *
-   * @SerializedName("categories")
-   *
-   * @Assert\All({
-   *
-   *   @Assert\Type("OpenAPI\Server\Model\MediaCategoryResponse")
-   * })
-   *
-   * @Type("array<OpenAPI\Server\Model\MediaCategoryResponse>")
    */
+  #[Assert\All([
+    'constraints' => [
+      [
+        'type' => 'OpenAPI\Server\Model\MediaCategoryResponse',
+      ],
+    ],
+  ])]
+  #[SerializedName('categories')]
   protected ?array $categories = null;
 
   /**

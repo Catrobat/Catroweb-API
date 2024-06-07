@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -40,15 +39,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ProjectReportRequest
 {
-  /**
-   * @SerializedName("category")
-   *
-   * @Assert\Choice({ "Sexual content", "Graphic violence", "Hateful or abusive content", "Improper content rating", "Illegal prescription or other drug", "Copycat or impersonation", "Other objection" })
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Choice(['Sexual content', 'Graphic violence', 'Hateful or abusive content', 'Improper content rating', 'Illegal prescription or other drug', 'Copycat or impersonation', 'Other objection'])]
+  #[Assert\Type('string')]
+  #[SerializedName('category')]
   protected ?string $category = null;
 
   /**

@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -40,67 +39,32 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class FeaturedProjectResponse
 {
-  /**
-   * @SerializedName("id")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('id')]
   protected ?string $id = null;
 
-  /**
-   * @SerializedName("project_id")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('project_id')]
   protected ?string $project_id = null;
 
-  /**
-   * @SerializedName("project_url")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('project_url')]
   protected ?string $project_url = null;
 
-  /**
-   * @SerializedName("url")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('url')]
   protected ?string $url = null;
 
-  /**
-   * @SerializedName("name")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('name')]
   protected ?string $name = null;
 
-  /**
-   * @SerializedName("author")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('author')]
   protected ?string $author = null;
 
-  /**
-   * @SerializedName("featured_image")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('featured_image')]
   protected ?string $featured_image = null;
 
   /**

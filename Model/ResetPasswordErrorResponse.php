@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -40,15 +39,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ResetPasswordErrorResponse
 {
-  /**
-   * @SerializedName("email")
-   *
-   * @Assert\Choice({ "Email invalid", "Email missing" })
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Choice(['Email invalid', 'Email missing'])]
+  #[Assert\Type('string')]
+  #[SerializedName('email')]
   protected ?string $email = null;
 
   /**

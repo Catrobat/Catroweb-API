@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -40,13 +39,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class UploadErrorResponse
 {
-  /**
-   * @SerializedName("error")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('error')]
   protected ?string $error = null;
 
   /**

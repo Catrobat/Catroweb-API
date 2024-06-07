@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -42,57 +41,37 @@ class UpdateProjectRequest
 {
   /**
    * The name of the project. minLength: 1 | maxLength: 255.
-   *
-   * @SerializedName("name")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('name')]
   protected ?string $name = null;
 
   /**
    * A description of the project.
-   *
-   * @SerializedName("description")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('description')]
   protected ?string $description = null;
 
   /**
    * Credits and notes for the project. E.g., credits for using ideas, scripts or artwork from other people.
-   *
-   * @SerializedName("credits")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('credits')]
   protected ?string $credits = null;
 
   /**
    * Whether a project is publicly visible (false) or only via direct link (true).
-   *
-   * @SerializedName("private")
-   *
-   * @Assert\Type("bool")
-   *
-   * @Type("bool")
    */
+  #[Assert\Type('bool')]
+  #[SerializedName('private')]
   protected ?bool $private = null;
 
   /**
    * An image representing the project in data URI scheme.
-   *
-   * @SerializedName("screenshot")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('screenshot')]
   protected ?string $screenshot = null;
 
   /**

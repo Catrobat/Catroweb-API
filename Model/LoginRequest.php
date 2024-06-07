@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -42,38 +41,20 @@ class LoginRequest
 {
   /**
    * Name of the user.
-   *
-   * @SerializedName("username")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   *
-   * @Assert\Length(
-   *     max=180
-   * )
-   * @Assert\Length(
-   *     min=3
-   * )
    */
+  #[Assert\Type('string')]
+  #[Assert\Length(max: 180)]
+  #[Assert\Length(min: 3)]
+  #[SerializedName('username')]
   protected ?string $username = null;
 
   /**
    * A secure password.
-   *
-   * @SerializedName("password")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   *
-   * @Assert\Length(
-   *     max=4096
-   * )
-   * @Assert\Length(
-   *     min=6
-   * )
    */
+  #[Assert\Type('string')]
+  #[Assert\Length(max: 4096)]
+  #[Assert\Length(min: 6)]
+  #[SerializedName('password')]
   protected ?string $password = null;
 
   /**

@@ -42,40 +42,31 @@ class ProjectsCategory
 {
   /**
    * The name of the categories in english.
-   *
-   * @SerializedName("type")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('type')]
   protected ?string $type = null;
 
   /**
    * Translated name according to the language header.
-   *
-   * @SerializedName("name")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('name')]
   protected ?string $name = null;
 
   /**
    * Array of projects.
    *
    * @var ProjectResponse[]|null
-   *
-   * @SerializedName("projectsList")
-   *
-   * @Assert\All({
-   *
-   *   @Assert\Type("OpenAPI\Server\Model\ProjectResponse")
-   * })
-   *
-   * @Type("array<OpenAPI\Server\Model\ProjectResponse>")
    */
+  #[Assert\All([
+    'constraints' => [
+      [
+        'type' => 'OpenAPI\Server\Model\ProjectResponse',
+      ],
+    ],
+  ])]
+  #[SerializedName('projectsList')]
   protected ?array $projects_list = null;
 
   /**

@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -44,50 +43,38 @@ class SearchResponse
    * Array of projects.
    *
    * @var ProjectResponse[]|null
-   *
-   * @SerializedName("projects")
-   *
-   * @Assert\All({
-   *
-   *   @Assert\Type("OpenAPI\Server\Model\ProjectResponse")
-   * })
-   *
-   * @Type("array<OpenAPI\Server\Model\ProjectResponse>")
    */
+  #[Assert\All([
+    'constraints' => [
+      [
+        'type' => 'OpenAPI\Server\Model\ProjectResponse',
+      ],
+    ],
+  ])]
+  #[SerializedName('projects')]
   protected ?array $projects = null;
 
-  /**
-   * @SerializedName("projects_total")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
-   */
+  #[Assert\Type('int')]
+  #[SerializedName('projects_total')]
   protected ?int $projects_total = null;
 
   /**
    * Array of users.
    *
    * @var BasicUserDataResponse[]|null
-   *
-   * @SerializedName("users")
-   *
-   * @Assert\All({
-   *
-   *   @Assert\Type("OpenAPI\Server\Model\BasicUserDataResponse")
-   * })
-   *
-   * @Type("array<OpenAPI\Server\Model\BasicUserDataResponse>")
    */
+  #[Assert\All([
+    'constraints' => [
+      [
+        'type' => 'OpenAPI\Server\Model\BasicUserDataResponse',
+      ],
+    ],
+  ])]
+  #[SerializedName('users')]
   protected ?array $users = null;
 
-  /**
-   * @SerializedName("users_total")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
-   */
+  #[Assert\Type('int')]
+  #[SerializedName('users_total')]
   protected ?int $users_total = null;
 
   /**

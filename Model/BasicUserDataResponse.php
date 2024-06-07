@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -42,101 +41,65 @@ class BasicUserDataResponse
 {
   /**
    * Unique ID of the user.
-   *
-   * @SerializedName("id")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('id')]
   protected ?string $id = null;
 
   /**
    * Nickname of the user.
-   *
-   * @SerializedName("username")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('username')]
   protected ?string $username = null;
 
   /**
    * The profile picture of the user in data URI scheme.
-   *
-   * @SerializedName("picture")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('picture')]
   protected ?string $picture = null;
 
   /**
    * An introduction of the user.
-   *
-   * @SerializedName("about")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('about')]
   protected ?string $about = null;
 
   /**
    * A short description about the project the user is currently working on.
-   *
-   * @SerializedName("currentlyWorkingOn")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('currentlyWorkingOn')]
   protected ?string $currently_working_on = null;
 
   /**
    * Amount of projects of the user.
-   *
-   * @SerializedName("projects")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
    */
+  #[Assert\Type('int')]
+  #[SerializedName('projects')]
   protected ?int $projects = null;
 
   /**
    * Amount of users that follow this user.
-   *
-   * @SerializedName("followers")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
    */
+  #[Assert\Type('int')]
+  #[SerializedName('followers')]
   protected ?int $followers = null;
 
   /**
    * Amount of users followed by this user.
-   *
-   * @SerializedName("following")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
    */
+  #[Assert\Type('int')]
+  #[SerializedName('following')]
   protected ?int $following = null;
 
   /**
    * Ranking score of this user.
-   *
-   * @SerializedName("ranking_score")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
    */
+  #[Assert\Type('int')]
+  #[SerializedName('ranking_score')]
   protected ?int $ranking_score = null;
 
   /**

@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -42,107 +41,68 @@ class NotificationContent
 {
   /**
    * Id of the user who caused the notification.
-   *
-   * @SerializedName("from")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   *
-   * @Assert\Regex("/^[a-zA-Z0-9\\-]+$/")
    */
+  #[Assert\Type('string')]
+  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
+  #[SerializedName('from')]
   protected ?string $from = null;
 
   /**
    * Username of the user who caused the notification.
-   *
-   * @SerializedName("from_name")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('from_name')]
   protected ?string $from_name = null;
 
   /**
    * Id of the program for which the notification is about.
-   *
-   * @SerializedName("program")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   *
-   * @Assert\Regex("/^[a-zA-Z0-9\\-]+$/")
    */
+  #[Assert\Type('string')]
+  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
+  #[SerializedName('program')]
   protected ?string $program = null;
 
   /**
    * Name of the program for which the notification is about.
-   *
-   * @SerializedName("program_name")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('program_name')]
   protected ?string $program_name = null;
 
   /**
    * Avatar of the user who caused the notification.
-   *
-   * @SerializedName("avatar")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('avatar')]
   protected ?string $avatar = null;
 
   /**
    * Id of the remixed program.
-   *
-   * @SerializedName("remixed_program")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   *
-   * @Assert\Regex("/^[a-zA-Z0-9\\-]+$/")
    */
+  #[Assert\Type('string')]
+  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
+  #[SerializedName('remixed_program')]
   protected ?string $remixed_program = null;
 
   /**
    * Name of the remixed program.
-   *
-   * @SerializedName("remixed_program_name")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('remixed_program_name')]
   protected ?string $remixed_program_name = null;
 
   /**
    * Notification message.
-   *
-   * @SerializedName("message")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('message')]
   protected ?string $message = null;
 
   /**
    * Prize for anniversary notifications.
-   *
-   * @SerializedName("prize")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('prize')]
   protected ?string $prize = null;
 
   /**

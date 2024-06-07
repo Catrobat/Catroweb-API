@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -42,37 +41,24 @@ class MediaCategoryResponse
 {
   /**
    * ID of the category.
-   *
-   * @SerializedName("id")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
    */
+  #[Assert\Type('int')]
+  #[SerializedName('id')]
   protected ?int $id = null;
 
   /**
    * Name of the category.
-   *
-   * @SerializedName("name")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('name')]
   protected ?string $name = null;
 
   /**
    * Shows how important a category is (0 is the least priority).
-   *
-   * @SerializedName("priority")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
-   *
-   * @Assert\GreaterThanOrEqual(0)
    */
+  #[Assert\Type('int')]
+  #[Assert\GreaterThanOrEqual(0)]
+  #[SerializedName('priority')]
   protected ?int $priority = null;
 
   /**

@@ -40,110 +40,69 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class MediaFileResponse
 {
-  /**
-   * @SerializedName("id")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
-   */
+  #[Assert\Type('int')]
+  #[SerializedName('id')]
   protected ?int $id = null;
 
-  /**
-   * @SerializedName("name")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('name')]
   protected ?string $name = null;
 
   /**
    * @var string[]|null
-   *
-   * @SerializedName("flavors")
-   *
-   * @Assert\All({
-   *
-   *   @Assert\Type("string")
-   * })
-   *
-   * @Type("array<string>")
    */
+  #[Assert\All([
+    'constraints' => [
+      [
+        'type' => 'string',
+      ],
+    ],
+  ])]
+  #[SerializedName('flavors')]
   protected ?array $flavors = null;
 
   /**
    * @var string[]|null
-   *
-   * @SerializedName("packages")
-   *
-   * @Assert\All({
-   *
-   *   @Assert\Type("string")
-   * })
-   *
-   * @Type("array<string>")
    */
+  #[Assert\All([
+    'constraints' => [
+      [
+        'type' => 'string',
+      ],
+    ],
+  ])]
+  #[SerializedName('packages')]
   protected ?array $packages = null;
 
-  /**
-   * @SerializedName("category")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('category')]
   protected ?string $category = null;
 
-  /**
-   * @SerializedName("author")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('author')]
   protected ?string $author = null;
 
-  /**
-   * @SerializedName("extension")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('extension')]
   protected ?string $extension = null;
 
-  /**
-   * @SerializedName("download_url")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Type('string')]
+  #[SerializedName('download_url')]
   protected ?string $download_url = null;
 
   /**
    * Size of the file in bytes.
-   *
-   * @SerializedName("size")
-   *
-   * @Assert\Type("int")
-   *
-   * @Type("int")
    */
+  #[Assert\Type('int')]
+  #[SerializedName('size')]
   protected ?int $size = null;
 
   /**
    * Type of the media file.
-   *
-   * @SerializedName("file_type")
-   *
-   * @Assert\Choice({ "project", "image", "sound", "video", "other" })
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Choice(['project', 'image', 'sound', 'video', 'other'])]
+  #[Assert\Type('string')]
+  #[SerializedName('file_type')]
   protected ?string $file_type = null;
 
   /**

@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -42,24 +41,16 @@ class ExtensionResponse
 {
   /**
    * The internal title of the extension.
-   *
-   * @SerializedName("id")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('id')]
   protected ?string $id = null;
 
   /**
    * The translated text of the project extension.
-   *
-   * @SerializedName("text")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('text')]
   protected ?string $text = null;
 
   /**

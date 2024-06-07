@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -42,24 +41,16 @@ class TagResponse
 {
   /**
    * The internal title of the title.
-   *
-   * @SerializedName("id")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('id')]
   protected ?string $id = null;
 
   /**
    * The translated text of the project tag.
-   *
-   * @SerializedName("text")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('text')]
   protected ?string $text = null;
 
   /**

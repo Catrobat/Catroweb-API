@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -40,15 +39,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class UpdateProjectFailureResponse
 {
-  /**
-   * @SerializedName("error")
-   *
-   * @Assert\Choice({ "Failed saving details of the project.", "Failed reading, converting or storing the screenshot. Please check your input." })
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Choice(['Failed saving details of the project.', 'Failed reading, converting or storing the screenshot. Please check your input.'])]
+  #[Assert\Type('string')]
+  #[SerializedName('error')]
   protected ?string $error = null;
 
   /**

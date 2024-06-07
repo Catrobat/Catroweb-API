@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -40,48 +39,24 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class UpdateProjectErrorResponse
 {
-  /**
-   * @SerializedName("name")
-   *
-   * @Assert\Choice({ "Name empty", "Name too long" })
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Choice(['Name empty', 'Name too long'])]
+  #[Assert\Type('string')]
+  #[SerializedName('name')]
   protected ?string $name = null;
 
-  /**
-   * @SerializedName("description")
-   *
-   * @Assert\Choice({ "Description too long" })
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Choice(['Description too long'])]
+  #[Assert\Type('string')]
+  #[SerializedName('description')]
   protected ?string $description = null;
 
-  /**
-   * @SerializedName("credits")
-   *
-   * @Assert\Choice({ "Credits too long" })
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Choice(['Credits too long'])]
+  #[Assert\Type('string')]
+  #[SerializedName('credits')]
   protected ?string $credits = null;
 
-  /**
-   * @SerializedName("screenshot")
-   *
-   * @Assert\Choice({ "Project screenshot invalid or not supported" })
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
-   */
+  #[Assert\Choice(['Project screenshot invalid or not supported'])]
+  #[Assert\Type('string')]
+  #[SerializedName('screenshot')]
   protected ?string $screenshot = null;
 
   /**

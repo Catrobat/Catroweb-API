@@ -30,7 +30,6 @@
 namespace OpenAPI\Server\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -42,24 +41,16 @@ class OAuthLoginRequest
 {
   /**
    * User ID token.
-   *
-   * @SerializedName("id_token")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('id_token')]
   protected ?string $id_token = null;
 
   /**
    * OAuth provider.
-   *
-   * @SerializedName("resource_owner")
-   *
-   * @Assert\Type("string")
-   *
-   * @Type("string")
    */
+  #[Assert\Type('string')]
+  #[SerializedName('resource_owner')]
   protected ?string $resource_owner = null;
 
   /**
