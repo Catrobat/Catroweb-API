@@ -23,6 +23,7 @@ DependencyInjection/Compiler/OpenAPIServerApiPass.php
 DependencyInjection/OpenAPIServerExtension.php
 Model/BaseUser.php
 Model/BasicUserDataResponse.php
+Model/CreateStudioErrorResponse.php
 Model/DryRun.php
 Model/ExtendedUserDataResponse.php
 Model/ExtensionResponse.php
@@ -46,7 +47,6 @@ Model/ResetPasswordErrorResponse.php
 Model/ResetPasswordRequest.php
 Model/SearchResponse.php
 Model/StudioResponse.php
-Model/StudioUpdateRequest.php
 Model/SurveyResponse.php
 Model/TagResponse.php
 Model/UpdateProjectErrorResponse.php
@@ -79,6 +79,7 @@ Tests/AppKernel.php
 Tests/Controller/ControllerTest.php
 Tests/Model/BaseUserTest.php
 Tests/Model/BasicUserDataResponseTest.php
+Tests/Model/CreateStudioErrorResponseTest.php
 Tests/Model/DryRunTest.php
 Tests/Model/ExtendedUserDataResponseTest.php
 Tests/Model/ExtensionResponseTest.php
@@ -102,7 +103,6 @@ Tests/Model/ResetPasswordErrorResponseTest.php
 Tests/Model/ResetPasswordRequestTest.php
 Tests/Model/SearchResponseTest.php
 Tests/Model/StudioResponseTest.php
-Tests/Model/StudioUpdateRequestTest.php
 Tests/Model/SurveyResponseTest.php
 Tests/Model/TagResponseTest.php
 Tests/Model/UpdateProjectErrorResponseTest.php
@@ -124,6 +124,7 @@ docs/Api/UserApiInterface.md
 docs/Api/UtilityApiInterface.md
 docs/Model/BaseUser.md
 docs/Model/BasicUserDataResponse.md
+docs/Model/CreateStudioErrorResponse.md
 docs/Model/DryRun.md
 docs/Model/ExtendedUserDataResponse.md
 docs/Model/ExtensionResponse.md
@@ -147,7 +148,6 @@ docs/Model/ResetPasswordErrorResponse.md
 docs/Model/ResetPasswordRequest.md
 docs/Model/SearchResponse.md
 docs/Model/StudioResponse.md
-docs/Model/StudioUpdateRequest.md
 docs/Model/SurveyResponse.md
 docs/Model/TagResponse.md
 docs/Model/UpdateProjectErrorResponse.md

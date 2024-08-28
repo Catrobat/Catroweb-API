@@ -20,7 +20,7 @@ services:
 ```
 
 ## **studioIdPut**
-> OpenAPI\Server\Model\StudioResponse studioIdPut($id, $studio_update_request, $accept_language)
+> OpenAPI\Server\Model\StudioResponse studioIdPut($id, $accept_language, $name, $description, $is_public, $enable_comments, $image_file)
 
 Update a Studio
 
@@ -41,7 +41,7 @@ class StudioApi implements StudioApiInterface
     /**
      * Implementation of StudioApiInterface#studioIdPut
      */
-    public function studioIdPut(string $id, StudioUpdateRequest $studio_update_request, string $accept_language, int &$responseCode, array &$responseHeaders): array|object|null
+    public function studioIdPut(string $id, string $accept_language, ?string $name, string $description, bool $is_public, bool $enable_comments, ?UploadedFile $image_file, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -55,8 +55,12 @@ class StudioApi implements StudioApiInterface
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**|  |
- **studio_update_request** | [**OpenAPI\Server\Model\StudioUpdateRequest**](../Model/StudioUpdateRequest.md)|  |
  **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
+ **name** | **string**| The name of the studio | [optional]
+ **description** | **string**| A small description about the Studio | [optional] [default to &#39;&#39;]
+ **is_public** | **bool**| This flag sets the studios&#39; visibility to public or private | [optional] [default to true]
+ **enable_comments** | **bool**| This flag enables or disabled the possibility to add comments to the studio | [optional] [default to true]
+ **image_file** | **UploadedFile****UploadedFile**|  | [optional]
 
 ### Return type
 
@@ -68,13 +72,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **studioPost**
-> OpenAPI\Server\Model\StudioResponse studioPost($studio_update_request, $accept_language)
+> OpenAPI\Server\Model\StudioResponse studioPost($accept_language, $name, $description, $is_public, $enable_comments, $image_file)
 
 Create a new Studio
 
@@ -95,7 +99,7 @@ class StudioApi implements StudioApiInterface
     /**
      * Implementation of StudioApiInterface#studioPost
      */
-    public function studioPost(StudioUpdateRequest $studio_update_request, string $accept_language, int &$responseCode, array &$responseHeaders): array|object|null
+    public function studioPost(string $accept_language, ?string $name, string $description, bool $is_public, bool $enable_comments, ?UploadedFile $image_file, int &$responseCode, array &$responseHeaders): array|object|null
     {
         // Implement the operation ...
     }
@@ -108,8 +112,12 @@ class StudioApi implements StudioApiInterface
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **studio_update_request** | [**OpenAPI\Server\Model\StudioUpdateRequest**](../Model/StudioUpdateRequest.md)|  |
  **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
+ **name** | **string**| The name of the studio | [optional]
+ **description** | **string**| A small description about the Studio | [optional] [default to &#39;&#39;]
+ **is_public** | **bool**| This flag sets the studios&#39; visibility to public or private | [optional] [default to true]
+ **enable_comments** | **bool**| This flag enables or disabled the possibility to add comments to the studio | [optional] [default to true]
+ **image_file** | **UploadedFile****UploadedFile**|  | [optional]
 
 ### Return type
 
@@ -121,7 +129,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
