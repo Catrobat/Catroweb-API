@@ -1306,11 +1306,11 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
         '422':
-          description: 'Unprocessable Entity'
+          description: 'Unprocessable Entity (Specific error messages will be translated to the locale)'
           content:
             application/json:
               schema:
-              $ref: '#/components/schemas/CreateStudioErrorResponse'
+                $ref: '#/components/schemas/CreateStudioErrorResponse'
           headers:
             X-Response-Hash:
               $ref: '#/components/headers/X-Response-Hash'
@@ -1355,7 +1355,7 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
         '422':
-          description: 'Unprocessable Entity'
+          description: 'Unprocessable Entity (Specific error messages will be translated to the locale)'
           content:
             application/json:
               schema:
