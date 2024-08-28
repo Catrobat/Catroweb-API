@@ -7,6 +7,7 @@ Api/MediaLibraryApiInterface.php
 Api/NotificationsApiInterface.php
 Api/ProjectsApiInterface.php
 Api/SearchApiInterface.php
+Api/StudioApiInterface.php
 Api/UserApiInterface.php
 Api/UtilityApiInterface.php
 Controller/AuthenticationController.php
@@ -15,6 +16,7 @@ Controller/MediaLibraryController.php
 Controller/NotificationsController.php
 Controller/ProjectsController.php
 Controller/SearchController.php
+Controller/StudioController.php
 Controller/UserController.php
 Controller/UtilityController.php
 DependencyInjection/Compiler/OpenAPIServerApiPass.php
@@ -43,6 +45,8 @@ Model/RegisterRequest.php
 Model/ResetPasswordErrorResponse.php
 Model/ResetPasswordRequest.php
 Model/SearchResponse.php
+Model/StudioResponse.php
+Model/StudioUpdateRequest.php
 Model/SurveyResponse.php
 Model/TagResponse.php
 Model/UpdateProjectErrorResponse.php
@@ -68,6 +72,7 @@ Tests/Api/MediaLibraryApiInterfaceTest.php
 Tests/Api/NotificationsApiInterfaceTest.php
 Tests/Api/ProjectsApiInterfaceTest.php
 Tests/Api/SearchApiInterfaceTest.php
+Tests/Api/StudioApiInterfaceTest.php
 Tests/Api/UserApiInterfaceTest.php
 Tests/Api/UtilityApiInterfaceTest.php
 Tests/AppKernel.php
@@ -96,6 +101,8 @@ Tests/Model/RegisterRequestTest.php
 Tests/Model/ResetPasswordErrorResponseTest.php
 Tests/Model/ResetPasswordRequestTest.php
 Tests/Model/SearchResponseTest.php
+Tests/Model/StudioResponseTest.php
+Tests/Model/StudioUpdateRequestTest.php
 Tests/Model/SurveyResponseTest.php
 Tests/Model/TagResponseTest.php
 Tests/Model/UpdateProjectErrorResponseTest.php
@@ -112,6 +119,7 @@ docs/Api/MediaLibraryApiInterface.md
 docs/Api/NotificationsApiInterface.md
 docs/Api/ProjectsApiInterface.md
 docs/Api/SearchApiInterface.md
+docs/Api/StudioApiInterface.md
 docs/Api/UserApiInterface.md
 docs/Api/UtilityApiInterface.md
 docs/Model/BaseUser.md
@@ -138,6 +146,8 @@ docs/Model/RegisterRequest.md
 docs/Model/ResetPasswordErrorResponse.md
 docs/Model/ResetPasswordRequest.md
 docs/Model/SearchResponse.md
+docs/Model/StudioResponse.md
+docs/Model/StudioUpdateRequest.md
 docs/Model/SurveyResponse.md
 docs/Model/TagResponse.md
 docs/Model/UpdateProjectErrorResponse.md

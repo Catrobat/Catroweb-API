@@ -1,6 +1,6 @@
 <?php
 /**
- * ProjectsCategoryTest.
+ * StudioResponseTest.
  *
  * PHP version 8.1.1
  *
@@ -29,28 +29,28 @@
 
 namespace OpenAPI\Server\Tests\Model;
 
-use OpenAPI\Server\Model\ProjectsCategory;
+use OpenAPI\Server\Model\StudioResponse;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ProjectsCategoryTest Class Doc Comment.
+ * StudioResponseTest Class Doc Comment.
  *
  * @category    Class
  *
- * @description ProjectsCategory
+ * @description StudioResponse
  *
  * @author      openapi-generator contributors
  *
  * @see        https://github.com/openapitools/openapi-generator
  *
- * @coversDefaultClass \OpenAPI\Server\Model\ProjectsCategory
+ * @coversDefaultClass \OpenAPI\Server\Model\StudioResponse
  *
  * @internal
  */
-class ProjectsCategoryTest extends TestCase
+class StudioResponseTest extends TestCase
 {
-  protected ProjectsCategory|MockObject $object;
+  protected StudioResponse|MockObject $object;
 
   /**
    * Setup before running any test case.
@@ -64,7 +64,7 @@ class ProjectsCategoryTest extends TestCase
    */
   public function setUp(): void
   {
-    $this->object = $this->getMockBuilder(ProjectsCategory::class)->getMockForAbstractClass();
+    $this->object = $this->getMockBuilder(StudioResponse::class)->getMockForAbstractClass();
   }
 
   /**
@@ -88,20 +88,20 @@ class ProjectsCategoryTest extends TestCase
    */
   public function testTestClassExists(): void
   {
-    $this->assertTrue(class_exists(ProjectsCategory::class));
-    $this->assertInstanceOf(ProjectsCategory::class, $this->object);
+    $this->assertTrue(class_exists(StudioResponse::class));
+    $this->assertInstanceOf(StudioResponse::class, $this->object);
   }
 
   /**
-   * Test attribute "type".
+   * Test attribute "id".
    *
    * @group unit
    *
    * @small
    */
-  public function testPropertyType(): void
+  public function testPropertyId(): void
   {
-    $this->markTestSkipped('Test for property type not implemented');
+    $this->markTestSkipped('Test for property id not implemented');
   }
 
   /**
@@ -117,14 +117,38 @@ class ProjectsCategoryTest extends TestCase
   }
 
   /**
-   * Test attribute "projects_list".
+   * Test attribute "description".
    *
    * @group unit
    *
    * @small
    */
-  public function testPropertyProjectsList(): void
+  public function testPropertyDescription(): void
   {
-    $this->markTestSkipped('Test for property projects_list not implemented');
+    $this->markTestSkipped('Test for property description not implemented');
+  }
+
+  /**
+   * Test attribute "is_public".
+   *
+   * @group unit
+   *
+   * @small
+   */
+  public function testPropertyIsPublic(): void
+  {
+    $this->markTestSkipped('Test for property is_public not implemented');
+  }
+
+  /**
+   * Test attribute "enable_comments".
+   *
+   * @group unit
+   *
+   * @small
+   */
+  public function testPropertyEnableComments(): void
+  {
+    $this->markTestSkipped('Test for property enable_comments not implemented');
   }
 }

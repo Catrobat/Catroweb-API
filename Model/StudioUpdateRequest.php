@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateProjectErrorResponse.
+ * StudioUpdateRequest.
  *
  * PHP version 8.1.1
  *
@@ -34,16 +34,16 @@ use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class representing the UpdateProjectErrorResponse model.
+ * Class representing the StudioUpdateRequest model.
  *
  * @author  OpenAPI Generator team
  */
-class UpdateProjectErrorResponse
+class StudioUpdateRequest
 {
   /**
-   * @SerializedName("name")
+   * The name of the studio.
    *
-   * @Assert\Choice({ "Name empty", "Name too long" })
+   * @SerializedName("name")
    *
    * @Assert\Type("string")
    *
@@ -52,37 +52,37 @@ class UpdateProjectErrorResponse
   protected ?string $name = null;
 
   /**
+   * A small description about the Studio.
+   *
    * @SerializedName("description")
    *
-   * @Assert\Choice({ "Description too long" })
-   *
    * @Assert\Type("string")
    *
    * @Type("string")
    */
-  protected ?string $description = null;
+  protected ?string $description = '';
 
   /**
-   * @SerializedName("credits")
+   * This flag sets the studios&#39; visibility to public or private.
    *
-   * @Assert\Choice({ "Credits too long" })
+   * @SerializedName("is_public")
    *
-   * @Assert\Type("string")
+   * @Assert\Type("bool")
    *
-   * @Type("string")
+   * @Type("bool")
    */
-  protected ?string $credits = null;
+  protected ?bool $is_public = true;
 
   /**
-   * @SerializedName("screenshot")
+   * This flag enables or disabled the possibility to add comments to the studio.
    *
-   * @Assert\Choice({ "Project screenshot invalid or not supported" })
+   * @SerializedName("enable_comments")
    *
-   * @Assert\Type("string")
+   * @Assert\Type("bool")
    *
-   * @Type("string")
+   * @Type("bool")
    */
-  protected ?string $screenshot = null;
+  protected ?bool $enable_comments = true;
 
   /**
    * Constructor.
@@ -94,8 +94,8 @@ class UpdateProjectErrorResponse
     if (is_array($data)) {
       $this->name = array_key_exists('name', $data) ? $data['name'] : $this->name;
       $this->description = array_key_exists('description', $data) ? $data['description'] : $this->description;
-      $this->credits = array_key_exists('credits', $data) ? $data['credits'] : $this->credits;
-      $this->screenshot = array_key_exists('screenshot', $data) ? $data['screenshot'] : $this->screenshot;
+      $this->is_public = array_key_exists('is_public', $data) ? $data['is_public'] : $this->is_public;
+      $this->enable_comments = array_key_exists('enable_comments', $data) ? $data['enable_comments'] : $this->enable_comments;
     }
   }
 
@@ -109,6 +109,8 @@ class UpdateProjectErrorResponse
 
   /**
    * Sets name.
+   *
+   * @param string|null $name The name of the studio
    *
    * @return $this
    */
@@ -130,6 +132,8 @@ class UpdateProjectErrorResponse
   /**
    * Sets description.
    *
+   * @param string|null $description A small description about the Studio
+   *
    * @return $this
    */
   public function setDescription(?string $description = null): self
@@ -140,41 +144,45 @@ class UpdateProjectErrorResponse
   }
 
   /**
-   * Gets credits.
+   * Gets is_public.
    */
-  public function getCredits(): ?string
+  public function isIsPublic(): ?bool
   {
-    return $this->credits;
+    return $this->is_public;
   }
 
   /**
-   * Sets credits.
+   * Sets is_public.
+   *
+   * @param bool|null $is_public This flag sets the studios' visibility to public or private
    *
    * @return $this
    */
-  public function setCredits(?string $credits = null): self
+  public function setIsPublic(?bool $is_public = null): self
   {
-    $this->credits = $credits;
+    $this->is_public = $is_public;
 
     return $this;
   }
 
   /**
-   * Gets screenshot.
+   * Gets enable_comments.
    */
-  public function getScreenshot(): ?string
+  public function isEnableComments(): ?bool
   {
-    return $this->screenshot;
+    return $this->enable_comments;
   }
 
   /**
-   * Sets screenshot.
+   * Sets enable_comments.
+   *
+   * @param bool|null $enable_comments This flag enables or disabled the possibility to add comments to the studio
    *
    * @return $this
    */
-  public function setScreenshot(?string $screenshot = null): self
+  public function setEnableComments(?bool $enable_comments = null): self
   {
-    $this->screenshot = $screenshot;
+    $this->enable_comments = $enable_comments;
 
     return $this;
   }
