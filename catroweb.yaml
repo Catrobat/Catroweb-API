@@ -2023,6 +2023,12 @@ components:
             - "Description too short"
             - "Description too long"
             - "Description missing"
+        image_file:
+          type: string
+          enum:
+            - "Image size too large"
+            - "Image type not supported"
+            - "Image invalid"
 
     ######################################################
     # Project Schemas
@@ -2414,11 +2420,14 @@ components:
           type: string
           example:  Panda Gang
           description: The name of the studio
+          minLength: 3
+          maxLength: 180
         description:
           type: string
           example:  The giant panda also known as the panda bear (or simply the panda), is a bear.
           description: A small description about the Studio
-          default: ""
+          minLength: 1
+          maxLength: 3000
         is_public:
           type: boolean
           example:  true
@@ -2432,6 +2441,8 @@ components:
         image_file:
           type: string
           format: binary
+          example: panda.png
+          description: Cover image; Size limit 1MB; Supported extensions are jpeg, png, webp;
 
     StudioResponse:
       type: object
