@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: "Catroweb API"
   description: "API for the Catrobat Share Platform"
-  version: "v1.4.3"
+  version: "v1.4.4"
   termsOfService: "https://share.catrob.at/pocketcode/termsOfUse"
   contact:
     name: "Catrobat"
@@ -52,7 +52,7 @@ paths:
   /authentication:
     get:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Authentication"
       summary: "Check token"
@@ -65,7 +65,7 @@ paths:
 
     post:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Authentication"
       summary: "Login"
@@ -94,7 +94,7 @@ paths:
 
     delete:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Authentication"
       summary: "Expires refresh token"
@@ -116,7 +116,7 @@ paths:
   /authentication/refresh:
     post:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Authentication"
       summary: 'Refresh token'
@@ -254,7 +254,7 @@ paths:
 
     get:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "User"
       summary: "Get your private user data"
@@ -340,7 +340,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Locale'
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "User"
       summary: "Update User"
@@ -382,7 +382,7 @@ paths:
 
     delete:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "User"
       summary: "Delete user account"
@@ -494,7 +494,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '406':
           $ref: '#/components/responses/NotAcceptable'
-          
+
   /users:
     get:
       tags:
@@ -563,7 +563,7 @@ paths:
 
     post:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Projects"
       summary: "Upload a catrobat project"
@@ -696,7 +696,7 @@ paths:
   /projects/user:
     get:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Projects"
       summary: "Get the projects of the logged in user"
@@ -832,7 +832,7 @@ paths:
         - $ref: '#/components/parameters/Uuid'
         - $ref: '#/components/parameters/Locale'
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Projects"
       summary: "Update details of a project"
@@ -888,7 +888,7 @@ paths:
               $ref: '#/components/headers/Content-Language'
     delete:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - Projects
       summary: 'Delete a project'
@@ -940,7 +940,7 @@ paths:
   '/project/{id}/report':
     post:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - Projects
       summary: 'Report a project -- StatusCode: 501 - Not yet implemented'
@@ -1005,7 +1005,7 @@ paths:
       - $ref: '#/components/parameters/Locale'
     get:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Notifications"
       summary: 'Get user notifications -- StatusCode: 501 - Not yet implemented'
@@ -1036,7 +1036,7 @@ paths:
       - $ref: '#/components/parameters/Locale'
     put:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Notifications"
       summary: 'Mark specified notification as read'
@@ -1053,7 +1053,7 @@ paths:
   /notifications/read:
     put:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Notifications"
       summary: 'Mark all notifications as read'
@@ -1070,7 +1070,7 @@ paths:
   /notifications/count:
     get:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Notifications"
       summary: 'Count the number of unseen notifications'
@@ -1264,6 +1264,105 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
+  ################################################
+  # Studios
+  #
+  '/studio':
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+    post:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Studio
+      summary: Create a new Studio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudioUpdateRequest'
+      responses:
+        '201':
+          description: Studio successfully created.
+          headers:
+            Location:
+              schema:
+                type: string
+                example: >-
+                  https://share.catrob.at/app/studio/63768cf1-5f07-11ea-a2ae-000c292a0f49
+              description: Resource location on server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudioResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          description: 'Unprocessable Entity'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadErrorResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
+
+  '/studio/{id}':
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+    put:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Studio
+      summary: Update a Studio
+      parameters:
+        - $ref: '#/components/parameters/StudioID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudioUpdateRequest'
+      responses:
+        '201':
+          description: Studio successfully updated.
+          headers:
+            Location:
+              schema:
+                type: string
+                example: >-
+                  https://share.catrob.at/app/studio/63768cf1-5f07-11ea-a2ae-000c292a0f49
+              description: Resource location on server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudioResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          description: 'Unprocessable Entity'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadErrorResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
+
 components:
 
   ##############################################
@@ -1393,6 +1492,17 @@ components:
         type: string
         example: "xxxxx.yyyyy.zzzzz"
       required: true
+
+    ##
+    # Studio specific
+    #
+    StudioID:
+      name: id
+      in: path
+      schema:
+        $ref: '#/components/schemas/StudioID'
+      required: true
+
 
     ##
     # Notifications specific
@@ -1593,12 +1703,12 @@ components:
           type: array
           items:
             type: string
-          example: ["luna", "pocketcode"]
+          example: [ "luna", "pocketcode" ]
         packages:
           type: array
           items:
             type: string
-          example: ["Looks", "Sounds"]
+          example: [ "Looks", "Sounds" ]
         category:
           type: string
           example: "Luna&Cat"
@@ -2104,7 +2214,7 @@ components:
           description: 'Tags allow projects to be categorized by their creators'
           items:
             type: string
-          example: ["game", "art"]
+          example: [ "game", "art" ]
         uploaded:
           type: integer
           description: 'The time of the upload.'
@@ -2268,6 +2378,64 @@ components:
         prize:
           type: string
           description: "Prize for anniversary notifications"
+
+    ######################################################
+    # Studio Schema
+    ###
+    StudioID:
+      type: string
+      description: ID of the studio
+      example: 1234abcd-12ab-12ab-12ab-123456abcdef
+
+    StudioUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example:  Panda Gang
+          description: The name of the studio
+        description:
+          type: string
+          example:  The giant panda also known as the panda bear (or simply the panda), is a bear.
+          description: A small description about the Studio
+          default: ""
+        is_public:
+          type: boolean
+          example:  true
+          default: true
+          description: This flag sets the studios' visibility to public or private
+        enable_comments:
+          type: boolean
+          example:  true
+          default: true
+          description: This flag enables or disabled the possibility to add comments to the studio
+
+    StudioResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the studio
+          example: 1234abcd-12ab-12ab-12ab-123456abcdef
+        name:
+          type: string
+          example:  Panda Gang
+          description: The name of the studio
+        description:
+          type: string
+          example:  The giant panda also known as the panda bear (or simply the panda), is a bear.
+          description: A small description about the Studio
+          default: ""
+        is_public:
+          type: boolean
+          example:  true
+          default: true
+          description: This flag sets the studios' visibility to public or private
+        enable_comments:
+          type: boolean
+          example:  true
+          default: true
+          description: This flag enables or disabled the possibility to add comments to the studio
 
     ######################################################
     # Utility Schemas
