@@ -115,4 +115,16 @@ class CreateStudioErrorResponseTest extends TestCase
   {
     $this->markTestSkipped('Test for property description not implemented');
   }
+
+  /**
+   * Test attribute "image_file".
+   *
+   * @group unit
+   *
+   * @small
+   */
+  public function testPropertyImageFile(): void
+  {
+    $this->markTestSkipped('Test for property image_file not implemented');
+  }
 }

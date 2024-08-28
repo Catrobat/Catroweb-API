@@ -63,6 +63,17 @@ class CreateStudioErrorResponse
   protected ?string $description = null;
 
   /**
+   * @SerializedName("image_file")
+   *
+   * @Assert\Choice({ "Image size too large", "Image type not supported", "Image invalid" })
+   *
+   * @Assert\Type("string")
+   *
+   * @Type("string")
+   */
+  protected ?string $image_file = null;
+
+  /**
    * Constructor.
    *
    * @param array|null $data Associated array of property values initializing the model
@@ -72,6 +83,7 @@ class CreateStudioErrorResponse
     if (is_array($data)) {
       $this->name = array_key_exists('name', $data) ? $data['name'] : $this->name;
       $this->description = array_key_exists('description', $data) ? $data['description'] : $this->description;
+      $this->image_file = array_key_exists('image_file', $data) ? $data['image_file'] : $this->image_file;
     }
   }
 
@@ -111,6 +123,26 @@ class CreateStudioErrorResponse
   public function setDescription(?string $description = null): self
   {
     $this->description = $description;
+
+    return $this;
+  }
+
+  /**
+   * Gets image_file.
+   */
+  public function getImageFile(): ?string
+  {
+    return $this->image_file;
+  }
+
+  /**
+   * Sets image_file.
+   *
+   * @return $this
+   */
+  public function setImageFile(?string $image_file = null): self
+  {
+    $this->image_file = $image_file;
 
     return $this;
   }

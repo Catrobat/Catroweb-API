@@ -57,10 +57,10 @@ interface StudioApiInterface
    * @param string            $id              (required)
    * @param string            $accept_language (optional, default to 'en')
    * @param string|null       $name            The name of the studio (optional)
-   * @param string            $description     A small description about the Studio (optional, default to '')
+   * @param string|null       $description     A small description about the Studio (optional)
    * @param bool              $is_public       This flag sets the studios&#39; visibility to public or private (optional, default to true)
    * @param bool              $enable_comments This flag enables or disabled the possibility to add comments to the studio (optional, default to true)
-   * @param UploadedFile|null $image_file      (optional)
+   * @param UploadedFile|null $image_file      Cover image; Size limit 1MB; Supported extensions are jpeg, png, webp; (optional)
    * @param int               &$responseCode   The HTTP Response Code
    * @param array             $responseHeaders Additional HTTP headers to return with the response ()
    */
@@ -68,7 +68,7 @@ interface StudioApiInterface
     string $id,
     string $accept_language,
     ?string $name,
-    string $description,
+    ?string $description,
     bool $is_public,
     bool $enable_comments,
     ?UploadedFile $image_file,
@@ -83,17 +83,17 @@ interface StudioApiInterface
    *
    * @param string            $accept_language (optional, default to 'en')
    * @param string|null       $name            The name of the studio (optional)
-   * @param string            $description     A small description about the Studio (optional, default to '')
+   * @param string|null       $description     A small description about the Studio (optional)
    * @param bool              $is_public       This flag sets the studios&#39; visibility to public or private (optional, default to true)
    * @param bool              $enable_comments This flag enables or disabled the possibility to add comments to the studio (optional, default to true)
-   * @param UploadedFile|null $image_file      (optional)
+   * @param UploadedFile|null $image_file      Cover image; Size limit 1MB; Supported extensions are jpeg, png, webp; (optional)
    * @param int               &$responseCode   The HTTP Response Code
    * @param array             $responseHeaders Additional HTTP headers to return with the response ()
    */
   public function studioPost(
     string $accept_language,
     ?string $name,
-    string $description,
+    ?string $description,
     bool $is_public,
     bool $enable_comments,
     ?UploadedFile $image_file,
