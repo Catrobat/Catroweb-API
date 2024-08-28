@@ -56,8 +56,8 @@ interface StudioApiInterface
    *
    * @param string            $id              (required)
    * @param string            $accept_language (optional, default to 'en')
-   * @param string|null       $name            The name of the studio (optional)
-   * @param string|null       $description     A small description about the Studio (optional)
+   * @param string|null       $name            The name of the studio (character: min 3, max 180) (optional)
+   * @param string|null       $description     A small description about the Studio (character: min 1, max 3000) (optional)
    * @param bool              $is_public       This flag sets the studios&#39; visibility to public or private (optional, default to true)
    * @param bool              $enable_comments This flag enables or disabled the possibility to add comments to the studio (optional, default to true)
    * @param UploadedFile|null $image_file      Cover image; Size limit 1MB; Supported extensions are jpeg, png, webp; (optional)
@@ -82,8 +82,8 @@ interface StudioApiInterface
    * Create a new Studio
    *
    * @param string            $accept_language (optional, default to 'en')
-   * @param string|null       $name            The name of the studio (optional)
-   * @param string|null       $description     A small description about the Studio (optional)
+   * @param string|null       $name            The name of the studio (character: min 3, max 180) (optional)
+   * @param string|null       $description     A small description about the Studio (character: min 1, max 3000) (optional)
    * @param bool              $is_public       This flag sets the studios&#39; visibility to public or private (optional, default to true)
    * @param bool              $enable_comments This flag enables or disabled the possibility to add comments to the studio (optional, default to true)
    * @param UploadedFile|null $image_file      Cover image; Size limit 1MB; Supported extensions are jpeg, png, webp; (optional)
