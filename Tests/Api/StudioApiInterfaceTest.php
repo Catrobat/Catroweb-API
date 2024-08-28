@@ -1,6 +1,6 @@
 <?php
 /**
- * UtilityApiInterfaceTest
+ * StudioApiInterfaceTest
  * PHP version 8.1.1.
  *
  * @category Class
@@ -32,7 +32,7 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * UtilityApiInterfaceTest Class Doc Comment.
+ * StudioApiInterfaceTest Class Doc Comment.
  *
  * @category Class
  *
@@ -40,11 +40,11 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  *
  * @see     https://github.com/openapitools/openapi-generator
  *
- * @coversDefaultClass \OpenAPI\Server\Api\UtilityApiInterface
+ * @coversDefaultClass \OpenAPI\Server\Api\StudioApiInterface
  *
  * @internal
  */
-class UtilityApiInterfaceTest extends WebTestCase
+class StudioApiInterfaceTest extends WebTestCase
 {
   private static ?KernelBrowser $client = null;
 
@@ -81,36 +81,36 @@ class UtilityApiInterfaceTest extends WebTestCase
   }
 
   /**
-   * Test case for healthGet.
+   * Test case for studioIdPut.
    *
-   * Health Check.
+   * Update a Studio.
    */
-  public function testHealthGet(): void
+  public function testStudioIdPut(): void
   {
     $client = self::$client;
 
-    $path = '/health';
-
-    $crawler = $client->request('GET', $path);
-    $this->markTestSkipped('Test for healthGet not implemented');
-  }
-
-  /**
-   * Test case for surveyLangCodeGet.
-   *
-   * Get survey link for given language code..
-   */
-  public function testSurveyLangCodeGet(): void
-  {
-    $client = self::$client;
-
-    $path = '/survey/{lang_code}';
-    $pattern = '{lang_code}';
+    $path = '/studio/{id}';
+    $pattern = '{id}';
     $data = $this->genTestData('[a-z0-9]+');
     $path = str_replace($pattern, $data, $path);
 
-    $crawler = $client->request('GET', $path);
-    $this->markTestSkipped('Test for surveyLangCodeGet not implemented');
+    $crawler = $client->request('PUT', $path, [], [], ['CONTENT_TYPE' => 'application/json']);
+    $this->markTestSkipped('Test for studioIdPut not implemented');
+  }
+
+  /**
+   * Test case for studioPost.
+   *
+   * Create a new Studio.
+   */
+  public function testStudioPost(): void
+  {
+    $client = self::$client;
+
+    $path = '/studio';
+
+    $crawler = $client->request('POST', $path, [], [], ['CONTENT_TYPE' => 'application/json']);
+    $this->markTestSkipped('Test for studioPost not implemented');
   }
 
   protected function genTestData(string $regexp)
