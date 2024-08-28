@@ -110,24 +110,12 @@ class StudioController extends Controller
     }
     $asserts = [];
     $asserts[] = new Assert\Type('string');
-    $asserts[] = new Assert\Length([
-      'max' => 180,
-    ]);
-    $asserts[] = new Assert\Length([
-      'min' => 3,
-    ]);
     $response = $this->validate($name, $asserts);
     if ($response instanceof Response) {
       return $response;
     }
     $asserts = [];
     $asserts[] = new Assert\Type('string');
-    $asserts[] = new Assert\Length([
-      'max' => 3000,
-    ]);
-    $asserts[] = new Assert\Length([
-      'min' => 1,
-    ]);
     $response = $this->validate($description, $asserts);
     if ($response instanceof Response) {
       return $response;
@@ -243,24 +231,12 @@ class StudioController extends Controller
     }
     $asserts = [];
     $asserts[] = new Assert\Type('string');
-    $asserts[] = new Assert\Length([
-      'max' => 180,
-    ]);
-    $asserts[] = new Assert\Length([
-      'min' => 3,
-    ]);
     $response = $this->validate($name, $asserts);
     if ($response instanceof Response) {
       return $response;
     }
     $asserts = [];
     $asserts[] = new Assert\Type('string');
-    $asserts[] = new Assert\Length([
-      'max' => 3000,
-    ]);
-    $asserts[] = new Assert\Length([
-      'min' => 1,
-    ]);
     $response = $this->validate($description, $asserts);
     if ($response instanceof Response) {
       return $response;
