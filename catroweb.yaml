@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: "Catroweb API"
   description: "API for the Catrobat Share Platform"
-  version: "v1.4.4"
+  version: "v1.5.2"
   termsOfService: "https://share.catrob.at/pocketcode/termsOfUse"
   contact:
     name: "Catrobat"
@@ -43,6 +43,9 @@ tags:
 
   - name: "Search"
     description: "Everything related to searching"
+
+  - name: "Studio"
+    description: "Create, join and update studios"
 
 paths:
 
@@ -1279,7 +1282,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/StudioUpdateRequest'
       responses:
@@ -1307,7 +1310,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UploadErrorResponse'
+              $ref: '#/components/schemas/CreateStudioErrorResponse'
           headers:
             X-Response-Hash:
               $ref: '#/components/headers/X-Response-Hash'
@@ -1328,7 +1331,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/StudioUpdateRequest'
       responses:
@@ -1356,7 +1359,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UploadErrorResponse'
+                $ref: '#/components/schemas/CreateStudioErrorResponse'
           headers:
             X-Response-Hash:
               $ref: '#/components/headers/X-Response-Hash'
@@ -2004,6 +2007,23 @@ components:
             - "Email invalid"
             - "Email missing"
 
+    CreateStudioErrorResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          enum:
+            - "Name already in use"
+            - "Name missing"
+            - "Name too short"
+            - "Name too long"
+        description:
+          type: string
+          enum:
+            - "Description too short"
+            - "Description too long"
+            - "Description missing"
+
     ######################################################
     # Project Schemas
     ###
@@ -2409,6 +2429,9 @@ components:
           example:  true
           default: true
           description: This flag enables or disabled the possibility to add comments to the studio
+        image_file:
+          type: string
+          format: binary
 
     StudioResponse:
       type: object
