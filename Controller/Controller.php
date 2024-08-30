@@ -170,6 +170,8 @@ class Controller extends AbstractController
 
   /**
    * Converts an exception to a serializable array.
+   *
+   * @return ?string
    */
   protected function getOutputFormat(string $accept, array $produced): ?string
   {

@@ -40,21 +40,21 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class RegisterErrorResponse
 {
+  #[SerializedName('email')]
   #[Assert\Choice(['Email already in use', 'Email invalid', 'Email missing'])]
   #[Assert\Type('string')]
-  #[SerializedName('email')]
   #[Type('string')]
   protected ?string $email = null;
 
+  #[SerializedName('username')]
   #[Assert\Choice(['Username too short', 'Username too long', 'Username already in use', 'Username missing', 'Username must not contain an email address'])]
   #[Assert\Type('string')]
-  #[SerializedName('username')]
   #[Type('string')]
   protected ?string $username = null;
 
+  #[SerializedName('password')]
   #[Assert\Choice(['Password too short', 'Password too long', 'Password contains invalid chars', 'Password missing'])]
   #[Assert\Type('string')]
-  #[SerializedName('password')]
   #[Type('string')]
   protected ?string $password = null;
 

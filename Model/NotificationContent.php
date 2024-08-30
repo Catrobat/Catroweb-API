@@ -43,75 +43,75 @@ class NotificationContent
   /**
    * Id of the user who caused the notification.
    */
-  #[Assert\Type('string')]
-  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
   #[SerializedName('from')]
+  #[Assert\Type('string')]
   #[Type('string')]
+  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
   protected ?string $from = null;
 
   /**
    * Username of the user who caused the notification.
    */
-  #[Assert\Type('string')]
   #[SerializedName('from_name')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $from_name = null;
 
   /**
    * Id of the program for which the notification is about.
    */
-  #[Assert\Type('string')]
-  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
   #[SerializedName('program')]
+  #[Assert\Type('string')]
   #[Type('string')]
+  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
   protected ?string $program = null;
 
   /**
    * Name of the program for which the notification is about.
    */
-  #[Assert\Type('string')]
   #[SerializedName('program_name')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $program_name = null;
 
   /**
    * Avatar of the user who caused the notification.
    */
-  #[Assert\Type('string')]
   #[SerializedName('avatar')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $avatar = null;
 
   /**
    * Id of the remixed program.
    */
-  #[Assert\Type('string')]
-  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
   #[SerializedName('remixed_program')]
+  #[Assert\Type('string')]
   #[Type('string')]
+  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
   protected ?string $remixed_program = null;
 
   /**
    * Name of the remixed program.
    */
-  #[Assert\Type('string')]
   #[SerializedName('remixed_program_name')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $remixed_program_name = null;
 
   /**
    * Notification message.
    */
-  #[Assert\Type('string')]
   #[SerializedName('message')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $message = null;
 
   /**
    * Prize for anniversary notifications.
    */
-  #[Assert\Type('string')]
   #[SerializedName('prize')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $prize = null;
 

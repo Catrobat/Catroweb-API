@@ -43,56 +43,56 @@ class RegisterRequest
   /**
    * Indicates if a request should only be verified or executed.
    */
-  #[Assert\Type('bool')]
   #[SerializedName('dry_run')]
+  #[Assert\Type('bool')]
   #[Type('bool')]
   protected ?bool $dry_run = false;
 
   /**
    * Email of the user.
    */
-  #[Assert\Type('string')]
   #[SerializedName('email')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $email = null;
 
   /**
    * Name of the user | minLength: 3 | maxLength: 180.
    */
-  #[Assert\Type('string')]
   #[SerializedName('username')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $username = null;
 
   /**
    * A secure password | minLength: 6 | maxLength: 4096.
    */
-  #[Assert\Type('string')]
   #[SerializedName('password')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $password = null;
 
   /**
    * The profile picture of the user in data URI scheme.
    */
-  #[Assert\Type('string')]
   #[SerializedName('picture')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $picture = null;
 
   /**
    * An introduction of the user.
    */
-  #[Assert\Type('string')]
   #[SerializedName('about')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $about = null;
 
   /**
    * A short description about the project the user is currently working on.
    */
-  #[Assert\Type('string')]
   #[SerializedName('currently_working_on')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $currently_working_on = null;
 

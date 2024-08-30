@@ -121,7 +121,7 @@ class UserApiInterfaceTest extends WebTestCase
 
     $path = '/user/{id}';
     $pattern = '{id}';
-    $data = $this->genTestData('^[a-zA-Z0-9\-]+$');
+    $data = $this->genTestData('^[a-zA-Z0-9\\-]+$');
     $path = str_replace($pattern, $data, $path);
 
     $crawler = $client->request('GET', $path);

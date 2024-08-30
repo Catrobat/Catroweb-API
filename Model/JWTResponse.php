@@ -40,13 +40,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class JWTResponse
 {
-  #[Assert\Type('string')]
   #[SerializedName('token')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $token = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('refresh_token')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $refresh_token = null;
 

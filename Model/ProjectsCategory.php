@@ -43,18 +43,32 @@ class ProjectsCategory
   /**
    * The name of the categories in english.
    */
-  #[Assert\Type('string')]
   #[SerializedName('type')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $type = null;
 
   /**
    * Translated name according to the language header.
    */
-  #[Assert\Type('string')]
   #[SerializedName('name')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $name = null;
+
+  /**
+   * Array of projects (deprecated - use projects_list).
+   *
+   * @var ProjectResponse[]|null
+   *
+   * @Assert\All({
+   *
+   *   @Assert\Type("OpenAPI\Server\Model\ProjectResponse")
+   * })
+   */
+  #[SerializedName('projectsList')]
+  #[Type('array<OpenAPI\Server\Model\ProjectResponse>')]
+  protected ?array $projects_list = null;
 
   /**
    * Array of projects.
@@ -65,10 +79,8 @@ class ProjectsCategory
    *
    *   @Assert\Type("OpenAPI\Server\Model\ProjectResponse")
    * })
-   *   @Assert\Type("OpenAPI\Server\Model\ProjectResponse")
-   * })
    */
-  #[SerializedName('projectsList')]
+  #[SerializedName('projects_list')]
   #[Type('array<OpenAPI\Server\Model\ProjectResponse>')]
   protected ?array $projects_list = null;
 
@@ -82,6 +94,7 @@ class ProjectsCategory
     if (is_array($data)) {
       $this->type = array_key_exists('type', $data) ? $data['type'] : $this->type;
       $this->name = array_key_exists('name', $data) ? $data['name'] : $this->name;
+      $this->projects_list = array_key_exists('projects_list', $data) ? $data['projects_list'] : $this->projects_list;
       $this->projects_list = array_key_exists('projects_list', $data) ? $data['projects_list'] : $this->projects_list;
     }
   }
@@ -144,6 +157,30 @@ class ProjectsCategory
    * Sets projects_list.
    *
    * @param ProjectResponse[]|null $projects_list Array of projects (deprecated - use projects_list)
+   *
+   * @return $this
+   */
+  public function setProjectsList(?array $projects_list = null): self
+  {
+    $this->projects_list = $projects_list;
+
+    return $this;
+  }
+
+  /**
+   * Gets projects_list.
+   *
+   * @return ProjectResponse[]|null
+   */
+  public function getProjectsList(): ?array
+  {
+    return $this->projects_list;
+  }
+
+  /**
+   * Sets projects_list.
+   *
+   * @param ProjectResponse[]|null $projects_list Array of projects
    *
    * @return $this
    */
