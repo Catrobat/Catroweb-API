@@ -1319,7 +1319,6 @@ paths:
 
   '/studio/{id}':
     parameters:
-      - $ref: '#/components/parameters/Uuid'
       - $ref: '#/components/parameters/Locale'
     put:
       security:
@@ -1328,7 +1327,7 @@ paths:
         - Studio
       summary: Update a Studio
       parameters:
-        - $ref: '#/components/parameters/StudioID'
+        - $ref: '#/components/parameters/Uuid'
       requestBody:
         required: true
         content:
@@ -1500,17 +1499,6 @@ components:
         type: string
         example: "xxxxx.yyyyy.zzzzz"
       required: true
-
-    ##
-    # Studio specific
-    #
-    StudioID:
-      name: id
-      in: path
-      schema:
-        $ref: '#/components/schemas/StudioID'
-      required: true
-
 
     ##
     # Notifications specific
@@ -2081,7 +2069,7 @@ components:
           description: "The flavor of this project"
         private:
           type: boolean
-          description: "Indicates whether a program should be private"
+          description: "Indicates whether a project should be private"
           default: false
           example: false
       required:
@@ -2403,26 +2391,26 @@ components:
           type: string
           example: "Catroweb"
           description: "Username of the user who caused the notification"
-        program:
-          description: "Id of the program for which the notification is about"
+        project:
+          description: "Id of the project for which the notification is about"
           allOf:
             - $ref: '#/components/schemas/Uuid'
-        program_name:
+        project_name:
           type: string
           example: "Awesome Game"
-          description: "Name of the program for which the notification is about"
+          description: "Name of the project for which the notification is about"
         avatar:
           type: string
           example: 'https://share.catrob.at/pocketcode/images/default/avatar_default.png'
           description: "Avatar of the user who caused the notification"
-        remixed_program:
-          description: "Id of the remixed program"
+        remixed_project:
+          description: "Id of the remixed project"
           allOf:
             - $ref: '#/components/schemas/Uuid'
-        remixed_program_name:
+        remixed_project_name:
           type: string
           example: "Awesome Remixed Game"
-          description: "Name of the remixed program"
+          description: "Name of the remixed project"
         message:
           type: string
           example:
@@ -2435,11 +2423,6 @@ components:
     ######################################################
     # Studio Schema
     ###
-    StudioID:
-      type: string
-      description: ID of the studio
-      example: 1234abcd-12ab-12ab-12ab-123456abcdef
-
     CreateStudioRequest:
       type: object
       properties:
