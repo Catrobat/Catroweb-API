@@ -67,7 +67,7 @@ class ProjectsCategory
    *
    * @var ProjectResponse[]|null
    *
-   * @SerializedName("projectsList")
+   * @SerializedName("projects_list")
    *
    * @Assert\All({
    *

@@ -43,7 +43,7 @@ class UpdateUserRequest
   /**
    * Indicates wether a request should only be verified or executed.
    *
-   * @SerializedName("dry-run")
+   * @SerializedName("dry_run")
    *
    * @Assert\Type("bool")
    *
@@ -120,7 +120,7 @@ class UpdateUserRequest
   /**
    * The current password of the user. Required for changing the password.
    *
-   * @SerializedName("currentPassword")
+   * @SerializedName("current_password")
    *
    * @Assert\Type("string")
    *

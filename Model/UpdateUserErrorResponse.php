@@ -74,7 +74,7 @@ class UpdateUserErrorResponse
   protected ?string $password = null;
 
   /**
-   * @SerializedName("currentPassword")
+   * @SerializedName("current_password")
    *
    * @Assert\Choice({ "Current password is missing", "Current password is wrong" })
    *

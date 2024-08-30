@@ -186,7 +186,7 @@ No authorization required
 
 Register
 
-Register a user. For pre-validation use the dry-run option. Using Dry run the request is validated but no object is created on the server.
+Register a user. For pre-validation use the dry_run option. Using Dry run the request is validated but no object is created on the server.
 
 ### Example Implementation
 ```php

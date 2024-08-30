@@ -43,7 +43,7 @@ class DryRun
   /**
    * Indicates wether a request should only be verified or executed.
    *
-   * @SerializedName("dry-run")
+   * @SerializedName("dry_run")
    *
    * @Assert\Type("bool")
    *
