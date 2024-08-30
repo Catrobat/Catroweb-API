@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: "Catroweb API"
   description: "API for the Catrobat Share Platform"
-  version: "v1.4.3"
+  version: "v1.6.0"
   termsOfService: "https://share.catrob.at/pocketcode/termsOfUse"
   contact:
     name: "Catrobat"
@@ -44,6 +44,9 @@ tags:
   - name: "Search"
     description: "Everything related to searching"
 
+  - name: "Studio"
+    description: "Create, join and update studios"
+
 paths:
 
   ##############################################
@@ -52,7 +55,7 @@ paths:
   /authentication:
     get:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Authentication"
       summary: "Check token"
@@ -65,7 +68,7 @@ paths:
 
     post:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Authentication"
       summary: "Login"
@@ -94,7 +97,7 @@ paths:
 
     delete:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Authentication"
       summary: "Expires refresh token"
@@ -116,7 +119,7 @@ paths:
   /authentication/refresh:
     post:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Authentication"
       summary: 'Refresh token'
@@ -254,7 +257,7 @@ paths:
 
     get:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "User"
       summary: "Get your private user data"
@@ -340,7 +343,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Locale'
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "User"
       summary: "Update User"
@@ -382,7 +385,7 @@ paths:
 
     delete:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "User"
       summary: "Delete user account"
@@ -494,7 +497,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '406':
           $ref: '#/components/responses/NotAcceptable'
-          
+
   /users:
     get:
       tags:
@@ -563,7 +566,7 @@ paths:
 
     post:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Projects"
       summary: "Upload a catrobat project"
@@ -696,7 +699,7 @@ paths:
   /projects/user:
     get:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Projects"
       summary: "Get the projects of the logged in user"
@@ -832,7 +835,7 @@ paths:
         - $ref: '#/components/parameters/Uuid'
         - $ref: '#/components/parameters/Locale'
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Projects"
       summary: "Update details of a project"
@@ -888,7 +891,7 @@ paths:
               $ref: '#/components/headers/Content-Language'
     delete:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - Projects
       summary: 'Delete a project'
@@ -940,7 +943,7 @@ paths:
   '/project/{id}/report':
     post:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - Projects
       summary: 'Report a project -- StatusCode: 501 - Not yet implemented'
@@ -1005,7 +1008,7 @@ paths:
       - $ref: '#/components/parameters/Locale'
     get:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Notifications"
       summary: 'Get user notifications -- StatusCode: 501 - Not yet implemented'
@@ -1036,7 +1039,7 @@ paths:
       - $ref: '#/components/parameters/Locale'
     put:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Notifications"
       summary: 'Mark specified notification as read'
@@ -1053,7 +1056,7 @@ paths:
   /notifications/read:
     put:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Notifications"
       summary: 'Mark all notifications as read'
@@ -1070,7 +1073,7 @@ paths:
   /notifications/count:
     get:
       security:
-        - BearerAuth: []
+        - BearerAuth: [ ]
       tags:
         - "Notifications"
       summary: 'Count the number of unseen notifications'
@@ -1264,6 +1267,109 @@ paths:
         '406':
           $ref: '#/components/responses/NotAcceptable'
 
+  ################################################
+  # Studios
+  #
+  '/studio':
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+    post:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Studio
+      summary: Create a new Studio
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateStudioRequest'
+      responses:
+        '201':
+          description: Studio successfully created.
+          headers:
+            Location:
+              schema:
+                type: string
+                example: >-
+                  https://share.catrob.at/app/studio/63768cf1-5f07-11ea-a2ae-000c292a0f49
+              description: Resource location on server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudioResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          description: 'Unprocessable Entity (Specific error messages will be translated to the locale)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateStudioErrorResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
+
+  '/studio/{id}':
+    parameters:
+      - $ref: '#/components/parameters/Locale'
+    put:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Studio
+      summary: Update a Studio
+      parameters:
+        - $ref: '#/components/parameters/StudioID'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateStudioRequest'
+      responses:
+        '200':
+          description: Studio successfully updated.
+          headers:
+            Location:
+              schema:
+                type: string
+                example: >-
+                  https://share.catrob.at/app/studio/63768cf1-5f07-11ea-a2ae-000c292a0f49
+              description: Resource location on server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudioResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '422':
+          description: 'Unprocessable Entity (Specific error messages will be translated to the locale)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateStudioErrorResponse'
+          headers:
+            X-Response-Hash:
+              $ref: '#/components/headers/X-Response-Hash'
+            Content-Language:
+              $ref: '#/components/headers/Content-Language'
+
 components:
 
   ##############################################
@@ -1393,6 +1499,17 @@ components:
         type: string
         example: "xxxxx.yyyyy.zzzzz"
       required: true
+
+    ##
+    # Studio specific
+    #
+    StudioID:
+      name: id
+      in: path
+      schema:
+        $ref: '#/components/schemas/StudioID'
+      required: true
+
 
     ##
     # Notifications specific
@@ -1593,12 +1710,12 @@ components:
           type: array
           items:
             type: string
-          example: ["luna", "pocketcode"]
+          example: [ "luna", "pocketcode" ]
         packages:
           type: array
           items:
             type: string
-          example: ["Looks", "Sounds"]
+          example: [ "Looks", "Sounds" ]
         category:
           type: string
           example: "Luna&Cat"
@@ -1717,7 +1834,7 @@ components:
           type: string
           example: "My name is Irving and I love developing games with Pocket Code!"
           description: "An introduction of the user."
-        currentlyWorkingOn:
+        currently_working_on:
           type: string
           example: "The next awesome game!"
           description: "A short description about the project the user is currently working on."
@@ -1742,7 +1859,7 @@ components:
         - $ref: '#/components/schemas/BaseUser'
         - type: object
           properties:
-            currentPassword:
+            current_password:
               type: string
               format: password
               example: current password
@@ -1765,10 +1882,10 @@ components:
     DryRun:
       type: object
       properties:
-        dry-run:
+        dry_run:
           type: boolean
           default: false
-          description: "Indicates wether a request should only be verified or executed"
+          description: "Indicates if a request should only be verified or executed"
 
     ## Response
 
@@ -1796,7 +1913,7 @@ components:
           type: string
           example: "My name is Irving and I love developing games with Pocket Code!"
           description: "An introduction of the user."
-        currentlyWorkingOn:
+        currently_working_on:
           type: string
           example: "The next awesome game!"
           description: "A short description about the project the user is currently working on."
@@ -1875,7 +1992,7 @@ components:
             - "Password too short"
             - "Password too long"
             - "Password contains invalid chars"
-        currentPassword:
+        current_password:
           type: string
           enum:
             - "Current password is missing"
@@ -1893,6 +2010,51 @@ components:
           enum:
             - "Email invalid"
             - "Email missing"
+
+    CreateStudioErrorResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          enum:
+            - "Name already in use"
+            - "Name missing"
+            - "Name too short"
+            - "Name too long"
+        description:
+          type: string
+          enum:
+            - "Description too short"
+            - "Description too long"
+            - "Description missing"
+        image_file:
+          type: string
+          enum:
+            - "Image size too large"
+            - "Image type not supported"
+            - "Image invalid"
+
+    UpdateStudioErrorResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          enum:
+            - "Name already in use"
+            - "Name too short"
+            - "Name too long"
+        description:
+          type: string
+          enum:
+            - "Description too short"
+            - "Description too long"
+            - "Description missing"
+        image_file:
+          type: string
+          enum:
+            - "Image size too large"
+            - "Image type not supported"
+            - "Image invalid"
 
     ######################################################
     # Project Schemas
@@ -2035,6 +2197,11 @@ components:
           description: "Translated name according to the language header"
         projectsList:
           type: array
+          description: "Array of projects (deprecated - use projects_list)"
+          items:
+            $ref: '#/components/schemas/ProjectResponse'
+        projects_list:
+          type: array
           description: "Array of projects"
           items:
             $ref: '#/components/schemas/ProjectResponse'
@@ -2104,7 +2271,7 @@ components:
           description: 'Tags allow projects to be categorized by their creators'
           items:
             type: string
-          example: ["game", "art"]
+          example: [ "game", "art" ]
         uploaded:
           type: integer
           description: 'The time of the upload.'
@@ -2268,6 +2435,101 @@ components:
         prize:
           type: string
           description: "Prize for anniversary notifications"
+
+    ######################################################
+    # Studio Schema
+    ###
+    StudioID:
+      type: string
+      description: ID of the studio
+      example: 1234abcd-12ab-12ab-12ab-123456abcdef
+
+    CreateStudioRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example:  Panda Gang
+          description: 'The name of the studio (character: min 3, max 180)'
+          # no min/max specification in order to handle the errors in catroweb instead of the autogenerated controllers.
+        description:
+          type: string
+          example:  The giant panda also known as the panda bear (or simply the panda), is a bear.
+          description: 'A small description about the Studio (character: min 1, max 3000)'
+          # no min/max specification in order to handle the errors in catroweb instead of the autogenerated controllers.
+        is_public:
+          type: boolean
+          example:  true
+          default: true
+          description: This flag sets the studios' visibility to public or private
+        enable_comments:
+          type: boolean
+          example:  true
+          default: true
+          description: This flag enables or disabled the possibility to add comments to the studio
+        image_file:
+          type: string
+          format: binary
+          example: panda.png
+          description: Cover image; Size limit 1MB; Supported extensions are jpeg, png, webp;
+
+    UpdateStudioRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Panda Gang
+          description: 'The name of the studio (character: min 3, max 180)'
+          # no min/max specification in order to handle the errors in catroweb instead of the autogenerated controllers.
+        description:
+          type: string
+          example: The giant panda also known as the panda bear (or simply the panda), is a bear.
+          description: 'A small description about the Studio (character: min 1, max 3000)'
+          # no min/max specification in order to handle the errors in catroweb instead of the autogenerated controllers.
+        is_public:
+          type: boolean
+          example: true
+          description: This flag sets the studios' visibility to public or private
+        enable_comments:
+          type: boolean
+          example: true
+          description: This flag enables or disabled the possibility to add comments to the studio
+        image_file:
+          type: string
+          format: binary
+          example: panda.png
+          description: Cover image; Size limit 1MB; Supported extensions are jpeg, png, webp;
+
+    StudioResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the studio
+          example: 1234abcd-12ab-12ab-12ab-123456abcdef
+        name:
+          type: string
+          example:  Panda Gang
+          description: The name of the studio
+        description:
+          type: string
+          example:  The giant panda also known as the panda bear (or simply the panda), is a bear.
+          description: A small description about the Studio
+          default: ""
+        is_public:
+          type: boolean
+          example:  true
+          default: true
+          description: This flag sets the studios' visibility to public or private
+        enable_comments:
+          type: boolean
+          example:  true
+          default: true
+          description: This flag enables or disabled the possibility to add comments to the studio
+        image_path:
+          type: string
+          example: https://share.catrob.at/resources/studio/panda.png
+          description: Cover image
 
     ######################################################
     # Utility Schemas
