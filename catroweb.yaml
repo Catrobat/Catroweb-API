@@ -2035,26 +2035,26 @@ components:
             - "Image invalid"
             -
   UpdateStudioErrorResponse:
-      type: object
-      properties:
-        name:
-          type: string
-          enum:
-            - "Name already in use"
-            - "Name too short"
-            - "Name too long"
-        description:
-          type: string
-          enum:
-            - "Description too short"
-            - "Description too long"
-            - "Description missing"
-        image_file:
-          type: string
-          enum:
-            - "Image size too large"
-            - "Image type not supported"
-            - "Image invalid"
+    type: object
+    properties:
+      name:
+        type: string
+        enum:
+          - "Name already in use"
+          - "Name too short"
+          - "Name too long"
+      description:
+        type: string
+        enum:
+          - "Description too short"
+          - "Description too long"
+          - "Description missing"
+      image_file:
+        type: string
+        enum:
+          - "Image size too large"
+          - "Image type not supported"
+          - "Image invalid"
 
     ######################################################
     # Project Schemas
@@ -2062,52 +2062,52 @@ components:
 
     # Request
 
-    ProjectUploadRequest:
-      type: object
-      properties:
-        checksum:
-          type: string
-          example: "aqqoslcotroewlclcceadfgf"
-          description: "Checksum of the *.catrobat file"
-        file:
-          type: string
-          format: binary
-          description: 'The *.catrobat project file'
-        flavor:
-          type: string
-          default: "pocketcode"
-          example: "pocketcode"
-          description: "The flavor of this project"
-        private:
-          type: boolean
-          description: "Indicates whether a program should be private"
-          default: false
-          example: false
-      required:
-        - checksum
-        - file
+  ProjectUploadRequest:
+    type: object
+    properties:
+      checksum:
+        type: string
+        example: "aqqoslcotroewlclcceadfgf"
+        description: "Checksum of the *.catrobat file"
+      file:
+        type: string
+        format: binary
+        description: 'The *.catrobat project file'
+      flavor:
+        type: string
+        default: "pocketcode"
+        example: "pocketcode"
+        description: "The flavor of this project"
+      private:
+        type: boolean
+        description: "Indicates whether a program should be private"
+        default: false
+        example: false
+    required:
+      - checksum
+      - file
 
-    UpdateProjectRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          example: My amazing project
-          description: 'The name of the project. minLength: 1 | maxLength: 255'
-        description:
-          type: string
-          description: 'A description of the project.'
-        credits:
-          type: string
-          description: 'Credits and notes for the project. E.g., credits for using ideas, scripts or artwork from other people.'
-        private:
-          type: boolean
-          example: false
-          description: 'Whether a project is publicly visible (false) or only via direct link (true).'
-        screenshot:
-          type: string
-          example: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ…"
-          description: "An image representing the project in data URI scheme."
+  UpdateProjectRequest:
+    type: object
+    properties:
+      name:
+        type: string
+        example: My amazing project
+        description: 'The name of the project. minLength: 1 | maxLength: 255'
+      description:
+        type: string
+        description: 'A description of the project.'
+      credits:
+        type: string
+        description: 'Credits and notes for the project. E.g., credits for using ideas, scripts or artwork from other people.'
+      private:
+        type: boolean
+        example: false
+        description: 'Whether a project is publicly visible (false) or only via direct link (true).'
+      screenshot:
+        type: string
+        example: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ…"
+        description: "An image representing the project in data URI scheme."
 
 
     ## Response
