@@ -30,7 +30,8 @@
         "phpstan/phpstan": "*",
         "symfony/browser-kit": "^6.4|^7.0",
         "symfony/yaml": "^6.4|^7.0",
-        "hoa/regex": "~1.0"
+        "hoa/regex": "~1.0",
+        "rector/rector": "^1.2"
     },
     "autoload": {
         "psr-4": {

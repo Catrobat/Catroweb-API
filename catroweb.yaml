@@ -2197,11 +2197,6 @@ components:
           description: "Translated name according to the language header"
         projectsList:
           type: array
-          description: "Array of projects (deprecated - use projects_list)"
-          items:
-            $ref: '#/components/schemas/ProjectResponse'
-        projects_list:
-          type: array
           description: "Array of projects"
           items:
             $ref: '#/components/schemas/ProjectResponse'
