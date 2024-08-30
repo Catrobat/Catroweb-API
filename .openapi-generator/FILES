@@ -52,6 +52,7 @@ Model/TagResponse.php
 Model/UpdateProjectErrorResponse.php
 Model/UpdateProjectFailureResponse.php
 Model/UpdateProjectRequest.php
+Model/UpdateStudioErrorResponse.php
 Model/UpdateUserErrorResponse.php
 Model/UpdateUserRequest.php
 Model/UpgradeTokenRequest.php
@@ -108,6 +109,7 @@ Tests/Model/TagResponseTest.php
 Tests/Model/UpdateProjectErrorResponseTest.php
 Tests/Model/UpdateProjectFailureResponseTest.php
 Tests/Model/UpdateProjectRequestTest.php
+Tests/Model/UpdateStudioErrorResponseTest.php
 Tests/Model/UpdateUserErrorResponseTest.php
 Tests/Model/UpdateUserRequestTest.php
 Tests/Model/UpgradeTokenRequestTest.php
@@ -153,6 +155,7 @@ docs/Model/TagResponse.md
 docs/Model/UpdateProjectErrorResponse.md
 docs/Model/UpdateProjectFailureResponse.md
 docs/Model/UpdateProjectRequest.md
+docs/Model/UpdateStudioErrorResponse.md
 docs/Model/UpdateUserErrorResponse.md
 docs/Model/UpdateUserRequest.md
 docs/Model/UpgradeTokenRequest.md

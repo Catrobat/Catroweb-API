@@ -188,6 +188,7 @@ Class | Method | HTTP request | Description
  - [UpdateProjectErrorResponse](docs/Model/UpdateProjectErrorResponse.md)
  - [UpdateProjectFailureResponse](docs/Model/UpdateProjectFailureResponse.md)
  - [UpdateProjectRequest](docs/Model/UpdateProjectRequest.md)
+ - [UpdateStudioErrorResponse](docs/Model/UpdateStudioErrorResponse.md)
  - [UpdateUserErrorResponse](docs/Model/UpdateUserErrorResponse.md)
  - [UpdateUserRequest](docs/Model/UpdateUserRequest.md)
  - [UpgradeTokenRequest](docs/Model/UpgradeTokenRequest.md)
