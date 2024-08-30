@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: "Catroweb API"
   description: "API for the Catrobat Share Platform"
-  version: "v1.5.5"
+  version: "v1.5.7"
   termsOfService: "https://share.catrob.at/pocketcode/termsOfUse"
   contact:
     name: "Catrobat"
@@ -1834,7 +1834,7 @@ components:
           type: string
           example: "My name is Irving and I love developing games with Pocket Code!"
           description: "An introduction of the user."
-        currentlyWorkingOn:
+        currently_working_on:
           type: string
           example: "The next awesome game!"
           description: "A short description about the project the user is currently working on."
@@ -1913,7 +1913,7 @@ components:
           type: string
           example: "My name is Irving and I love developing games with Pocket Code!"
           description: "An introduction of the user."
-        currentlyWorkingOn:
+        currently_working_on:
           type: string
           example: "The next awesome game!"
           description: "A short description about the project the user is currently working on."
