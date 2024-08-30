@@ -43,26 +43,26 @@ class MediaCategoryResponse
   /**
    * ID of the category.
    */
-  #[Assert\Type('int')]
   #[SerializedName('id')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $id = null;
 
   /**
    * Name of the category.
    */
-  #[Assert\Type('string')]
   #[SerializedName('name')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $name = null;
 
   /**
    * Shows how important a category is (0 is the least priority).
    */
-  #[Assert\Type('int')]
-  #[Assert\GreaterThanOrEqual(0)]
   #[SerializedName('priority')]
+  #[Assert\Type('int')]
   #[Type('int')]
+  #[Assert\GreaterThanOrEqual(0)]
   protected ?int $priority = null;
 
   /**

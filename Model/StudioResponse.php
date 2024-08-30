@@ -43,48 +43,48 @@ class StudioResponse
   /**
    * ID of the studio.
    */
-  #[Assert\Type('string')]
   #[SerializedName('id')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $id = null;
 
   /**
    * The name of the studio.
    */
-  #[Assert\Type('string')]
   #[SerializedName('name')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $name = null;
 
   /**
    * A small description about the Studio.
    */
-  #[Assert\Type('string')]
   #[SerializedName('description')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $description = '';
 
   /**
    * This flag sets the studios&#39; visibility to public or private.
    */
-  #[Assert\Type('bool')]
   #[SerializedName('is_public')]
+  #[Assert\Type('bool')]
   #[Type('bool')]
   protected ?bool $is_public = true;
 
   /**
    * This flag enables or disabled the possibility to add comments to the studio.
    */
-  #[Assert\Type('bool')]
   #[SerializedName('enable_comments')]
+  #[Assert\Type('bool')]
   #[Type('bool')]
   protected ?bool $enable_comments = true;
 
   /**
    * Cover image.
    */
-  #[Assert\Type('string')]
   #[SerializedName('image_path')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $image_path = null;
 

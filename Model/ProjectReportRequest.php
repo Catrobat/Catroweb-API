@@ -40,9 +40,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ProjectReportRequest
 {
+  #[SerializedName('category')]
   #[Assert\Choice(['Sexual content', 'Graphic violence', 'Hateful or abusive content', 'Improper content rating', 'Illegal prescription or other drug', 'Copycat or impersonation', 'Other objection'])]
   #[Assert\Type('string')]
-  #[SerializedName('category')]
   #[Type('string')]
   protected ?string $category = null;
 

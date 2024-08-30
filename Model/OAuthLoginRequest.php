@@ -43,16 +43,16 @@ class OAuthLoginRequest
   /**
    * User ID token.
    */
-  #[Assert\Type('string')]
   #[SerializedName('id_token')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $id_token = null;
 
   /**
    * OAuth provider.
    */
-  #[Assert\Type('string')]
   #[SerializedName('resource_owner')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $resource_owner = null;
 

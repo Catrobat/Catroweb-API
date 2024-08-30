@@ -49,15 +49,13 @@ class SearchResponse
    *
    *   @Assert\Type("OpenAPI\Server\Model\ProjectResponse")
    * })
-   *   @Assert\Type("OpenAPI\Server\Model\ProjectResponse")
-   * })
    */
   #[SerializedName('projects')]
   #[Type('array<OpenAPI\Server\Model\ProjectResponse>')]
   protected ?array $projects = null;
 
-  #[Assert\Type('int')]
   #[SerializedName('projects_total')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $projects_total = null;
 
@@ -70,15 +68,13 @@ class SearchResponse
    *
    *   @Assert\Type("OpenAPI\Server\Model\BasicUserDataResponse")
    * })
-   *   @Assert\Type("OpenAPI\Server\Model\BasicUserDataResponse")
-   * })
    */
   #[SerializedName('users')]
   #[Type('array<OpenAPI\Server\Model\BasicUserDataResponse>')]
   protected ?array $users = null;
 
-  #[Assert\Type('int')]
   #[SerializedName('users_total')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $users_total = null;
 

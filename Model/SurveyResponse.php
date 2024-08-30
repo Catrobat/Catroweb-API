@@ -43,8 +43,8 @@ class SurveyResponse
   /**
    * Url to a survey for the given language.
    */
-  #[Assert\Type('string')]
   #[SerializedName('url')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $url = null;
 

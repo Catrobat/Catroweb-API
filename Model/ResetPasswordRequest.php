@@ -43,8 +43,8 @@ class ResetPasswordRequest
   /**
    * Email of the user.
    */
-  #[Assert\Type('string')]
   #[SerializedName('email')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $email = null;
 
