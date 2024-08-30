@@ -76,8 +76,8 @@ class StudioController extends Controller
     $accept_language = $request->headers->get('Accept-Language', 'en');
     $name = $request->request->get('name');
     $description = $request->request->get('description');
-    $is_public = $request->request->get('is_public', true);
-    $enable_comments = $request->request->get('enable_comments', true);
+    $is_public = $request->request->get('is_public');
+    $enable_comments = $request->request->get('enable_comments');
     $image_file = $request->files->get('image_file');
 
     // Use the default value if no value was provided
@@ -152,9 +152,11 @@ class StudioController extends Controller
       $result = $handler->studioIdPut($id, $accept_language, $name, $description, $is_public, $enable_comments, $image_file, $responseCode, $responseHeaders);
 
       $message = match ($responseCode) {
-        201 => 'Studio successfully updated.',
+        200 => 'Studio successfully updated.',
         400 => 'Bad request (Invalid, or missing parameters)',
         401 => 'Invalid JWT token | JWT token not found | JWT token expired',
+        403 => 'Insufficient privileges, action not allowed.',
+        404 => 'Not found',
         406 => 'Not acceptable - client must accept application/json as content type',
         422 => 'Unprocessable Entity (Specific error messages will be translated to the locale)',
         default => '',
