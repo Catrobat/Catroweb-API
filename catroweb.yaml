@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: "Catroweb API"
   description: "API for the Catrobat Share Platform"
-  version: "v1.5.7"
+  version: "v1.6.0"
   termsOfService: "https://share.catrob.at/pocketcode/termsOfUse"
   contact:
     name: "Catrobat"
@@ -293,7 +293,7 @@ paths:
       summary: "Register"
       description:
         "
-          Register a user. For pre-validation use the dry_run option.
+          Register a user. For pre-validation use the dry-run option.
           Using Dry run the request is validated but no object is created on the server.
         "
       requestBody:
@@ -1885,7 +1885,7 @@ components:
         dry_run:
           type: boolean
           default: false
-          description: "Indicates wether a request should only be verified or executed"
+          description: "Indicates if a request should only be verified or executed"
 
     ## Response
 
@@ -2195,6 +2195,11 @@ components:
           type: string
           example: "Newest projects"
           description: "Translated name according to the language header"
+        projectsList:
+          type: array
+          description: "Array of projects (deprecated - use projects_list)"
+          items:
+            $ref: '#/components/schemas/ProjectResponse'
         projects_list:
           type: array
           description: "Array of projects"
