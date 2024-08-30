@@ -40,38 +40,38 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class FeaturedProjectResponse
 {
-  #[Assert\Type('string')]
   #[SerializedName('id')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $id = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('project_id')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $project_id = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('project_url')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $project_url = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('url')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $url = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('name')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $name = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('author')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $author = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('featured_image')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $featured_image = null;
 

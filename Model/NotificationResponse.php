@@ -43,24 +43,24 @@ class NotificationResponse
   /**
    * Id of the notification.
    */
-  #[Assert\Type('int')]
   #[SerializedName('id')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $id = null;
 
   /**
    * Notification Type.
    */
-  #[Assert\Type('string')]
   #[SerializedName('type')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $type = null;
 
   /**
    * Seen status of the notification.
    */
-  #[Assert\Type('bool')]
   #[SerializedName('seen')]
+  #[Assert\Type('bool')]
   #[Type('bool')]
   protected ?bool $seen = null;
 
@@ -69,8 +69,6 @@ class NotificationResponse
    *
    * @Assert\All({
    *
-   *   @Assert\Type("OpenAPI\Server\Model\NotificationContent")
-   * })
    *   @Assert\Type("OpenAPI\Server\Model\NotificationContent")
    * })
    */

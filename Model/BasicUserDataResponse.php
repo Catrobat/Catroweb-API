@@ -43,72 +43,72 @@ class BasicUserDataResponse
   /**
    * Unique ID of the user.
    */
-  #[Assert\Type('string')]
   #[SerializedName('id')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $id = null;
 
   /**
    * Nickname of the user.
    */
-  #[Assert\Type('string')]
   #[SerializedName('username')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $username = null;
 
   /**
    * The profile picture of the user in data URI scheme.
    */
-  #[Assert\Type('string')]
   #[SerializedName('picture')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $picture = null;
 
   /**
    * An introduction of the user.
    */
-  #[Assert\Type('string')]
   #[SerializedName('about')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $about = null;
 
   /**
    * A short description about the project the user is currently working on.
    */
-  #[Assert\Type('string')]
   #[SerializedName('currently_working_on')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $currently_working_on = null;
 
   /**
    * Amount of projects of the user.
    */
-  #[Assert\Type('int')]
   #[SerializedName('projects')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $projects = null;
 
   /**
    * Amount of users that follow this user.
    */
-  #[Assert\Type('int')]
   #[SerializedName('followers')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $followers = null;
 
   /**
    * Amount of users followed by this user.
    */
-  #[Assert\Type('int')]
   #[SerializedName('following')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $following = null;
 
   /**
    * Ranking score of this user.
    */
-  #[Assert\Type('int')]
   #[SerializedName('ranking_score')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $ranking_score = null;
 

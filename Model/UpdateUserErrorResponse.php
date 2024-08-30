@@ -40,33 +40,33 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class UpdateUserErrorResponse
 {
+  #[SerializedName('email')]
   #[Assert\Choice(['Email already in use', 'Email invalid'])]
   #[Assert\Type('string')]
-  #[SerializedName('email')]
   #[Type('string')]
   protected ?string $email = null;
 
+  #[SerializedName('username')]
   #[Assert\Choice(['Username too short', 'Username too long', 'Username already in use', 'Username must not contain an email address'])]
   #[Assert\Type('string')]
-  #[SerializedName('username')]
   #[Type('string')]
   protected ?string $username = null;
 
+  #[SerializedName('password')]
   #[Assert\Choice(['Password too short', 'Password too long', 'Password contains invalid chars'])]
   #[Assert\Type('string')]
-  #[SerializedName('password')]
   #[Type('string')]
   protected ?string $password = null;
 
+  #[SerializedName('current_password')]
   #[Assert\Choice(['Current password is missing', 'Current password is wrong'])]
   #[Assert\Type('string')]
-  #[SerializedName('current_password')]
   #[Type('string')]
   protected ?string $current_password = null;
 
+  #[SerializedName('picture')]
   #[Assert\Choice(['Profile picture invalid or not supported'])]
   #[Assert\Type('string')]
-  #[SerializedName('picture')]
   #[Type('string')]
   protected ?string $picture = null;
 

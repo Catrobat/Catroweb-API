@@ -214,7 +214,7 @@ open_api_server_studio_studioidput:
     defaults:
         _controller: open_api_server.controller.studio::studioIdPutAction
     requirements:
-        id: '[a-z0-9]+'
+        id: '^[a-zA-Z0-9\\-]+$'
 
 open_api_server_studio_studiopost:
     path:     /studio

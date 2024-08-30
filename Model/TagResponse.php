@@ -43,16 +43,16 @@ class TagResponse
   /**
    * The internal title of the title.
    */
-  #[Assert\Type('string')]
   #[SerializedName('id')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $id = null;
 
   /**
    * The translated text of the project tag.
    */
-  #[Assert\Type('string')]
   #[SerializedName('text')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $text = null;
 

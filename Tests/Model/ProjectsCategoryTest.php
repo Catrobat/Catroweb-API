@@ -127,16 +127,4 @@ class ProjectsCategoryTest extends TestCase
   {
     $this->markTestSkipped('Test for property projects_list not implemented');
   }
-
-  /**
-   * Test attribute "projects_list".
-   *
-   * @group unit
-   *
-   * @small
-   */
-  public function testPropertyProjectsList(): void
-  {
-    $this->markTestSkipped('Test for property projects_list not implemented');
-  }
 }

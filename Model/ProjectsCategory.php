@@ -43,16 +43,16 @@ class ProjectsCategory
   /**
    * The name of the categories in english.
    */
-  #[Assert\Type('string')]
   #[SerializedName('type')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $type = null;
 
   /**
    * Translated name according to the language header.
    */
-  #[Assert\Type('string')]
   #[SerializedName('name')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $name = null;
 
@@ -63,8 +63,6 @@ class ProjectsCategory
    *
    * @Assert\All({
    *
-   *   @Assert\Type("OpenAPI\Server\Model\ProjectResponse")
-   * })
    *   @Assert\Type("OpenAPI\Server\Model\ProjectResponse")
    * })
    */
@@ -143,7 +141,7 @@ class ProjectsCategory
   /**
    * Sets projects_list.
    *
-   * @param ProjectResponse[]|null $projects_list Array of projects (deprecated - use projects_list)
+   * @param ProjectResponse[]|null $projects_list Array of projects
    *
    * @return $this
    */

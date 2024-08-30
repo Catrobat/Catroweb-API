@@ -40,28 +40,28 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class NotificationsCountResponse
 {
-  #[Assert\Type('int')]
   #[SerializedName('total')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $total = null;
 
-  #[Assert\Type('int')]
   #[SerializedName('like')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $like = null;
 
-  #[Assert\Type('int')]
   #[SerializedName('follower')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $follower = null;
 
-  #[Assert\Type('int')]
   #[SerializedName('comment')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $comment = null;
 
-  #[Assert\Type('int')]
   #[SerializedName('remix')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $remix = null;
 

@@ -43,24 +43,24 @@ class MediaPackageResponse
   /**
    * ID of the package.
    */
-  #[Assert\Type('int')]
   #[SerializedName('id')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $id = null;
 
   /**
    * Name of the package.
    */
-  #[Assert\Type('string')]
   #[SerializedName('name')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $name = null;
 
   /**
    * Absolute path to the package.
    */
-  #[Assert\Type('string')]
   #[SerializedName('url')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $url = null;
 
@@ -69,8 +69,6 @@ class MediaPackageResponse
    *
    * @Assert\All({
    *
-   *   @Assert\Type("OpenAPI\Server\Model\MediaCategoryResponse")
-   * })
    *   @Assert\Type("OpenAPI\Server\Model\MediaCategoryResponse")
    * })
    */
