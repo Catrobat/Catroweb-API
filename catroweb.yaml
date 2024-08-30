@@ -293,7 +293,7 @@ paths:
       summary: "Register"
       description:
         "
-          Register a user. For pre-validation use the dry-run option.
+          Register a user. For pre-validation use the dry_run option.
           Using Dry run the request is validated but no object is created on the server.
         "
       requestBody:
@@ -1859,7 +1859,7 @@ components:
         - $ref: '#/components/schemas/BaseUser'
         - type: object
           properties:
-            currentPassword:
+            current_password:
               type: string
               format: password
               example: current password
@@ -1882,7 +1882,7 @@ components:
     DryRun:
       type: object
       properties:
-        dry-run:
+        dry_run:
           type: boolean
           default: false
           description: "Indicates wether a request should only be verified or executed"
@@ -1992,7 +1992,7 @@ components:
             - "Password too short"
             - "Password too long"
             - "Password contains invalid chars"
-        currentPassword:
+        current_password:
           type: string
           enum:
             - "Current password is missing"
@@ -2195,7 +2195,7 @@ components:
           type: string
           example: "Newest projects"
           description: "Translated name according to the language header"
-        projectsList:
+        projects_list:
           type: array
           description: "Array of projects"
           items:
