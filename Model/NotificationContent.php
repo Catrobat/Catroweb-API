@@ -43,75 +43,75 @@ class NotificationContent
   /**
    * Id of the user who caused the notification.
    */
-  #[Assert\Type('string')]
-  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
   #[SerializedName('from')]
+  #[Assert\Type('string')]
   #[Type('string')]
+  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
   protected ?string $from = null;
 
   /**
    * Username of the user who caused the notification.
    */
-  #[Assert\Type('string')]
   #[SerializedName('from_name')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $from_name = null;
 
   /**
-   * Id of the program for which the notification is about.
+   * Id of the project for which the notification is about.
    */
+  #[SerializedName('project')]
   #[Assert\Type('string')]
-  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
-  #[SerializedName('program')]
   #[Type('string')]
-  protected ?string $program = null;
+  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
+  protected ?string $project = null;
 
   /**
-   * Name of the program for which the notification is about.
+   * Name of the project for which the notification is about.
    */
+  #[SerializedName('project_name')]
   #[Assert\Type('string')]
-  #[SerializedName('program_name')]
   #[Type('string')]
-  protected ?string $program_name = null;
+  protected ?string $project_name = null;
 
   /**
    * Avatar of the user who caused the notification.
    */
-  #[Assert\Type('string')]
   #[SerializedName('avatar')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $avatar = null;
 
   /**
-   * Id of the remixed program.
+   * Id of the remixed project.
    */
+  #[SerializedName('remixed_project')]
   #[Assert\Type('string')]
-  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
-  #[SerializedName('remixed_program')]
   #[Type('string')]
-  protected ?string $remixed_program = null;
+  #[Assert\Regex('/^[a-zA-Z0-9\\\-]+$/')]
+  protected ?string $remixed_project = null;
 
   /**
-   * Name of the remixed program.
+   * Name of the remixed project.
    */
+  #[SerializedName('remixed_project_name')]
   #[Assert\Type('string')]
-  #[SerializedName('remixed_program_name')]
   #[Type('string')]
-  protected ?string $remixed_program_name = null;
+  protected ?string $remixed_project_name = null;
 
   /**
    * Notification message.
    */
-  #[Assert\Type('string')]
   #[SerializedName('message')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $message = null;
 
   /**
    * Prize for anniversary notifications.
    */
-  #[Assert\Type('string')]
   #[SerializedName('prize')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $prize = null;
 
@@ -125,11 +125,11 @@ class NotificationContent
     if (is_array($data)) {
       $this->from = array_key_exists('from', $data) ? $data['from'] : $this->from;
       $this->from_name = array_key_exists('from_name', $data) ? $data['from_name'] : $this->from_name;
-      $this->program = array_key_exists('program', $data) ? $data['program'] : $this->program;
-      $this->program_name = array_key_exists('program_name', $data) ? $data['program_name'] : $this->program_name;
+      $this->project = array_key_exists('project', $data) ? $data['project'] : $this->project;
+      $this->project_name = array_key_exists('project_name', $data) ? $data['project_name'] : $this->project_name;
       $this->avatar = array_key_exists('avatar', $data) ? $data['avatar'] : $this->avatar;
-      $this->remixed_program = array_key_exists('remixed_program', $data) ? $data['remixed_program'] : $this->remixed_program;
-      $this->remixed_program_name = array_key_exists('remixed_program_name', $data) ? $data['remixed_program_name'] : $this->remixed_program_name;
+      $this->remixed_project = array_key_exists('remixed_project', $data) ? $data['remixed_project'] : $this->remixed_project;
+      $this->remixed_project_name = array_key_exists('remixed_project_name', $data) ? $data['remixed_project_name'] : $this->remixed_project_name;
       $this->message = array_key_exists('message', $data) ? $data['message'] : $this->message;
       $this->prize = array_key_exists('prize', $data) ? $data['prize'] : $this->prize;
     }
@@ -180,45 +180,45 @@ class NotificationContent
   }
 
   /**
-   * Gets program.
+   * Gets project.
    */
-  public function getProgram(): ?string
+  public function getProject(): ?string
   {
-    return $this->program;
+    return $this->project;
   }
 
   /**
-   * Sets program.
+   * Sets project.
    *
-   * @param string|null $program Id of the program for which the notification is about
+   * @param string|null $project Id of the project for which the notification is about
    *
    * @return $this
    */
-  public function setProgram(?string $program = null): self
+  public function setProject(?string $project = null): self
   {
-    $this->program = $program;
+    $this->project = $project;
 
     return $this;
   }
 
   /**
-   * Gets program_name.
+   * Gets project_name.
    */
-  public function getProgramName(): ?string
+  public function getProjectName(): ?string
   {
-    return $this->program_name;
+    return $this->project_name;
   }
 
   /**
-   * Sets program_name.
+   * Sets project_name.
    *
-   * @param string|null $program_name Name of the program for which the notification is about
+   * @param string|null $project_name Name of the project for which the notification is about
    *
    * @return $this
    */
-  public function setProgramName(?string $program_name = null): self
+  public function setProjectName(?string $project_name = null): self
   {
-    $this->program_name = $program_name;
+    $this->project_name = $project_name;
 
     return $this;
   }
@@ -246,45 +246,45 @@ class NotificationContent
   }
 
   /**
-   * Gets remixed_program.
+   * Gets remixed_project.
    */
-  public function getRemixedProgram(): ?string
+  public function getRemixedProject(): ?string
   {
-    return $this->remixed_program;
+    return $this->remixed_project;
   }
 
   /**
-   * Sets remixed_program.
+   * Sets remixed_project.
    *
-   * @param string|null $remixed_program Id of the remixed program
+   * @param string|null $remixed_project Id of the remixed project
    *
    * @return $this
    */
-  public function setRemixedProgram(?string $remixed_program = null): self
+  public function setRemixedProject(?string $remixed_project = null): self
   {
-    $this->remixed_program = $remixed_program;
+    $this->remixed_project = $remixed_project;
 
     return $this;
   }
 
   /**
-   * Gets remixed_program_name.
+   * Gets remixed_project_name.
    */
-  public function getRemixedProgramName(): ?string
+  public function getRemixedProjectName(): ?string
   {
-    return $this->remixed_program_name;
+    return $this->remixed_project_name;
   }
 
   /**
-   * Sets remixed_program_name.
+   * Sets remixed_project_name.
    *
-   * @param string|null $remixed_program_name Name of the remixed program
+   * @param string|null $remixed_project_name Name of the remixed project
    *
    * @return $this
    */
-  public function setRemixedProgramName(?string $remixed_program_name = null): self
+  public function setRemixedProjectName(?string $remixed_project_name = null): self
   {
-    $this->remixed_program_name = $remixed_program_name;
+    $this->remixed_project_name = $remixed_project_name;
 
     return $this;
   }

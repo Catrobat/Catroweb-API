@@ -40,13 +40,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class MediaFileResponse
 {
-  #[Assert\Type('int')]
   #[SerializedName('id')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $id = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('name')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $name = null;
 
@@ -55,8 +55,6 @@ class MediaFileResponse
    *
    * @Assert\All({
    *
-   *   @Assert\Type("string")
-   * })
    *   @Assert\Type("string")
    * })
    */
@@ -71,47 +69,45 @@ class MediaFileResponse
    *
    *   @Assert\Type("string")
    * })
-   *   @Assert\Type("string")
-   * })
    */
   #[SerializedName('packages')]
   #[Type('array<string>')]
   protected ?array $packages = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('category')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $category = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('author')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $author = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('extension')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $extension = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('download_url')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $download_url = null;
 
   /**
    * Size of the file in bytes.
    */
-  #[Assert\Type('int')]
   #[SerializedName('size')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $size = null;
 
   /**
    * Type of the media file.
    */
+  #[SerializedName('file_type')]
   #[Assert\Choice(['project', 'image', 'sound', 'video', 'other'])]
   #[Assert\Type('string')]
-  #[SerializedName('file_type')]
   #[Type('string')]
   protected ?string $file_type = null;
 

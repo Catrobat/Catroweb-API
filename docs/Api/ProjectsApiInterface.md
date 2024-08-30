@@ -618,7 +618,7 @@ Name | Type | Description  | Notes
  **file** | **UploadedFile****UploadedFile**| The *.catrobat project file |
  **accept_language** | **string**|  | [optional] [default to &#39;en&#39;]
  **flavor** | **string**| The flavor of this project | [optional] [default to &#39;pocketcode&#39;]
- **private** | **bool**| Indicates whether a program should be private | [optional] [default to false]
+ **private** | **bool**| Indicates whether a project should be private | [optional] [default to false]
 
 ### Return type
 

@@ -40,21 +40,21 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class UpdateStudioErrorResponse
 {
+  #[SerializedName('name')]
   #[Assert\Choice(['Name already in use', 'Name too short', 'Name too long'])]
   #[Assert\Type('string')]
-  #[SerializedName('name')]
   #[Type('string')]
   protected ?string $name = null;
 
+  #[SerializedName('description')]
   #[Assert\Choice(['Description too short', 'Description too long', 'Description missing'])]
   #[Assert\Type('string')]
-  #[SerializedName('description')]
   #[Type('string')]
   protected ?string $description = null;
 
+  #[SerializedName('image_file')]
   #[Assert\Choice(['Image size too large', 'Image type not supported', 'Image invalid'])]
   #[Assert\Type('string')]
-  #[SerializedName('image_file')]
   #[Type('string')]
   protected ?string $image_file = null;
 

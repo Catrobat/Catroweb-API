@@ -117,27 +117,27 @@ class NotificationContentTest extends TestCase
   }
 
   /**
-   * Test attribute "program".
+   * Test attribute "project".
    *
    * @group unit
    *
    * @small
    */
-  public function testPropertyProgram(): void
+  public function testPropertyProject(): void
   {
-    $this->markTestSkipped('Test for property program not implemented');
+    $this->markTestSkipped('Test for property project not implemented');
   }
 
   /**
-   * Test attribute "program_name".
+   * Test attribute "project_name".
    *
    * @group unit
    *
    * @small
    */
-  public function testPropertyProgramName(): void
+  public function testPropertyProjectName(): void
   {
-    $this->markTestSkipped('Test for property program_name not implemented');
+    $this->markTestSkipped('Test for property project_name not implemented');
   }
 
   /**
@@ -153,27 +153,27 @@ class NotificationContentTest extends TestCase
   }
 
   /**
-   * Test attribute "remixed_program".
+   * Test attribute "remixed_project".
    *
    * @group unit
    *
    * @small
    */
-  public function testPropertyRemixedProgram(): void
+  public function testPropertyRemixedProject(): void
   {
-    $this->markTestSkipped('Test for property remixed_program not implemented');
+    $this->markTestSkipped('Test for property remixed_project not implemented');
   }
 
   /**
-   * Test attribute "remixed_program_name".
+   * Test attribute "remixed_project_name".
    *
    * @group unit
    *
    * @small
    */
-  public function testPropertyRemixedProgramName(): void
+  public function testPropertyRemixedProjectName(): void
   {
-    $this->markTestSkipped('Test for property remixed_program_name not implemented');
+    $this->markTestSkipped('Test for property remixed_project_name not implemented');
   }
 
   /**

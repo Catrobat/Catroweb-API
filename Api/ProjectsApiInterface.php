@@ -256,7 +256,7 @@ interface ProjectsApiInterface
    * @param UploadedFile $file            The *.catrobat project file (required)
    * @param string       $accept_language (optional, default to 'en')
    * @param string       $flavor          The flavor of this project (optional, default to 'pocketcode')
-   * @param bool         $private         Indicates whether a program should be private (optional, default to false)
+   * @param bool         $private         Indicates whether a project should be private (optional, default to false)
    * @param int          &$responseCode   The HTTP Response Code
    * @param array        $responseHeaders Additional HTTP headers to return with the response ()
    */

@@ -40,8 +40,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class RefreshRequest
 {
-  #[Assert\Type('string')]
   #[SerializedName('refresh_token')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $refresh_token = null;
 

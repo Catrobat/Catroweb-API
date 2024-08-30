@@ -43,16 +43,16 @@ class ExtensionResponse
   /**
    * The internal title of the extension.
    */
-  #[Assert\Type('string')]
   #[SerializedName('id')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $id = null;
 
   /**
    * The translated text of the project extension.
    */
-  #[Assert\Type('string')]
   #[SerializedName('text')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $text = null;
 

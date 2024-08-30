@@ -40,8 +40,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class UpgradeTokenRequest
 {
-  #[Assert\Type('string')]
   #[SerializedName('upload_token')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $upload_token = null;
 

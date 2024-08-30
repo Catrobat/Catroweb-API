@@ -43,101 +43,101 @@ class ProjectResponse
   /**
    * The unique identifier of the project.
    */
-  #[Assert\Type('string')]
   #[SerializedName('id')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $id = null;
 
   /**
    * The name of the project. minLength: 1 | maxLength: 255.
    */
-  #[Assert\Type('string')]
   #[SerializedName('name')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $name = null;
 
   /**
    * The name of the projects&#39; author.
    */
-  #[Assert\Type('string')]
   #[SerializedName('author')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $author = null;
 
   /**
    * A description of the project.
    */
-  #[Assert\Type('string')]
   #[SerializedName('description')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $description = null;
 
   /**
    * Credits and notes for the project. E.g., credits for using ideas, scripts or artwork from other people.
    */
-  #[Assert\Type('string')]
   #[SerializedName('credits')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $credits = null;
 
   /**
    * The catrobat version that was used to create this project.
    */
-  #[Assert\Type('string')]
   #[SerializedName('version')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $version = null;
 
   /**
    * The projects&#39; count of views.
    */
-  #[Assert\Type('int')]
   #[SerializedName('views')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $views = null;
 
   /**
    * The projects&#39; count of downloads. Deprecated. Use downloads.
    */
-  #[Assert\Type('int')]
   #[SerializedName('download')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $download = null;
 
   /**
    * The projects&#39; count of downloads.
    */
-  #[Assert\Type('int')]
   #[SerializedName('downloads')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $downloads = null;
 
   /**
    * The projects&#39; count of reactions.
    */
-  #[Assert\Type('int')]
   #[SerializedName('reactions')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $reactions = null;
 
   /**
    * The projects&#39; count of comments.
    */
-  #[Assert\Type('int')]
   #[SerializedName('comments')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $comments = null;
 
   /**
    * Whether a project is publicly visible (false) or only via direct link (true).
    */
-  #[Assert\Type('bool')]
   #[SerializedName('private')]
+  #[Assert\Type('bool')]
   #[Type('bool')]
   protected ?bool $private = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('flavor')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $flavor = null;
 
@@ -150,8 +150,6 @@ class ProjectResponse
    *
    *   @Assert\Type("string")
    * })
-   *   @Assert\Type("string")
-   * })
    */
   #[SerializedName('tags')]
   #[Type('array<string>')]
@@ -160,58 +158,58 @@ class ProjectResponse
   /**
    * The time of the upload.
    */
-  #[Assert\Type('int')]
   #[SerializedName('uploaded')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $uploaded = null;
 
   /**
    * A localised text interpretation of the uploaded timestamp.
    */
-  #[Assert\Type('string')]
   #[SerializedName('uploaded_string')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $uploaded_string = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('screenshot_large')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $screenshot_large = null;
 
-  #[Assert\Type('string')]
   #[SerializedName('screenshot_small')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $screenshot_small = null;
 
   /**
    * The url to the project on our official share community platform.
    */
-  #[Assert\Type('string')]
   #[SerializedName('project_url')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $project_url = null;
 
   /**
    * The url to GET the catrobat file of this project.
    */
-  #[Assert\Type('string')]
   #[SerializedName('download_url')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $download_url = null;
 
   /**
    * The filesize of the catrobat file in megabytes.
    */
-  #[Assert\Type('float')]
   #[SerializedName('filesize')]
+  #[Assert\Type('float')]
   #[Type('float')]
   protected ?float $filesize = null;
 
   /**
    * Indicates whether a project is suitable for kids or not (0 &#x3D; safe for kids, 1 &#x3D; not safe for kids, 2 &#x3D; not safe for kids set by moderator).
    */
-  #[Assert\Type('int')]
   #[SerializedName('not_for_kids')]
+  #[Assert\Type('int')]
   #[Type('int')]
   protected ?int $not_for_kids = null;
 

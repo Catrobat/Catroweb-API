@@ -40,27 +40,27 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class UpdateProjectErrorResponse
 {
+  #[SerializedName('name')]
   #[Assert\Choice(['Name empty', 'Name too long'])]
   #[Assert\Type('string')]
-  #[SerializedName('name')]
   #[Type('string')]
   protected ?string $name = null;
 
+  #[SerializedName('description')]
   #[Assert\Choice(['Description too long'])]
   #[Assert\Type('string')]
-  #[SerializedName('description')]
   #[Type('string')]
   protected ?string $description = null;
 
+  #[SerializedName('credits')]
   #[Assert\Choice(['Credits too long'])]
   #[Assert\Type('string')]
-  #[SerializedName('credits')]
   #[Type('string')]
   protected ?string $credits = null;
 
+  #[SerializedName('screenshot')]
   #[Assert\Choice(['Project screenshot invalid or not supported'])]
   #[Assert\Type('string')]
-  #[SerializedName('screenshot')]
   #[Type('string')]
   protected ?string $screenshot = null;
 

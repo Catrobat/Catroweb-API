@@ -91,7 +91,7 @@ class StudioApiInterfaceTest extends WebTestCase
 
     $path = '/studio/{id}';
     $pattern = '{id}';
-    $data = $this->genTestData('[a-z0-9]+');
+    $data = $this->genTestData('^[a-zA-Z0-9\-]+$');
     $path = str_replace($pattern, $data, $path);
 
     $crawler = $client->request('PUT', $path);

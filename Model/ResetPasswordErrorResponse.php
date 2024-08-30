@@ -40,9 +40,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ResetPasswordErrorResponse
 {
+  #[SerializedName('email')]
   #[Assert\Choice(['Email invalid', 'Email missing'])]
   #[Assert\Type('string')]
-  #[SerializedName('email')]
   #[Type('string')]
   protected ?string $email = null;
 

@@ -43,40 +43,40 @@ class UpdateProjectRequest
   /**
    * The name of the project. minLength: 1 | maxLength: 255.
    */
-  #[Assert\Type('string')]
   #[SerializedName('name')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $name = null;
 
   /**
    * A description of the project.
    */
-  #[Assert\Type('string')]
   #[SerializedName('description')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $description = null;
 
   /**
    * Credits and notes for the project. E.g., credits for using ideas, scripts or artwork from other people.
    */
-  #[Assert\Type('string')]
   #[SerializedName('credits')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $credits = null;
 
   /**
    * Whether a project is publicly visible (false) or only via direct link (true).
    */
-  #[Assert\Type('bool')]
   #[SerializedName('private')]
+  #[Assert\Type('bool')]
   #[Type('bool')]
   protected ?bool $private = null;
 
   /**
    * An image representing the project in data URI scheme.
    */
-  #[Assert\Type('string')]
   #[SerializedName('screenshot')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $screenshot = null;
 

@@ -43,8 +43,8 @@ class DryRun
   /**
    * Indicates if a request should only be verified or executed.
    */
-  #[Assert\Type('bool')]
   #[SerializedName('dry_run')]
+  #[Assert\Type('bool')]
   #[Type('bool')]
   protected ?bool $dry_run = false;
 

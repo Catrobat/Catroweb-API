@@ -40,8 +40,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class UploadErrorResponse
 {
-  #[Assert\Type('string')]
   #[SerializedName('error')]
+  #[Assert\Type('string')]
   #[Type('string')]
   protected ?string $error = null;
 
