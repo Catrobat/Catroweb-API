@@ -81,11 +81,11 @@ class StudioApiInterfaceTest extends WebTestCase
   }
 
   /**
-   * Test case for studioIdPut.
+   * Test case for studioIdDelete.
    *
-   * Update a Studio.
+   * Delete a studio (only available to studio admins).
    */
-  public function testStudioIdPut(): void
+  public function testStudioIdDelete(): void
   {
     $client = self::$client;
 
@@ -94,8 +94,44 @@ class StudioApiInterfaceTest extends WebTestCase
     $data = $this->genTestData('^[a-zA-Z0-9\-]+$');
     $path = str_replace($pattern, $data, $path);
 
-    $crawler = $client->request('PUT', $path);
-    $this->markTestSkipped('Test for studioIdPut not implemented');
+    $crawler = $client->request('DELETE', $path);
+    $this->markTestSkipped('Test for studioIdDelete not implemented');
+  }
+
+  /**
+   * Test case for studioIdGet.
+   *
+   * Get studio details (private studios are only available to members).
+   */
+  public function testStudioIdGet(): void
+  {
+    $client = self::$client;
+
+    $path = '/studio/{id}';
+    $pattern = '{id}';
+    $data = $this->genTestData('^[a-zA-Z0-9\-]+$');
+    $path = str_replace($pattern, $data, $path);
+
+    $crawler = $client->request('GET', $path);
+    $this->markTestSkipped('Test for studioIdGet not implemented');
+  }
+
+  /**
+   * Test case for studioIdPost.
+   *
+   * Update a Studio (only available to studio admins).
+   */
+  public function testStudioIdPost(): void
+  {
+    $client = self::$client;
+
+    $path = '/studio/{id}';
+    $pattern = '{id}';
+    $data = $this->genTestData('^[a-zA-Z0-9\-]+$');
+    $path = str_replace($pattern, $data, $path);
+
+    $crawler = $client->request('POST', $path);
+    $this->markTestSkipped('Test for studioIdPost not implemented');
   }
 
   /**

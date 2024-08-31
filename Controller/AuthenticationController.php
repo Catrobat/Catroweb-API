@@ -123,7 +123,7 @@ class AuthenticationController extends Controller
   /**
    * Operation authenticationGet.
    *
-   * Check token
+   * Check JWT token validity
    *
    * @param Request $request the Symfony request to handle
    *
@@ -265,7 +265,7 @@ class AuthenticationController extends Controller
   /**
    * Operation authenticationPost.
    *
-   * Login
+   * Login - create a new JWT token
    *
    * @param Request $request the Symfony request to handle
    *

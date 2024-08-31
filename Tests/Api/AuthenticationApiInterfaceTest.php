@@ -98,7 +98,7 @@ class AuthenticationApiInterfaceTest extends WebTestCase
   /**
    * Test case for authenticationGet.
    *
-   * Check token.
+   * Check JWT token validity.
    */
   public function testAuthenticationGet(): void
   {
@@ -128,7 +128,7 @@ class AuthenticationApiInterfaceTest extends WebTestCase
   /**
    * Test case for authenticationPost.
    *
-   * Login.
+   * Login - create a new JWT token.
    */
   public function testAuthenticationPost(): void
   {
