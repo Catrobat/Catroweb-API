@@ -50,9 +50,43 @@ interface StudioApiInterface
   public function setBearerAuth(?string $value): void;
 
   /**
-   * Operation studioIdPut.
+   * Operation studioIdDelete.
    *
-   * Update a Studio
+   * Delete a studio (only available to studio admins)
+   *
+   * @param string $id              (required)
+   * @param string $accept_language (optional, default to 'en')
+   * @param int    &$responseCode   The HTTP Response Code
+   * @param array  $responseHeaders Additional HTTP headers to return with the response ()
+   */
+  public function studioIdDelete(
+    string $id,
+    string $accept_language,
+    int &$responseCode,
+    array &$responseHeaders
+  ): void;
+
+  /**
+   * Operation studioIdGet.
+   *
+   * Get studio details (private studios are only available to members)
+   *
+   * @param string $id              (required)
+   * @param string $accept_language (optional, default to 'en')
+   * @param int    &$responseCode   The HTTP Response Code
+   * @param array  $responseHeaders Additional HTTP headers to return with the response ()
+   */
+  public function studioIdGet(
+    string $id,
+    string $accept_language,
+    int &$responseCode,
+    array &$responseHeaders
+  ): array|object|null;
+
+  /**
+   * Operation studioIdPost.
+   *
+   * Update a Studio (only available to studio admins)
    *
    * @param string            $id              (required)
    * @param string            $accept_language (optional, default to 'en')
@@ -64,7 +98,7 @@ interface StudioApiInterface
    * @param int               &$responseCode   The HTTP Response Code
    * @param array             $responseHeaders Additional HTTP headers to return with the response ()
    */
-  public function studioIdPut(
+  public function studioIdPost(
     string $id,
     string $accept_language,
     ?string $name,

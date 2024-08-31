@@ -112,9 +112,9 @@ All URIs are relative to *https://share.catrob.at/api*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AuthenticationApiInterface* | [**authenticationDelete**](docs/Api/AuthenticationApiInterface.md#authenticationdelete) | **DELETE** /authentication | Expires refresh token
-*AuthenticationApiInterface* | [**authenticationGet**](docs/Api/AuthenticationApiInterface.md#authenticationget) | **GET** /authentication | Check token
+*AuthenticationApiInterface* | [**authenticationGet**](docs/Api/AuthenticationApiInterface.md#authenticationget) | **GET** /authentication | Check JWT token validity
 *AuthenticationApiInterface* | [**authenticationOauthPost**](docs/Api/AuthenticationApiInterface.md#authenticationoauthpost) | **POST** /authentication/oauth | OAuth Login
-*AuthenticationApiInterface* | [**authenticationPost**](docs/Api/AuthenticationApiInterface.md#authenticationpost) | **POST** /authentication | Login
+*AuthenticationApiInterface* | [**authenticationPost**](docs/Api/AuthenticationApiInterface.md#authenticationpost) | **POST** /authentication | Login - create a new JWT token
 *AuthenticationApiInterface* | [**authenticationRefreshPost**](docs/Api/AuthenticationApiInterface.md#authenticationrefreshpost) | **POST** /authentication/refresh | Refresh token
 *AuthenticationApiInterface* | [**authenticationUpgradePost**](docs/Api/AuthenticationApiInterface.md#authenticationupgradepost) | **POST** /authentication/upgrade | Upgrade a deprecated token to JWT
 *MediaLibraryApiInterface* | [**mediaFileIdGet**](docs/Api/MediaLibraryApiInterface.md#mediafileidget) | **GET** /media/file/{id} | Get the information of a specific media file
@@ -141,7 +141,9 @@ Class | Method | HTTP request | Description
 *ProjectsApiInterface* | [**projectsUserGet**](docs/Api/ProjectsApiInterface.md#projectsuserget) | **GET** /projects/user | Get the projects of the logged in user
 *ProjectsApiInterface* | [**projectsUserIdGet**](docs/Api/ProjectsApiInterface.md#projectsuseridget) | **GET** /projects/user/{id} | Get the public projects of a given user
 *SearchApiInterface* | [**searchGet**](docs/Api/SearchApiInterface.md#searchget) | **GET** /search | Search for projects, users,..
-*StudioApiInterface* | [**studioIdPut**](docs/Api/StudioApiInterface.md#studioidput) | **PUT** /studio/{id} | Update a Studio
+*StudioApiInterface* | [**studioIdDelete**](docs/Api/StudioApiInterface.md#studioiddelete) | **DELETE** /studio/{id} | Delete a studio (only available to studio admins)
+*StudioApiInterface* | [**studioIdGet**](docs/Api/StudioApiInterface.md#studioidget) | **GET** /studio/{id} | Get studio details (private studios are only available to members)
+*StudioApiInterface* | [**studioIdPost**](docs/Api/StudioApiInterface.md#studioidpost) | **POST** /studio/{id} | Update a Studio (only available to studio admins)
 *StudioApiInterface* | [**studioPost**](docs/Api/StudioApiInterface.md#studiopost) | **POST** /studio | Create a new Studio
 *UserApiInterface* | [**userDelete**](docs/Api/UserApiInterface.md#userdelete) | **DELETE** /user | Delete user account
 *UserApiInterface* | [**userGet**](docs/Api/UserApiInterface.md#userget) | **GET** /user | Get your private user data

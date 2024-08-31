@@ -5,9 +5,9 @@ All URIs are relative to *https://share.catrob.at/api*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**authenticationDelete**](AuthenticationApiInterface.md#authenticationDelete) | **DELETE** /authentication | Expires refresh token
-[**authenticationGet**](AuthenticationApiInterface.md#authenticationGet) | **GET** /authentication | Check token
+[**authenticationGet**](AuthenticationApiInterface.md#authenticationGet) | **GET** /authentication | Check JWT token validity
 [**authenticationOauthPost**](AuthenticationApiInterface.md#authenticationOauthPost) | **POST** /authentication/oauth | OAuth Login
-[**authenticationPost**](AuthenticationApiInterface.md#authenticationPost) | **POST** /authentication | Login
+[**authenticationPost**](AuthenticationApiInterface.md#authenticationPost) | **POST** /authentication | Login - create a new JWT token
 [**authenticationRefreshPost**](AuthenticationApiInterface.md#authenticationRefreshPost) | **POST** /authentication/refresh | Refresh token
 [**authenticationUpgradePost**](AuthenticationApiInterface.md#authenticationUpgradePost) | **POST** /authentication/upgrade | Upgrade a deprecated token to JWT
 
@@ -80,9 +80,9 @@ void (empty response body)
 ## **authenticationGet**
 > authenticationGet()
 
-Check token
+Check JWT token validity
 
-Checks if a token is valid or expired
+Checks if a token is valid or expired.
 
 ### Example Implementation
 ```php
@@ -185,7 +185,7 @@ No authorization required
 ## **authenticationPost**
 > OpenAPI\Server\Model\JWTResponse authenticationPost($login_request)
 
-Login
+Login - create a new JWT token
 
 Returns an JWT token which provides authorization for a limited time
 
