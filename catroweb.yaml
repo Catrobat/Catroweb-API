@@ -58,8 +58,8 @@ paths:
         - BearerAuth: [ ]
       tags:
         - "Authentication"
-      summary: "Check token"
-      description: "Checks if a token is valid or expired"
+      summary: "Check JWT token validity"
+      description: "Checks if a token is valid or expired."
       responses:
         '200':
           $ref: '#/components/responses/OK'
@@ -71,7 +71,7 @@ paths:
         - BearerAuth: [ ]
       tags:
         - "Authentication"
-      summary: "Login"
+      summary: "Login - create a new JWT token"
       description: "Returns an JWT token which provides authorization for a limited time"
       requestBody:
         required: true
@@ -1320,12 +1320,12 @@ paths:
   '/studio/{id}':
     parameters:
       - $ref: '#/components/parameters/Locale'
-    put:
+    post:
       security:
         - BearerAuth: [ ]
       tags:
         - Studio
-      summary: Update a Studio
+      summary: Update a Studio (only available to studio admins)
       parameters:
         - $ref: '#/components/parameters/Uuid'
       requestBody:
@@ -1341,8 +1341,7 @@ paths:
             Location:
               schema:
                 type: string
-                example: >-
-                  https://share.catrob.at/app/studio/63768cf1-5f07-11ea-a2ae-000c292a0f49
+                example: https://share.catrob.at/app/studio/63768cf1-5f07-11ea-a2ae-000c292a0f49
               description: Resource location on server
           content:
             application/json:
@@ -1369,6 +1368,59 @@ paths:
               $ref: '#/components/headers/X-Response-Hash'
             Content-Language:
               $ref: '#/components/headers/Content-Language'
+
+    delete:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Studio
+      summary: Delete a studio (only available to studio admins)
+      parameters:
+        - $ref: '#/components/parameters/Uuid'
+      responses:
+        '204':
+          description: OK
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
+    get:
+      tags:
+        - Studio
+      summary: Get studio details (private studios are only available to members)
+      parameters:
+        - $ref: '#/components/parameters/Uuid'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Location:
+              schema:
+                type: string
+                example: https://share.catrob.at/app/studio/63768cf1-5f07-11ea-a2ae-000c292a0f49
+              description: Resource location on server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudioResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+
 
 components:
 
